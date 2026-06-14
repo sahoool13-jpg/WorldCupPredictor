@@ -1,0 +1,11414 @@
+{
+ "metadata": {
+  "description": "2026 FIFA World Cup Round-of-32 third-placed-team assignment (FIFA Annex C).",
+  "source": "FIFA tournament regulations, Annex C \u2014 transcribed from Wikipedia '2026 FIFA World Cup knockout stage' and machine-validated.",
+  "winner_slots_order": [
+   "A",
+   "B",
+   "D",
+   "E",
+   "G",
+   "I",
+   "K",
+   "L"
+  ],
+  "winner_slots_note": "The 8 group winners that face a third-placed team. The other 4 winners (C,F,H,J) face runners-up.",
+  "key_format": "Sorted concatenation of the 8 group letters whose third-placed teams qualified, e.g. 'EFGHIJKL'.",
+  "assign_note": "assign[X]=Y means Winner of Group X plays the third-placed team of Group Y (i.e. 1X vs 3Y).",
+  "n_rows": 495,
+  "validation": {
+   "rows": 495,
+   "distinct_combos": 495,
+   "rematch_violations": 0,
+   "bijection_violations": 0,
+   "all_C(12,8)_present": true
+  }
+ },
+ "table": {
+  "EFGHIJKL": {
+   "row": 1,
+   "thirds": [
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "I",
+    "E": "F",
+    "G": "H",
+    "I": "G",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "DFGHIJKL": {
+   "row": 2,
+   "thirds": [
+    "D",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "I",
+    "E": "D",
+    "G": "J",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "DEGHIJKL": {
+   "row": 3,
+   "thirds": [
+    "D",
+    "E",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "I",
+    "E": "D",
+    "G": "H",
+    "I": "G",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "DEFHIJKL": {
+   "row": 4,
+   "thirds": [
+    "D",
+    "E",
+    "F",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "I",
+    "E": "D",
+    "G": "H",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "DEFGIJKL": {
+   "row": 5,
+   "thirds": [
+    "D",
+    "E",
+    "F",
+    "G",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "I",
+    "E": "D",
+    "G": "J",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "DEFGHJKL": {
+   "row": 6,
+   "thirds": [
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "J",
+    "E": "D",
+    "G": "H",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "DEFGHIKL": {
+   "row": 7,
+   "thirds": [
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "I",
+    "E": "D",
+    "G": "H",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "DEFGHIJL": {
+   "row": 8,
+   "thirds": [
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "J",
+    "E": "D",
+    "G": "H",
+    "I": "F",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "DEFGHIJK": {
+   "row": 9,
+   "thirds": [
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "J",
+    "E": "D",
+    "G": "H",
+    "I": "F",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "CFGHIJKL": {
+   "row": 10,
+   "thirds": [
+    "C",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "I",
+    "E": "C",
+    "G": "J",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "CEGHIJKL": {
+   "row": 11,
+   "thirds": [
+    "C",
+    "E",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "I",
+    "E": "C",
+    "G": "H",
+    "I": "G",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "CEFHIJKL": {
+   "row": 12,
+   "thirds": [
+    "C",
+    "E",
+    "F",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "I",
+    "E": "C",
+    "G": "H",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "CEFGIJKL": {
+   "row": 13,
+   "thirds": [
+    "C",
+    "E",
+    "F",
+    "G",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "I",
+    "E": "C",
+    "G": "J",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "CEFGHJKL": {
+   "row": 14,
+   "thirds": [
+    "C",
+    "E",
+    "F",
+    "G",
+    "H",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "J",
+    "E": "C",
+    "G": "H",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "CEFGHIKL": {
+   "row": 15,
+   "thirds": [
+    "C",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "I",
+    "E": "C",
+    "G": "H",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "CEFGHIJL": {
+   "row": 16,
+   "thirds": [
+    "C",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "J",
+    "E": "C",
+    "G": "H",
+    "I": "F",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "CEFGHIJK": {
+   "row": 17,
+   "thirds": [
+    "C",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "J",
+    "E": "C",
+    "G": "H",
+    "I": "F",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "CDGHIJKL": {
+   "row": 18,
+   "thirds": [
+    "C",
+    "D",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "I",
+    "E": "C",
+    "G": "J",
+    "I": "D",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "CDFHIJKL": {
+   "row": 19,
+   "thirds": [
+    "C",
+    "D",
+    "F",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "J",
+    "D": "I",
+    "E": "D",
+    "G": "H",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "CDFGIJKL": {
+   "row": 20,
+   "thirds": [
+    "C",
+    "D",
+    "F",
+    "G",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "G",
+    "D": "I",
+    "E": "D",
+    "G": "J",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "CDFGHJKL": {
+   "row": 21,
+   "thirds": [
+    "C",
+    "D",
+    "F",
+    "G",
+    "H",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "G",
+    "D": "J",
+    "E": "D",
+    "G": "H",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "CDFGHIKL": {
+   "row": 22,
+   "thirds": [
+    "C",
+    "D",
+    "F",
+    "G",
+    "H",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "G",
+    "D": "I",
+    "E": "D",
+    "G": "H",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "CDFGHIJL": {
+   "row": 23,
+   "thirds": [
+    "C",
+    "D",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "G",
+    "D": "J",
+    "E": "D",
+    "G": "H",
+    "I": "F",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "CDFGHIJK": {
+   "row": 24,
+   "thirds": [
+    "C",
+    "D",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "G",
+    "D": "J",
+    "E": "D",
+    "G": "H",
+    "I": "F",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "CDEHIJKL": {
+   "row": 25,
+   "thirds": [
+    "C",
+    "D",
+    "E",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "I",
+    "E": "C",
+    "G": "H",
+    "I": "D",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "CDEGIJKL": {
+   "row": 26,
+   "thirds": [
+    "C",
+    "D",
+    "E",
+    "G",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "I",
+    "E": "C",
+    "G": "J",
+    "I": "D",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "CDEGHJKL": {
+   "row": 27,
+   "thirds": [
+    "C",
+    "D",
+    "E",
+    "G",
+    "H",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "J",
+    "E": "C",
+    "G": "H",
+    "I": "D",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "CDEGHIKL": {
+   "row": 28,
+   "thirds": [
+    "C",
+    "D",
+    "E",
+    "G",
+    "H",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "I",
+    "E": "C",
+    "G": "H",
+    "I": "D",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "CDEGHIJL": {
+   "row": 29,
+   "thirds": [
+    "C",
+    "D",
+    "E",
+    "G",
+    "H",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "J",
+    "E": "C",
+    "G": "H",
+    "I": "D",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "CDEGHIJK": {
+   "row": 30,
+   "thirds": [
+    "C",
+    "D",
+    "E",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "J",
+    "E": "C",
+    "G": "H",
+    "I": "D",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "CDEFIJKL": {
+   "row": 31,
+   "thirds": [
+    "C",
+    "D",
+    "E",
+    "F",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "J",
+    "D": "E",
+    "E": "D",
+    "G": "I",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "CDEFHJKL": {
+   "row": 32,
+   "thirds": [
+    "C",
+    "D",
+    "E",
+    "F",
+    "H",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "J",
+    "D": "E",
+    "E": "D",
+    "G": "H",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "CDEFHIKL": {
+   "row": 33,
+   "thirds": [
+    "C",
+    "D",
+    "E",
+    "F",
+    "H",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "E",
+    "D": "I",
+    "E": "D",
+    "G": "H",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "CDEFHIJL": {
+   "row": 34,
+   "thirds": [
+    "C",
+    "D",
+    "E",
+    "F",
+    "H",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "J",
+    "D": "E",
+    "E": "D",
+    "G": "H",
+    "I": "F",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "CDEFHIJK": {
+   "row": 35,
+   "thirds": [
+    "C",
+    "D",
+    "E",
+    "F",
+    "H",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "J",
+    "D": "E",
+    "E": "D",
+    "G": "H",
+    "I": "F",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "CDEFGJKL": {
+   "row": 36,
+   "thirds": [
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "G",
+    "D": "E",
+    "E": "D",
+    "G": "J",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "CDEFGIKL": {
+   "row": 37,
+   "thirds": [
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "G",
+    "D": "E",
+    "E": "D",
+    "G": "I",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "CDEFGIJL": {
+   "row": 38,
+   "thirds": [
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "G",
+    "D": "E",
+    "E": "D",
+    "G": "J",
+    "I": "F",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "CDEFGIJK": {
+   "row": 39,
+   "thirds": [
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "G",
+    "D": "E",
+    "E": "D",
+    "G": "J",
+    "I": "F",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "CDEFGHKL": {
+   "row": 40,
+   "thirds": [
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "G",
+    "D": "E",
+    "E": "D",
+    "G": "H",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "CDEFGHJL": {
+   "row": 41,
+   "thirds": [
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "G",
+    "D": "J",
+    "E": "D",
+    "G": "H",
+    "I": "F",
+    "K": "L",
+    "L": "E"
+   }
+  },
+  "CDEFGHJK": {
+   "row": 42,
+   "thirds": [
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "G",
+    "D": "J",
+    "E": "D",
+    "G": "H",
+    "I": "F",
+    "K": "E",
+    "L": "K"
+   }
+  },
+  "CDEFGHIL": {
+   "row": 43,
+   "thirds": [
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "G",
+    "D": "E",
+    "E": "D",
+    "G": "H",
+    "I": "F",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "CDEFGHIK": {
+   "row": 44,
+   "thirds": [
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "K"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "G",
+    "D": "E",
+    "E": "D",
+    "G": "H",
+    "I": "F",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "CDEFGHIJ": {
+   "row": 45,
+   "thirds": [
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "G",
+    "D": "J",
+    "E": "D",
+    "G": "H",
+    "I": "F",
+    "K": "E",
+    "L": "I"
+   }
+  },
+  "BFGHIJKL": {
+   "row": 46,
+   "thirds": [
+    "B",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "B",
+    "E": "F",
+    "G": "I",
+    "I": "G",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BEGHIJKL": {
+   "row": 47,
+   "thirds": [
+    "B",
+    "E",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "I",
+    "E": "B",
+    "G": "H",
+    "I": "G",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BEFHIJKL": {
+   "row": 48,
+   "thirds": [
+    "B",
+    "E",
+    "F",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "F",
+    "G": "I",
+    "I": "H",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BEFGIJKL": {
+   "row": 49,
+   "thirds": [
+    "B",
+    "E",
+    "F",
+    "G",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "F",
+    "G": "I",
+    "I": "G",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BEFGHJKL": {
+   "row": 50,
+   "thirds": [
+    "B",
+    "E",
+    "F",
+    "G",
+    "H",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "F",
+    "G": "H",
+    "I": "G",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BEFGHIKL": {
+   "row": 51,
+   "thirds": [
+    "B",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "B",
+    "E": "F",
+    "G": "I",
+    "I": "H",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BEFGHIJL": {
+   "row": 52,
+   "thirds": [
+    "B",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "F",
+    "G": "H",
+    "I": "G",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "BEFGHIJK": {
+   "row": 53,
+   "thirds": [
+    "B",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "F",
+    "G": "H",
+    "I": "G",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "BDGHIJKL": {
+   "row": 54,
+   "thirds": [
+    "B",
+    "D",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "I",
+    "I": "G",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BDFHIJKL": {
+   "row": 55,
+   "thirds": [
+    "B",
+    "D",
+    "F",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "I",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BDFGIJKL": {
+   "row": 56,
+   "thirds": [
+    "B",
+    "D",
+    "F",
+    "G",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "I",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "J",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BDFGHJKL": {
+   "row": 57,
+   "thirds": [
+    "B",
+    "D",
+    "F",
+    "G",
+    "H",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "J",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BDFGHIKL": {
+   "row": 58,
+   "thirds": [
+    "B",
+    "D",
+    "F",
+    "G",
+    "H",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "I",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BDFGHIJL": {
+   "row": 59,
+   "thirds": [
+    "B",
+    "D",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "J",
+    "I": "F",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "BDFGHIJK": {
+   "row": 60,
+   "thirds": [
+    "B",
+    "D",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "J",
+    "I": "F",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "BDEHIJKL": {
+   "row": 61,
+   "thirds": [
+    "B",
+    "D",
+    "E",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "I",
+    "I": "H",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BDEGIJKL": {
+   "row": 62,
+   "thirds": [
+    "B",
+    "D",
+    "E",
+    "G",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "I",
+    "I": "G",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BDEGHJKL": {
+   "row": 63,
+   "thirds": [
+    "B",
+    "D",
+    "E",
+    "G",
+    "H",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "H",
+    "I": "G",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BDEGHIKL": {
+   "row": 64,
+   "thirds": [
+    "B",
+    "D",
+    "E",
+    "G",
+    "H",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "I",
+    "I": "H",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BDEGHIJL": {
+   "row": 65,
+   "thirds": [
+    "B",
+    "D",
+    "E",
+    "G",
+    "H",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "H",
+    "I": "G",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "BDEGHIJK": {
+   "row": 66,
+   "thirds": [
+    "B",
+    "D",
+    "E",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "H",
+    "I": "G",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "BDEFIJKL": {
+   "row": 67,
+   "thirds": [
+    "B",
+    "D",
+    "E",
+    "F",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "I",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BDEFHJKL": {
+   "row": 68,
+   "thirds": [
+    "B",
+    "D",
+    "E",
+    "F",
+    "H",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "H",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BDEFHIKL": {
+   "row": 69,
+   "thirds": [
+    "B",
+    "D",
+    "E",
+    "F",
+    "H",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "I",
+    "D": "B",
+    "E": "D",
+    "G": "H",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BDEFHIJL": {
+   "row": 70,
+   "thirds": [
+    "B",
+    "D",
+    "E",
+    "F",
+    "H",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "H",
+    "I": "F",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "BDEFHIJK": {
+   "row": 71,
+   "thirds": [
+    "B",
+    "D",
+    "E",
+    "F",
+    "H",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "H",
+    "I": "F",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "BDEFGJKL": {
+   "row": 72,
+   "thirds": [
+    "B",
+    "D",
+    "E",
+    "F",
+    "G",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "J",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BDEFGIKL": {
+   "row": 73,
+   "thirds": [
+    "B",
+    "D",
+    "E",
+    "F",
+    "G",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "I",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BDEFGIJL": {
+   "row": 74,
+   "thirds": [
+    "B",
+    "D",
+    "E",
+    "F",
+    "G",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "J",
+    "I": "F",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "BDEFGIJK": {
+   "row": 75,
+   "thirds": [
+    "B",
+    "D",
+    "E",
+    "F",
+    "G",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "J",
+    "I": "F",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "BDEFGHKL": {
+   "row": 76,
+   "thirds": [
+    "B",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "H",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BDEFGHJL": {
+   "row": 77,
+   "thirds": [
+    "B",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "J",
+    "I": "F",
+    "K": "L",
+    "L": "E"
+   }
+  },
+  "BDEFGHJK": {
+   "row": 78,
+   "thirds": [
+    "B",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "J",
+    "I": "F",
+    "K": "E",
+    "L": "K"
+   }
+  },
+  "BDEFGHIL": {
+   "row": 79,
+   "thirds": [
+    "B",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "H",
+    "I": "F",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "BDEFGHIK": {
+   "row": 80,
+   "thirds": [
+    "B",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "K"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "H",
+    "I": "F",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "BDEFGHIJ": {
+   "row": 81,
+   "thirds": [
+    "B",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "J",
+    "I": "F",
+    "K": "E",
+    "L": "I"
+   }
+  },
+  "BCGHIJKL": {
+   "row": 82,
+   "thirds": [
+    "B",
+    "C",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "B",
+    "E": "C",
+    "G": "I",
+    "I": "G",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BCFHIJKL": {
+   "row": 83,
+   "thirds": [
+    "B",
+    "C",
+    "F",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "B",
+    "E": "C",
+    "G": "I",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BCFGIJKL": {
+   "row": 84,
+   "thirds": [
+    "B",
+    "C",
+    "F",
+    "G",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "I",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "J",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BCFGHJKL": {
+   "row": 85,
+   "thirds": [
+    "B",
+    "C",
+    "F",
+    "G",
+    "H",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "J",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BCFGHIKL": {
+   "row": 86,
+   "thirds": [
+    "B",
+    "C",
+    "F",
+    "G",
+    "H",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "I",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BCFGHIJL": {
+   "row": 87,
+   "thirds": [
+    "B",
+    "C",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "J",
+    "I": "F",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "BCFGHIJK": {
+   "row": 88,
+   "thirds": [
+    "B",
+    "C",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "J",
+    "I": "F",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "BCEHIJKL": {
+   "row": 89,
+   "thirds": [
+    "B",
+    "C",
+    "E",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "C",
+    "G": "I",
+    "I": "H",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BCEGIJKL": {
+   "row": 90,
+   "thirds": [
+    "B",
+    "C",
+    "E",
+    "G",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "C",
+    "G": "I",
+    "I": "G",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BCEGHJKL": {
+   "row": 91,
+   "thirds": [
+    "B",
+    "C",
+    "E",
+    "G",
+    "H",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "C",
+    "G": "H",
+    "I": "G",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BCEGHIKL": {
+   "row": 92,
+   "thirds": [
+    "B",
+    "C",
+    "E",
+    "G",
+    "H",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "I",
+    "I": "H",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BCEGHIJL": {
+   "row": 93,
+   "thirds": [
+    "B",
+    "C",
+    "E",
+    "G",
+    "H",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "C",
+    "G": "H",
+    "I": "G",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "BCEGHIJK": {
+   "row": 94,
+   "thirds": [
+    "B",
+    "C",
+    "E",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "C",
+    "G": "H",
+    "I": "G",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "BCEFIJKL": {
+   "row": 95,
+   "thirds": [
+    "B",
+    "C",
+    "E",
+    "F",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "C",
+    "G": "I",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BCEFHJKL": {
+   "row": 96,
+   "thirds": [
+    "B",
+    "C",
+    "E",
+    "F",
+    "H",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "C",
+    "G": "H",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BCEFHIKL": {
+   "row": 97,
+   "thirds": [
+    "B",
+    "C",
+    "E",
+    "F",
+    "H",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "I",
+    "D": "B",
+    "E": "C",
+    "G": "H",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BCEFHIJL": {
+   "row": 98,
+   "thirds": [
+    "B",
+    "C",
+    "E",
+    "F",
+    "H",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "C",
+    "G": "H",
+    "I": "F",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "BCEFHIJK": {
+   "row": 99,
+   "thirds": [
+    "B",
+    "C",
+    "E",
+    "F",
+    "H",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "C",
+    "G": "H",
+    "I": "F",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "BCEFGJKL": {
+   "row": 100,
+   "thirds": [
+    "B",
+    "C",
+    "E",
+    "F",
+    "G",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "J",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BCEFGIKL": {
+   "row": 101,
+   "thirds": [
+    "B",
+    "C",
+    "E",
+    "F",
+    "G",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "I",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BCEFGIJL": {
+   "row": 102,
+   "thirds": [
+    "B",
+    "C",
+    "E",
+    "F",
+    "G",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "J",
+    "I": "F",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "BCEFGIJK": {
+   "row": 103,
+   "thirds": [
+    "B",
+    "C",
+    "E",
+    "F",
+    "G",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "J",
+    "I": "F",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "BCEFGHKL": {
+   "row": 104,
+   "thirds": [
+    "B",
+    "C",
+    "E",
+    "F",
+    "G",
+    "H",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "H",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BCEFGHJL": {
+   "row": 105,
+   "thirds": [
+    "B",
+    "C",
+    "E",
+    "F",
+    "G",
+    "H",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "J",
+    "I": "F",
+    "K": "L",
+    "L": "E"
+   }
+  },
+  "BCEFGHJK": {
+   "row": 106,
+   "thirds": [
+    "B",
+    "C",
+    "E",
+    "F",
+    "G",
+    "H",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "J",
+    "I": "F",
+    "K": "E",
+    "L": "K"
+   }
+  },
+  "BCEFGHIL": {
+   "row": 107,
+   "thirds": [
+    "B",
+    "C",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "H",
+    "I": "F",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "BCEFGHIK": {
+   "row": 108,
+   "thirds": [
+    "B",
+    "C",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "K"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "H",
+    "I": "F",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "BCEFGHIJ": {
+   "row": 109,
+   "thirds": [
+    "B",
+    "C",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "J",
+    "I": "F",
+    "K": "E",
+    "L": "I"
+   }
+  },
+  "BCDHIJKL": {
+   "row": 110,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "B",
+    "E": "C",
+    "G": "I",
+    "I": "D",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BCDGIJKL": {
+   "row": 111,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "G",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "I",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "J",
+    "I": "D",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BCDGHJKL": {
+   "row": 112,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "G",
+    "H",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "J",
+    "I": "D",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BCDGHIKL": {
+   "row": 113,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "G",
+    "H",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "I",
+    "I": "D",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BCDGHIJL": {
+   "row": 114,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "G",
+    "H",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "J",
+    "I": "D",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "BCDGHIJK": {
+   "row": 115,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "J",
+    "I": "D",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "BCDFIJKL": {
+   "row": 116,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "F",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "I",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BCDFHJKL": {
+   "row": 117,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "F",
+    "H",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "H",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BCDFHIKL": {
+   "row": 118,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "F",
+    "H",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "I",
+    "D": "B",
+    "E": "D",
+    "G": "H",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BCDFHIJL": {
+   "row": 119,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "F",
+    "H",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "H",
+    "I": "F",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "BCDFHIJK": {
+   "row": 120,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "F",
+    "H",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "H",
+    "I": "F",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "BCDFGJKL": {
+   "row": 121,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "F",
+    "G",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "J",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BCDFGIKL": {
+   "row": 122,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "F",
+    "G",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "I",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BCDFGIJL": {
+   "row": 123,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "F",
+    "G",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "J",
+    "I": "F",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "BCDFGIJK": {
+   "row": 124,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "F",
+    "G",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "J",
+    "I": "F",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "BCDFGHKL": {
+   "row": 125,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "F",
+    "G",
+    "H",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "H",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BCDFGHJL": {
+   "row": 126,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "F",
+    "G",
+    "H",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "H",
+    "I": "F",
+    "K": "L",
+    "L": "J"
+   }
+  },
+  "BCDFGHJK": {
+   "row": 127,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "F",
+    "G",
+    "H",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "J",
+    "I": "F",
+    "K": "D",
+    "L": "K"
+   }
+  },
+  "BCDFGHIL": {
+   "row": 128,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "F",
+    "G",
+    "H",
+    "I",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "H",
+    "I": "F",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "BCDFGHIK": {
+   "row": 129,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "F",
+    "G",
+    "H",
+    "I",
+    "K"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "H",
+    "I": "F",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "BCDFGHIJ": {
+   "row": 130,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "J",
+    "I": "F",
+    "K": "D",
+    "L": "I"
+   }
+  },
+  "BCDEIJKL": {
+   "row": 131,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "E",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "C",
+    "G": "I",
+    "I": "D",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BCDEHJKL": {
+   "row": 132,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "E",
+    "H",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "C",
+    "G": "H",
+    "I": "D",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BCDEHIKL": {
+   "row": 133,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "E",
+    "H",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "I",
+    "D": "B",
+    "E": "C",
+    "G": "H",
+    "I": "D",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BCDEHIJL": {
+   "row": 134,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "E",
+    "H",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "C",
+    "G": "H",
+    "I": "D",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "BCDEHIJK": {
+   "row": 135,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "E",
+    "H",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "C",
+    "G": "H",
+    "I": "D",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "BCDEGJKL": {
+   "row": 136,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "E",
+    "G",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "J",
+    "I": "D",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BCDEGIKL": {
+   "row": 137,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "E",
+    "G",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "I",
+    "I": "D",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BCDEGIJL": {
+   "row": 138,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "E",
+    "G",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "J",
+    "I": "D",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "BCDEGIJK": {
+   "row": 139,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "E",
+    "G",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "J",
+    "I": "D",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "BCDEGHKL": {
+   "row": 140,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "E",
+    "G",
+    "H",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "H",
+    "I": "D",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BCDEGHJL": {
+   "row": 141,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "E",
+    "G",
+    "H",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "J",
+    "I": "D",
+    "K": "L",
+    "L": "E"
+   }
+  },
+  "BCDEGHJK": {
+   "row": 142,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "E",
+    "G",
+    "H",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "J",
+    "I": "D",
+    "K": "E",
+    "L": "K"
+   }
+  },
+  "BCDEGHIL": {
+   "row": 143,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "E",
+    "G",
+    "H",
+    "I",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "H",
+    "I": "D",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "BCDEGHIK": {
+   "row": 144,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "E",
+    "G",
+    "H",
+    "I",
+    "K"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "H",
+    "I": "D",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "BCDEGHIJ": {
+   "row": 145,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "E",
+    "G",
+    "H",
+    "I",
+    "J"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "J",
+    "I": "D",
+    "K": "E",
+    "L": "I"
+   }
+  },
+  "BCDEFJKL": {
+   "row": 146,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "E",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BCDEFIKL": {
+   "row": 147,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "E",
+    "D": "B",
+    "E": "D",
+    "G": "I",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BCDEFIJL": {
+   "row": 148,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "E",
+    "I": "F",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "BCDEFIJK": {
+   "row": 149,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "E",
+    "I": "F",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "BCDEFHKL": {
+   "row": 150,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "H",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "E",
+    "D": "B",
+    "E": "D",
+    "G": "H",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BCDEFHJL": {
+   "row": 151,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "H",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "H",
+    "I": "F",
+    "K": "L",
+    "L": "E"
+   }
+  },
+  "BCDEFHJK": {
+   "row": 152,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "H",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "H",
+    "I": "F",
+    "K": "E",
+    "L": "K"
+   }
+  },
+  "BCDEFHIL": {
+   "row": 153,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "H",
+    "I",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "E",
+    "D": "B",
+    "E": "D",
+    "G": "H",
+    "I": "F",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "BCDEFHIK": {
+   "row": 154,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "H",
+    "I",
+    "K"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "E",
+    "D": "B",
+    "E": "D",
+    "G": "H",
+    "I": "F",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "BCDEFHIJ": {
+   "row": 155,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "H",
+    "I",
+    "J"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "H",
+    "I": "F",
+    "K": "E",
+    "L": "I"
+   }
+  },
+  "BCDEFGKL": {
+   "row": 156,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "E",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "BCDEFGJL": {
+   "row": 157,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "J",
+    "I": "F",
+    "K": "L",
+    "L": "E"
+   }
+  },
+  "BCDEFGJK": {
+   "row": 158,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "J",
+    "I": "F",
+    "K": "E",
+    "L": "K"
+   }
+  },
+  "BCDEFGIL": {
+   "row": 159,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "I",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "E",
+    "I": "F",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "BCDEFGIK": {
+   "row": 160,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "I",
+    "K"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "E",
+    "I": "F",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "BCDEFGIJ": {
+   "row": 161,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "I",
+    "J"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "J",
+    "I": "F",
+    "K": "E",
+    "L": "I"
+   }
+  },
+  "BCDEFGHL": {
+   "row": 162,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "H",
+    "I": "F",
+    "K": "L",
+    "L": "E"
+   }
+  },
+  "BCDEFGHK": {
+   "row": 163,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "K"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "H",
+    "I": "F",
+    "K": "E",
+    "L": "K"
+   }
+  },
+  "BCDEFGHJ": {
+   "row": 164,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "J"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "J",
+    "I": "F",
+    "K": "D",
+    "L": "E"
+   }
+  },
+  "BCDEFGHI": {
+   "row": 165,
+   "thirds": [
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "H",
+    "I": "F",
+    "K": "E",
+    "L": "I"
+   }
+  },
+  "AFGHIJKL": {
+   "row": 166,
+   "thirds": [
+    "A",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "I",
+    "E": "F",
+    "G": "A",
+    "I": "G",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "AEGHIJKL": {
+   "row": 167,
+   "thirds": [
+    "A",
+    "E",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "I",
+    "E": "A",
+    "G": "H",
+    "I": "G",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "AEFHIJKL": {
+   "row": 168,
+   "thirds": [
+    "A",
+    "E",
+    "F",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "I",
+    "E": "F",
+    "G": "A",
+    "I": "H",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "AEFGIJKL": {
+   "row": 169,
+   "thirds": [
+    "A",
+    "E",
+    "F",
+    "G",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "I",
+    "E": "F",
+    "G": "A",
+    "I": "G",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "AEFGHJKL": {
+   "row": 170,
+   "thirds": [
+    "A",
+    "E",
+    "F",
+    "G",
+    "H",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "J",
+    "E": "F",
+    "G": "A",
+    "I": "H",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "AEFGHIKL": {
+   "row": 171,
+   "thirds": [
+    "A",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "I",
+    "E": "F",
+    "G": "A",
+    "I": "H",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "AEFGHIJL": {
+   "row": 172,
+   "thirds": [
+    "A",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "J",
+    "E": "F",
+    "G": "A",
+    "I": "H",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "AEFGHIJK": {
+   "row": 173,
+   "thirds": [
+    "A",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "J",
+    "E": "F",
+    "G": "A",
+    "I": "H",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ADGHIJKL": {
+   "row": 174,
+   "thirds": [
+    "A",
+    "D",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "I",
+    "E": "D",
+    "G": "A",
+    "I": "G",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ADFHIJKL": {
+   "row": 175,
+   "thirds": [
+    "A",
+    "D",
+    "F",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "I",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ADFGIJKL": {
+   "row": 176,
+   "thirds": [
+    "A",
+    "D",
+    "F",
+    "G",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "I",
+    "B": "G",
+    "D": "J",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ADFGHJKL": {
+   "row": 177,
+   "thirds": [
+    "A",
+    "D",
+    "F",
+    "G",
+    "H",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "J",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ADFGHIKL": {
+   "row": 178,
+   "thirds": [
+    "A",
+    "D",
+    "F",
+    "G",
+    "H",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "I",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ADFGHIJL": {
+   "row": 179,
+   "thirds": [
+    "A",
+    "D",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "J",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "ADFGHIJK": {
+   "row": 180,
+   "thirds": [
+    "A",
+    "D",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "J",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ADEHIJKL": {
+   "row": 181,
+   "thirds": [
+    "A",
+    "D",
+    "E",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "I",
+    "E": "D",
+    "G": "A",
+    "I": "H",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ADEGIJKL": {
+   "row": 182,
+   "thirds": [
+    "A",
+    "D",
+    "E",
+    "G",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "I",
+    "E": "D",
+    "G": "A",
+    "I": "G",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ADEGHJKL": {
+   "row": 183,
+   "thirds": [
+    "A",
+    "D",
+    "E",
+    "G",
+    "H",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "J",
+    "E": "D",
+    "G": "A",
+    "I": "H",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ADEGHIKL": {
+   "row": 184,
+   "thirds": [
+    "A",
+    "D",
+    "E",
+    "G",
+    "H",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "I",
+    "E": "D",
+    "G": "A",
+    "I": "H",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ADEGHIJL": {
+   "row": 185,
+   "thirds": [
+    "A",
+    "D",
+    "E",
+    "G",
+    "H",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "J",
+    "E": "D",
+    "G": "A",
+    "I": "H",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "ADEGHIJK": {
+   "row": 186,
+   "thirds": [
+    "A",
+    "D",
+    "E",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "J",
+    "E": "D",
+    "G": "A",
+    "I": "H",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ADEFIJKL": {
+   "row": 187,
+   "thirds": [
+    "A",
+    "D",
+    "E",
+    "F",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "I",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ADEFHJKL": {
+   "row": 188,
+   "thirds": [
+    "A",
+    "D",
+    "E",
+    "F",
+    "H",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "E",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ADEFHIKL": {
+   "row": 189,
+   "thirds": [
+    "A",
+    "D",
+    "E",
+    "F",
+    "H",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "E",
+    "D": "I",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ADEFHIJL": {
+   "row": 190,
+   "thirds": [
+    "A",
+    "D",
+    "E",
+    "F",
+    "H",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "E",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "ADEFHIJK": {
+   "row": 191,
+   "thirds": [
+    "A",
+    "D",
+    "E",
+    "F",
+    "H",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "E",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ADEFGJKL": {
+   "row": 192,
+   "thirds": [
+    "A",
+    "D",
+    "E",
+    "F",
+    "G",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "J",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ADEFGIKL": {
+   "row": 193,
+   "thirds": [
+    "A",
+    "D",
+    "E",
+    "F",
+    "G",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "I",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ADEFGIJL": {
+   "row": 194,
+   "thirds": [
+    "A",
+    "D",
+    "E",
+    "F",
+    "G",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "J",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "ADEFGIJK": {
+   "row": 195,
+   "thirds": [
+    "A",
+    "D",
+    "E",
+    "F",
+    "G",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "J",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ADEFGHKL": {
+   "row": 196,
+   "thirds": [
+    "A",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "E",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ADEFGHJL": {
+   "row": 197,
+   "thirds": [
+    "A",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "J",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "E"
+   }
+  },
+  "ADEFGHJK": {
+   "row": 198,
+   "thirds": [
+    "A",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "J",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "E",
+    "L": "K"
+   }
+  },
+  "ADEFGHIL": {
+   "row": 199,
+   "thirds": [
+    "A",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "E",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "ADEFGHIK": {
+   "row": 200,
+   "thirds": [
+    "A",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "K"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "E",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ADEFGHIJ": {
+   "row": 201,
+   "thirds": [
+    "A",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "J",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "E",
+    "L": "I"
+   }
+  },
+  "ACGHIJKL": {
+   "row": 202,
+   "thirds": [
+    "A",
+    "C",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "I",
+    "E": "C",
+    "G": "A",
+    "I": "G",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ACFHIJKL": {
+   "row": 203,
+   "thirds": [
+    "A",
+    "C",
+    "F",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "I",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ACFGIJKL": {
+   "row": 204,
+   "thirds": [
+    "A",
+    "C",
+    "F",
+    "G",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "I",
+    "B": "G",
+    "D": "J",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ACFGHJKL": {
+   "row": 205,
+   "thirds": [
+    "A",
+    "C",
+    "F",
+    "G",
+    "H",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "J",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ACFGHIKL": {
+   "row": 206,
+   "thirds": [
+    "A",
+    "C",
+    "F",
+    "G",
+    "H",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "I",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ACFGHIJL": {
+   "row": 207,
+   "thirds": [
+    "A",
+    "C",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "J",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "ACFGHIJK": {
+   "row": 208,
+   "thirds": [
+    "A",
+    "C",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "J",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ACEHIJKL": {
+   "row": 209,
+   "thirds": [
+    "A",
+    "C",
+    "E",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "I",
+    "E": "C",
+    "G": "A",
+    "I": "H",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ACEGIJKL": {
+   "row": 210,
+   "thirds": [
+    "A",
+    "C",
+    "E",
+    "G",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "I",
+    "E": "C",
+    "G": "A",
+    "I": "G",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ACEGHJKL": {
+   "row": 211,
+   "thirds": [
+    "A",
+    "C",
+    "E",
+    "G",
+    "H",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "J",
+    "E": "C",
+    "G": "A",
+    "I": "H",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ACEGHIKL": {
+   "row": 212,
+   "thirds": [
+    "A",
+    "C",
+    "E",
+    "G",
+    "H",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "I",
+    "E": "C",
+    "G": "A",
+    "I": "H",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ACEGHIJL": {
+   "row": 213,
+   "thirds": [
+    "A",
+    "C",
+    "E",
+    "G",
+    "H",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "J",
+    "E": "C",
+    "G": "A",
+    "I": "H",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "ACEGHIJK": {
+   "row": 214,
+   "thirds": [
+    "A",
+    "C",
+    "E",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "J",
+    "E": "C",
+    "G": "A",
+    "I": "H",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ACEFIJKL": {
+   "row": 215,
+   "thirds": [
+    "A",
+    "C",
+    "E",
+    "F",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "I",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ACEFHJKL": {
+   "row": 216,
+   "thirds": [
+    "A",
+    "C",
+    "E",
+    "F",
+    "H",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "E",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ACEFHIKL": {
+   "row": 217,
+   "thirds": [
+    "A",
+    "C",
+    "E",
+    "F",
+    "H",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "E",
+    "D": "I",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ACEFHIJL": {
+   "row": 218,
+   "thirds": [
+    "A",
+    "C",
+    "E",
+    "F",
+    "H",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "E",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "ACEFHIJK": {
+   "row": 219,
+   "thirds": [
+    "A",
+    "C",
+    "E",
+    "F",
+    "H",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "E",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ACEFGJKL": {
+   "row": 220,
+   "thirds": [
+    "A",
+    "C",
+    "E",
+    "F",
+    "G",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "J",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ACEFGIKL": {
+   "row": 221,
+   "thirds": [
+    "A",
+    "C",
+    "E",
+    "F",
+    "G",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "I",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ACEFGIJL": {
+   "row": 222,
+   "thirds": [
+    "A",
+    "C",
+    "E",
+    "F",
+    "G",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "J",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "ACEFGIJK": {
+   "row": 223,
+   "thirds": [
+    "A",
+    "C",
+    "E",
+    "F",
+    "G",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "J",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ACEFGHKL": {
+   "row": 224,
+   "thirds": [
+    "A",
+    "C",
+    "E",
+    "F",
+    "G",
+    "H",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "E",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ACEFGHJL": {
+   "row": 225,
+   "thirds": [
+    "A",
+    "C",
+    "E",
+    "F",
+    "G",
+    "H",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "J",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "E"
+   }
+  },
+  "ACEFGHJK": {
+   "row": 226,
+   "thirds": [
+    "A",
+    "C",
+    "E",
+    "F",
+    "G",
+    "H",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "J",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "E",
+    "L": "K"
+   }
+  },
+  "ACEFGHIL": {
+   "row": 227,
+   "thirds": [
+    "A",
+    "C",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "E",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "ACEFGHIK": {
+   "row": 228,
+   "thirds": [
+    "A",
+    "C",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "K"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "E",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ACEFGHIJ": {
+   "row": 229,
+   "thirds": [
+    "A",
+    "C",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "J",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "E",
+    "L": "I"
+   }
+  },
+  "ACDHIJKL": {
+   "row": 230,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "I",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ACDGIJKL": {
+   "row": 231,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "G",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "I",
+    "B": "G",
+    "D": "J",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ACDGHJKL": {
+   "row": 232,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "G",
+    "H",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "J",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ACDGHIKL": {
+   "row": 233,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "G",
+    "H",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "I",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ACDGHIJL": {
+   "row": 234,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "G",
+    "H",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "J",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "ACDGHIJK": {
+   "row": 235,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "J",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ACDFIJKL": {
+   "row": 236,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "F",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "J",
+    "D": "I",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ACDFHJKL": {
+   "row": 237,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "F",
+    "H",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "F",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ACDFHIKL": {
+   "row": 238,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "F",
+    "H",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "F",
+    "D": "I",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ACDFHIJL": {
+   "row": 239,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "F",
+    "H",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "F",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "ACDFHIJK": {
+   "row": 240,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "F",
+    "H",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "F",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ACDFGJKL": {
+   "row": 241,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "F",
+    "G",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "G",
+    "D": "J",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ACDFGIKL": {
+   "row": 242,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "F",
+    "G",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "G",
+    "D": "I",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ACDFGIJL": {
+   "row": 243,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "F",
+    "G",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "G",
+    "D": "J",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "ACDFGIJK": {
+   "row": 244,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "F",
+    "G",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "G",
+    "D": "J",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ACDFGHKL": {
+   "row": 245,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "F",
+    "G",
+    "H",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "F",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ACDFGHJL": {
+   "row": 246,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "F",
+    "G",
+    "H",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "G",
+    "D": "J",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "H"
+   }
+  },
+  "ACDFGHJK": {
+   "row": 247,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "F",
+    "G",
+    "H",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "J",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "D",
+    "L": "K"
+   }
+  },
+  "ACDFGHIL": {
+   "row": 248,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "F",
+    "G",
+    "H",
+    "I",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "F",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "ACDFGHIK": {
+   "row": 249,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "F",
+    "G",
+    "H",
+    "I",
+    "K"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "F",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ACDFGHIJ": {
+   "row": 250,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "J",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "D",
+    "L": "I"
+   }
+  },
+  "ACDEIJKL": {
+   "row": 251,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "E",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "I",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ACDEHJKL": {
+   "row": 252,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "E",
+    "H",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "E",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ACDEHIKL": {
+   "row": 253,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "E",
+    "H",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "E",
+    "D": "I",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ACDEHIJL": {
+   "row": 254,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "E",
+    "H",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "E",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "ACDEHIJK": {
+   "row": 255,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "E",
+    "H",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "E",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ACDEGJKL": {
+   "row": 256,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "E",
+    "G",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "J",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ACDEGIKL": {
+   "row": 257,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "E",
+    "G",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "I",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ACDEGIJL": {
+   "row": 258,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "E",
+    "G",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "J",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "ACDEGIJK": {
+   "row": 259,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "E",
+    "G",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "J",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ACDEGHKL": {
+   "row": 260,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "E",
+    "G",
+    "H",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "E",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ACDEGHJL": {
+   "row": 261,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "E",
+    "G",
+    "H",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "J",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "L",
+    "L": "E"
+   }
+  },
+  "ACDEGHJK": {
+   "row": 262,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "E",
+    "G",
+    "H",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "J",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "E",
+    "L": "K"
+   }
+  },
+  "ACDEGHIL": {
+   "row": 263,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "E",
+    "G",
+    "H",
+    "I",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "E",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "ACDEGHIK": {
+   "row": 264,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "E",
+    "G",
+    "H",
+    "I",
+    "K"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "E",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ACDEGHIJ": {
+   "row": 265,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "E",
+    "G",
+    "H",
+    "I",
+    "J"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "J",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "E",
+    "L": "I"
+   }
+  },
+  "ACDEFJKL": {
+   "row": 266,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "E",
+    "F",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "J",
+    "D": "E",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ACDEFIKL": {
+   "row": 267,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "E",
+    "F",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "E",
+    "D": "I",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ACDEFIJL": {
+   "row": 268,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "E",
+    "F",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "J",
+    "D": "E",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "ACDEFIJK": {
+   "row": 269,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "E",
+    "F",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "J",
+    "D": "E",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ACDEFHKL": {
+   "row": 270,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "E",
+    "F",
+    "H",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "E",
+    "D": "F",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ACDEFHJL": {
+   "row": 271,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "E",
+    "F",
+    "H",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "F",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "L",
+    "L": "E"
+   }
+  },
+  "ACDEFHJK": {
+   "row": 272,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "E",
+    "F",
+    "H",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "E",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "D",
+    "L": "K"
+   }
+  },
+  "ACDEFHIL": {
+   "row": 273,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "E",
+    "F",
+    "H",
+    "I",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "E",
+    "D": "F",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "ACDEFHIK": {
+   "row": 274,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "E",
+    "F",
+    "H",
+    "I",
+    "K"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "E",
+    "D": "F",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ACDEFHIJ": {
+   "row": 275,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "E",
+    "F",
+    "H",
+    "I",
+    "J"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "E",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "D",
+    "L": "I"
+   }
+  },
+  "ACDEFGKL": {
+   "row": 276,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "G",
+    "D": "E",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ACDEFGJL": {
+   "row": 277,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "G",
+    "D": "J",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "E"
+   }
+  },
+  "ACDEFGJK": {
+   "row": 278,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "G",
+    "D": "J",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "E",
+    "L": "K"
+   }
+  },
+  "ACDEFGIL": {
+   "row": 279,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "I",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "G",
+    "D": "E",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "ACDEFGIK": {
+   "row": 280,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "I",
+    "K"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "G",
+    "D": "E",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ACDEFGIJ": {
+   "row": 281,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "I",
+    "J"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "G",
+    "D": "J",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "E",
+    "L": "I"
+   }
+  },
+  "ACDEFGHL": {
+   "row": 282,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "F",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "L",
+    "L": "E"
+   }
+  },
+  "ACDEFGHK": {
+   "row": 283,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "K"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "E",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "D",
+    "L": "K"
+   }
+  },
+  "ACDEFGHJ": {
+   "row": 284,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "J"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "J",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "D",
+    "L": "E"
+   }
+  },
+  "ACDEFGHI": {
+   "row": 285,
+   "thirds": [
+    "A",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "E",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "D",
+    "L": "I"
+   }
+  },
+  "ABGHIJKL": {
+   "row": 286,
+   "thirds": [
+    "A",
+    "B",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "B",
+    "E": "A",
+    "G": "I",
+    "I": "G",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABFHIJKL": {
+   "row": 287,
+   "thirds": [
+    "A",
+    "B",
+    "F",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "B",
+    "E": "A",
+    "G": "I",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABFGIJKL": {
+   "row": 288,
+   "thirds": [
+    "A",
+    "B",
+    "F",
+    "G",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "I",
+    "B": "J",
+    "D": "B",
+    "E": "F",
+    "G": "A",
+    "I": "G",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABFGHJKL": {
+   "row": 289,
+   "thirds": [
+    "A",
+    "B",
+    "F",
+    "G",
+    "H",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "B",
+    "E": "F",
+    "G": "A",
+    "I": "G",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABFGHIKL": {
+   "row": 290,
+   "thirds": [
+    "A",
+    "B",
+    "F",
+    "G",
+    "H",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "A",
+    "G": "I",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABFGHIJL": {
+   "row": 291,
+   "thirds": [
+    "A",
+    "B",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "B",
+    "E": "F",
+    "G": "A",
+    "I": "G",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "ABFGHIJK": {
+   "row": 292,
+   "thirds": [
+    "A",
+    "B",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "B",
+    "E": "F",
+    "G": "A",
+    "I": "G",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ABEHIJKL": {
+   "row": 293,
+   "thirds": [
+    "A",
+    "B",
+    "E",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "A",
+    "G": "I",
+    "I": "H",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABEGIJKL": {
+   "row": 294,
+   "thirds": [
+    "A",
+    "B",
+    "E",
+    "G",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "A",
+    "G": "I",
+    "I": "G",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABEGHJKL": {
+   "row": 295,
+   "thirds": [
+    "A",
+    "B",
+    "E",
+    "G",
+    "H",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "A",
+    "G": "H",
+    "I": "G",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABEGHIKL": {
+   "row": 296,
+   "thirds": [
+    "A",
+    "B",
+    "E",
+    "G",
+    "H",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "B",
+    "E": "A",
+    "G": "I",
+    "I": "H",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABEGHIJL": {
+   "row": 297,
+   "thirds": [
+    "A",
+    "B",
+    "E",
+    "G",
+    "H",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "A",
+    "G": "H",
+    "I": "G",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "ABEGHIJK": {
+   "row": 298,
+   "thirds": [
+    "A",
+    "B",
+    "E",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "A",
+    "G": "H",
+    "I": "G",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ABEFIJKL": {
+   "row": 299,
+   "thirds": [
+    "A",
+    "B",
+    "E",
+    "F",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "A",
+    "G": "I",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABEFHJKL": {
+   "row": 300,
+   "thirds": [
+    "A",
+    "B",
+    "E",
+    "F",
+    "H",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "F",
+    "G": "A",
+    "I": "H",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABEFHIKL": {
+   "row": 301,
+   "thirds": [
+    "A",
+    "B",
+    "E",
+    "F",
+    "H",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "I",
+    "D": "B",
+    "E": "F",
+    "G": "A",
+    "I": "H",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABEFHIJL": {
+   "row": 302,
+   "thirds": [
+    "A",
+    "B",
+    "E",
+    "F",
+    "H",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "F",
+    "G": "A",
+    "I": "H",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "ABEFHIJK": {
+   "row": 303,
+   "thirds": [
+    "A",
+    "B",
+    "E",
+    "F",
+    "H",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "F",
+    "G": "A",
+    "I": "H",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ABEFGJKL": {
+   "row": 304,
+   "thirds": [
+    "A",
+    "B",
+    "E",
+    "F",
+    "G",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "F",
+    "G": "A",
+    "I": "G",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABEFGIKL": {
+   "row": 305,
+   "thirds": [
+    "A",
+    "B",
+    "E",
+    "F",
+    "G",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "B",
+    "E": "A",
+    "G": "I",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABEFGIJL": {
+   "row": 306,
+   "thirds": [
+    "A",
+    "B",
+    "E",
+    "F",
+    "G",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "F",
+    "G": "A",
+    "I": "G",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "ABEFGIJK": {
+   "row": 307,
+   "thirds": [
+    "A",
+    "B",
+    "E",
+    "F",
+    "G",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "F",
+    "G": "A",
+    "I": "G",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ABEFGHKL": {
+   "row": 308,
+   "thirds": [
+    "A",
+    "B",
+    "E",
+    "F",
+    "G",
+    "H",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "B",
+    "E": "F",
+    "G": "A",
+    "I": "H",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABEFGHJL": {
+   "row": 309,
+   "thirds": [
+    "A",
+    "B",
+    "E",
+    "F",
+    "G",
+    "H",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "B",
+    "E": "F",
+    "G": "A",
+    "I": "G",
+    "K": "L",
+    "L": "E"
+   }
+  },
+  "ABEFGHJK": {
+   "row": 310,
+   "thirds": [
+    "A",
+    "B",
+    "E",
+    "F",
+    "G",
+    "H",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "B",
+    "E": "F",
+    "G": "A",
+    "I": "G",
+    "K": "E",
+    "L": "K"
+   }
+  },
+  "ABEFGHIL": {
+   "row": 311,
+   "thirds": [
+    "A",
+    "B",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "B",
+    "E": "F",
+    "G": "A",
+    "I": "H",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "ABEFGHIK": {
+   "row": 312,
+   "thirds": [
+    "A",
+    "B",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "K"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "B",
+    "E": "F",
+    "G": "A",
+    "I": "H",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ABEFGHIJ": {
+   "row": 313,
+   "thirds": [
+    "A",
+    "B",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "B",
+    "E": "F",
+    "G": "A",
+    "I": "G",
+    "K": "E",
+    "L": "I"
+   }
+  },
+  "ABDHIJKL": {
+   "row": 314,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "I",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "H",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABDGIJKL": {
+   "row": 315,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "G",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "I",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "G",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABDGHJKL": {
+   "row": 316,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "G",
+    "H",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "G",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABDGHIKL": {
+   "row": 317,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "G",
+    "H",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "I",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "H",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABDGHIJL": {
+   "row": 318,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "G",
+    "H",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "G",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "ABDGHIJK": {
+   "row": 319,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "G",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ABDFIJKL": {
+   "row": 320,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "F",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "I",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABDFHJKL": {
+   "row": 321,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "F",
+    "H",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABDFHIKL": {
+   "row": 322,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "F",
+    "H",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "I",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABDFHIJL": {
+   "row": 323,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "F",
+    "H",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "ABDFHIJK": {
+   "row": 324,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "F",
+    "H",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ABDFGJKL": {
+   "row": 325,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "F",
+    "G",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "F",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "G",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABDFGIKL": {
+   "row": 326,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "F",
+    "G",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "I",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABDFGIJL": {
+   "row": 327,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "F",
+    "G",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "F",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "G",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "ABDFGIJK": {
+   "row": 328,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "F",
+    "G",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "F",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "G",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ABDFGHKL": {
+   "row": 329,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "F",
+    "G",
+    "H",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABDFGHJL": {
+   "row": 330,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "F",
+    "G",
+    "H",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "J"
+   }
+  },
+  "ABDFGHJK": {
+   "row": 331,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "F",
+    "G",
+    "H",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "J",
+    "L": "K"
+   }
+  },
+  "ABDFGHIL": {
+   "row": 332,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "F",
+    "G",
+    "H",
+    "I",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "ABDFGHIK": {
+   "row": 333,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "F",
+    "G",
+    "H",
+    "I",
+    "K"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ABDFGHIJ": {
+   "row": 334,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "I",
+    "L": "J"
+   }
+  },
+  "ABDEIJKL": {
+   "row": 335,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "E",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "A",
+    "G": "I",
+    "I": "D",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABDEHJKL": {
+   "row": 336,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "E",
+    "H",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "H",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABDEHIKL": {
+   "row": 337,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "E",
+    "H",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "I",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "H",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABDEHIJL": {
+   "row": 338,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "E",
+    "H",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "H",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "ABDEHIJK": {
+   "row": 339,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "E",
+    "H",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "H",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ABDEGJKL": {
+   "row": 340,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "E",
+    "G",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "G",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABDEGIKL": {
+   "row": 341,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "E",
+    "G",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "B",
+    "E": "A",
+    "G": "I",
+    "I": "D",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABDEGIJL": {
+   "row": 342,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "E",
+    "G",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "G",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "ABDEGIJK": {
+   "row": 343,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "E",
+    "G",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "G",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ABDEGHKL": {
+   "row": 344,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "E",
+    "G",
+    "H",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "H",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABDEGHJL": {
+   "row": 345,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "E",
+    "G",
+    "H",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "G",
+    "K": "L",
+    "L": "E"
+   }
+  },
+  "ABDEGHJK": {
+   "row": 346,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "E",
+    "G",
+    "H",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "G",
+    "K": "E",
+    "L": "K"
+   }
+  },
+  "ABDEGHIL": {
+   "row": 347,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "E",
+    "G",
+    "H",
+    "I",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "H",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "ABDEGHIK": {
+   "row": 348,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "E",
+    "G",
+    "H",
+    "I",
+    "K"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "H",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ABDEGHIJ": {
+   "row": 349,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "E",
+    "G",
+    "H",
+    "I",
+    "J"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "G",
+    "K": "E",
+    "L": "I"
+   }
+  },
+  "ABDEFJKL": {
+   "row": 350,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "E",
+    "F",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABDEFIKL": {
+   "row": 351,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "E",
+    "F",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "I",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABDEFIJL": {
+   "row": 352,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "E",
+    "F",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "ABDEFIJK": {
+   "row": 353,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "E",
+    "F",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ABDEFHKL": {
+   "row": 354,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "E",
+    "F",
+    "H",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "E",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABDEFHJL": {
+   "row": 355,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "E",
+    "F",
+    "H",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "E"
+   }
+  },
+  "ABDEFHJK": {
+   "row": 356,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "E",
+    "F",
+    "H",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "E",
+    "L": "K"
+   }
+  },
+  "ABDEFHIL": {
+   "row": 357,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "E",
+    "F",
+    "H",
+    "I",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "E",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "ABDEFHIK": {
+   "row": 358,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "E",
+    "F",
+    "H",
+    "I",
+    "K"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "E",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ABDEFHIJ": {
+   "row": 359,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "E",
+    "F",
+    "H",
+    "I",
+    "J"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "E",
+    "L": "I"
+   }
+  },
+  "ABDEFGKL": {
+   "row": 360,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "E",
+    "F",
+    "G",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABDEFGJL": {
+   "row": 361,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "E",
+    "F",
+    "G",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "J"
+   }
+  },
+  "ABDEFGJK": {
+   "row": 362,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "E",
+    "F",
+    "G",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "J",
+    "L": "K"
+   }
+  },
+  "ABDEFGIL": {
+   "row": 363,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "E",
+    "F",
+    "G",
+    "I",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "ABDEFGIK": {
+   "row": 364,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "E",
+    "F",
+    "G",
+    "I",
+    "K"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ABDEFGIJ": {
+   "row": 365,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "E",
+    "F",
+    "G",
+    "I",
+    "J"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "I",
+    "L": "J"
+   }
+  },
+  "ABDEFGHL": {
+   "row": 366,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "E"
+   }
+  },
+  "ABDEFGHK": {
+   "row": 367,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "K"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "E",
+    "L": "K"
+   }
+  },
+  "ABDEFGHJ": {
+   "row": 368,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "J"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "E",
+    "L": "J"
+   }
+  },
+  "ABDEFGHI": {
+   "row": 369,
+   "thirds": [
+    "A",
+    "B",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "E",
+    "L": "I"
+   }
+  },
+  "ABCHIJKL": {
+   "row": 370,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "I",
+    "B": "J",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "H",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABCGIJKL": {
+   "row": 371,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "G",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "I",
+    "B": "J",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "G",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABCGHJKL": {
+   "row": 372,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "G",
+    "H",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "G",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABCGHIKL": {
+   "row": 373,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "G",
+    "H",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "I",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "H",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABCGHIJL": {
+   "row": 374,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "G",
+    "H",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "G",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "ABCGHIJK": {
+   "row": 375,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "G",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ABCFIJKL": {
+   "row": 376,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "F",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "I",
+    "B": "J",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABCFHJKL": {
+   "row": 377,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "F",
+    "H",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABCFHIKL": {
+   "row": 378,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "F",
+    "H",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "I",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABCFHIJL": {
+   "row": 379,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "F",
+    "H",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "ABCFHIJK": {
+   "row": 380,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "F",
+    "H",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ABCFGJKL": {
+   "row": 381,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "F",
+    "G",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "J",
+    "D": "B",
+    "E": "F",
+    "G": "A",
+    "I": "G",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABCFGIKL": {
+   "row": 382,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "F",
+    "G",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "I",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABCFGIJL": {
+   "row": 383,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "F",
+    "G",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "J",
+    "D": "B",
+    "E": "F",
+    "G": "A",
+    "I": "G",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "ABCFGIJK": {
+   "row": 384,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "F",
+    "G",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "J",
+    "D": "B",
+    "E": "F",
+    "G": "A",
+    "I": "G",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ABCFGHKL": {
+   "row": 385,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "F",
+    "G",
+    "H",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABCFGHJL": {
+   "row": 386,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "F",
+    "G",
+    "H",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "J"
+   }
+  },
+  "ABCFGHJK": {
+   "row": 387,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "F",
+    "G",
+    "H",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "J",
+    "L": "K"
+   }
+  },
+  "ABCFGHIL": {
+   "row": 388,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "F",
+    "G",
+    "H",
+    "I",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "ABCFGHIK": {
+   "row": 389,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "F",
+    "G",
+    "H",
+    "I",
+    "K"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ABCFGHIJ": {
+   "row": 390,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "I",
+    "L": "J"
+   }
+  },
+  "ABCEIJKL": {
+   "row": 391,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "E",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "A",
+    "G": "I",
+    "I": "C",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABCEHJKL": {
+   "row": 392,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "E",
+    "H",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "H",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABCEHIKL": {
+   "row": 393,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "E",
+    "H",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "I",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "H",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABCEHIJL": {
+   "row": 394,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "E",
+    "H",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "H",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "ABCEHIJK": {
+   "row": 395,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "E",
+    "H",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "H",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ABCEGJKL": {
+   "row": 396,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "E",
+    "G",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "G",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABCEGIKL": {
+   "row": 397,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "E",
+    "G",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "B",
+    "E": "A",
+    "G": "I",
+    "I": "C",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABCEGIJL": {
+   "row": 398,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "E",
+    "G",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "G",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "ABCEGIJK": {
+   "row": 399,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "E",
+    "G",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "G",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ABCEGHKL": {
+   "row": 400,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "E",
+    "G",
+    "H",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "H",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABCEGHJL": {
+   "row": 401,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "E",
+    "G",
+    "H",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "G",
+    "K": "L",
+    "L": "E"
+   }
+  },
+  "ABCEGHJK": {
+   "row": 402,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "E",
+    "G",
+    "H",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "G",
+    "K": "E",
+    "L": "K"
+   }
+  },
+  "ABCEGHIL": {
+   "row": 403,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "E",
+    "G",
+    "H",
+    "I",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "H",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "ABCEGHIK": {
+   "row": 404,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "E",
+    "G",
+    "H",
+    "I",
+    "K"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "H",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ABCEGHIJ": {
+   "row": 405,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "E",
+    "G",
+    "H",
+    "I",
+    "J"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "G",
+    "K": "E",
+    "L": "I"
+   }
+  },
+  "ABCEFJKL": {
+   "row": 406,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "E",
+    "F",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABCEFIKL": {
+   "row": 407,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "E",
+    "F",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "I",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABCEFIJL": {
+   "row": 408,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "E",
+    "F",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "ABCEFIJK": {
+   "row": 409,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "E",
+    "F",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ABCEFHKL": {
+   "row": 410,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "E",
+    "F",
+    "H",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "E",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABCEFHJL": {
+   "row": 411,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "E",
+    "F",
+    "H",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "E"
+   }
+  },
+  "ABCEFHJK": {
+   "row": 412,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "E",
+    "F",
+    "H",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "E",
+    "L": "K"
+   }
+  },
+  "ABCEFHIL": {
+   "row": 413,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "E",
+    "F",
+    "H",
+    "I",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "E",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "ABCEFHIK": {
+   "row": 414,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "E",
+    "F",
+    "H",
+    "I",
+    "K"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "E",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ABCEFHIJ": {
+   "row": 415,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "E",
+    "F",
+    "H",
+    "I",
+    "J"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "E",
+    "L": "I"
+   }
+  },
+  "ABCEFGKL": {
+   "row": 416,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "E",
+    "F",
+    "G",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABCEFGJL": {
+   "row": 417,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "E",
+    "F",
+    "G",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "J"
+   }
+  },
+  "ABCEFGJK": {
+   "row": 418,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "E",
+    "F",
+    "G",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "J",
+    "L": "K"
+   }
+  },
+  "ABCEFGIL": {
+   "row": 419,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "E",
+    "F",
+    "G",
+    "I",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "ABCEFGIK": {
+   "row": 420,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "E",
+    "F",
+    "G",
+    "I",
+    "K"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ABCEFGIJ": {
+   "row": 421,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "E",
+    "F",
+    "G",
+    "I",
+    "J"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "I",
+    "L": "J"
+   }
+  },
+  "ABCEFGHL": {
+   "row": 422,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "E",
+    "F",
+    "G",
+    "H",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "E"
+   }
+  },
+  "ABCEFGHK": {
+   "row": 423,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "E",
+    "F",
+    "G",
+    "H",
+    "K"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "E",
+    "L": "K"
+   }
+  },
+  "ABCEFGHJ": {
+   "row": 424,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "E",
+    "F",
+    "G",
+    "H",
+    "J"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "E",
+    "L": "J"
+   }
+  },
+  "ABCEFGHI": {
+   "row": 425,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "E",
+    "L": "I"
+   }
+  },
+  "ABCDIJKL": {
+   "row": 426,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "I",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "I",
+    "B": "J",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABCDHJKL": {
+   "row": 427,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "H",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABCDHIKL": {
+   "row": 428,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "H",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "I",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABCDHIJL": {
+   "row": 429,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "H",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "ABCDHIJK": {
+   "row": 430,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "H",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ABCDGJKL": {
+   "row": 431,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "G",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "G",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABCDGIKL": {
+   "row": 432,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "G",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "I",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABCDGIJL": {
+   "row": 433,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "G",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "G",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "ABCDGIJK": {
+   "row": 434,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "G",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "G",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ABCDGHKL": {
+   "row": 435,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "G",
+    "H",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABCDGHJL": {
+   "row": 436,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "G",
+    "H",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "L",
+    "L": "J"
+   }
+  },
+  "ABCDGHJK": {
+   "row": 437,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "G",
+    "H",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "J",
+    "L": "K"
+   }
+  },
+  "ABCDGHIL": {
+   "row": 438,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "G",
+    "H",
+    "I",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "ABCDGHIK": {
+   "row": 439,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "G",
+    "H",
+    "I",
+    "K"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ABCDGHIJ": {
+   "row": 440,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "G",
+    "H",
+    "I",
+    "J"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "I",
+    "L": "J"
+   }
+  },
+  "ABCDFJKL": {
+   "row": 441,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "F",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABCDFIKL": {
+   "row": 442,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "F",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "I",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABCDFIJL": {
+   "row": 443,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "F",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "ABCDFIJK": {
+   "row": 444,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "F",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ABCDFHKL": {
+   "row": 445,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "F",
+    "H",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "F",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABCDFHJL": {
+   "row": 446,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "F",
+    "H",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "H"
+   }
+  },
+  "ABCDFHJK": {
+   "row": 447,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "F",
+    "H",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "D",
+    "L": "K"
+   }
+  },
+  "ABCDFHIL": {
+   "row": 448,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "F",
+    "H",
+    "I",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "F",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "ABCDFHIK": {
+   "row": 449,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "F",
+    "H",
+    "I",
+    "K"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "F",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ABCDFHIJ": {
+   "row": 450,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "F",
+    "H",
+    "I",
+    "J"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "D",
+    "L": "I"
+   }
+  },
+  "ABCDFGKL": {
+   "row": 451,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "F",
+    "G",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABCDFGJL": {
+   "row": 452,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "F",
+    "G",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "J"
+   }
+  },
+  "ABCDFGJK": {
+   "row": 453,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "F",
+    "G",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "J",
+    "L": "K"
+   }
+  },
+  "ABCDFGIL": {
+   "row": 454,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "F",
+    "G",
+    "I",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "ABCDFGIK": {
+   "row": 455,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "F",
+    "G",
+    "I",
+    "K"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ABCDFGIJ": {
+   "row": 456,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "F",
+    "G",
+    "I",
+    "J"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "I",
+    "L": "J"
+   }
+  },
+  "ABCDFGHL": {
+   "row": 457,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "F",
+    "G",
+    "H",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "H"
+   }
+  },
+  "ABCDFGHK": {
+   "row": 458,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "F",
+    "G",
+    "H",
+    "K"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "D",
+    "L": "K"
+   }
+  },
+  "ABCDFGHJ": {
+   "row": 459,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "F",
+    "G",
+    "H",
+    "J"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "D",
+    "L": "J"
+   }
+  },
+  "ABCDFGHI": {
+   "row": 460,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "F",
+    "G",
+    "H",
+    "I"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "D",
+    "L": "I"
+   }
+  },
+  "ABCDEJKL": {
+   "row": 461,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "J",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABCDEIKL": {
+   "row": 462,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "I",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "I",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABCDEIJL": {
+   "row": 463,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "I",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "ABCDEIJK": {
+   "row": 464,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "I",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "J",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ABCDEHKL": {
+   "row": 465,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "H",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "E",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABCDEHJL": {
+   "row": 466,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "H",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "L",
+    "L": "E"
+   }
+  },
+  "ABCDEHJK": {
+   "row": 467,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "H",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "E",
+    "L": "K"
+   }
+  },
+  "ABCDEHIL": {
+   "row": 468,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "H",
+    "I",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "E",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "ABCDEHIK": {
+   "row": 469,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "H",
+    "I",
+    "K"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "E",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ABCDEHIJ": {
+   "row": 470,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "H",
+    "I",
+    "J"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "E",
+    "L": "I"
+   }
+  },
+  "ABCDEGKL": {
+   "row": 471,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "G",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABCDEGJL": {
+   "row": 472,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "G",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "L",
+    "L": "J"
+   }
+  },
+  "ABCDEGJK": {
+   "row": 473,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "G",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "J",
+    "L": "K"
+   }
+  },
+  "ABCDEGIL": {
+   "row": 474,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "G",
+    "I",
+    "L"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "ABCDEGIK": {
+   "row": 475,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "G",
+    "I",
+    "K"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ABCDEGIJ": {
+   "row": 476,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "G",
+    "I",
+    "J"
+   ],
+   "assign": {
+    "A": "E",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "I",
+    "L": "J"
+   }
+  },
+  "ABCDEGHL": {
+   "row": 477,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "G",
+    "H",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "L",
+    "L": "E"
+   }
+  },
+  "ABCDEGHK": {
+   "row": 478,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "G",
+    "H",
+    "K"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "E",
+    "L": "K"
+   }
+  },
+  "ABCDEGHJ": {
+   "row": 479,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "G",
+    "H",
+    "J"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "E",
+    "L": "J"
+   }
+  },
+  "ABCDEGHI": {
+   "row": 480,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "G",
+    "H",
+    "I"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "E",
+    "L": "I"
+   }
+  },
+  "ABCDEFKL": {
+   "row": 481,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "K",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "E",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "K"
+   }
+  },
+  "ABCDEFJL": {
+   "row": 482,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "J",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "E"
+   }
+  },
+  "ABCDEFJK": {
+   "row": 483,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "J",
+    "K"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "E",
+    "L": "K"
+   }
+  },
+  "ABCDEFIL": {
+   "row": 484,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "I",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "E",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "I"
+   }
+  },
+  "ABCDEFIK": {
+   "row": 485,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "I",
+    "K"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "E",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "I",
+    "L": "K"
+   }
+  },
+  "ABCDEFIJ": {
+   "row": 486,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "I",
+    "J"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "J",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "E",
+    "L": "I"
+   }
+  },
+  "ABCDEFHL": {
+   "row": 487,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "H",
+    "L"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "F",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "D",
+    "K": "L",
+    "L": "E"
+   }
+  },
+  "ABCDEFHK": {
+   "row": 488,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "H",
+    "K"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "E",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "D",
+    "L": "K"
+   }
+  },
+  "ABCDEFHJ": {
+   "row": 489,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "H",
+    "J"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "J",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "D",
+    "L": "E"
+   }
+  },
+  "ABCDEFHI": {
+   "row": 490,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "H",
+    "I"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "E",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "D",
+    "L": "I"
+   }
+  },
+  "ABCDEFGL": {
+   "row": 491,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "L"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "L",
+    "L": "E"
+   }
+  },
+  "ABCDEFGK": {
+   "row": 492,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "K"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "E",
+    "L": "K"
+   }
+  },
+  "ABCDEFGJ": {
+   "row": 493,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "J"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "E",
+    "L": "J"
+   }
+  },
+  "ABCDEFGI": {
+   "row": 494,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "I"
+   ],
+   "assign": {
+    "A": "C",
+    "B": "G",
+    "D": "B",
+    "E": "D",
+    "G": "A",
+    "I": "F",
+    "K": "E",
+    "L": "I"
+   }
+  },
+  "ABCDEFGH": {
+   "row": 495,
+   "thirds": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H"
+   ],
+   "assign": {
+    "A": "H",
+    "B": "G",
+    "D": "B",
+    "E": "C",
+    "G": "A",
+    "I": "F",
+    "K": "D",
+    "L": "E"
+   }
+  }
+ }
+}
