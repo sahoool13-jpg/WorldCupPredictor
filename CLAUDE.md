@@ -59,6 +59,17 @@ never re-rolled, (b) simulated pre-future standings exactly equal real current s
 (c) already-decided teams show 0%/100%, (d) a new real result shifts odds correctly from the
 prior state.
 
+## Known model opinions (not bugs)
+
+- **Colombia rates high (~5th)** in the Elo prior — this reflects their strong 2024–25 record
+  (incl. the Copa América final) in the historical results, a legitimate **Elo-vs-FIFA-ranking
+  divergence**, not an error. The prior is computed Elo, not FIFA consensus.
+- **Near-tied priors are real, not a fallback.** Each team's prior is independently computed
+  from its own match history (the 1500 seed only applies to teams with *zero* history; all 48
+  have hundreds–thousands of matches). e.g. Germany 1951.23 (1031 matches) vs Netherlands
+  1951.20 (879 matches) genuinely land ~0.035 apart; the 1-decimal display can make distinct
+  values look identical (England 1985.06 ≠ Portugal 1984.50).
+
 ## Current status
 
 - **D0 approved** — phase list + 2026 format spec.
