@@ -42,29 +42,42 @@ jobs:
 
       - name: Smoke test — does the free tier cover WC-2026 with the fields we need?
         run: |
-          set -uo pipefail
+          # errexit OFF on purpose: this is a diagnostic; we want every probe to run and
+          # print, then decide pass/fail at the end. (GitHub's default shell is `bash -e`.)
+          set +e +o pipefail
           api () { curl -s -H "x-apisports-key: $API_FOOTBALL_KEY" "$BASE$1"; }
 
           echo "=================================================="
           echo "(0) Account / quota"
-          api "/status" | jq '{plan: .response.subscription.plan, active: .response.subscription.active, requests: .response.requests}' || true
+          api "/status" | jq '{plan: .response.subscription.plan, active: .response.subscription.active, requests: .response.requests}'
 
           echo "=================================================="
-          echo "(1) League lookup: id=$LEAGUE season=$SEASON"
-          L=$(api "/leagues?id=$LEAGUE&season=$SEASON")
-          n=$(echo "$L" | jq '.response | length')
-          if [ "$n" -eq 0 ]; then
-            echo "::error::No league for id=$LEAGUE season=$SEASON. Candidates from name search (set the right league_id input and re-run):"
-            api "/leagues?search=World Cup" | jq -r '.response[] | "id=\(.league.id)\t\(.league.name)\t[\(.league.type)]\t\(.country.name)"'
+          echo "(1) Discover: which 'World Cup' leagues + seasons can THIS key actually see?"
+          api "/leagues?search=World%20Cup" > L.json
+          echo "api .errors (expect [] or {}):"; jq -c '.errors' L.json
+          echo "results:"; jq '.results' L.json
+          echo "candidates (id | name [type] | country | seasons visible to this key):"
+          jq -r '.response[]? | "  id=\(.league.id) | \(.league.name) [\(.league.type)] | \(.country.name // "World") | seasons=\([.seasons[].year]|join(",") )"' L.json
+
+          # Pick the men's World Cup league that exposes the requested season to this key.
+          WCID=$(jq -r --argjson yr "$SEASON" '[.response[]? | select(.league.name=="World Cup") | select(any(.seasons[].year; .==$yr)) | .league.id] | first // empty' L.json)
+          echo "--> World Cup league id exposing season $SEASON to this key: ${WCID:-<NONE>}"
+
+          if [ -z "$WCID" ]; then
+            echo "::error::This API-Football key/plan does NOT expose a 'World Cup' league with a $SEASON season (see candidates above). Coverage gate NOT passed — STOP before Phase 1."
+            echo "Also showing what id=$LEAGUE returns directly, for completeness:"
+            api "/leagues?id=$LEAGUE&season=$SEASON" | jq '{results, errors}'
             exit 1
           fi
-          echo "$L" | jq '.response[0].league | {id, name, type}'
-          echo "$L" | jq -r --arg s "$SEASON" '.response[0].seasons[] | select(.year==($s|tonumber)) | "season \(.year): start=\(.start) end=\(.end) | coverage: fixtures.events=\(.coverage.fixtures.events) standings=\(.coverage.standings) fixtures.statistics=\(.coverage.fixtures.statistics_fixtures)"'
+          LEAGUE="$WCID"
+          echo "Using LEAGUE=$LEAGUE SEASON=$SEASON for the remaining probes."
+          api "/leagues?id=$LEAGUE&season=$SEASON" | jq -r '.response[0].seasons[]? | select(.year=='"$SEASON"') | "season coverage: fixtures.events=\(.coverage.fixtures.events) standings=\(.coverage.standings) statistics=\(.coverage.fixtures.statistics_fixtures)"'
 
           echo "=================================================="
           echo "(2) Standings — expect 12 groups x 4 teams"
           S=$(api "/standings?league=$LEAGUE&season=$SEASON")
-          groups=$(echo "$S" | jq '.response[0].league.standings | length // 0')
+          echo "api .errors:"; echo "$S" | jq -c '.errors'
+          groups=$(echo "$S" | jq '(.response[0].league.standings | length) // 0')
           echo "groups found: $groups  (expect 12)"
           echo "group sizes (expect '4' x12):"
           echo "$S" | jq -r '.response[0].league.standings[]? | "  size \(length)"' | sort | uniq -c
@@ -74,26 +87,27 @@ jobs:
           echo "=================================================="
           echo "(3) Fixtures — sample with kickoff + status"
           F=$(api "/fixtures?league=$LEAGUE&season=$SEASON")
+          echo "api .errors:"; echo "$F" | jq -c '.errors'
           total=$(echo "$F" | jq '.response | length')
           echo "total fixtures returned: $total  (expect 104 for the full WC)"
           echo "$F" | jq -r '.response[:6][]? | "  \(.fixture.date)  [\(.fixture.status.short)]  \(.teams.home.name) vs \(.teams.away.name)"'
 
           echo "=================================================="
           echo "(5) Already-played group results WITH real scorelines"
-          ft=$(echo "$F" | jq '[.response[] | select(.fixture.status.short=="FT")] | length')
+          ft=$(echo "$F" | jq '[.response[]? | select(.fixture.status.short=="FT")] | length')
           echo "finished (FT) matches so far: $ft"
-          echo "$F" | jq -r '[.response[] | select(.fixture.status.short=="FT")][:20][]? | "  \(.fixture.date[:10])  \(.teams.home.name) \(.goals.home)-\(.goals.away) \(.teams.away.name)"'
+          echo "$F" | jq -r '[.response[]? | select(.fixture.status.short=="FT")][:20][]? | "  \(.fixture.date[:10])  \(.teams.home.name) \(.goals.home)-\(.goals.away) \(.teams.away.name)"'
 
           echo "=================================================="
           echo "(4) Card events for one finished match"
-          fid=$(echo "$F" | jq -r 'first(.response[] | select(.fixture.status.short=="FT") | .fixture.id) // empty')
+          fid=$(echo "$F" | jq -r 'first(.response[]? | select(.fixture.status.short=="FT") | .fixture.id) // empty')
           if [ -n "$fid" ]; then
             echo "using fixture id=$fid"
-            api "/fixtures/events?fixture=$fid" | jq -r '([.response[] | select(.type=="Card")] | length) as $c | "  card events: \($c)", (.response[] | select(.type=="Card") | "  \(.time.elapsed)min  \(.team.name)  \(.player.name)  [\(.detail)]")'
+            api "/fixtures/events?fixture=$fid" | jq -r '([.response[]? | select(.type=="Card")] | length) as $c | "  card events: \($c)", (.response[]? | select(.type=="Card") | "  \(.time.elapsed)min  \(.team.name)  \(.player.name)  [\(.detail)]")'
           else
             echo "  No finished match yet — cannot show card events (not a coverage failure if the group stage has not kicked off)."
           fi
 
           echo "=================================================="
-          echo "Smoke test complete. Review (1)-(5) above to confirm real WC-2026 coverage,"
+          echo "Smoke test complete. Review (0)-(5) above to confirm real WC-2026 coverage,"
           echo "including discipline (cards) and real played scorelines, before Phase 1."
