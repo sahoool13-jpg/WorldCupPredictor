@@ -1,8 +1,8 @@
 # WorldCupPredictor — Build Plan
 
-**Status:** D0 approved. **D1 resolved → openfootball dataset** (§14); D-cards resolved
-(skip-to-lots + warn). Phase 1 sub-plan (§12) rewritten for openfootball, **awaiting
-sign-off**. _No engine code yet._
+**Status:** D0 approved. D1 → **openfootball** (structure, §14) **+ live-results overlay**
+(openfootball lags; §15). Overlay source **D1-overlay OPEN** — ESPN recommended (proven
+fresh) pending owner confirm. D-cards resolved. _No engine code yet._
 **Owner:** sahoool13
 **Last updated:** 2026-06-14
 
@@ -337,6 +337,7 @@ No engine code. **Deliverable:** owner sign-off on the phase list and the §3 fo
 | **D0** | Approve this phase list + §3 format spec | Phase 0 | ✅ **APPROVED** 2026-06-14 |
 | **D1** | WC-2026 data source (verify coverage first; no scraping) | Phase 1 | ✅ **RESOLVED** 2026-06-14 → **openfootball dataset** (`openfootball/worldcup.json`). API-Football free failed the live gate (§11); openfootball verified directly (§14): 12×4 groups, 104 matches, real played scorelines, no cards. |
 | **D-cards** | How cards-based tiebreakers behave with no card data (group fair-play; 3rd-place conduct) | Phase 1/4 | ✅ **RESOLVED** 2026-06-14 → **skip to the next defined step (drawing of lots, seeded) + emit a loud warning and record it** (never silent). Triggers only when a tie is otherwise unresolved before the conduct step. |
+| **D1-overlay** | Which fresh live-results source overlays openfootball (which lags) | Phase 1 | ⏳ **OPEN** — smoke-test (§15.1) makes **ESPN site API** the recommendation (free, no key, proven fresh — had Australia 2–0 Türkiye). Caveat: unofficial endpoint. Alt: football-data.org (needs `FOOTBALL_DATA_TOKEN`). Awaiting owner confirm. |
 | **D2** | Elo K / MoV, home-advantage for hosts, form window, squad-strength proxy source (market-blind) | Phase 2 | Elo+MoV, partial home edge, transparent squad-value proxy |
 | **D3** | Goal-model fit (historical fit vs analytic ratings→λ), Dixon-Coles tau | Phase 3 | Dixon-Coles, ratings→λ with historical calibration |
 | **D4** | N sims, seeding/parallelism, lots handling, FIFA-ranking snapshot source | Phase 4 | 50k sims, seeded, lots=seeded-random |
@@ -534,6 +535,53 @@ Verified **directly from the sandbox** (no key; `raw.githubusercontent.com` reac
 > Provenance: fetched from `raw.githubusercontent.com/openfootball/worldcup.json/master/2026/`
 > on 2026-06-14. Phase 1 commits a frozen golden copy + records the source commit SHA per
 > snapshot. This **supersedes** the API-Football pick (§11); §12 is rewritten accordingly.
+
+---
+
+## 15. Live-results overlay (openfootball lags — owner chose structure + overlay)
+
+**Why:** openfootball was already missing a real completed result on day 1
+(**Australia 2–0 Turkey**, Group D, 2026-06-13). It's a commit-updated dump, not a live
+feed. Owner decision: keep **openfootball for the static structure** (groups, the full
+104-match schedule, team list) and layer a **fresh live-results overlay** on top for match
+**status + score**.
+
+### 15.1 Overlay candidate smoke-test — Actions run #3, 2026-06-14
+| Source | Key? | Result |
+|--------|------|--------|
+| **ESPN site API** (`site.api.espn.com/.../soccer/fifa.world/scoreboard?dates=YYYYMMDD`) | none | ✅ **FRESH.** Returned June-13 FTs **and `Australia 2–0 Türkiye [FT]`** (the result openfootball lacks) + June-14 scheduled fixtures. **Winner.** |
+| TheSportsDB (free key `3`) | free key | ⚠️ Sparse/incomplete — only a partial result or two, **no** Australia–Turkey. Rejected. |
+| football-data.org v4 (`/competitions/WC/matches`) | `FOOTBALL_DATA_TOKEN` | ◻️ **Untested** — no token in secrets. The *officially supported* alternative; needs a free token to verify 2026 coverage + freshness. |
+
+### 15.2 Recommendation + open caveat (owner confirm)
+**Recommend: ESPN site API as the overlay** — free, no key, reachable on Actions, proven
+fresh. **One caveat to accept:** it's an **unofficial/undocumented** endpoint (used by ESPN's
+own apps) — JSON, **not HTML scraping**, but no published ToS for redistribution and it could
+change without notice. If you'd rather use an **officially supported** free API, provide a
+`FOOTBALL_DATA_TOKEN` and I'll smoke-test football-data.org the same way and use it instead.
+**Pending this confirm before Phase-1 build.**
+
+### 15.3 Overlay architecture (point-in-time preserved)
+- **openfootball = canonical structure:** the 12×4 groups, the 104-fixture skeleton (teams,
+  round, scheduled kickoff), team list. Committed for offline tests.
+- **Overlay = authoritative for status + score** of each fixture. Reconcile to openfootball
+  by a **stable match key** = (matchday/round + unordered team-pair), via the team alias map
+  — **not** by date (sources bucket kickoffs by different timezones; e.g. ESPN files
+  Australia–Türkiye under 06-14, openfootball under 06-13).
+- A match is **`final`** iff the **overlay** marks it final (FT) **and** `kickoff_utc ≤ as_of`
+  (§4). openfootball's own score is a **fallback** only if the overlay lacks that fixture.
+- **Fail loudly:** overlay fixture that can't be matched to an openfootball fixture; both
+  sources `final` but **scores disagree**; an overlay `final` with `kickoff_utc > as_of`
+  (future leak); team name not in the alias map. Record **which source** supplied each result
+  (provenance) in the snapshot.
+- **Team-name normalization** spans both sources (e.g. `Türkiye`/`Turkey`, `Curaçao`,
+  `Ivory Coast`/`Côte d'Ivoire`, `South Korea`/`Korea Republic`, `USA`).
+
+### 15.4 Impact on §12
+§12 (Phase 1) gains a second **source-config-driven** fetcher (the overlay) + the §15.3
+reconciliation layer and its guards/tests. Both sources are smoke-tested on Actions (egress
+blocks them from the sandbox); openfootball is also fetchable directly. **D1-overlay** (which
+overlay source) is the only open item before Phase-1 build.
 
 ---
 
