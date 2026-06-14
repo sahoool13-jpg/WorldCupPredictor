@@ -1,0 +1,38 @@
+name: CI — tests
+
+# Runs the pytest suite on every pull request and on pushes to feature/main branches.
+# Tests gate the build (plan.md §7 / CLAUDE.md rule 6). Separate from the scheduled dashboard
+# publisher (smoketest.yml), which also runs the suite but only on a 3h cron / manual dispatch —
+# this gives fast, per-PR feedback without waiting for or touching the publish workflow.
+#
+# The dashboard's auto-commits use "[skip ci]" in their message, so refreshing latest.json never
+# triggers a redundant CI run.
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - "claude/**"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install package
+        run: python -m pip install --quiet -e .
+      - name: Run tests
+        run: |
+          python -m pip install --quiet pytest
+          pytest -q

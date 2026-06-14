@@ -1,9 +1,10 @@
 # WorldCupPredictor — Build Plan
 
-**Status:** D0–D5 resolved. **Phases 1–4 MERGED; Phase 5 (dashboard) BUILT** (§20 — static
-GitHub Pages page in `docs/` + scheduled the scheduled publish workflow; fixed-seed clean deltas, fail-loud
-last-good, cache-busted fetch; 77 tests green). **Project complete** pending this PR's merge +
-the owner enabling GitHub Pages (serve from `docs/`).
+**Status:** D0–D5 resolved. **Phases 1–5 BUILT & MERGED** (static GitHub Pages dashboard live,
+auto-refreshing; 81 tests green). **CI-on-PRs added** (§23). **Phase 6 — knockout-stage
+readiness (§21) and Phase 7 — explainability (§22) sub-plans drafted, awaiting sign-off** (D6,
+D7). **No Phase-6/7 engine code until signed off.** Knockouts start **28 Jun 2026** — Phase 6
+should land before then.
 **Owner:** sahoool13
 **Last updated:** 2026-06-14
 
@@ -362,6 +363,8 @@ hosting** — static files + scheduled rebuild.
 | **D3** | Goal-model: ratings→λ mapping (D3-map), calibration source/method (D3-calib), ET+penalty model (D3-etp), which Phase-2 number drives λ (D3-input) | Phase 3 | §18 drafted: analytic ratings→λ, calibrated on martj42 goals (Poisson reg + DC ρ MLE), committed params; ET scaled-Poisson + logistic penalties; driven by blended rating. **Awaiting sign-off.** |
 | **D4** | N sims, seeding/parallelism, lots handling, FIFA-ranking snapshot source (§19.7) | Phase 4 | §19 drafted: 50k sims, seeded RNG, lots=seeded-random, committed FIFA-ranking snapshot. **Awaiting sign-off.** Blocker: verbatim Annex C 495-table not fetchable here (§19.1). |
 | **D5** | **Live web dashboard:** schedule cadence, page tech, JSON schema, "who moved" threshold | Phase 5 | §20 drafted: static GitHub Pages from `docs/` + scheduled Action committing `latest.json`; plain HTML+JS; cron ~3h; move flag ≥0.5pp. **Awaiting sign-off** (+ owner enables Pages). |
+| **D6** | **Knockout-stage readiness:** do KO results update Elo (D6a)? slot-binding strictness (D6b)? dashboard-bracket scope (D6c)? | Phase 6 | §21 drafted: ingest KO finals from ESPN overlay, KO-aware reconcile, pin real KO ties in the sim, additive bracket JSON; live-state contract extended to the bracket. *Leaning: ratings frozen post-group, strict reachability, JSON-now/visual-next.* **Awaiting sign-off.** KO starts 28 Jun. |
+| **D7** | **"Why this %?" explainability:** all 48 vs top-N (D7a)? goal-model detail depth (D7b)? | Phase 7 | §22 drafted: additive read-only `why` block (rating breakdown + λ + host edge) in `latest.json`, tap-to-expand explainer, optional `make explain`. No model change. *Leaning: all 48, λ-only.* **Awaiting sign-off.** |
 
 > **Language/stack assumption (flag if you disagree):** Python + `pytest`, `numpy`/`pandas`
 > for the sim, `requests` for the API. Chosen for fast Monte Carlo + transparent ratings.
@@ -1028,3 +1031,181 @@ sane after the host-edge fix — Argentina/Spain co-favorites, hosts in a defens
 rating inversion). **Phase 5 dashboard sub-plan (§20) drafted — awaiting sign-off** (D5:
 cadence, page tech, move threshold; + owner enables GitHub Pages). **No Phase-5 code until §20
 is signed off.** Final phase._
+
+---
+
+## 21. Phase 6 — Knockout-stage readiness (detailed sub-plan, for sign-off)
+
+**Why now:** the group stage ends 27 Jun; the Round of 32 starts **28 Jun 2026**. Today the
+live pipeline only ingests **group** results — `pipeline`/`reconcile` match openfootball's
+group fixtures against the ESPN overlay, and `build_payload` only folds `m.group is not None`
+finals into standings. The instant a knockout match goes final, the model must treat it like
+any other played result: **fixed, real, never re-simulated** (CLAUDE.md rules 3–4), with the
+rest of the bracket simulated forward from it. This phase makes that true end-to-end. **No
+engine code until this section is signed off** (plan-first, rule 1).
+
+### 21.1 The gap, concretely
+- **Sim (`sim/bracket.py`, `sim/engine.py`):** already builds the full R32→Final tree from
+  openfootball's `Wnn` placeholder refs and the Annex-C 3rd-place assignment, and simulates
+  every knockout tie. What it does **not** do yet is **seed a knockout match from a real final
+  result** — `Sim.once()` re-rolls every bracket tie from scratch each iteration. A completed
+  R32 match must instead be **pinned** to its real winner in every iteration.
+- **Data/overlay (`reconcile.py`):** reconciliation is keyed by **(matchday + unordered
+  team-pair)** against openfootball's **group** fixtures. Knockout fixtures in openfootball are
+  **placeholders** (`is_placeholder`, names like "W73"/"2A"), so a real R32 result (e.g. a
+  concrete team pair) has **no openfootball row to match** — it would currently fail the
+  unmatched-fixture guard. Knockout overlay results need a **different reconciliation path**.
+- **Payload (`report/payload.py`):** `recent_results`, `matches_reflected`, and standings all
+  filter on `m.group is not None`, so knockout finals would be **invisible** on the dashboard.
+
+### 21.2 Design (smallest correct change; market-blind, point-in-time)
+1. **Ingest knockout finals from the ESPN overlay only.** openfootball's bracket stays the
+   **structural** source (the `Wnn` tree + Annex-C wiring is already correct and committed); we
+   do **not** wait for openfootball to fill concrete knockout teams. ESPN provides the real
+   R32→Final scorelines as they happen. *(Confirm: ESPN's `fifa.world` scoreboard exposes
+   knockout matches with the same shape — verify live on Actions before coding, per the egress
+   wall. If a field differs, fail loud, don't guess.)*
+2. **A knockout-aware reconciliation path.** For overlay results whose `(matchday/round)` is a
+   knockout round, **skip the openfootball-pair match** (there is no concrete pair to match)
+   and instead bind the result to a **bracket slot** by round + team identity: the two real
+   teams must each be a team that the model's bracket *could* have sent to that slot. Keep the
+   existing loud guards: **future-dated final → raise**; **a final with no score → raise**; a
+   knockout result naming a team that cannot reach that slot from the current real state →
+   **raise** (schema/logic drift, never silent).
+3. **Pin completed knockout ties in the sim.** Extend `Sim` so that when a bracket slot has a
+   **real final result**, every Monte-Carlo iteration uses the **real winner** for that tie
+   (and its real "who advances") instead of sampling — exactly mirroring the group-stage
+   live-state property. Unplayed ties simulate as today. ET/penalties (`etp.py`) apply only to
+   **simulated** ties; a real knockout result already encodes its own ET/pens outcome.
+4. **Surface knockout matches in the payload.** Let `matches_reflected` / `recent_results`
+   include knockout finals (drop the `group is not None` filter where appropriate; tag round),
+   and add a **bracket view** to `latest.json` (per-slot: round, the two teams or
+   "TBD"/placeholder, real result if final, else null) so the dashboard can show the live tree.
+   *(Dashboard rendering of the bracket is presentation-only and can follow in a Phase-5-style
+   cosmetic pass; the JSON contract lands here.)*
+
+### 21.3 The live-state contract — extended to knockouts (gates this phase)
+Mirror §4.1 (a)–(d) for the bracket, tested offline with canned finals:
+- **(a)** a completed knockout tie is **never re-rolled** — across N iterations its winner is
+  constant and equals the real winner;
+- **(b)** with the **whole R32 round** played, the simulated R16 field **exactly equals** the
+  real set of R32 winners (no phantom teams);
+- **(c)** a team **eliminated** in a real knockout result shows **title 0%** thereafter; a team
+  that has **won the final** shows **100%**;
+- **(d)** entering one real R32 result **shifts** the downstream odds correctly from the prior
+  (the loser's title prob → 0, redistributed along the bracket).
+
+### 21.4 Tests (gate Phase 6)
+- **Reconciliation:** golden-file knockout overlay → bound to the right bracket slot; the loud
+  guards fire (future-dated KO final, KO final missing score, a KO result with an impossible
+  team for that slot).
+- **Sim pinning:** the §21.3 (a)–(d) contract, offline, with a fixed seed.
+- **Payload:** knockout finals appear in `recent_results`/`matches_reflected`; the new bracket
+  block validates (round enum, slot teams, result-or-null); group-only runs are unchanged
+  (existing 81 tests stay green — additive).
+- **Point-in-time:** a future-dated knockout final never counts; ratings still learn **only**
+  from played matches (knockout results may or may not feed ratings — **decision D6 below**).
+
+### 21.5 Open decisions (D6 — need sign-off before code)
+- **D6a — Do knockout results update Elo ratings?** The Phase-2 in-tournament Elo currently
+  learns from played **group** matches. Options: **(i)** keep ratings frozen after the group
+  stage (knockouts only re-seed the bracket, not the ratings) — simplest, defensible; or
+  **(ii)** let knockout finals also nudge Elo (more reactive, but ratings matter less once the
+  field is 32 and shrinking). *Leaning (i)* for transparency. **Owner picks.**
+- **D6b — Bracket-slot binding strictness.** How hard to validate that a real KO pair is
+  "reachable" for a slot (full reachability check from current state vs. a lighter round+side
+  check). *Leaning the stricter check* (fail-loud is the house style). **Owner picks.**
+- **D6c — Scope of the dashboard bracket.** Ship the **JSON** bracket block this phase and the
+  **visual** bracket as a follow-on cosmetic PR, or do both together? *Leaning JSON-now,
+  visual-next* (keeps model correctness uncoupled from presentation). **Owner picks.**
+
+### 21.6 Deliverables
+- `reconcile.py` knockout path + guards; `sim/engine.py` (+`bracket.py`) real-result pinning;
+  `report/payload.py` knockout-aware results + bracket block; the §21.4 suite green; CLAUDE.md
+  "Current status" + this plan updated. **Strictly additive** — group-stage behaviour and the
+  existing 81 tests unchanged.
+
+---
+
+## 22. Phase 7 — "Why this %?" explainability (detailed sub-plan, for sign-off)
+
+**Why:** CLAUDE.md rule 10 / §2 promise — ratings and probabilities must be **dumpable and
+explainable** ("why is Brazil 14%?"). The numbers already exist inside the engine
+(`RatingDetail`: prior, in-tournament Elo, form, squad, blended `elo*`; the goal model's λ;
+the host taper); they're just not **surfaced**. This phase exposes them — **read-only, no
+model change** — so the dashboard can answer "why this %?" on tap. **No code until signed
+off**, though this is largely additive plumbing (low risk).
+
+### 22.1 What to expose (per team)
+- **Rating breakdown:** `prior` (pre-tournament Elo), live in-tournament Elo, recent-form
+  delta, squad-proxy delta, the shrinkage weight `w_live = n/(n+k_shrink)`, and the final
+  **blended rating** that drives λ — i.e. the `RatingDetail` already computed in
+  `ratings/engine.py`, rounded and labelled.
+- **Goal-model context:** the team's typical attack/defence λ vs an average opponent, so a
+  reader sees *why* the scoreline model favours them; **host-edge** flag + the round taper
+  actually applied (so the Mexico/USA/Canada modest boost is transparent, per the host-edge
+  note in CLAUDE.md).
+- **Path math:** the per-round reach probabilities (`R32→F` + `title`) are **already** in
+  `latest.json` and shown in the path panel — this phase adds the **rating/goal "why"** behind
+  the title number, not just the survival curve.
+
+### 22.2 The data contract — additive `why` block
+Add an **optional** per-team `why` object to `latest.json` (absent ⇒ dashboard simply omits the
+explainer; degrade-gracefully, like `movers`/`recent_results`):
+```jsonc
+"title_odds": [ { "...": "...", "why": {
+  "rating": { "blended", "prior", "elo_live", "form_delta", "squad_delta", "w_live", "n_played" },
+  "goals":  { "attack_lambda", "defence_lambda", "host_edge": false, "host_taper_by_round": {} }
+} } ]
+```
+- Strictly **additive**: existing keys/order/`title_delta` byte-stability unchanged; the
+  fixed-seed zero-delta property is untouched (this block is descriptive, not an odds input).
+- **Market-blind & point-in-time preserved:** every field is derived from the same played-only
+  state the odds use; nothing new is fetched or fit.
+
+### 22.3 Dashboard (presentation-only, Phase-5 style)
+- Extend the existing **tap-to-expand** row (already wired for the path panel) with a compact
+  **"Why this %?"** breakdown: a small bar/inline list of the rating components and the
+  attack/defence λ, plus a host-edge chip when applicable. Mobile-first, no new dependency,
+  graceful when `why` is absent (older `latest.json`).
+- Optional: a **`make explain TEAM=Brazil`** CLI that prints the same breakdown to the terminal
+  (the "dumpable" half of rule 10) — reuses the payload builder, no duplicate logic.
+
+### 22.4 Tests (gate Phase 7)
+- **Payload:** `why` present for every team; fields are finite numbers; `host_edge` true **iff**
+  team ∈ hosts; `w_live` ∈ [0,1] and = `n/(n+k_shrink)`; blended matches `RatingDetail`.
+- **Additivity/stability:** with `why` added, `title`/`title_delta` are **byte-identical** to a
+  run without it (descriptive-only guard); schema test updated to allow the optional key.
+- **Drift guard:** `app.js` reads exactly the `why` fields it renders (mirrors the §20.6 style).
+- **CLI:** `make explain TEAM=...` prints the breakdown and exits 0; unknown team → fail loud.
+
+### 22.5 Open decisions (D7 — confirm before code)
+- **D7a — Surface for all 48 teams or top-N?** Carrying `why` for all 48 is a few KB; *leaning
+  all 48* (uniform, no special-casing). **Owner picks.**
+- **D7b — How much goal-model detail?** Just attack/defence λ vs average, or a sample scoreline
+  too? *Leaning λ-only* (compact, still explanatory). **Owner picks.**
+
+### 22.6 Deliverables
+- `report/payload.py` `why` block (read from existing `RatingDetail`/λ/host config — no model
+  change); `docs/app.js`+`style.css` explainer (presentation-only); optional `make explain`;
+  the §22.4 suite green; docs updated. **Strictly additive.**
+
+---
+
+## 23. Engineering — CI on pull requests (no decision needed)
+
+Small, non-model change shipped alongside these plans: a **`.github/workflows/ci.yml`** that
+runs the pytest suite on every **pull request** and on pushes to `main`/`claude/**`, giving
+fast per-PR green/red feedback. It is **separate** from the scheduled dashboard publisher
+(`smoketest.yml`), which also runs the suite but only on its 3h cron / manual dispatch. The
+dashboard's auto-commits carry `[skip ci]`, so refreshing `latest.json` never triggers a
+redundant run. Tests gate the build (rule 6); this just enforces it earlier and visibly.
+
+---
+
+_Status (post-Phase-5): **Project core complete & live** (Phases 1–5 merged; 81 tests; live
+dashboard auto-refreshing). **CI-on-PRs** added (§23, no sign-off needed). **Phase 6
+(knockout-readiness, §21) and Phase 7 (explainability, §22) sub-plans drafted — awaiting
+sign-off** (D6: ratings-update / slot-strictness / bracket scope; D7: coverage / goal detail).
+**No Phase-6 or Phase-7 engine code until §21/§22 are signed off** (plan-first, rule 1).
+Knockouts start **28 Jun 2026** — Phase 6 should land before then._
