@@ -1,9 +1,9 @@
 # WorldCupPredictor — Build Plan
 
-**Status:** D0–D4 resolved. **Phases 1–4 BUILT, VERIFIED & MERGED** (data layer §12/§15/§16;
-ratings §17; goal model §18; tournament Monte Carlo §19 + verified Annex C table — 72 tests
-green; live title odds sane, hosts in a defensible band). **Phase 5 dashboard sub-plan (§20)
-drafted — awaiting sign-off** (D5). Final phase.
+**Status:** D0–D5 resolved. **Phases 1–4 MERGED; Phase 5 (dashboard) BUILT** (§20 — static
+GitHub Pages page in `docs/` + scheduled `dashboard.yml`; fixed-seed clean deltas, fail-loud
+last-good, cache-busted fetch; 77 tests green). **Project complete** pending this PR's merge +
+the owner enabling GitHub Pages (serve from `docs/`).
 **Owner:** sahoool13
 **Last updated:** 2026-06-14
 
