@@ -62,9 +62,18 @@ prior state.
 ## Current status
 
 - **D0 approved** — phase list + 2026 format spec.
-- **D1 approved** — **API-Football** free tier is the primary source (football-data.org free
-  omits discipline/cards needed for tiebreakers); football-data.org is the fallback. Phase
-  1's first task is a **live smoke-test**; if WC-2026 fixtures+standings+card events aren't
-  returned, **STOP and escalate** before building.
-- **Phase 1 sub-plan drafted** (`plan.md` §12), **awaiting sign-off**. No Phase-1 engine code
-  until then.
+- **D1 RESOLVED → openfootball dataset** (`openfootball/worldcup.json`). API-Football free
+  failed the live coverage gate (season-gated; `plan.md` §11). openfootball verified directly
+  from the sandbox (`plan.md` §14): 12 groups × 4, 104 matches, real played scorelines, no
+  cards. It's a commit-updated dataset (not a live API) — tolerate lag, record source SHA.
+- **D-cards RESOLVED** — no card data in the source, so the fair-play (group) and conduct
+  (3rd-place) tiebreak steps **skip to the next step (seeded lots) and emit a loud, recorded
+  warning** (never silent).
+- **Live-results overlay = ESPN site API** (resolved) — openfootball lags (missed Australia
+  2–0 Turkey on day 1), so it's used for **static structure** + the **ESPN overlay** for
+  status/score (`plan.md` §15; base `site.api.espn.com/.../soccer/fifa.world/scoreboard`, no
+  key, config-driven so a supported source can swap in later). Reconcile overlay↔openfootball
+  by (matchday + team-pair), **not** date; fail loudly on score conflicts / unmatched
+  fixtures / future-dated finals.
+- **Phase 1 sub-plan** (`plan.md` §12 + §15) is **complete; awaiting owner sign-off** to
+  start engine code. No Phase-1 engine code until then.

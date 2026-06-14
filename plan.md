@@ -1,7 +1,10 @@
 # WorldCupPredictor — Build Plan
 
-**Status:** D0 + D1 approved. Phase 1 sub-plan drafted (§12), awaiting sign-off. _No engine
-code yet._
+**Status:** D0 approved. Sources resolved: **openfootball** (structure, §14) **+ ESPN site
+API** live-results overlay (§15); D-cards approved. **Phase 1 sub-plan (§12 + §15) APPROVED
+2026-06-14 — build in progress** on a fresh branch, test-gated (reconciliation contract
+§15.5 + point-in-time §4.1 must pass). _No engine code beyond Phase 1 until its tests are
+green._
 **Owner:** sahoool13
 **Last updated:** 2026-06-14
 
@@ -78,7 +81,9 @@ Applied to teams level on points within a group:
 2. **Goals scored** (all group matches)
 3. **Head-to-head** among the still-tied teams: (a) points, (b) goal difference,
    (c) goals scored in matches **between the tied teams only**
-4. **Fair play** (fewer disciplinary points — cards)
+4. **Fair play** (fewer disciplinary points — cards) — _our source (openfootball) has no
+   card data; per **D-cards** this step is skipped with a loud, recorded warning and we fall
+   through to lots._
 5. **Drawing of lots**
 
 > Note the ordering quirk: 2026 uses overall **GD/GS first**, then head-to-head — not
@@ -90,7 +95,8 @@ Applied across the **12** third-placed teams to pick the best **8**:
 1. **Points**
 2. **Goal difference**
 3. **Goals scored**
-4. **Team conduct / fair play** (fewer cards)
+4. **Team conduct / fair play** (fewer cards) — _no card data in our source; per **D-cards**
+   skipped with a recorded warning, falling through to FIFA ranking._
 5. **FIFA ranking**
 
 ### 3.4 Round-of-32 third-place assignment — **the hard part**
@@ -331,7 +337,9 @@ No engine code. **Deliverable:** owner sign-off on the phase list and the §3 fo
 | ID | Decision | Where | Status / leaning |
 |----|----------|-------|-----------------|
 | **D0** | Approve this phase list + §3 format spec | Phase 0 | ✅ **APPROVED** 2026-06-14 |
-| **D1** | Which free API (verify WC-2026 free-tier coverage first; no scraping) | Phase 1 | ✅ **APPROVED** 2026-06-14. Doc-level verification → **API-Football primary** (football-data.org free omits discipline/cards; see §11), football-data.org fallback; **live smoke-test is the first Phase-1 gate; STOP & escalate if neither returns the tournament** |
+| **D1** | WC-2026 data source (verify coverage first; no scraping) | Phase 1 | ✅ **RESOLVED** 2026-06-14 → **openfootball dataset** (`openfootball/worldcup.json`). API-Football free failed the live gate (§11); openfootball verified directly (§14): 12×4 groups, 104 matches, real played scorelines, no cards. |
+| **D-cards** | How cards-based tiebreakers behave with no card data (group fair-play; 3rd-place conduct) | Phase 1/4 | ✅ **RESOLVED** 2026-06-14 → **skip to the next defined step (drawing of lots, seeded) + emit a loud warning and record it** (never silent). Triggers only when a tie is otherwise unresolved before the conduct step. |
+| **D1-overlay** | Which fresh live-results source overlays openfootball (which lags) | Phase 1 | ✅ **RESOLVED** 2026-06-14 → **ESPN site API** (free, no key, proven fresh — had Australia 2–0 Türkiye; §15). Unofficial-endpoint caveat accepted; config-driven client allows swapping to football-data.org later. |
 | **D2** | Elo K / MoV, home-advantage for hosts, form window, squad-strength proxy source (market-blind) | Phase 2 | Elo+MoV, partial home edge, transparent squad-value proxy |
 | **D3** | Goal-model fit (historical fit vs analytic ratings→λ), Dixon-Coles tau | Phase 3 | Dixon-Coles, ratings→λ with historical calibration |
 | **D4** | N sims, seeding/parallelism, lots handling, FIFA-ranking snapshot source | Phase 4 | 50k sims, seeded, lots=seeded-random |
@@ -391,12 +399,21 @@ Phase-1 gate, §12.1). No scraping considered. Findings:
   the live source (static/community-maintained; doesn't meet the live auto-pull requirement,
   and using it as primary would be closer to scraping a dump than a supported live API).
 
-### Decision
-**Primary = API-Football free tier** (it covers the tournament *and* discipline);
-**fallback = football-data.org** (fixtures/results/standings if API-Football is unavailable
-or over budget). **Gate:** Phase 1's first task is a live smoke-test with a real free key —
-if it does not return WC-2026 fixtures + standings + card events, **STOP and bring options
-to the owner** before building anything else (§12.1).
+### Decision (doc-level, SUPERSEDED by the empirical result below)
+~~Primary = API-Football free tier~~ — overturned by the live smoke-test.
+
+### Empirical result — 2026-06-14 Actions smoke-test — ❌ GATE FAILED for API-Football free
+Ran `.github/workflows/smoketest.yml` on GitHub Actions with the real `API_FOOTBALL_KEY`
+(plan = **Free**, 100/day, key valid). Findings:
+- League discovery **works**: `id=1 | World Cup [Cup] | World | seasons=2010,2014,2018,2022,2026`
+  — WC-2026 exists in the catalog as league 1.
+- **But the data is paywalled on free:** `/standings?league=1&season=2026` and
+  `/fixtures?league=1&season=2026` both returned
+  **`{"plan":"Free plans do not have access to this season, try from 2022 to 2024."}`** →
+  0 groups, 0 fixtures, 0 results.
+- **Conclusion: API-Football's *free* plan does NOT cover WC-2026 match data** (season-gated
+  to 2022–2024). Verdict per D1's STOP rule: **do not build on it.** D1 is **re-opened** —
+  see §13 for the fallback options put to the owner.
 
 > Sources: TheStatsAPI (football-data.org free-tier limits 2026; World Cup 2026 API roundup),
 > api-sports.io football API docs, `github.com/rezarahiminia/worldcup2026`,
@@ -408,98 +425,224 @@ to the owner** before building anything else (§12.1).
 
 ## 12. Phase 1 — Data layer (detailed sub-plan, for sign-off)
 
-**Goal:** a clean, versioned, point-in-time local store of WC-2026 fixtures, results,
-standings, and discipline, pulled from API-Football, that downstream phases consume. No
-ratings/model/sim logic here. Plan-first: this sub-plan is signed off before code.
+**Goal:** a clean, versioned, point-in-time local store of WC-2026 fixtures and results,
+sourced from the **openfootball** dataset (D1 resolved — §14), that downstream phases
+consume. No ratings/model/sim logic here. Plan-first: this sub-plan is signed off before
+code.
 
-### 12.0 API target (pinned)
-- **Provider:** API-Football, **direct** (api-sports.io) — **not** the RapidAPI variant.
-- **Base URL:** `https://v3.football.api-sports.io`
-- **Auth header:** `x-apisports-key: <key>`
-- **Secret name:** `API_FOOTBALL_KEY`
-- **Config-driven client:** base URL + auth style (header name + value template) come from
-  config, so swapping to the RapidAPI variant later
-  (`https://api-football-v1.p.rapidapi.com/v3`, headers `x-rapidapi-key` +
-  `x-rapidapi-host`, secret `RAPIDAPI_KEY`) is a **config change, not a rewrite**.
+### 12.0 Source target (pinned)
+- **Source:** `openfootball/worldcup.json` — public-domain dataset on GitHub. No key.
+- **Files (raw):** `https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/`
+  - `worldcup.json` — the 104 matches (fixtures + results).
+  - `worldcup.groups.json` — the 12 groups × 4 teams.
+  - `worldcup.teams.json`, `worldcup.squads.json`, `worldcup.stadiums.json` — reference.
+- **Reachable from both sandbox and Actions** (verified — `raw.githubusercontent.com`,
+  `api.github.com` are allowlisted). Fetch via a thin, **source-config-driven** client
+  (base URL + paths from config) so a different mirror/source is a config change.
+- **Caveat (accepted by owner):** this is a **commit-updated dataset, not a live API** —
+  matchday freshness depends on maintainer commits and may lag. The pipeline must record the
+  source commit SHA per snapshot (provenance) and tolerate lag (don't crash on "no new
+  results"; just report unchanged).
+- **No discipline/cards** in this source (matches carry scorers, not bookings) — see the
+  cards-tiebreak decision (D-cards, §3.2/§3.3).
 
-### 12.1 Live verification gate (do this FIRST, fail loudly)
-- **Prerequisites (environment):** a valid `API_FOOTBALL_KEY` in the env, **and**
-  `v3.football.api-sports.io` added to the session's **network egress allowlist** (the
-  default policy blocks it — verified 2026-06-14, see note below).
-- With the key, hit the WC-2026 league/season and confirm the response actually contains:
-  the **12 groups × 4 teams**, the **fixtures** (with `kickoff_utc` + `status`),
-  **standings**, **card events** for a finished match, and the **already-played group
-  results with their real scores**.
-- A tiny `make verify-source` (Phase 1) target prints what was found and **raises** if any
-  required field is absent. **If WC-2026 isn't fully covered, STOP and escalate** (try
-  football-data.org for the non-discipline parts and report the gap) — do **not** proceed to
-  build the store on an unverified source.
-- **Runs on GitHub Actions, not the sandbox** (the sandbox egress policy blocks the API
-  host). Implemented as `.github/workflows/smoketest.yml` (`workflow_dispatch`), which uses
-  the `API_FOOTBALL_KEY` secret and prints (1) WC-2026 league + 12×4 groups, (2) fixtures
-  sample with kickoff/status, (3) one group's standings, (4) card events for a finished
-  match, (5) already-played results with real scorelines. **`workflow_dispatch` only
-  registers from the default branch**, so this workflow must be on `main` before it can be
-  dispatched.
+### 12.1 Verification gate — ✅ DONE 2026-06-14 (evidence in §14)
+Verified **directly from the sandbox** (no key needed): 12 groups × 4 teams, 104 matches,
+played matches carry real `score.ft` scorelines (+ scorers/minutes), future matches have no
+score (clean point-in-time split), no cards. A Phase-1 `make verify-source` target
+re-asserts these invariants on every fetch and **raises** if any fail (≠12 groups, any
+group ≠4, missing the 2026 files, a schema change).
 
-> **Smoke-test attempted 2026-06-14 — BLOCKED (environment, not the API):** no
-> `API_FOOTBALL_KEY` was present, and outbound requests to `v3.football.api-sports.io` were
-> rejected by the network egress policy (`403 host_not_allowed`). This is **not** evidence
-> about WC-2026 coverage — it could not be tested. To unblock: provide the key and allowlist
-> the host (see https://code.claude.com/docs/en/claude-code-on-the-web). Re-run the gate
-> before any further Phase-1 build.
-
-### 12.2 Data model (normalized, internal)
+### 12.2 openfootball match schema → internal model
+Observed match shape:
+```json
+{ "round": "Matchday 1", "date": "2026-06-11", "time": "13:00 UTC-6",
+  "team1": "Mexico", "team2": "South Africa",
+  "score": { "ft": [2,0], "ht": [1,0] },
+  "goals1": [{"name":"…","minute":"9"}], "goals2": [],
+  "group": "Group A", "ground": "Mexico City" }
+```
+Normalize to:
 - `Team`: stable internal `team_id`, canonical name, group, FIFA-ranking snapshot ref.
-- `Match`: `match_id`, `group` (or knockout round), `home_id`, `away_id`, `kickoff_utc`,
-  `status` (`scheduled|live|final`), `home_goals`, `away_goals`, `home_cards`/`away_cards`
-  (yellow/red → disciplinary points), `source`, `pulled_at`.
-- `StandingRow` is **derived**, never stored as source-of-truth (computed from `Match`).
-- Team-name variants normalized to `team_id` via a committed alias map; an unknown team
+- `Match`: `match_id` (derived stable key, e.g. round+teams), `group` or knockout `round`,
+  `home_id`/`away_id`, `kickoff_utc` (parsed from `date`+`time`, converting the UTC offset),
+  `status` ∈ `{scheduled, final}` (**`final` iff `score.ft` present**), `home_goals`/
+  `away_goals` (from `score.ft`), `source`, `source_sha`, `pulled_at`.
+- **No cards** → `disciplinary_points` defaults to 0/unknown; the §3.2/§3.3 cards step is
+  governed by D-cards (skip to next tiebreaker + loud warning).
+- `StandingRow` is **derived**, never stored as truth (computed from `Match`).
+- Team names → `team_id` via a committed alias map (e.g. "USA", "South Korea",
+  "Bosnia & Herzegovina", "Curaçao", "Ivory Coast", "Türkiye/Turkey"); an unknown name
   **raises** (no silent new team).
 
 ### 12.3 Storage & point-in-time snapshots
-- Each pull writes an immutable, timestamped raw snapshot to `data/raw/` (the exact API
-  payload) — so any historical `as_of` state is reproducible and auditable.
-- A normalized, current view is written to `data/processed/` (gitignored except pinned
-  runs). Loading reconstructs state for a given `as_of` from snapshots (§4).
-- Group membership (A–L) and the alias map live in `data/reference/` (committed,
-  provenance-stamped).
+- Each fetch writes an immutable, timestamped raw snapshot (exact bytes + source commit SHA)
+  to `data/raw/` — any historical `as_of` state is reproducible and auditable.
+- A normalized current view goes to `data/processed/` (gitignored except pinned runs).
+  Loading reconstructs state for a given `as_of` from snapshots (§4).
+- Groups + alias map live in `data/reference/` (committed, provenance-stamped). The 2026
+  group membership is sourced from `worldcup.groups.json` and committed for offline tests.
 
-### 12.4 Fetch cadence & request budget (respect the 100/day cap)
-- One scheduled pull = ~1 (fixtures) + ~1 (standings) + N (events for *newly-finished*
-  matches only) calls. Even on a 6-match day this is well under 100. Cache aggressively;
-  never re-fetch events for a match already final and stored.
-- Back off and **fail the run loudly** (don't publish stale data) on HTTP 429 / quota
-  exhaustion, rather than silently serving old numbers.
+### 12.4 Fetch cadence & politeness
+- No rate cap to manage (static files). Use conditional GET (ETag / `If-None-Match`) and
+  only rewrite a snapshot when the source SHA changes. Schedule cadence is a Phase-5 detail.
+- **Fail loudly** on fetch error / malformed JSON / schema drift — never publish on stale or
+  partial data.
 
 ### 12.5 Secrets
-- `API_FOOTBALL_KEY` via **GitHub Actions secret** → env var at runtime (mirrors the Kaggle
-  setup). Local dev via gitignored `.env`. Never committed. Code reads from env and
-  **raises** with a clear message if the key is missing.
+- **None required** (public dataset, no key). The earlier `API_FOOTBALL_KEY` plumbing is not
+  needed for the data layer. (Kept in mind only if D1 is ever revisited toward a paid API.)
 
 ### 12.6 Fail-loud guards (each raises, with a test)
-- Schema/shape drift vs the expected payload; a group with ≠ 4 teams; a fixture missing a
-  known team or a kickoff time; duplicate `match_id`; a `final` match missing scores; a
-  result that *changes* after being recorded as final (non-monotonic) → raise + flag;
-  unknown team name not in the alias map.
+- Schema/shape drift vs the expected openfootball shape; ≠12 groups; any group ≠4 teams; a
+  match referencing a team not in the group set / alias map; a match with a populated
+  `score.ft` but `date`/kickoff **after** `as_of` (future-result leak, §4); duplicate
+  `match_id`; a previously-`final` result that **changes** on a later fetch (non-monotonic)
+  → raise + flag; the 2026 files missing/empty.
 
 ### 12.7 Tests (gate Phase 1)
-- Golden-payload parse: a frozen sample API response → internal `Match`/`Team` model.
-- Standings derivation from `Match` set matches a known fixture (incl. cards →
-  disciplinary points), exercising the §3.2 ordering on a constructed group.
-- Each guard in 12.6 has a test asserting it raises.
-- Snapshot reconstruction: state at `as_of=T` uses only matches with `kickoff_utc ≤ T` and
-  `status==final` (ties into §4 / §4.1(b)).
-- No network in tests — everything runs off committed golden files.
+- Golden-file parse: a **committed** frozen copy of `2026/worldcup.json` +
+  `worldcup.groups.json` → internal `Match`/`Team` model (no network in tests).
+- Point-in-time split: `final` iff `score.ft` present **and** `kickoff_utc ≤ as_of`;
+  constructed future-dated-score input **raises** (ties into §4 / §4.1(b)).
+- Standings derivation from `Match` set matches a hand-computed group table, exercising the
+  §3.2 ordering (GD→GS→H2H→…); with no cards, the fair-play step triggers the D-cards
+  degradation and emits the warning (asserted).
+- Each guard in §12.6 has a test asserting it raises.
+- kickoff parsing: `date`+`time`+offset → correct `kickoff_utc`.
 
 ### 12.8 Deliverables
 - `src/wcpredictor/data/` (fetch, normalize, store, snapshot-reconstruct); `make fetch` +
-  `make verify-source`; committed `data/reference/groups.yaml` + alias map + golden test
-  payloads; the test suite above green.
+  `make verify-source`; committed `data/reference/groups.yaml` (from openfootball) + alias
+  map + golden frozen payloads; the §12.7 suite green.
 
 ---
 
-_Status: **D0 approved**, **D1 approved** (API-Football primary, live smoke-test gate).
-Phase 1 sub-plan above (§12) is drafted and **awaiting sign-off** — no Phase-1 engine code
-until then._
+## 14. D1 RESOLVED — openfootball dataset (verification evidence, 2026-06-14)
+
+**Owner decision:** use **`openfootball/worldcup.json`** (Option C, §13) as the WC-2026 data
+source; handle the cards tiebreaker via **skip-to-next-step + loud warning** (D-cards).
+
+Verified **directly from the sandbox** (no key; `raw.githubusercontent.com` reachable):
+- `2026/worldcup.groups.json` → **12 groups (A–L), every group exactly 4 teams.** ✅
+- `2026/worldcup.json` → **104 matches** (full tournament schedule). ✅
+- **Played matches carry real scorelines:** `score.ft` (+ `ht` and `goals1/goals2` scorers
+  with minutes). Example: `Mexico 2–0 South Africa` (2026-06-11, Group A). **7 matches with
+  populated scores** in the current data — the already-played results with real scores. ✅
+- **Future matches have no `score`** → clean Completed/Pending partition for point-in-time
+  (§4): `final` iff `score.ft` present and `kickoff_utc ≤ as_of`. ✅
+- **No cards/discipline** in the data (scorers only) → D-cards degradation applies. ✅ (known)
+- **Liveness caveat:** commit-updated dataset, not a live API; freshness may lag — accepted.
+
+> Provenance: fetched from `raw.githubusercontent.com/openfootball/worldcup.json/master/2026/`
+> on 2026-06-14. Phase 1 commits a frozen golden copy + records the source commit SHA per
+> snapshot. This **supersedes** the API-Football pick (§11); §12 is rewritten accordingly.
+
+---
+
+## 15. Live-results overlay (openfootball lags — owner chose structure + overlay)
+
+**Why:** openfootball was already missing a real completed result on day 1
+(**Australia 2–0 Turkey**, Group D, 2026-06-13). It's a commit-updated dump, not a live
+feed. Owner decision: keep **openfootball for the static structure** (groups, the full
+104-match schedule, team list) and layer a **fresh live-results overlay** on top for match
+**status + score**.
+
+### 15.1 Overlay candidate smoke-test — Actions run #3, 2026-06-14
+| Source | Key? | Result |
+|--------|------|--------|
+| **ESPN site API** (`site.api.espn.com/.../soccer/fifa.world/scoreboard?dates=YYYYMMDD`) | none | ✅ **FRESH.** Returned June-13 FTs **and `Australia 2–0 Türkiye [FT]`** (the result openfootball lacks) + June-14 scheduled fixtures. **Winner.** |
+| TheSportsDB (free key `3`) | free key | ⚠️ Sparse/incomplete — only a partial result or two, **no** Australia–Turkey. Rejected. |
+| football-data.org v4 (`/competitions/WC/matches`) | `FOOTBALL_DATA_TOKEN` | ◻️ **Untested** — no token in secrets. The *officially supported* alternative; needs a free token to verify 2026 coverage + freshness. |
+
+### 15.2 Decision — ✅ ESPN site API (owner-confirmed 2026-06-14)
+**Overlay = ESPN site API** (free, no key, proven fresh). Accepted caveat: unofficial/
+undocumented endpoint (JSON, not HTML scraping; no published redistribution ToS; may change
+without notice). Mitigated by a **config-driven client** so a supported source
+(e.g. football-data.org) can swap in later without a rewrite.
+
+**Pinned ESPN client config:**
+- **Base:** `https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world`
+- **Endpoint:** `/scoreboard?dates=YYYYMMDD` (per UTC-ish day). Fetch each day across the
+  tournament window (2026-06-11 … 2026-07-19), dedupe, and reconcile by match key (§15.3).
+- **No auth.** Polite caching / conditional GET where possible.
+- **Fields used:** `events[].competitions[0].competitors[]` → team `displayName` + `score`;
+  `status.type.shortDetail`/`.state`/`.completed` → status (FT/scheduled/in-progress);
+  event date → `kickoff_utc`. (Cards not needed — D-cards.)
+- **No-rewrite swap:** base URL + path + response-mapping live in source config; a
+  football-data.org adapter (`/v4/competitions/WC/matches`, header `X-Auth-Token`) can be
+  added behind the same interface if a `FOOTBALL_DATA_TOKEN` is later provided.
+
+### 15.3 Overlay architecture (point-in-time preserved)
+- **openfootball = canonical structure:** the 12×4 groups, the 104-fixture skeleton (teams,
+  round, scheduled kickoff), team list. Committed for offline tests.
+- **Overlay = authoritative for status + score** of each fixture. Reconcile to openfootball
+  by a **stable match key** = (matchday/round + unordered team-pair), via the team alias map
+  — **not** by date (sources bucket kickoffs by different timezones; e.g. ESPN files
+  Australia–Türkiye under 06-14, openfootball under 06-13).
+- A match is **`final`** iff the **overlay** marks it final (FT) **and** `kickoff_utc ≤ as_of`
+  (§4). openfootball's own score is a **fallback** only if the overlay lacks that fixture.
+- **Fail loudly:** overlay fixture that can't be matched to an openfootball fixture; both
+  sources `final` but **scores disagree**; an overlay `final` with `kickoff_utc > as_of`
+  (future leak); team name not in the alias map. Record **which source** supplied each result
+  (provenance) in the snapshot.
+- **Team-name normalization** spans both sources (e.g. `Türkiye`/`Turkey`, `Curaçao`,
+  `Ivory Coast`/`Côte d'Ivoire`, `South Korea`/`Korea Republic`, `USA`).
+
+### 15.4 Impact on §12
+§12 (Phase 1) gains a second **source-config-driven** fetcher (the overlay) + the §15.3
+reconciliation layer and its guards/tests. Both sources are smoke-tested on Actions (egress
+blocks them from the sandbox); openfootball is also fetchable directly. **D1-overlay** (which
+overlay source) is the only open item before Phase-1 build.
+
+### 15.5 Reconciliation & point-in-time test contract (GATES Phase 1 — owner-required)
+The two-source reconciliation is the new risk surface (a wrong team-pair match silently
+attaches the wrong score — same error class as a bad odds-match in the UFC project). These
+**offline golden-file tests must be green before any live run is trusted**, and they bias to
+**fail-loud over guess** everywhere:
+- **(R1) Cross-bucket match:** the (matchday + unordered-team-pair) key matches an ESPN
+  fixture to its openfootball fixture **despite the date-bucketing mismatch** (ESPN files
+  Australia–Türkiye under 06-14, openfootball under 06-13) — asserted on golden payloads.
+- **(R2) Unmatched overlay → raise:** an ESPN result with no corresponding openfootball
+  fixture **fails loud** (never silently dropped).
+- **(R3) Score conflict → raise:** a fixture where both sources are `final` but the **scores
+  disagree** raises.
+- **(R4) Future-leak guard (core point-in-time):** `final` iff **ESPN FT _and_
+  `kickoff_utc ≤ as_of`**; a `final` with `kickoff_utc > as_of` **must raise**. This is the
+  "count only matches that already happened; never leak a future result" gate — it stays
+  green as a contract.
+- Plus ambiguity guard: if a team-pair maps to >1 base fixture (group + a later knockout),
+  disambiguate by nearest kickoff; raise if still ambiguous.
+
+---
+
+## 13. D1 re-opened — fallback options (awaiting owner decision)
+
+The smoke-test (§11) proved API-Football's **free** plan does **not** serve WC-2026 match
+data. We need a new source decision before any Phase-1 build. Options:
+
+| # | Option | Free? | Live? | Cards/discipline? | Notes |
+|---|--------|-------|-------|-------------------|-------|
+| **A** | **football-data.org** free tier | ✅ | delayed (not in-play) | ❌ paid-only | Covers the WC competition (fixtures/results/standings/top-scorers). **Must be smoke-tested** to confirm it isn't *also* season-gated for 2026. No card data on free → the fair-play (group) and conduct (3rd-place) tiebreakers can't be sourced. |
+| **B** | **API-Football paid** (lowest tier unlocking current seasons) | ❌ (paid) | ✅ | ✅ (events) | Everything we want incl. cards. Breaks the "free" constraint; needs a budget OK. Client already targets this exact API, so only the plan/key changes. |
+| **C** | **openfootball/worldcup.json** (public-domain GitHub dataset, incl. 2026) | ✅ | lags (commit-driven) | likely ❌ | No key. Not a live API — a community-maintained JSON dump; timeliness during matchdays is not guaranteed; closer to consuming a dataset than a supported live feed. |
+| **D** | Another free API (TheStatsAPI, Highlightly, …) | ? | ? | ? | Each needs its own Actions smoke-test to confirm real WC-2026 free coverage before we commit. |
+
+**Cross-cutting cards problem:** the only confirmed way to get real per-match cards is a
+**paid** tier (Option B). All free options likely lack discipline data. If we stay free, we
+need a rule for the rare cases the cards tiebreaker would decide (groups: after GD/GS/H2H;
+3rd-place: after pts/GD/GS). Proposed market-blind handling: when a tie is unresolved
+*before* the fair-play step, **skip conduct and go to the defined next step (drawing of lots,
+seeded)** — and **emit a loud warning / record it** so it is never silent (consistent with
+"fail loudly"). This keeps us free and correct ~always, with a documented, rarely-triggered,
+auditable degradation. (Revisit if Option B is chosen.)
+
+**Recommendation:** ~~A (football-data.org free)~~. **OWNER CHOSE → C (openfootball dataset)**
+with the cards-tiebreaker degradation (D-cards). Verified directly — see **§14**. D1 is now
+**resolved**; §12 is rewritten for openfootball.
+
+---
+
+_Status: **D0 approved**. **D1 RE-OPENED** — API-Football free failed the live coverage gate
+(§11); fallback options in §13 await the owner's decision. **No Phase-1 engine code** until a
+source is chosen and its smoke-test passes._
