@@ -434,6 +434,13 @@ ratings/model/sim logic here. Plan-first: this sub-plan is signed off before cod
   required field is absent. **If WC-2026 isn't fully covered, STOP and escalate** (try
   football-data.org for the non-discipline parts and report the gap) — do **not** proceed to
   build the store on an unverified source.
+- **Runs on GitHub Actions, not the sandbox** (the sandbox egress policy blocks the API
+  host). Implemented as `.github/workflows/smoketest.yml` (`workflow_dispatch`), which uses
+  the `API_FOOTBALL_KEY` secret and prints (1) WC-2026 league + 12×4 groups, (2) fixtures
+  sample with kickoff/status, (3) one group's standings, (4) card events for a finished
+  match, (5) already-played results with real scorelines. **`workflow_dispatch` only
+  registers from the default branch**, so this workflow must be on `main` before it can be
+  dispatched.
 
 > **Smoke-test attempted 2026-06-14 — BLOCKED (environment, not the API):** no
 > `API_FOOTBALL_KEY` was present, and outbound requests to `v3.football.api-sports.io` were
