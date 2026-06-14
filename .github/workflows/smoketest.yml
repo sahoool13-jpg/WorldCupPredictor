@@ -1,63 +1,69 @@
-name: WC-2026 data layer (live fetch on Actions)
+name: Dashboard publish (manual; mirrors dashboard.yml)
 
-# Runs the real Phase-1 data layer on Actions (open internet; the sandbox egress blocks
-# ESPN). Proves the two-source pipeline end-to-end: openfootball static structure (12x4,
-# 104 fixtures) + ESPN live-results overlay, reconciled point-in-time — showing the
-# already-played matches with real scores, incl. the Australia 2-0 Turkey result that
-# openfootball was missing. Manual trigger. (plan.md §12.1 / §15)
+# The scheduled publisher is dashboard.yml. This manually-dispatchable workflow runs the SAME
+# live publish + commit, used to fire the first publish while GitHub finished registering the
+# new dashboard.yml. Same guarantees: fixed seed, fail-loud keeps last-good.
 
 on:
   workflow_dispatch:
     inputs:
       as_of:
-        description: "Point-in-time instant (ISO, UTC)"
-        default: "2026-06-15T00:00:00Z"
+        description: "Point-in-time (ISO, or 'now')"
+        default: "now"
         required: true
       espn_start:
-        description: "ESPN overlay window start (YYYY-MM-DD)"
+        description: "ESPN window start"
         default: "2026-06-11"
-        required: true
-      espn_end:
-        description: "ESPN overlay window end (YYYY-MM-DD)"
-        default: "2026-06-15"
         required: true
 
 permissions:
-  contents: read
+  contents: write
+
+concurrency:
+  group: dashboard
+  cancel-in-progress: false
 
 jobs:
-  data-layer:
+  publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - name: Install (editable, stdlib-only deps) + pytest
+      - run: python -m pip install --quiet -e .
+      - name: Tests (gate)
         run: |
           python -m pip install --quiet pytest
-          python -m pip install --quiet -e .
-      - name: Unit tests (offline gate)
-        run: pytest -q
-      - name: Verify openfootball structure
-        run: python -m wcpredictor.data.pipeline --verify
-      - name: Live two-source fetch + reconcile (point-in-time)
+          pytest -q
+      - name: Build + publish odds (live, fixed seed; fail-loud keeps last-good)
         run: |
-          python -m wcpredictor.data.pipeline \
-            --as-of "${{ github.event.inputs.as_of }}" \
-            --espn-start "${{ github.event.inputs.espn_start }}" \
-            --espn-end "${{ github.event.inputs.espn_end }}"
-      - name: Team strength ratings (prior + live played matches)
+          python -m wcpredictor.report.run --live --as-of "${{ github.event.inputs.as_of }}" \
+            --n 50000 --seed 2026 \
+            --espn-start "${{ github.event.inputs.espn_start }}" --espn-end "$(date -u +%F)"
+      - name: Show published odds (for the run log)
         run: |
-          python -m wcpredictor.ratings.engine --top 20 \
-            --as-of "${{ github.event.inputs.as_of }}" \
-            --espn-start "${{ github.event.inputs.espn_start }}" \
-            --espn-end "${{ github.event.inputs.espn_end }}"
-      - name: Goal model — sample scoreline matrices (prior-only ratings)
-        run: python -m wcpredictor.model.demo
-      - name: Tournament Monte Carlo — live title odds
+          python - <<'PY'
+          import json
+          d=json.load(open("docs/data/latest.json")); m=d["meta"]
+          print(f"generated_at={m['generated_at']}  as_of={m['as_of']}  n_played={m['n_played']} "
+                f"n_sims={m['n_sims']} seed={m['seed']} results={m['source']['results']}")
+          print("matches reflected:")
+          for x in m["matches_reflected"]:
+              print(f"  {x['date']} [{x['group']}] {x['home']} {x['hg']}-{x['ag']} {x['away']}")
+          print("top 15 title odds (team  title%  delta_pp  adv%):")
+          for i,r in enumerate(d["title_odds"][:15],1):
+              print(f"  {i:2}. {r['team']:<22} {r['title']*100:5.1f}  {r['title_delta']*100:+5.2f}  "
+                    f"{r['reach']['R32']*100:5.1f}  [{r['status']}]")
+          PY
+      - name: Commit if changed
         run: |
-          python -m wcpredictor.sim.engine --live --n 50000 --top 18 \
-            --as-of "${{ github.event.inputs.as_of }}" \
-            --espn-start "${{ github.event.inputs.espn_start }}" \
-            --espn-end "${{ github.event.inputs.espn_end }}"
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data
+          if git diff --cached --quiet; then
+            echo "no change to publish."
+          else
+            git commit -m "dashboard: first live publish [skip ci]"
+            git push
+          fi
