@@ -2,42 +2,52 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>2026 World Cup — Live Title Odds</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0e13">
+  <title>2026 FIFA World Cup — Live Title Odds</title>
+  <meta name="description" content="A live, market-blind Monte Carlo of the 2026 FIFA World Cup title race — our own ratings, no betting odds.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://flagcdn.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>2026 World Cup — Live Title Odds</h1>
-    <p class="sub">A market-blind Monte Carlo from our own ratings + goal model.
-      Played results are fixed; only remaining matches are simulated.</p>
-    <p id="updated" class="updated">Loading…</p>
+  <header class="banner">
+    <div class="banner-inner">
+      <p class="overline">2026 FIFA World Cup · <span class="hosts" aria-label="hosts United States, Canada, Mexico">🇺🇸 🇨🇦 🇲🇽</span></p>
+      <h1><span class="trophy" aria-hidden="true">🏆</span> Live Title Odds</h1>
+      <p class="tagline">Our own ratings + goal model. Played results are fixed; the rest is simulated 50,000 times. No betting odds — ever.</p>
+      <p id="status" class="live"><span class="dot" aria-hidden="true"></span><span id="status-text">Loading the latest run…</span></p>
+    </div>
   </header>
 
   <main>
-    <section>
-      <h2>Title odds <span class="hint">(▲▼ = move since last run; bold = ≥0.5pp)</span></h2>
-      <table id="odds"><thead><tr>
-        <th>#</th><th>Team</th><th>Grp</th><th class="num">Title</th><th class="num">Δ</th>
-        <th class="num">Final</th><th class="num">SF</th><th class="num">QF</th>
-        <th class="num">R16</th><th class="num">Adv</th>
-      </tr></thead><tbody></tbody></table>
+    <section id="odds-section" aria-labelledby="odds-h">
+      <div class="sec-head">
+        <h2 id="odds-h">Title race</h2>
+        <p class="legend"><span class="lg rise">▲ rising</span><span class="lg fall">▼ falling</span><span class="lg flat">– no move</span></p>
+      </div>
+      <ol id="odds" class="odds" aria-busy="true"></ol>
     </section>
 
-    <section>
-      <h2>Group standings <span class="hint">(live results folded in)</span></h2>
+    <section id="groups-section" aria-labelledby="groups-h">
+      <div class="sec-head"><h2 id="groups-h">Groups</h2>
+        <p class="legend"><span class="lg z-through">top 2 advance</span><span class="lg z-third">3rd · best-8 hunt</span><span class="lg z-out">out</span></p>
+      </div>
       <div id="groups" class="groups"></div>
     </section>
 
-    <section>
-      <h2>Results reflected</h2>
-      <ul id="reflected" class="reflected"></ul>
+    <section id="results-section" aria-labelledby="results-h">
+      <div class="sec-head"><h2 id="results-h">Results reflected</h2></div>
+      <ul id="results" class="results"></ul>
     </section>
   </main>
 
   <footer>
-    <p>Point-in-time correct · no betting odds · pinned by (as_of, snapshot, configs, n_sims, seed).
+    <p>Point-in-time correct · market-blind · pinned by (as_of, snapshot, configs, n_sims, seed).
        <span id="prov"></span></p>
+    <p class="src">Flags: flagcdn.com · this page reads the committed <code>latest.json</code> the scheduled run publishes.</p>
   </footer>
   <script src="app.js"></script>
 </body>

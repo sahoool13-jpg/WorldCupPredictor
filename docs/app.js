@@ -1,92 +1,145 @@
-// Live dashboard (plan.md §20.3). Reads the committed latest.json the scheduled Action writes.
-// CACHE-BUST: Pages sits behind a CDN, so we append ?t=<now> to defeat stale cached JSON.
-const MOVE = 0.005; // 0.5pp highlight threshold (D5)
-const pct = (x) => (x * 100).toFixed(1) + "%";
+// Live dashboard — presentation only. Reads the committed latest.json the scheduled run writes.
+// The fetch keeps the cache-buster (?t=<now>) + cache:"no-store" to beat the Pages CDN.
+"use strict";
 
-function deltaCell(d) {
-  const td = document.createElement("td");
-  td.className = "num";
-  if (Math.abs(d) < 1e-9) { td.textContent = "—"; td.classList.add("flat"); return td; }
+// team name -> ISO 3166 code for flagcdn.com (gb-eng / gb-sct are subdivision flags)
+const FLAGS = {
+  "Mexico":"mx","South Africa":"za","South Korea":"kr","Czech Republic":"cz",
+  "Canada":"ca","Bosnia & Herzegovina":"ba","Qatar":"qa","Switzerland":"ch",
+  "Brazil":"br","Morocco":"ma","Haiti":"ht","Scotland":"gb-sct",
+  "USA":"us","Paraguay":"py","Australia":"au","Turkey":"tr",
+  "Germany":"de","Curaçao":"cw","Ivory Coast":"ci","Ecuador":"ec",
+  "Netherlands":"nl","Japan":"jp","Sweden":"se","Tunisia":"tn",
+  "Belgium":"be","Egypt":"eg","Iran":"ir","New Zealand":"nz",
+  "Spain":"es","Cape Verde":"cv","Saudi Arabia":"sa","Uruguay":"uy",
+  "France":"fr","Senegal":"sn","Iraq":"iq","Norway":"no",
+  "Argentina":"ar","Algeria":"dz","Austria":"at","Jordan":"jo",
+  "Portugal":"pt","DR Congo":"cd","Uzbekistan":"uz","Colombia":"co",
+  "England":"gb-eng","Croatia":"hr","Ghana":"gh","Panama":"pa"
+};
+const MOVE = 0.005;                       // 0.5pp highlight threshold
+const pct = (x) => (x * 100).toFixed(1) + "%";
+const el = (tag, cls, txt) => { const n = document.createElement(tag);
+  if (cls) n.className = cls; if (txt != null) n.textContent = txt; return n; };
+
+// flag <img> that vanishes cleanly if it fails to load (no broken-image icon)
+function flag(team, cls) {
+  const code = FLAGS[team];
+  if (!code) return null;
+  const img = el("img", cls);
+  img.src = `https://flagcdn.com/w40/${code}.png`;
+  img.alt = ""; img.loading = "lazy"; img.decoding = "async";
+  img.onerror = () => img.remove();
+  return img;
+}
+
+function deltaChip(d) {
+  const pp = d * 100;
+  if (Math.abs(d) < 1e-9) return el("span", "chip flat", "–");
   const up = d > 0;
-  td.textContent = (up ? "▲" : "▼") + " " + (Math.abs(d) * 100).toFixed(2);
-  td.classList.add(up ? "up" : "down");
-  if (Math.abs(d) >= MOVE) td.classList.add("big");
-  return td;
+  const c = el("span", "chip " + (up ? "rise" : "fall"), (up ? "▲ " : "▼ ") + Math.abs(pp).toFixed(1));
+  if (Math.abs(d) >= MOVE) c.classList.add("big");
+  return c;
 }
 
 function renderOdds(rows) {
-  const tb = document.querySelector("#odds tbody");
-  tb.innerHTML = "";
+  const ol = document.getElementById("odds");
+  ol.innerHTML = "";
+  const max = rows.length ? rows[0].title : 1;
   rows.forEach((r, i) => {
-    const tr = document.createElement("tr");
-    tr.classList.add(r.status); // through | eliminated | alive
-    const cells = [String(i + 1), r.team, r.group || "—"];
-    cells.forEach((c, k) => {
-      const td = document.createElement("td");
-      td.textContent = c;
-      if (k === 1) td.className = "team";
-      tr.appendChild(td);
-    });
-    const tp = document.createElement("td"); tp.className = "num strong"; tp.textContent = pct(r.title);
-    tr.appendChild(tp);
-    tr.appendChild(deltaCell(r.title_delta));
-    ["F", "SF", "QF", "R16", "R32"].forEach((k) => {
-      const td = document.createElement("td"); td.className = "num dim"; td.textContent = pct(r.reach[k]);
-      tr.appendChild(td);
-    });
-    tb.appendChild(tr);
+    const li = el("li", "row" + (i === 0 && r.title > 0 ? " lead" : "") +
+      (r.status === "eliminated" ? " eliminated" : ""));
+    li.style.animationDelay = Math.min(i * 0.028, 0.9) + "s";
+
+    const fill = el("div", "fill");
+    fill.style.setProperty("--w", (max > 0 ? (r.title / max) * 100 : 0).toFixed(1) + "%");
+    li.appendChild(fill);
+
+    li.appendChild(el("span", "rank", String(i + 1)));
+    const fl = flag(r.team, "flag"); if (fl) li.appendChild(fl);
+
+    const name = el("span", "team");
+    name.appendChild(document.createTextNode(r.team));
+    if (r.group) name.appendChild(el("span", "grp", r.group));
+    if (r.status === "through") name.appendChild(el("span", "badge through", "through"));
+    else if (r.status === "eliminated") name.appendChild(el("span", "badge eliminated", "out"));
+    li.appendChild(name);
+
+    const reach = el("div", "reach");
+    [["Final", r.reach.F], ["SF", r.reach.SF], ["QF", r.reach.QF], ["R16", r.reach.R16], ["Adv", r.reach.R32]]
+      .forEach(([lab, v]) => { const w = el("div"); w.appendChild(el("b", null, lab));
+        w.appendChild(el("span", null, pct(v))); reach.appendChild(w); });
+    li.appendChild(reach);
+
+    li.appendChild(el("span", "pct", pct(r.title)));
+    li.appendChild(deltaChip(r.title_delta));
+    ol.appendChild(li);
   });
+  ol.setAttribute("aria-busy", "false");
 }
 
 function renderGroups(groups) {
-  const root = document.querySelector("#groups");
+  const root = document.getElementById("groups");
   root.innerHTML = "";
   groups.forEach((g) => {
-    const box = document.createElement("div"); box.className = "group";
-    box.innerHTML = `<h3>Group ${g.group}</h3>`;
-    const t = document.createElement("table");
-    t.innerHTML = "<thead><tr><th>Team</th><th class='num'>P</th><th class='num'>Pts</th>" +
-                  "<th class='num'>GD</th><th class='num'>GF</th></tr></thead>";
-    const tb = document.createElement("tbody");
-    g.table.forEach((row) => {
-      const tr = document.createElement("tr"); tr.classList.add(row.status);
-      tr.innerHTML = `<td class='team'>${row.team}</td><td class='num'>${row.pld}</td>` +
-        `<td class='num strong'>${row.pts}</td><td class='num'>${row.gd > 0 ? "+" : ""}${row.gd}</td>` +
-        `<td class='num'>${row.gf}</td>`;
+    const box = el("div", "group");
+    const h = el("h3"); h.appendChild(el("span", "lt", g.group));
+    h.appendChild(document.createTextNode("Group " + g.group));
+    box.appendChild(h);
+
+    const t = el("table", "gt");
+    t.innerHTML = "<thead><tr><th class='tl'>Team</th><th>P</th><th>GD</th><th>Pts</th></tr></thead>";
+    const tb = el("tbody");
+    g.table.forEach((row, i) => {
+      const zone = i < 2 ? "z-through" : i === 2 ? "z-third" : "z-out";
+      const tr = el("tr", zone + (row.status === "eliminated" ? " elim" : ""));
+      const tdName = el("td", "tl");
+      const mf = flag(row.team, "miniflag"); if (mf) tdName.appendChild(mf);
+      tdName.appendChild(document.createTextNode(row.team));
+      if (row.status === "through") tdName.appendChild(el("span", "tick", "✓"));
+      tr.appendChild(tdName);
+      tr.appendChild(el("td", null, String(row.pld)));
+      tr.appendChild(el("td", null, (row.gd > 0 ? "+" : "") + row.gd));
+      tr.appendChild(el("td", "pts", String(row.pts)));
       tb.appendChild(tr);
     });
     t.appendChild(tb); box.appendChild(t); root.appendChild(box);
   });
 }
 
-function renderReflected(meta) {
-  const ul = document.querySelector("#reflected");
+function renderResults(meta) {
+  const ul = document.getElementById("results");
   ul.innerHTML = "";
-  (meta.matches_reflected || []).forEach((m) => {
-    const li = document.createElement("li");
-    li.textContent = `${m.date}  [${m.group}]  ${m.home} ${m.hg}–${m.ag} ${m.away}`;
+  const ms = meta.matches_reflected || [];
+  if (!ms.length) { ul.appendChild(el("li", "empty", "No matches played yet — all odds are pre-tournament.")); return; }
+  ms.forEach((m) => {
+    const li = el("li");
+    const fh = flag(m.home, "miniflag"); if (fh) li.appendChild(fh);
+    li.appendChild(el("span", "sc", `${m.home} ${m.hg}–${m.ag} ${m.away}`));
+    const fa = flag(m.away, "miniflag"); if (fa) li.appendChild(fa);
+    li.appendChild(el("span", "g", m.date + " · " + m.group));
     ul.appendChild(li);
   });
-  if (!meta.matches_reflected || !meta.matches_reflected.length)
-    ul.innerHTML = "<li>No matches played yet.</li>";
 }
 
 async function load() {
+  const st = document.getElementById("status-text");
   try {
     const res = await fetch("data/latest.json?t=" + Date.now(), { cache: "no-store" });
     if (!res.ok) throw new Error("HTTP " + res.status);
     const d = await res.json();
     const upd = new Date(d.meta.generated_at);
-    document.querySelector("#updated").textContent =
-      `Last updated ${upd.toUTCString()} · reflects ${d.meta.n_played} played match(es) ` +
-      `· ${d.meta.n_sims.toLocaleString()} sims (seed ${d.meta.seed})`;
-    document.querySelector("#prov").textContent =
-      `Source: ${d.meta.source.structure} structure + ${d.meta.source.results} results.`;
+    const ago = Math.max(0, Math.round((Date.now() - upd.getTime()) / 60000));
+    st.textContent = `Updated ${upd.toUTCString().replace("GMT", "UTC")} · ${ago} min ago · ` +
+      `${d.meta.n_played} played · ${d.meta.n_sims.toLocaleString()} sims`;
+    document.getElementById("prov").textContent =
+      `Source: ${d.meta.source.structure} structure + ${d.meta.source.results} results · seed ${d.meta.seed}.`;
     renderOdds(d.title_odds);
     renderGroups(d.groups);
-    renderReflected(d.meta);
+    renderResults(d.meta);
   } catch (e) {
-    document.querySelector("#updated").textContent = "Could not load latest.json (" + e.message + ").";
+    document.getElementById("status").classList.add("err");
+    st.textContent = "Couldn't load the latest run (" + e.message + "). Try again shortly.";
   }
 }
 load();
