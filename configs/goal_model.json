@@ -1,6 +1,9 @@
 {
-  "_doc": "Phase-3 goal-model tunables (plan.md §18.5). Calibrated params (mu/beta/gamma_home/rho/scale) live in data/reference/goal_model_2026.json; these are the structural knobs.",
+  "_doc": "Phase-3 goal-model structural tunables (plan.md §18.5). Calibrated params (mu/beta/gamma_home/rho/scale) live in data/reference/goal_model_2026.json.",
   "g_max": 10,
   "et_frac": 0.3333,
-  "pen_slope": 0.6
+  "pen_slope": 0.6,
+  "host_log_boost": 0.10,
+  "host_taper": {"group": 1.0, "R32": 0.6, "R16": 0.6, "QF": 0.3, "SF": 0.0, "F": 0.0},
+  "_host_note": "WC host advantage applied ONLY to host nations (USA/Canada/Mexico) on home soil, as a log-lambda goal boost (host_log_boost ~ x1.105 goals) that TAPERS to ~0 by the semis/final. This REPLACES applying the generic calibrated gamma_home (~x1.31) to hosts in every match, which over-counted the host edge, compounded across ~10 games, and inverted the ratings (a host out-ranking higher-Elo teams). Defensible football value, NOT fit to the market. Tunable."
 }

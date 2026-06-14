@@ -55,3 +55,9 @@ jobs:
             --espn-end "${{ github.event.inputs.espn_end }}"
       - name: Goal model — sample scoreline matrices (prior-only ratings)
         run: python -m wcpredictor.model.demo
+      - name: Tournament Monte Carlo — live title odds
+        run: |
+          python -m wcpredictor.sim.engine --live --n 50000 --top 18 \
+            --as-of "${{ github.event.inputs.as_of }}" \
+            --espn-start "${{ github.event.inputs.espn_start }}" \
+            --espn-end "${{ github.event.inputs.espn_end }}"

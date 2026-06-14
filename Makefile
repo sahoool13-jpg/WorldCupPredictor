@@ -64,8 +64,8 @@ calibrate: ## (Phase 3) Recalibrate the goal model from martj42 goals (commits p
 	@PYTHONPATH=src $(PY) -m wcpredictor.model.calibrate --build $(ARGS)
 
 .PHONY: simulate
-simulate: ## (Phase 4) Run the tournament Monte Carlo from current real state
-	@echo "[simulate] Phase 4 not yet implemented. See plan.md §6." >&2; exit 2
+simulate: ## (Phase 4) Run the tournament Monte Carlo from current real state -> title odds
+	@PYTHONPATH=src $(PY) -m wcpredictor.sim.engine $(ARGS)
 
 .PHONY: report
 report: ## (Phase 5) Title odds + delta vs previous run
