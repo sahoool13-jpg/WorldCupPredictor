@@ -1,0 +1,10 @@
+{
+  "_doc": "Phase-2 ratings tunables (plan.md §17). All values are documented knobs, pinned per run for reproducibility.",
+  "k": 20.0,
+  "home_adv": 65.0,
+  "init": 1500.0,
+  "hosts": ["USA", "Canada", "Mexico"],
+  "form_window": 5,
+  "k_shrink": 5.0,
+  "weights": {"elo": 0.60, "form": 0.20, "squad": 0.20}
+}

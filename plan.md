@@ -749,19 +749,21 @@ R_team = w_elo * Z(R_elo*) + w_form * Z(R_form) + w_squad * Z(R_squad)
 - `configs/ratings.json`: `K`, `mov`, `home_edge`, `form_window`, blend weights, `k_shrink`,
   prior source. A run is pinned by `(as_of, results_snapshot, ratings_config)`.
 
-### 17.7 Open decisions (need sign-off before code)
-- **D2-prior:** prior source — a **committed FIFA-ranking snapshot mapped to Elo** (simple,
-  market-blind; we already need a FIFA-ranking snapshot for the §3.3 tiebreak) **vs** a
-  pre-tournament Elo fit from historical internationals. *Lean: FIFA-ranking-derived prior to
-  start; upgrade to historical Elo later if wanted.*
-- **D2-squad:** squad-strength proxy source — **transparent & market-blind** (e.g. a committed
-  per-team scalar; openfootball ships `worldcup.squads.json`, but turning squads into strength
-  needs a club/league-strength mapping). *Lean: optional committed proxy; default folds into
-  the prior so the blend still works without it.*
-- **D2-hist-data:** if we do historical Elo, which **free, market-blind** results source
-  (e.g. openfootball past tournaments). *Lean: defer; FIFA-ranking prior avoids needing it.*
-- **D2-params:** default tunables — `K`, MoV curve, host home-edge size, `form_window`,
-  `k_shrink`, blend weights.
+### 17.7 Decisions — RESOLVED 2026-06-14
+- **D2-prior → computed pre-tournament Elo** from **`martj42/international_results`** (public-
+  domain CSV on GitHub; 49,478 matches with scores **and a neutral-venue flag**; current
+  through 2026; reachable from the sandbox — a dataset fetch like openfootball, **not**
+  scraping). Chosen over FIFA ranking because it's a better predictor *and* cheap to source.
+  Computed once over all internationals **before WC kickoff** (date `< 2026-06-11`) and
+  **committed** as `data/reference/elo_prior_2026.json` (with provenance + params) for
+  reproducibility and offline tests. Only **2 of 48** names differ from openfootball's
+  (`USA`↔"United States", `Bosnia & Herzegovina`↔"Bosnia and Herzegovina") — both already in
+  the alias map.
+- **D2-squad → optional, defaults into the prior** for now; flagged a later enhancement.
+- **D2-hist-data → deferred** (the martj42 prior supersedes the need).
+- **D2-params → documented defaults accepted as tunables.** **Host home-edge applies to ALL
+  THREE hosts** — `hosts = {USA, Canada, Mexico}` in config, never hardcoded to one (asserted
+  by a test).
 
 ### 17.8 Tests (gate Phase 2)
 - **Point-in-time (the critical one):** a rating computed at `as_of=T` uses **only** matches

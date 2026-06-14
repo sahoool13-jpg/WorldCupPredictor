@@ -47,3 +47,9 @@ jobs:
             --as-of "${{ github.event.inputs.as_of }}" \
             --espn-start "${{ github.event.inputs.espn_start }}" \
             --espn-end "${{ github.event.inputs.espn_end }}"
+      - name: Team strength ratings (prior + live played matches)
+        run: |
+          python -m wcpredictor.ratings.engine --top 20 \
+            --as-of "${{ github.event.inputs.as_of }}" \
+            --espn-start "${{ github.event.inputs.espn_start }}" \
+            --espn-end "${{ github.event.inputs.espn_end }}"

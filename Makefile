@@ -48,8 +48,12 @@ fetch: ## (Phase 1) Fetch openfootball + ESPN overlay, reconcile at now, print s
 	@PYTHONPATH=src $(PY) -m wcpredictor.data.pipeline $(ARGS)
 
 .PHONY: rate
-rate: ## (Phase 2) Compute team strength ratings from completed matches only
-	@echo "[rate] Phase 2 not yet implemented. See plan.md §6." >&2; exit 2
+rate: ## (Phase 2) Compute team strength ratings (prior + live played matches only)
+	@PYTHONPATH=src $(PY) -m wcpredictor.ratings.engine $(ARGS)
+
+.PHONY: build-prior
+build-prior: ## (Phase 2) Rebuild the committed pre-tournament Elo prior from martj42
+	@PYTHONPATH=src $(PY) -m wcpredictor.ratings.prior --build $(ARGS)
 
 .PHONY: model
 model: ## (Phase 3) Fit/build the Dixon-Coles goal model
