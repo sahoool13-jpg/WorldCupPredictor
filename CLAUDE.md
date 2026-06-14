@@ -170,3 +170,10 @@ later want favorites weighted harder.
   (tested), preserving the fixed-seed clean-delta property. `make explain TEAM=Brazil` prints the
   same breakdown (reuses `_why_map`). Dashboard shows it in the existing tap-to-expand row (assets
   `?v=3`); omitted gracefully when absent. 98 tests green.
+- **Upcoming-match predictions = BUILT** (`plan.md` §24; owner-selected additive feature). Additive
+  top-level `upcoming` block — the next ≤12 **scheduled group fixtures** with our own win/draw/win %
+  + most-likely scoreline from the Phase-3 Dixon-Coles model (`report/payload._upcoming`: `lambdas`
+  → `scoreline_matrix` → `outcome_probs`/`top_scorelines`, using the **same group-stage host
+  gammas** the sim uses). KO ties excluded until the bracket is certain. **Descriptive only** —
+  titles/deltas byte-identical with/without it (tested). Dashboard "Up next" section (segmented
+  win/draw/win bar + likeliest score; assets `?v=4`). `tests/test_upcoming.py` (4). 102 tests green.

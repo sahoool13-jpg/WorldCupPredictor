@@ -23,7 +23,8 @@ def _payload(prev=None, seed=1):
 
 def test_schema_and_status():
     p = _payload()
-    assert set(p) == {"meta", "title_odds", "groups", "movers", "recent_results", "bracket"}
+    assert set(p) == {"meta", "title_odds", "groups", "movers", "recent_results",
+                      "upcoming", "bracket"}
     assert p["bracket"] == []                                   # group stage not complete
     assert p["meta"]["n_sims"] == 300 and p["meta"]["seed"] == 1
     assert p["meta"]["n_played"] == 6 and len(p["meta"]["matches_reflected"]) == 6

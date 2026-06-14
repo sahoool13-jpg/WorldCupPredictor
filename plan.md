@@ -1,10 +1,10 @@
 # WorldCupPredictor — Build Plan
 
-**Status:** D0–D5 resolved. **Phases 1–5 BUILT & MERGED** (static GitHub Pages dashboard live,
-auto-refreshing; 81 tests green). **CI-on-PRs added** (§23). **Phase 6 — knockout-stage
-readiness (§21) and Phase 7 — explainability (§22) sub-plans drafted, awaiting sign-off** (D6,
-D7). **No Phase-6/7 engine code until signed off.** Knockouts start **28 Jun 2026** — Phase 6
-should land before then.
+**Status:** D0–D7 resolved. **Phases 1–5 + CI-on-PRs (§23) + Phase 6 knockout-readiness (§21)
++ Phase 7 explainability (§22) + upcoming-match predictions (§24) BUILT & MERGED**; live GitHub
+Pages dashboard auto-refreshing; **102 tests green**. Knockouts start **28 Jun 2026** (live ESPN
+KO field shape to confirm on Actions then). Remaining nice-to-haves: visual knockout bracket,
+title-odds trend lines, provenance SHA.
 **Owner:** sahoool13
 **Last updated:** 2026-06-14
 
@@ -1243,6 +1243,35 @@ fast per-PR green/red feedback. It is **separate** from the scheduled dashboard 
 (`smoketest.yml`), which also runs the suite but only on its 3h cron / manual dispatch. The
 dashboard's auto-commits carry `[skip ci]`, so refreshing `latest.json` never triggers a
 redundant run. Tests gate the build (rule 6); this just enforces it earlier and visibly.
+
+---
+
+## 24. Upcoming-match predictions (additive feature — owner-selected)
+
+**Goal:** show the **next scheduled fixtures** with our own **win / draw / win %** and the
+**most-likely scoreline**, straight from the Phase-3 Dixon-Coles model — turning the engine's
+per-match view (already used inside the sim) into a user-facing card. **No model change**,
+descriptive-only.
+
+### 24.1 As built (2026-06-14)
+- **Payload:** additive top-level `upcoming` — the next ≤12 **scheduled group fixtures** (soonest
+  first; KO pairings aren't certain until the bracket determines, so they're excluded for now).
+  Each row: `date, group, home, away, p_home, p_draw, p_away, scoreline{home_goals,away_goals,p}`.
+  Built in `report/payload._upcoming` via `lambdas` → `scoreline_matrix` → `outcome_probs` /
+  `top_scorelines`, using the **same group-stage host gammas** the group sim uses (`sim._gamma`,
+  `group` taper) so the card and the sim agree. **Descriptive only** — never an odds input, so
+  titles/deltas are byte-identical with or without it (tested).
+- **Dashboard:** an "Up next" section — per fixture a home/away line, a win/draw/win **segmented
+  bar**, the three %s, the likeliest score, and the kickoff/group. Mobile-first; graceful empty
+  state. Assets bumped to `?v=4`.
+- **Tests:** `tests/test_upcoming.py` (4) — shape, probabilities sum to 1, scoreline valid,
+  soonest-first, **only scheduled group fixtures** (never played/KO), empty when nothing's
+  scheduled, descriptive-only. **102 tests green.**
+- **Sanity:** Mexico (host) 70/20/10 v South Africa (likeliest 2–0); Switzerland 74% v Qatar
+  (0–2); Australia–Turkey a 32/30/37 coin-flip — football-sane.
+- **Natural extension (not built):** once the group stage completes, predict the **certain**
+  next-round KO ties (R32) the same way; deeper rounds stay excluded while participants are
+  uncertain.
 
 ---
 
