@@ -56,8 +56,12 @@ build-prior: ## (Phase 2) Rebuild the committed pre-tournament Elo prior from ma
 	@PYTHONPATH=src $(PY) -m wcpredictor.ratings.prior --build $(ARGS)
 
 .PHONY: model
-model: ## (Phase 3) Fit/build the Dixon-Coles goal model
-	@echo "[model] Phase 3 not yet implemented. See plan.md §6." >&2; exit 2
+model: ## (Phase 3) Scoreline matrices for upcoming fixtures (demo/sanity)
+	@PYTHONPATH=src $(PY) -m wcpredictor.model.demo $(ARGS)
+
+.PHONY: calibrate
+calibrate: ## (Phase 3) Recalibrate the goal model from martj42 goals (commits params)
+	@PYTHONPATH=src $(PY) -m wcpredictor.model.calibrate --build $(ARGS)
 
 .PHONY: simulate
 simulate: ## (Phase 4) Run the tournament Monte Carlo from current real state

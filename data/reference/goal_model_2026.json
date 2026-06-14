@@ -1,0 +1,19 @@
+{
+  "_source": "martj42/international_results (results.csv)",
+  "_source_url": "https://raw.githubusercontent.com/martj42/international_results/master/results.csv",
+  "_calib_start": "1994-01-01",
+  "_elo_params": {
+    "k": 20.0,
+    "home_adv": 65.0,
+    "init": 1500.0
+  },
+  "_meta": {
+    "n_obs": 59820,
+    "n_matches": 29910
+  },
+  "scale": 100.0,
+  "mu": 0.109931,
+  "beta": 0.215236,
+  "gamma_home": 0.270817,
+  "rho": -0.05
+}

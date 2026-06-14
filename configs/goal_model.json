@@ -1,0 +1,6 @@
+{
+  "_doc": "Phase-3 goal-model tunables (plan.md §18.5). Calibrated params (mu/beta/gamma_home/rho/scale) live in data/reference/goal_model_2026.json; these are the structural knobs.",
+  "g_max": 10,
+  "et_frac": 0.3333,
+  "pen_slope": 0.6
+}
