@@ -1,0 +1,1199 @@
+{
+  "meta": {
+    "as_of": "2026-06-15T00:00:00+00:00",
+    "generated_at": "2026-06-14T15:18:26.132072+00:00",
+    "n_sims": 20000,
+    "seed": 2026,
+    "source": {
+      "structure": "openfootball",
+      "results": "openfootball"
+    },
+    "n_played": 8,
+    "matches_reflected": [
+      {
+        "date": "2026-06-11",
+        "group": "A",
+        "home": "Mexico",
+        "hg": 2,
+        "away": "South Africa",
+        "ag": 0
+      },
+      {
+        "date": "2026-06-12",
+        "group": "A",
+        "home": "South Korea",
+        "hg": 2,
+        "away": "Czech Republic",
+        "ag": 1
+      },
+      {
+        "date": "2026-06-12",
+        "group": "B",
+        "home": "Canada",
+        "hg": 1,
+        "away": "Bosnia & Herzegovina",
+        "ag": 1
+      },
+      {
+        "date": "2026-06-13",
+        "group": "D",
+        "home": "USA",
+        "hg": 4,
+        "away": "Paraguay",
+        "ag": 1
+      },
+      {
+        "date": "2026-06-13",
+        "group": "B",
+        "home": "Qatar",
+        "hg": 1,
+        "away": "Switzerland",
+        "ag": 1
+      },
+      {
+        "date": "2026-06-13",
+        "group": "C",
+        "home": "Brazil",
+        "hg": 1,
+        "away": "Morocco",
+        "ag": 1
+      },
+      {
+        "date": "2026-06-14",
+        "group": "C",
+        "home": "Haiti",
+        "hg": 0,
+        "away": "Scotland",
+        "ag": 1
+      },
+      {
+        "date": "2026-06-14",
+        "group": "D",
+        "home": "Australia",
+        "hg": 2,
+        "away": "Turkey",
+        "ag": 0
+      }
+    ]
+  },
+  "title_odds": [
+    {
+      "team": "Argentina",
+      "group": "J",
+      "title": 0.169,
+      "title_delta": 0.0,
+      "reach": {
+        "R32": 0.95975,
+        "R16": 0.6828,
+        "QF": 0.51055,
+        "SF": 0.3718,
+        "F": 0.2576
+      },
+      "status": "alive"
+    },
+    {
+      "team": "Spain",
+      "group": "H",
+      "title": 0.15405,
+      "title_delta": 0.0,
+      "reach": {
+        "R32": 0.97975,
+        "R16": 0.67765,
+        "QF": 0.48365,
+        "SF": 0.3519,
+        "F": 0.2397
+      },
+      "status": "alive"
+    },
+    {
+      "team": "France",
+      "group": "I",
+      "title": 0.09105,
+      "title_delta": 0.0,
+      "reach": {
+        "R32": 0.9266,
+        "R16": 0.66435,
+        "QF": 0.43795,
+        "SF": 0.2788,
+        "F": 0.1574
+      },
+      "status": "alive"
+    },
+    {
+      "team": "Brazil",
+      "group": "C",
+      "title": 0.0667,
+      "title_delta": 0.0,
+      "reach": {
+        "R32": 0.93475,
+        "R16": 0.599,
+        "QF": 0.38795,
+        "SF": 0.23685,
+        "F": 0.12455
+      },
+      "status": "alive"
+    },
+    {
+      "team": "Colombia",
+      "group": "K",
+      "title": 0.05805,
+      "title_delta": 0.0,
+      "reach": {
+        "R32": 0.9027,
+        "R16": 0.6043,
+        "QF": 0.374,
+        "SF": 0.20645,
+        "F": 0.113
+      },
+      "status": "alive"
+    },
+    {
+      "team": "Portugal",
+      "group": "K",
+      "title": 0.054,
+      "title_delta": 0.0,
+      "reach": {
+        "R32": 0.9011,
+        "R16": 0.5923,
+        "QF": 0.35885,
+        "SF": 0.19425,
+        "F": 0.1054
+      },
+      "status": "alive"
+    },
+    {
+      "team": "England",
+      "group": "L",
+      "title": 0.0521,
+      "title_delta": 0.0,
+      "reach": {
+        "R32": 0.9341,
+        "R16": 0.59185,
+        "QF": 0.33955,
+        "SF": 0.19525,
+        "F": 0.10285
+      },
+      "status": "alive"
+    },
+    {
+      "team": "Germany",
+      "group": "E",
+      "title": 0.034,
+      "title_delta": 0.0,
+      "reach": {
+        "R32": 0.92395,
+        "R16": 0.57075,
+        "QF": 0.3091,
+        "SF": 0.1623,
+        "F": 0.07755
+      },
+      "status": "alive"
+    },
+    {
+      "team": "Belgium",
+      "group": "G",
+      "title": 0.0309,
+      "title_delta": 0.0,
+      "reach": {
+        "R32": 0.89375,
+        "R16": 0.5946,
+        "QF": 0.3163,
+        "SF": 0.1438,
+        "F": 0.0699
+      },
+      "status": "alive"
+    },
+    {
+      "team": "Netherlands",
+      "group": "F",
+      "title": 0.03015,
+      "title_delta": 0.0,
+      "reach": {
+        "R32": 0.87065,
+        "R16": 0.4587,
+        "QF": 0.2723,
+        "SF": 0.14235,
+        "F": 0.0668
+      },
+      "status": "alive"
+    },
+    {
+      "team": "Morocco",
+      "group": "C",
+      "title": 0.029,
+      "title_delta": 0.0,
+      "reach": {
+        "R32": 0.9022,
+        "R16": 0.50555,
+        "QF": 0.2829,
+        "SF": 0.1463,
+        "F": 0.0655
+      },
+      "status": "alive"
+    },
+    {
+      "team": "Mexico",
+      "group": "A",
+      "title": 0.0273,
+      "title_delta": 0.0,
+      "reach": {
+        "R32": 0.98825,
+        "R16": 0.6649,
+        "QF": 0.34535,
+        "SF": 0.16665,
+        "F": 0.0677
+      },
+      "status": "alive"
+    },
+    {
+      "team": "Australia",
+      "group": "D",
+      "title": 0.0253,
+      "title_delta": 0.0,
+      "reach": {
+        "R32": 0.9851,
+        "R16": 0.6226,
+        "QF": 0.30525,
+        "SF": 0.1338,
+        "F": 0.063
+      },
+      "status": "alive"
+    },
+    {
+      "team": "Japan",
+      "group": "F",
+      "title": 0.02505,
+      "title_delta": 0.0,
+      "reach": {
+        "R32": 0.84855,
+        "R16": 0.42485,
+        "QF": 0.24145,
+        "SF": 0.12365,
+        "F": 0.05835
+      },
+      "status": "alive"
+    },
+    {
+      "team": "South Korea",
+      "group": "A",
+      "title": 0.02435,
+      "title_delta": 0.0,
+      "reach": {
+        "R32": 0.97665,
+        "R16": 0.637,
+        "QF": 0.30885,
+        "SF": 0.14285,
+        "F": 0.062
+      },
+      "status": "alive"
+    },
+    {
+      "team": "Ecuador",
+      "group": "E",
+      "title": 0.0227,
+      "title_delta": 0.0,
+      "reach": {
+        "R32": 0.9002,
+        "R16": 0.51285,
+        "QF": 0.25335,
+        "SF": 0.123,
+        "F": 0.0518
+      },
+      "status": "alive"
+    },
+    {
+      "team": "Uruguay",
+      "group": "H",
+      "title": 0.01825,
+      "title_delta": 0.0,
+      "reach": {
+        "R32": 0.8775,
+        "R16": 0.38625,
+        "QF": 0.2036,
+        "SF": 0.09955,
+        "F": 0.04485
+      },
+      "status": "alive"
+    },
+    {
+      "team": "Croatia",
+      "group": "L",
+      "title": 0.0172,
+      "title_delta": 0.0,
+      "reach": {
+        "R32": 0.8602,
+        "R16": 0.44635,
+        "QF": 0.2096,
+        "SF": 0.09735,
+        "F": 0.0414
+      },
+      "status": "alive"
+    },
+    {
+      "team": "USA",
+      "group": "D",
+      "title": 0.01405,
+      "title_delta": 0.0,
+      "reach": {
+        "R32": 0.98705,
+        "R16": 0.59205,
+        "QF": 0.27145,
+        "SF": 0.1047,
+        "F": 0.0431
+      },
+      "status": "alive"
+    },
+    {
+      "team": "Iran",
+      "group": "G",
+      "title": 0.0094,
+      "title_delta": 0.0,
+      "reach": {
+        "R32": 0.8001,
+        "R16": 0.4384,
+        "QF": 0.1847,
+        "SF": 0.0683,
+        "F": 0.0289
+      },
+      "status": "alive"
+    },
+    {
+      "team": "Senegal",
+      "group": "I",
+      "title": 0.00765,
+      "title_delta": 0.0,
+      "reach": {
+        "R32": 0.7186,
+        "R16": 0.3477,
+        "QF": 0.1552,
+        "SF": 0.0631,
+        "F": 0.02175
+      },
+      "status": "alive"
+    },
+    {
+      "team": "Norway",
+      "group": "I",
+      "title": 0.00695,
+      "title_delta": 0.0,
+      "reach": {
+        "R32": 0.69885,
+        "R16": 0.33355,
+        "QF": 0.1466,
+        "SF": 0.0593,
+        "F": 0.0206
+      },
+      "status": "alive"
+    },
+    {
+      "team": "Algeria",
+      "group": "J",
+      "title": 0.00615,
+      "title_delta": 0.0,
+      "reach": {
+        "R32": 0.6893,
+        "R16": 0.28585,
+        "QF": 0.1231,
+        "SF": 0.04945,
+        "F": 0.0189
+      },
+      "status": "alive"
+    },
+    {
+      "team": "Austria",
+      "group": "J",
+      "title": 0.00535,
+      "title_delta": 0.0,
+      "reach": {
+        "R32": 0.66555,
+        "R16": 0.27005,
+        "QF": 0.11395,
+        "SF": 0.04395,
+        "F": 0.0167
+      },
+      "status": "alive"
+    },
+    {
+      "team": "Switzerland",
+      "group": "B",
+      "title": 0.0048,
+      "title_delta": 0.0,
+      "reach": {
+        "R32": 0.76565,
+        "R16": 0.3591,
+        "QF": 0.1394,
+        "SF": 0.0443,
+        "F": 0.0146
+      },
+      "status": "alive"
+    },
+    {
+      "team": "Scotland",
+      "group": "C",
+      "title": 0.00395,
+      "title_delta": 0.0,
+      "reach": {
+        "R32": 0.86265,
+        "R16": 0.3315,
+        "QF": 0.12925,
+        "SF": 0.04325,
+        "F": 0.01325
+      },
+      "status": "alive"
+    },
+    {
+      "team": "Canada",
+      "group": "B",
+      "title": 0.0027,
+      "title_delta": 0.0,
+      "reach": {
+        "R32": 0.76745,
+        "R16": 0.32335,
+        "QF": 0.11205,
+        "SF": 0.0326,
+        "F": 0.01
+      },
+      "status": "alive"
+    },
+    {
+      "team": "Ivory Coast",
+      "group": "E",
+      "title": 0.0026,
+      "title_delta": 0.0,
+      "reach": {
+        "R32": 0.70205,
+        "R16": 0.27205,
+        "QF": 0.0958,
+        "SF": 0.03245,
+        "F": 0.0088
+      },
+      "status": "alive"
+    },
+    {
+      "team": "Egypt",
+      "group": "G",
+      "title": 0.00135,
+      "title_delta": 0.0,
+      "reach": {
+        "R32": 0.61575,
+        "R16": 0.2635,
+        "QF": 0.07545,
+        "SF": 0.0192,
+        "F": 0.00475
+      },
+      "status": "alive"
+    },
+    {
+      "team": "Uzbekistan",
+      "group": "K",
+      "title": 0.00115,
+      "title_delta": 0.0,
+      "reach": {
+        "R32": 0.5165,
+        "R16": 0.18685,
+        "QF": 0.05985,
+        "SF": 0.0182,
+        "F": 0.00535
+      },
+      "status": "alive"
+    },
+    {
+      "team": "Panama",
+      "group": "L",
+      "title": 0.00105,
+      "title_delta": 0.0,
+      "reach": {
+        "R32": 0.602,
+        "R16": 0.18755,
+        "QF": 0.06175,
+        "SF": 0.01835,
+        "F": 0.00485
+      },
+      "status": "alive"
+    },
+    {
+      "team": "Turkey",
+      "group": "D",
+      "title": 0.0008,
+      "title_delta": 0.0,
+      "reach": {
+        "R32": 0.3801,
+        "R16": 0.12805,
+        "QF": 0.03665,
+        "SF": 0.01145,
+        "F": 0.00335
+      },
+      "status": "alive"
+    },
+    {
+      "team": "Sweden",
+      "group": "F",
+      "title": 0.0007,
+      "title_delta": 0.0,
+      "reach": {
+        "R32": 0.5095,
+        "R16": 0.14205,
+        "QF": 0.04655,
+        "SF": 0.0133,
+        "F": 0.0034
+      },
+      "status": "alive"
+    },
+    {
+      "team": "Tunisia",
+      "group": "F",
+      "title": 0.0006,
+      "title_delta": 0.0,
+      "reach": {
+        "R32": 0.4617,
+        "R16": 0.12125,
+        "QF": 0.0372,
+        "SF": 0.0089,
+        "F": 0.0018
+      },
+      "status": "alive"
+    },
+    {
+      "team": "Czech Republic",
+      "group": "A",
+      "title": 0.0004,
+      "title_delta": 0.0,
+      "reach": {
+        "R32": 0.42855,
+        "R16": 0.1491,
+        "QF": 0.0416,
+        "SF": 0.0089,
+        "F": 0.00165
+      },
+      "status": "alive"
+    },
+    {
+      "team": "Bosnia & Herzegovina",
+      "group": "B",
+      "title": 0.00025,
+      "title_delta": 0.0,
+      "reach": {
+        "R32": 0.59785,
+        "R16": 0.16305,
+        "QF": 0.0365,
+        "SF": 0.00655,
+        "F": 0.00145
+      },
+      "status": "alive"
+    },
+    {
+      "team": "New Zealand",
+      "group": "G",
+      "title": 0.00025,
+      "title_delta": 0.0,
+      "reach": {
+        "R32": 0.38465,
+        "R16": 0.12015,
+        "QF": 0.02455,
+        "SF": 0.005,
+        "F": 0.00125
+      },
+      "status": "alive"
+    },
+    {
+      "team": "Iraq",
+      "group": "I",
+      "title": 0.0002,
+      "title_delta": 0.0,
+      "reach": {
+        "R32": 0.3445,
+        "R16": 0.0962,
+        "QF": 0.0253,
+        "SF": 0.0054,
+        "F": 0.00125
+      },
+      "status": "alive"
+    },
+    {
+      "team": "DR Congo",
+      "group": "K",
+      "title": 0.00015,
+      "title_delta": 0.0,
+      "reach": {
+        "R32": 0.3389,
+        "R16": 0.0864,
+        "QF": 0.02005,
+        "SF": 0.00385,
+        "F": 0.00095
+      },
+      "status": "alive"
+    },
+    {
+      "team": "Saudi Arabia",
+      "group": "H",
+      "title": 0.00015,
+      "title_delta": 0.0,
+      "reach": {
+        "R32": 0.40335,
+        "R16": 0.0753,
+        "QF": 0.01695,
+        "SF": 0.00315,
+        "F": 0.0004
+      },
+      "status": "alive"
+    },
+    {
+      "team": "Paraguay",
+      "group": "D",
+      "title": 0.0001,
+      "title_delta": 0.0,
+      "reach": {
+        "R32": 0.27575,
+        "R16": 0.08575,
+        "QF": 0.0231,
+        "SF": 0.00575,
+        "F": 0.0012
+      },
+      "status": "alive"
+    },
+    {
+      "team": "Ghana",
+      "group": "L",
+      "title": 5e-05,
+      "title_delta": 0.0,
+      "reach": {
+        "R32": 0.27825,
+        "R16": 0.04915,
+        "QF": 0.00995,
+        "SF": 0.0014,
+        "F": 0.00035
+      },
+      "status": "alive"
+    },
+    {
+      "team": "Jordan",
+      "group": "J",
+      "title": 5e-05,
+      "title_delta": 0.0,
+      "reach": {
+        "R32": 0.3281,
+        "R16": 0.08605,
+        "QF": 0.0218,
+        "SF": 0.00425,
+        "F": 0.0006
+      },
+      "status": "alive"
+    },
+    {
+      "team": "Cape Verde",
+      "group": "H",
+      "title": 0.0,
+      "title_delta": 0.0,
+      "reach": {
+        "R32": 0.30825,
+        "R16": 0.0522,
+        "QF": 0.00975,
+        "SF": 0.00185,
+        "F": 0.0003
+      },
+      "status": "alive"
+    },
+    {
+      "team": "Curaçao",
+      "group": "E",
+      "title": 0.0,
+      "title_delta": 0.0,
+      "reach": {
+        "R32": 0.1756,
+        "R16": 0.025,
+        "QF": 0.00315,
+        "SF": 0.00015,
+        "F": 0.0
+      },
+      "status": "alive"
+    },
+    {
+      "team": "Haiti",
+      "group": "C",
+      "title": 0.0,
+      "title_delta": 0.0,
+      "reach": {
+        "R32": 0.08995,
+        "R16": 0.0154,
+        "QF": 0.0029,
+        "SF": 0.0008,
+        "F": 0.00015
+      },
+      "status": "alive"
+    },
+    {
+      "team": "Qatar",
+      "group": "B",
+      "title": 0.0,
+      "title_delta": 0.0,
+      "reach": {
+        "R32": 0.5147,
+        "R16": 0.1168,
+        "QF": 0.0228,
+        "SF": 0.00315,
+        "F": 0.0005
+      },
+      "status": "alive"
+    },
+    {
+      "team": "South Africa",
+      "group": "A",
+      "title": 0.0,
+      "title_delta": 0.0,
+      "reach": {
+        "R32": 0.22305,
+        "R16": 0.05995,
+        "QF": 0.0121,
+        "SF": 0.0021,
+        "F": 0.0005
+      },
+      "status": "alive"
+    }
+  ],
+  "groups": [
+    {
+      "group": "A",
+      "table": [
+        {
+          "team": "Mexico",
+          "pld": 1,
+          "pts": 3,
+          "gd": 2,
+          "gf": 2,
+          "status": "alive"
+        },
+        {
+          "team": "South Korea",
+          "pld": 1,
+          "pts": 3,
+          "gd": 1,
+          "gf": 2,
+          "status": "alive"
+        },
+        {
+          "team": "Czech Republic",
+          "pld": 1,
+          "pts": 0,
+          "gd": -1,
+          "gf": 1,
+          "status": "alive"
+        },
+        {
+          "team": "South Africa",
+          "pld": 1,
+          "pts": 0,
+          "gd": -2,
+          "gf": 0,
+          "status": "alive"
+        }
+      ]
+    },
+    {
+      "group": "B",
+      "table": [
+        {
+          "team": "Qatar",
+          "pld": 1,
+          "pts": 1,
+          "gd": 0,
+          "gf": 1,
+          "status": "alive"
+        },
+        {
+          "team": "Switzerland",
+          "pld": 1,
+          "pts": 1,
+          "gd": 0,
+          "gf": 1,
+          "status": "alive"
+        },
+        {
+          "team": "Bosnia & Herzegovina",
+          "pld": 1,
+          "pts": 1,
+          "gd": 0,
+          "gf": 1,
+          "status": "alive"
+        },
+        {
+          "team": "Canada",
+          "pld": 1,
+          "pts": 1,
+          "gd": 0,
+          "gf": 1,
+          "status": "alive"
+        }
+      ]
+    },
+    {
+      "group": "C",
+      "table": [
+        {
+          "team": "Scotland",
+          "pld": 1,
+          "pts": 3,
+          "gd": 1,
+          "gf": 1,
+          "status": "alive"
+        },
+        {
+          "team": "Morocco",
+          "pld": 1,
+          "pts": 1,
+          "gd": 0,
+          "gf": 1,
+          "status": "alive"
+        },
+        {
+          "team": "Brazil",
+          "pld": 1,
+          "pts": 1,
+          "gd": 0,
+          "gf": 1,
+          "status": "alive"
+        },
+        {
+          "team": "Haiti",
+          "pld": 1,
+          "pts": 0,
+          "gd": -1,
+          "gf": 0,
+          "status": "alive"
+        }
+      ]
+    },
+    {
+      "group": "D",
+      "table": [
+        {
+          "team": "USA",
+          "pld": 1,
+          "pts": 3,
+          "gd": 3,
+          "gf": 4,
+          "status": "alive"
+        },
+        {
+          "team": "Australia",
+          "pld": 1,
+          "pts": 3,
+          "gd": 2,
+          "gf": 2,
+          "status": "alive"
+        },
+        {
+          "team": "Turkey",
+          "pld": 1,
+          "pts": 0,
+          "gd": -2,
+          "gf": 0,
+          "status": "alive"
+        },
+        {
+          "team": "Paraguay",
+          "pld": 1,
+          "pts": 0,
+          "gd": -3,
+          "gf": 1,
+          "status": "alive"
+        }
+      ]
+    },
+    {
+      "group": "E",
+      "table": [
+        {
+          "team": "Ivory Coast",
+          "pld": 0,
+          "pts": 0,
+          "gd": 0,
+          "gf": 0,
+          "status": "alive"
+        },
+        {
+          "team": "Ecuador",
+          "pld": 0,
+          "pts": 0,
+          "gd": 0,
+          "gf": 0,
+          "status": "alive"
+        },
+        {
+          "team": "Curaçao",
+          "pld": 0,
+          "pts": 0,
+          "gd": 0,
+          "gf": 0,
+          "status": "alive"
+        },
+        {
+          "team": "Germany",
+          "pld": 0,
+          "pts": 0,
+          "gd": 0,
+          "gf": 0,
+          "status": "alive"
+        }
+      ]
+    },
+    {
+      "group": "F",
+      "table": [
+        {
+          "team": "Sweden",
+          "pld": 0,
+          "pts": 0,
+          "gd": 0,
+          "gf": 0,
+          "status": "alive"
+        },
+        {
+          "team": "Tunisia",
+          "pld": 0,
+          "pts": 0,
+          "gd": 0,
+          "gf": 0,
+          "status": "alive"
+        },
+        {
+          "team": "Japan",
+          "pld": 0,
+          "pts": 0,
+          "gd": 0,
+          "gf": 0,
+          "status": "alive"
+        },
+        {
+          "team": "Netherlands",
+          "pld": 0,
+          "pts": 0,
+          "gd": 0,
+          "gf": 0,
+          "status": "alive"
+        }
+      ]
+    },
+    {
+      "group": "G",
+      "table": [
+        {
+          "team": "Iran",
+          "pld": 0,
+          "pts": 0,
+          "gd": 0,
+          "gf": 0,
+          "status": "alive"
+        },
+        {
+          "team": "New Zealand",
+          "pld": 0,
+          "pts": 0,
+          "gd": 0,
+          "gf": 0,
+          "status": "alive"
+        },
+        {
+          "team": "Egypt",
+          "pld": 0,
+          "pts": 0,
+          "gd": 0,
+          "gf": 0,
+          "status": "alive"
+        },
+        {
+          "team": "Belgium",
+          "pld": 0,
+          "pts": 0,
+          "gd": 0,
+          "gf": 0,
+          "status": "alive"
+        }
+      ]
+    },
+    {
+      "group": "H",
+      "table": [
+        {
+          "team": "Saudi Arabia",
+          "pld": 0,
+          "pts": 0,
+          "gd": 0,
+          "gf": 0,
+          "status": "alive"
+        },
+        {
+          "team": "Uruguay",
+          "pld": 0,
+          "pts": 0,
+          "gd": 0,
+          "gf": 0,
+          "status": "alive"
+        },
+        {
+          "team": "Cape Verde",
+          "pld": 0,
+          "pts": 0,
+          "gd": 0,
+          "gf": 0,
+          "status": "alive"
+        },
+        {
+          "team": "Spain",
+          "pld": 0,
+          "pts": 0,
+          "gd": 0,
+          "gf": 0,
+          "status": "alive"
+        }
+      ]
+    },
+    {
+      "group": "I",
+      "table": [
+        {
+          "team": "Iraq",
+          "pld": 0,
+          "pts": 0,
+          "gd": 0,
+          "gf": 0,
+          "status": "alive"
+        },
+        {
+          "team": "Norway",
+          "pld": 0,
+          "pts": 0,
+          "gd": 0,
+          "gf": 0,
+          "status": "alive"
+        },
+        {
+          "team": "Senegal",
+          "pld": 0,
+          "pts": 0,
+          "gd": 0,
+          "gf": 0,
+          "status": "alive"
+        },
+        {
+          "team": "France",
+          "pld": 0,
+          "pts": 0,
+          "gd": 0,
+          "gf": 0,
+          "status": "alive"
+        }
+      ]
+    },
+    {
+      "group": "J",
+      "table": [
+        {
+          "team": "Austria",
+          "pld": 0,
+          "pts": 0,
+          "gd": 0,
+          "gf": 0,
+          "status": "alive"
+        },
+        {
+          "team": "Jordan",
+          "pld": 0,
+          "pts": 0,
+          "gd": 0,
+          "gf": 0,
+          "status": "alive"
+        },
+        {
+          "team": "Algeria",
+          "pld": 0,
+          "pts": 0,
+          "gd": 0,
+          "gf": 0,
+          "status": "alive"
+        },
+        {
+          "team": "Argentina",
+          "pld": 0,
+          "pts": 0,
+          "gd": 0,
+          "gf": 0,
+          "status": "alive"
+        }
+      ]
+    },
+    {
+      "group": "K",
+      "table": [
+        {
+          "team": "Uzbekistan",
+          "pld": 0,
+          "pts": 0,
+          "gd": 0,
+          "gf": 0,
+          "status": "alive"
+        },
+        {
+          "team": "Colombia",
+          "pld": 0,
+          "pts": 0,
+          "gd": 0,
+          "gf": 0,
+          "status": "alive"
+        },
+        {
+          "team": "DR Congo",
+          "pld": 0,
+          "pts": 0,
+          "gd": 0,
+          "gf": 0,
+          "status": "alive"
+        },
+        {
+          "team": "Portugal",
+          "pld": 0,
+          "pts": 0,
+          "gd": 0,
+          "gf": 0,
+          "status": "alive"
+        }
+      ]
+    },
+    {
+      "group": "L",
+      "table": [
+        {
+          "team": "Ghana",
+          "pld": 0,
+          "pts": 0,
+          "gd": 0,
+          "gf": 0,
+          "status": "alive"
+        },
+        {
+          "team": "Panama",
+          "pld": 0,
+          "pts": 0,
+          "gd": 0,
+          "gf": 0,
+          "status": "alive"
+        },
+        {
+          "team": "Croatia",
+          "pld": 0,
+          "pts": 0,
+          "gd": 0,
+          "gf": 0,
+          "status": "alive"
+        },
+        {
+          "team": "England",
+          "pld": 0,
+          "pts": 0,
+          "gd": 0,
+          "gf": 0,
+          "status": "alive"
+        }
+      ]
+    }
+  ]
+}

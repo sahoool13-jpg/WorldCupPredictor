@@ -64,6 +64,7 @@ def _build_cdf(home: str, away: str, ratings, gparams, gconf, gh: float, ga: flo
 class Sim:
     def __init__(self, matches, ratings, gparams, gconf, hosts, ko_specs, groups=None):
         self.groups = groups or _groups()
+        self.matches = list(matches)
         self.played, remaining = partition(matches, self.groups)
         self.ratings, self.gparams, self.gconf, self.hosts = ratings, gparams, gconf, hosts
         self.ko_specs = ko_specs

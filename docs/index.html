@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026 World Cup — Live Title Odds</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>2026 World Cup — Live Title Odds</h1>
+    <p class="sub">A market-blind Monte Carlo from our own ratings + goal model.
+      Played results are fixed; only remaining matches are simulated.</p>
+    <p id="updated" class="updated">Loading…</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Title odds <span class="hint">(▲▼ = move since last run; bold = ≥0.5pp)</span></h2>
+      <table id="odds"><thead><tr>
+        <th>#</th><th>Team</th><th>Grp</th><th class="num">Title</th><th class="num">Δ</th>
+        <th class="num">Final</th><th class="num">SF</th><th class="num">QF</th>
+        <th class="num">R16</th><th class="num">Adv</th>
+      </tr></thead><tbody></tbody></table>
+    </section>
+
+    <section>
+      <h2>Group standings <span class="hint">(live results folded in)</span></h2>
+      <div id="groups" class="groups"></div>
+    </section>
+
+    <section>
+      <h2>Results reflected</h2>
+      <ul id="reflected" class="reflected"></ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>Point-in-time correct · no betting odds · pinned by (as_of, snapshot, configs, n_sims, seed).
+       <span id="prov"></span></p>
+  </footer>
+  <script src="app.js"></script>
+</body>
+</html>
