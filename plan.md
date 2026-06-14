@@ -1,10 +1,12 @@
 # WorldCupPredictor — Build Plan
 
 **Status:** D0 approved. Sources resolved: **openfootball** (structure, §14) **+ ESPN site
-API** live-results overlay (§15); D-cards approved. **Phase 1 sub-plan (§12 + §15) APPROVED
-2026-06-14 — build in progress** on a fresh branch, test-gated (reconciliation contract
-§15.5 + point-in-time §4.1 must pass). _No engine code beyond Phase 1 until its tests are
-green._
+API** live-results overlay (§15); D-cards approved. **Phase 1 data layer BUILT & VERIFIED
+2026-06-14** — 20 offline tests green (incl. the §15.5 R1–R4 reconciliation contract and
+§4.1 point-in-time future-leak gate); the live two-source fetch on Actions loaded the 12×4
+/ 104-fixture structure and the 8 already-played matches with real scores **including the
+ESPN-only Australia 2–0 Turkey** that openfootball was missing (§16). PR #3, awaiting review.
+Phase 2 (ratings) is next — plan-first, not started.
 **Owner:** sahoool13
 **Last updated:** 2026-06-14
 
@@ -594,6 +596,25 @@ without notice). Mitigated by a **config-driven client** so a supported source
 reconciliation layer and its guards/tests. Both sources are smoke-tested on Actions (egress
 blocks them from the sandbox); openfootball is also fetchable directly. **D1-overlay** (which
 overlay source) is the only open item before Phase-1 build.
+
+### 16. Phase 1 — first live two-source fetch (verified 2026-06-14, Actions run #4)
+Pipeline run (`--as-of 2026-06-15T00:00:00Z`, ESPN window 06-11…06-15) after `pytest`
+(20 passed) and `--verify` (groups=12, sizes=[4], fixtures=104):
+```
+as_of=2026-06-15T00:00:00+00:00  fixtures=104  final=8  by_source={'espn': 8}
+already-played (real scores):
+  2026-06-11  Grp A  Mexico 2-0 South Africa
+  2026-06-12  Grp A  South Korea 2-1 Czech Republic
+  2026-06-12  Grp B  Canada 1-1 Bosnia & Herzegovina
+  2026-06-13  Grp D  USA 4-1 Paraguay
+  2026-06-13  Grp B  Qatar 1-1 Switzerland
+  2026-06-13  Grp C  Brazil 1-1 Morocco
+  2026-06-14  Grp C  Haiti 0-1 Scotland
+  2026-06-14  Grp D  Australia 2-0 Turkey      <- ESPN overlay; openfootball was missing it
+```
+All 8 finals came from the ESPN overlay (authoritative when present); no score conflicts
+(ESPN agreed with openfootball on the 7 it had), no unmatched results, no future-leak, no
+unknown teams. The two-source design works end-to-end on real data.
 
 ### 15.5 Reconciliation & point-in-time test contract (GATES Phase 1 — owner-required)
 The two-source reconciliation is the new risk surface (a wrong team-pair match silently

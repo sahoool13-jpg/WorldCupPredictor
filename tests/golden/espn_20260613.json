@@ -1,0 +1,41 @@
+{
+  "_note": "Hand-crafted golden fixture faithful to site.api.espn.com soccer scoreboard shape. Haiti-Scotland is intentionally listed with home/away FLIPPED vs openfootball to test orientation-independent score attribution.",
+  "events": [
+    {
+      "id": "1001",
+      "date": "2026-06-13T18:00Z",
+      "name": "Qatar vs Switzerland",
+      "status": {"type": {"state": "post", "completed": true, "shortDetail": "FT"}},
+      "competitions": [
+        {"competitors": [
+          {"homeAway": "home", "team": {"displayName": "Qatar"}, "score": "1"},
+          {"homeAway": "away", "team": {"displayName": "Switzerland"}, "score": "1"}
+        ]}
+      ]
+    },
+    {
+      "id": "1002",
+      "date": "2026-06-13T22:00Z",
+      "name": "Brazil vs Morocco",
+      "status": {"type": {"state": "post", "completed": true, "shortDetail": "FT"}},
+      "competitions": [
+        {"competitors": [
+          {"homeAway": "home", "team": {"displayName": "Brazil"}, "score": "1"},
+          {"homeAway": "away", "team": {"displayName": "Morocco"}, "score": "1"}
+        ]}
+      ]
+    },
+    {
+      "id": "1003",
+      "date": "2026-06-14T01:00Z",
+      "name": "Scotland vs Haiti",
+      "status": {"type": {"state": "post", "completed": true, "shortDetail": "FT"}},
+      "competitions": [
+        {"competitors": [
+          {"homeAway": "home", "team": {"displayName": "Scotland"}, "score": "1"},
+          {"homeAway": "away", "team": {"displayName": "Haiti"}, "score": "0"}
+        ]}
+      ]
+    }
+  ]
+}

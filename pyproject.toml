@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wcpredictor"
+version = "0.1.0"
+description = "Live, market-blind Monte Carlo of the 2026 World Cup title race (data layer)."
+requires-python = ">=3.10"
+dependencies = []  # data layer is stdlib-only by design (plan.md §12.5)
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+filterwarnings = ["error::UserWarning"]
