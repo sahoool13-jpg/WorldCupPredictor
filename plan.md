@@ -1,10 +1,9 @@
 # WorldCupPredictor — Build Plan
 
-**Status:** D0–D3 resolved. **Phases 1–3 BUILT, VERIFIED & MERGED** (data layer §12/§15/§16;
-ratings §17; goal model §18 — 76 tests green; sample scorelines football-sane). **Phase 4
-Monte-Carlo sub-plan (§19) drafted — awaiting sign-off** (D4), with a flagged blocker: the
-verbatim Annex C 495-row third-place table isn't fetchable here (§19.1). Dashboard = final
-phase, built LAST (§6 Phase 5). No Phase-4 engine code until §19 is signed off.
+**Status:** D0–D4 resolved. **Phases 1–4 BUILT, VERIFIED & MERGED** (data layer §12/§15/§16;
+ratings §17; goal model §18; tournament Monte Carlo §19 + verified Annex C table — 72 tests
+green; live title odds sane, hosts in a defensible band). **Phase 5 dashboard sub-plan (§20)
+drafted — awaiting sign-off** (D5). Final phase.
 **Owner:** sahoool13
 **Last updated:** 2026-06-14
 
@@ -362,7 +361,7 @@ hosting** — static files + scheduled rebuild.
 | **D2** | Elo K / MoV, home-advantage for hosts, form window, squad-strength proxy source (market-blind) | Phase 2 | Elo+MoV, partial home edge, transparent squad-value proxy |
 | **D3** | Goal-model: ratings→λ mapping (D3-map), calibration source/method (D3-calib), ET+penalty model (D3-etp), which Phase-2 number drives λ (D3-input) | Phase 3 | §18 drafted: analytic ratings→λ, calibrated on martj42 goals (Poisson reg + DC ρ MLE), committed params; ET scaled-Poisson + logistic penalties; driven by blended rating. **Awaiting sign-off.** |
 | **D4** | N sims, seeding/parallelism, lots handling, FIFA-ranking snapshot source (§19.7) | Phase 4 | §19 drafted: 50k sims, seeded RNG, lots=seeded-random, committed FIFA-ranking snapshot. **Awaiting sign-off.** Blocker: verbatim Annex C 495-table not fetchable here (§19.1). |
-| **D5** | **Live web dashboard:** schedule cadence, page tech (plain HTML+JS vs static-site generator), JSON schema, "who moved" thresholds | Phase 5 | Static GitHub Pages + scheduled Action (every few hours) committing web-friendly JSON; plain HTML+JS reading it; build LAST |
+| **D5** | **Live web dashboard:** schedule cadence, page tech, JSON schema, "who moved" threshold | Phase 5 | §20 drafted: static GitHub Pages from `docs/` + scheduled Action committing `latest.json`; plain HTML+JS; cron ~3h; move flag ≥0.5pp. **Awaiting sign-off** (+ owner enables Pages). |
 
 > **Language/stack assumption (flag if you disagree):** Python + `pytest`, `numpy`/`pandas`
 > for the sim, `requests` for the API. Chosen for fast Monte Carlo + transparent ratings.
@@ -954,8 +953,78 @@ assignment** (§19.1) and the **live-state contract** (§19.5) — are gated and
 
 ---
 
-_Status: **D0 approved; D1/D-cards/D1-overlay/D2/D3 resolved; Phases 1–3 merged & verified
-(76 tests).** **Phase 4 Monte-Carlo sub-plan (§19) drafted — awaiting sign-off** (decisions
-**D4**), with a flagged **blocker**: the verbatim Annex C 495-row table can't be fetched here
-(§19.1) — needs the source unblocked before that first task. Dashboard = final phase, built
-LAST. **No Phase-4 engine code until §19 is signed off.**_
+---
+
+## 20. Phase 5 — Live web dashboard (detailed sub-plan, for sign-off)
+
+**Goal:** the project's final deliverable — a **static web page on GitHub Pages**, rebuilt by
+a **scheduled GitHub Action**, showing current title odds, how they **moved** since the last
+run, group standings with live results, and who's **through/eliminated**, with a clear **"last
+updated"** stamp. **No server, no paid hosting** — static files + scheduled rebuild. Built LAST
+(model done & validated). Plan-first: signed off before any code.
+
+### 20.1 Architecture (static + scheduled rebuild)
+1. A **scheduled Action** (`.github/workflows/dashboard.yml`, cron every few hours + manual)
+   runs the whole pipeline at `as_of=now`: Phase-1 fetch+reconcile → Phase-2 ratings →
+   Phase-3 model → Phase-4 sim (`--live`, N=50k, fixed seed).
+2. It writes **web-friendly JSON** to a committed path (`docs/data/latest.json`) + appends a
+   small **history** snapshot for run-over-run deltas, and **commits** them.
+3. **GitHub Pages** serves `docs/` (static `index.html` + `app.js` + `style.css`); the page
+   `fetch()`es `data/latest.json` and renders. Commit → Pages rebuild = auto-refresh as
+   results land. (Pages must be enabled to serve from `docs/` — owner action, flagged.)
+
+### 20.2 The data contract — `latest.json` (Phase-4 output → the page reads it)
+```jsonc
+{
+  "meta": { "as_of", "generated_at", "n_sims": 50000, "seed": 2026,
+            "source": {"structure":"openfootball@<sha>", "results":"espn"},
+            "n_played", "matches_reflected": [ {"date","group","home","hg","ag","away"} ] },
+  "title_odds": [ {"team","group","title","title_delta",
+                   "reach": {"R32","R16","QF","SF","F"}, "status":"alive|through|eliminated"} ],
+  "groups": [ {"group","table":[{"team","pld","pts","gd","gf","status"}]} ]
+}
+```
+- `title_delta` = title prob now − title prob in the previous committed run (matched by team).
+- `status`: **through** (P=1) / **eliminated** (P=0) / **alive** — from the §19.5 live-state logic.
+
+### 20.3 The page shows (your requirements)
+- **Title-win probability per team** (sorted); **how each MOVED** since the last run
+  (`title_delta`, ▲/▼); **group standings with live results folded in**; **mathematically
+  through/eliminated** flagged; a prominent **"last updated" + which matches are reflected**.
+- **Point-in-time on the page too:** renders only the `as_of` state (played fixed, future
+  simulated) — no future leakage in the display.
+
+### 20.4 Discipline (unchanged)
+- **Fail loud in the scheduled job:** any pipeline error → job fails, **nothing published**
+  (no stale/garbage page). **Reproducible:** pinned by `(as_of, snapshot, configs, n_sims,
+  seed)` in `meta`. **Market-blind:** only our own odds; no betting data.
+
+### 20.5 Decisions (D5 — mostly resolved; confirm)
+- **Cadence:** cron **every few hours** (e.g. every 3h) + manual. *(Confirm interval.)*
+- **Page tech:** **plain HTML + vanilla JS** reading `latest.json` (no build step). *(Confirm.)*
+- **"Who moved" threshold:** flag |title delta| ≥ ~0.5pp. *(Confirm.)*
+- **Pages source:** serve from `docs/` on the default branch. *(Owner enables Pages.)*
+
+### 20.6 Tests (gate Phase 5)
+- **Delta computation** vs two canned run snapshots (rising/falling/new/eliminated).
+- **JSON schema** validation of `latest.json` (keys, probs ∈ [0,1], status enum).
+- **Payload build** from a fixed sim result + standings reproduces an expected `latest.json`
+  (deterministic, offline).
+- **Page smoke:** `app.js` references exactly the schema fields (drift guard).
+- **Workflow dry-run:** builds the payload offline without publishing.
+
+### 20.7 Deliverables
+- `src/wcpredictor/report/` — `build_payload` (JSON from Phase-4 sim + group standings +
+  run-over-run deltas), `write_latest` + history append. `make report`.
+- `docs/` — `index.html`, `app.js`, `style.css` + `docs/data/`.
+- `.github/workflows/dashboard.yml` — scheduled + manual; runs pipeline, writes/commits JSON,
+  fails loud (supersedes the ad-hoc `smoketest.yml` runner for the live path).
+- The §20.6 suite green.
+
+---
+
+_Status: **D0–D4 resolved; Phases 1–4 BUILT, VERIFIED & MERGED** (72 tests; live title odds
+sane after the host-edge fix — Argentina/Spain co-favorites, hosts in a defensible band, no
+rating inversion). **Phase 5 dashboard sub-plan (§20) drafted — awaiting sign-off** (D5:
+cadence, page tech, move threshold; + owner enables GitHub Pages). **No Phase-5 code until §20
+is signed off.** Final phase._
