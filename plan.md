@@ -412,14 +412,35 @@ to the owner** before building anything else (§12.1).
 standings, and discipline, pulled from API-Football, that downstream phases consume. No
 ratings/model/sim logic here. Plan-first: this sub-plan is signed off before code.
 
+### 12.0 API target (pinned)
+- **Provider:** API-Football, **direct** (api-sports.io) — **not** the RapidAPI variant.
+- **Base URL:** `https://v3.football.api-sports.io`
+- **Auth header:** `x-apisports-key: <key>`
+- **Secret name:** `API_FOOTBALL_KEY`
+- **Config-driven client:** base URL + auth style (header name + value template) come from
+  config, so swapping to the RapidAPI variant later
+  (`https://api-football-v1.p.rapidapi.com/v3`, headers `x-rapidapi-key` +
+  `x-rapidapi-host`, secret `RAPIDAPI_KEY`) is a **config change, not a rewrite**.
+
 ### 12.1 Live verification gate (do this FIRST, fail loudly)
-- With a free API-Football key (via env var; see 12.5), hit the WC-2026 league/season and
-  confirm the response actually contains: the **12 groups × 4 teams**, the **fixtures**
-  (with `kickoff_utc` + `status`), **standings**, and **card events** for a finished match.
+- **Prerequisites (environment):** a valid `API_FOOTBALL_KEY` in the env, **and**
+  `v3.football.api-sports.io` added to the session's **network egress allowlist** (the
+  default policy blocks it — verified 2026-06-14, see note below).
+- With the key, hit the WC-2026 league/season and confirm the response actually contains:
+  the **12 groups × 4 teams**, the **fixtures** (with `kickoff_utc` + `status`),
+  **standings**, **card events** for a finished match, and the **already-played group
+  results with their real scores**.
 - A tiny `make verify-source` (Phase 1) target prints what was found and **raises** if any
   required field is absent. **If WC-2026 isn't fully covered, STOP and escalate** (try
   football-data.org for the non-discipline parts and report the gap) — do **not** proceed to
   build the store on an unverified source.
+
+> **Smoke-test attempted 2026-06-14 — BLOCKED (environment, not the API):** no
+> `API_FOOTBALL_KEY` was present, and outbound requests to `v3.football.api-sports.io` were
+> rejected by the network egress policy (`403 host_not_allowed`). This is **not** evidence
+> about WC-2026 coverage — it could not be tested. To unblock: provide the key and allowlist
+> the host (see https://code.claude.com/docs/en/claude-code-on-the-web). Re-run the gate
+> before any further Phase-1 build.
 
 ### 12.2 Data model (normalized, internal)
 - `Team`: stable internal `team_id`, canonical name, group, FIFA-ranking snapshot ref.
