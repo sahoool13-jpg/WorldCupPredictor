@@ -70,6 +70,19 @@ prior state.
   1951.20 (879 matches) genuinely land ~0.035 apart; the 1-decimal display can make distinct
   values look identical (England 1985.06 ≠ Portugal 1984.50).
 
+## Known calibration choice — goal-model rating scale (Phase 3)
+
+The goal model's λ is driven by the Phase-2 **blended** rating (D3-input), but β was calibrated
+on historical **Elo** gaps (no blended-rating history exists). The z-blend with a fixed 0.2
+form weight means that at **cold start** (all teams 0 games, form variance = 0) the rating
+spread is ~**0.8× the prior** — slightly under-weighting favorites early. **This is tied to
+games-played `n` and de-compresses as teams play** (NOT a permanent 0.8×): `w_live = n/(n+
+k_shrink)` climbs 0→1 so `elo*` tracks the wider-spread live Elo, and form gains real variance.
+Empirically the gap/prior-gap ratio goes **0.80 at n=0 → ~1.16–1.34 after 3 games** (can
+overshoot for in-form teams), so it's effectively gone by the knockouts. Accepted as honest
+early-tournament humility; a clean fix (drive λ off `elo*`, or a scale correction) exists if we
+later want favorites weighted harder.
+
 ## Current status
 
 - **D0 approved** — phase list + 2026 format spec.
