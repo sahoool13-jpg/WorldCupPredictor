@@ -1,81 +1,49 @@
-name: WC-2026 source smoke test (live results overlay)
+name: WC-2026 data layer (live fetch on Actions)
 
-# Verification gate for the data-source decision (plan.md §13/§15). Probes candidate FREE,
-# fresh, non-scraping results sources on Actions (the sandbox egress blocks them). The litmus
-# test: does the source already have the real result that openfootball is missing —
-# Australia 2-0 Turkey (Group D, 2026-06-13)? Prints findings to the run log. Manual trigger.
-#
-# (Earlier this workflow probed API-Football; that free tier was proven season-gated for 2026,
-#  so it's dropped here. History in plan.md §11.)
+# Runs the real Phase-1 data layer on Actions (open internet; the sandbox egress blocks
+# ESPN). Proves the two-source pipeline end-to-end: openfootball static structure (12x4,
+# 104 fixtures) + ESPN live-results overlay, reconciled point-in-time — showing the
+# already-played matches with real scores, incl. the Australia 2-0 Turkey result that
+# openfootball was missing. Manual trigger. (plan.md §12.1 / §15)
 
 on:
   workflow_dispatch:
     inputs:
-      date_prev:
-        description: "Earlier date to check (YYYYMMDD)"
-        default: "20260613"
+      as_of:
+        description: "Point-in-time instant (ISO, UTC)"
+        default: "2026-06-15T00:00:00Z"
         required: true
-      date_curr:
-        description: "Current date to check (YYYYMMDD)"
-        default: "20260614"
+      espn_start:
+        description: "ESPN overlay window start (YYYY-MM-DD)"
+        default: "2026-06-11"
+        required: true
+      espn_end:
+        description: "ESPN overlay window end (YYYY-MM-DD)"
+        default: "2026-06-15"
         required: true
 
 permissions:
   contents: read
 
 jobs:
-  overlay:
+  data-layer:
     runs-on: ubuntu-latest
-    env:
-      DPREV: ${{ github.event.inputs.date_prev }}
-      DCURR: ${{ github.event.inputs.date_curr }}
-      FOOTBALL_DATA_TOKEN: ${{ secrets.FOOTBALL_DATA_TOKEN }}
     steps:
-      - name: Probe candidate live-results sources
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install (editable, stdlib-only deps) + pytest
         run: |
-          set +e +o pipefail
-          iso () { echo "${1:0:4}-${1:4:2}-${1:6:2}"; }
-          hit_au_tr () { grep -iE 'austral|turk|türk' && echo "   ^ Australia/Turkey row(s) above" || echo "   (no Australia/Turkey row found)"; }
-
-          echo "##################################################"
-          echo "# Litmus: which source already shows Australia 2-0 Turkey (2026-06-13)?"
-          echo "##################################################"
-
-          echo "=================================================="
-          echo "(A) ESPN site API (no key) — soccer/fifa.world scoreboard"
-          for d in "$DPREV" "$DCURR"; do
-            echo "--- ESPN dates=$d ---"
-            curl -sS -m 25 "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?dates=$d" -o espn.json
-            echo "http/json ok? $(jq -e '.events' espn.json >/dev/null 2>&1 && echo yes || echo NO)"
-            jq -r '.events[]? | "  [\(.status.type.shortDetail)] " + ([.competitions[0].competitors[] | "\(.team.displayName) \(.score)"] | join(" vs ")) ' espn.json 2>/dev/null
-          done
-          echo "ESPN Australia/Turkey check (both dates):"
-          { curl -sS -m 25 "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?dates=$DPREV"; \
-            curl -sS -m 25 "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?dates=$DCURR"; } \
-            | jq -r '.events[]? | "  [\(.status.type.shortDetail)] " + ([.competitions[0].competitors[] | "\(.team.displayName) \(.score)"] | join(" vs "))' 2>/dev/null | hit_au_tr
-
-          echo "=================================================="
-          echo "(B) TheSportsDB (free key '3') — eventsday, filtered to World Cup"
-          for d in "$(iso "$DPREV")" "$(iso "$DCURR")"; do
-            echo "--- TheSportsDB d=$d ---"
-            curl -sS -m 25 "https://www.thesportsdb.com/api/v1/json/3/eventsday.php?d=$d&s=Soccer" -o tsdb.json
-            jq -r '(.events // [])[] | select((.strLeague // "") | test("World Cup"; "i")) | select((.strLeague // "") | test("Qual"; "i") | not) | "  [\(.strStatus // "?")] \(.strHomeTeam) \(.intHomeScore)-\(.intAwayScore) \(.strAwayTeam)  {\(.strLeague)}"' tsdb.json 2>/dev/null
-          done
-
-          echo "=================================================="
-          echo "(C) football-data.org v4 (needs FOOTBALL_DATA_TOKEN secret)"
-          if [ -n "${FOOTBALL_DATA_TOKEN:-}" ]; then
-            curl -sS -m 25 -H "X-Auth-Token: $FOOTBALL_DATA_TOKEN" \
-              "https://api.football-data.org/v4/competitions/WC/matches?dateFrom=$(iso "$DPREV")&dateTo=$(iso "$DCURR")" -o fd.json
-            echo "errorCode/message (if any): $(jq -c '{errorCode, message}' fd.json 2>/dev/null)"
-            echo "matches:"
-            jq -r '(.matches // [])[] | "  [\(.status)] \(.homeTeam.name) \(.score.fullTime.home)-\(.score.fullTime.away) \(.awayTeam.name)  (\(.group // .stage))"' fd.json 2>/dev/null
-            echo "football-data Australia/Turkey check:"
-            jq -r '(.matches // [])[] | "\(.homeTeam.name) \(.awayTeam.name) \(.score.fullTime.home)-\(.score.fullTime.away)"' fd.json 2>/dev/null | hit_au_tr
-          else
-            echo "  SKIPPED — no FOOTBALL_DATA_TOKEN secret. (Add a free token to include this candidate.)"
-          fi
-
-          echo "=================================================="
-          echo "Done. Compare freshness/coverage of (A)-(C) above; the winner becomes the"
-          echo "live-results overlay on top of openfootball's static structure (plan.md §15)."
+          python -m pip install --quiet pytest
+          python -m pip install --quiet -e .
+      - name: Unit tests (offline gate)
+        run: pytest -q
+      - name: Verify openfootball structure
+        run: python -m wcpredictor.data.pipeline --verify
+      - name: Live two-source fetch + reconcile (point-in-time)
+        run: |
+          python -m wcpredictor.data.pipeline \
+            --as-of "${{ github.event.inputs.as_of }}" \
+            --espn-start "${{ github.event.inputs.espn_start }}" \
+            --espn-end "${{ github.event.inputs.espn_end }}"

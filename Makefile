@@ -32,16 +32,20 @@ lint: ## Lint (ruff if available, else skip cleanly)
 
 .PHONY: test
 test: ## Run the test suite (tests gate the build — see plan.md §7)
-	@if [ -d tests ] && ls tests/test_*.py >/dev/null 2>&1; then \
-		$(PY) -m pytest -q ; \
+	@if command -v pytest >/dev/null 2>&1; then \
+		pytest -q ; \
 	else \
-		echo "[test] no tests yet (Phase 0). Tests are added per phase and must pass before merge."; \
+		$(PY) -m pytest -q ; \
 	fi
 
-# ---- pipeline (placeholders until their phase ships) ------------------------
+# ---- pipeline ---------------------------------------------------------------
+.PHONY: verify-source
+verify-source: ## (Phase 1) Verify openfootball structure invariants (12x4, 104 fixtures)
+	@PYTHONPATH=src $(PY) -m wcpredictor.data.pipeline --verify
+
 .PHONY: fetch
-fetch: ## (Phase 1) Pull fixtures/results/standings into the local store
-	@echo "[fetch] Phase 1 not yet implemented. See plan.md §6 (D1: pick & verify free API)." >&2; exit 2
+fetch: ## (Phase 1) Fetch openfootball + ESPN overlay, reconcile at now, print summary
+	@PYTHONPATH=src $(PY) -m wcpredictor.data.pipeline $(ARGS)
 
 .PHONY: rate
 rate: ## (Phase 2) Compute team strength ratings from completed matches only

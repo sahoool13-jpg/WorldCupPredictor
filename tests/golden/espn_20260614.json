@@ -1,0 +1,29 @@
+{
+  "_note": "Australia-Türkiye sits in the 06-14 ESPN bucket while openfootball files it under 06-13 (kickoff 21:00 UTC-7) — exercises the cross-bucket (matchday + team-pair) reconciliation (R1). Uses ESPN spelling 'Türkiye' to exercise the alias map.",
+  "events": [
+    {
+      "id": "1004",
+      "date": "2026-06-14T04:00Z",
+      "name": "Australia vs Türkiye",
+      "status": {"type": {"state": "post", "completed": true, "shortDetail": "FT"}},
+      "competitions": [
+        {"competitors": [
+          {"homeAway": "home", "team": {"displayName": "Australia"}, "score": "2"},
+          {"homeAway": "away", "team": {"displayName": "Türkiye"}, "score": "0"}
+        ]}
+      ]
+    },
+    {
+      "id": "1005",
+      "date": "2026-06-14T17:00Z",
+      "name": "Germany vs Curaçao",
+      "status": {"type": {"state": "pre", "completed": false, "shortDetail": "Scheduled"}},
+      "competitions": [
+        {"competitors": [
+          {"homeAway": "home", "team": {"displayName": "Germany"}, "score": null},
+          {"homeAway": "away", "team": {"displayName": "Curaçao"}, "score": null}
+        ]}
+      ]
+    }
+  ]
+}

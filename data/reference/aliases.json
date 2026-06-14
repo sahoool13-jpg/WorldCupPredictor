@@ -1,0 +1,19 @@
+{
+  "_comment": "Variant team-name -> canonical (openfootball) name. Canonical names come from data/reference/groups.json. Diacritics/case/&/'and' are folded automatically by the slug normalizer; only genuinely different spellings need an entry here. Bias: an unmapped name RAISES (fail loud) rather than being guessed.",
+  "_source": "hand-curated for ESPN site API <-> openfootball reconciliation",
+  "aliases": {
+    "Turkiye": "Turkey",
+    "Türkiye": "Turkey",
+    "Czechia": "Czech Republic",
+    "Cabo Verde": "Cape Verde",
+    "Korea Republic": "South Korea",
+    "Republic of Korea": "South Korea",
+    "United States": "USA",
+    "United States of America": "USA",
+    "Cote d'Ivoire": "Ivory Coast",
+    "Côte d'Ivoire": "Ivory Coast",
+    "Congo DR": "DR Congo",
+    "Democratic Republic of the Congo": "DR Congo",
+    "Bosnia and Herzegovina": "Bosnia & Herzegovina"
+  }
+}
