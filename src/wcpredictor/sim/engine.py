@@ -16,6 +16,7 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
+from ..data.errors import DataError
 from ..data.model import Match, Status, slugify
 from ..model.dixon_coles import scoreline_matrix
 from ..model.etp import knockout_home_advance_prob, penalty_home_prob
@@ -62,12 +63,17 @@ def _build_cdf(home: str, away: str, ratings, gparams, gconf, gh: float, ga: flo
 
 
 class Sim:
-    def __init__(self, matches, ratings, gparams, gconf, hosts, ko_specs, groups=None):
+    def __init__(self, matches, ratings, gparams, gconf, hosts, ko_specs, groups=None,
+                 ko_results=None):
         self.groups = groups or _groups()
         self.matches = list(matches)
         self.played, remaining = partition(matches, self.groups)
         self.ratings, self.gparams, self.gconf, self.hosts = ratings, gparams, gconf, hosts
         self.ko_specs = ko_specs
+        # completed knockout ties: real, fixed advancers bound to bracket slots by team-pair
+        # (plan.md §21). Pinned, never re-simulated.
+        self.ko_results = list(ko_results or [])
+        self.pinned = {kr.pair: kr.winner for kr in self.ko_results}
         # host advantage: a tapered log-lambda boost for host nations only (plan.md host fix)
         self.host_boost = gconf.get("host_log_boost", 0.0)
         self.host_taper = gconf.get("host_taper", {})
@@ -77,6 +83,7 @@ class Sim:
                                                 self._gamma(h, gt), self._gamma(a, gt)))
                               for (h, a) in fixtures]
                           for g, fixtures in remaining.items()}
+        self._validate_pins()
 
     def _gamma(self, team: str, taper: float) -> float:
         return self.host_boost * taper if team in self.hosts else 0.0
@@ -109,13 +116,49 @@ class Sim:
                            "gd": s[t3]["gd"], "gf": s[t3]["gf"]})
         return gr, thirds
 
-    def once(self, rng):
+    def _resolve_bracket(self, rng):
+        """One full bracket resolution from the current real state: group sim + thirds + Annex C
+        + the knockout tree, with completed KO ties pinned to their real advancers."""
         gr, thirds = self._group_results(rng)
         qualified = standings.rank_thirds(thirds, self.ratings, rng)[:8]
         assign = assign_thirds([d["group"] for d in qualified])
-        out = bracket_mod.simulate(gr, assign, self.ko_specs,
-                                   lambda a, b, rnd: self._winner(rng, a, b, rnd))
-        return out["reach"]
+        return bracket_mod.simulate(gr, assign, self.ko_specs,
+                                    lambda a, b, rnd: self._winner(rng, a, b, rnd),
+                                    pinned=self.pinned)
+
+    def once(self, rng):
+        return self._resolve_bracket(rng)["reach"]
+
+    def _groups_complete(self) -> bool:
+        return all(not fixtures for fixtures in self.remaining.values())
+
+    def _validate_pins(self):
+        """Strict (D6b): a real knockout result must bind to an actual bracket slot. Pins are
+        only meaningful once the group stage is decided (the bracket pairings are fixed); a
+        pinned pair that never appears as a slot is drift/unreachable -> raise."""
+        if not self.pinned:
+            return
+        if not self._groups_complete():
+            raise DataError(
+                "knockout results supplied before the group stage is complete: the bracket "
+                "pairings are not yet fixed, so a real KO tie cannot be bound to a slot."
+            )
+        out = self._resolve_bracket(random.Random(0))
+        missing = set(self.pinned) - out["pinned_used"]
+        if missing:
+            pairs = [tuple(sorted(p)) for p in missing]
+            raise DataError(
+                f"knockout result(s) {pairs} did not match any bracket slot for the current "
+                f"qualified field — unreachable pairing or stale data."
+            )
+
+    def bracket_state(self):
+        """The realized knockout tree from the current real state (deterministic once the group
+        stage is complete): per-slot round, the two teams, the advancer, and whether that tie is
+        a real completed result. Empty until the bracket is determined. For the dashboard."""
+        if not self._groups_complete():
+            return []
+        return self._resolve_bracket(random.Random(0))["slots"]
 
     def run(self, n: int, seed: int):
         rng = random.Random(seed)
@@ -138,24 +181,33 @@ def build_sim(as_of: datetime, live: bool, espn_start=None, espn_end=None):
     from ..ratings.prior import load_prior
     from ..model.calibrate import load_params
 
+    from ..data.knockout import extract_knockouts
+
     reg = TeamRegistry.load()
     groups_obj, matches_obj = of_mod.fetch_raw(http.get_json)
     _, fixtures = of_mod.load_structure(groups_obj, matches_obj, reg)
+    ko_results = []
     if live:
         espn_cfg = DEFAULT_ESPN
         if espn_start:
             espn_cfg = dataclasses.replace(espn_cfg, window_start=espn_start)
         if espn_end:
             espn_cfg = dataclasses.replace(espn_cfg, window_end=espn_end)
-        matches = pipeline.run(as_of=as_of, espn_cfg=espn_cfg)
+        overlay = pipeline.fetch_overlay(http.get_json, reg, espn_cfg)
+        group_overlay, ko_overlay = pipeline.split_overlay(fixtures, overlay)
+        matches = pipeline.reconcile(fixtures, group_overlay, as_of)
+        group_pairs = {f.pair for f in fixtures if f.group is not None and not f.is_placeholder}
+        ko_results = extract_knockouts(group_pairs, ko_overlay, as_of)
     else:
         matches = _matches_from_openfootball(fixtures, as_of)
     rconf = load_rconf()
+    # ratings learn ONLY from played GROUP matches (D6a: frozen post-group; KO re-seeds the
+    # bracket, not Elo). compute_ratings already keys on m.group, so KO matches don't feed it.
     ratings = {t: d.rating for t, d in compute_ratings(matches, as_of, load_prior(), rconf).items()}
     gparams = load_params()
     gconf = json.loads((_ROOT / "configs" / "goal_model.json").read_text())
     specs = bracket_mod.parse_ko(matches_obj)
-    return Sim(matches, ratings, gparams, gconf, set(rconf["hosts"]), specs)
+    return Sim(matches, ratings, gparams, gconf, set(rconf["hosts"]), specs, ko_results=ko_results)
 
 
 def _matches_from_openfootball(fixtures, as_of):

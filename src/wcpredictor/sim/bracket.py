@@ -3,7 +3,7 @@
 """
 from __future__ import annotations
 
-from typing import Callable, Dict, List
+from typing import Callable, Dict, List, Optional
 
 from ..data.errors import DataError
 
@@ -44,19 +44,40 @@ def _resolve(ref: str, sibling: str, group_results: Dict[str, dict],
 
 
 def simulate(group_results: Dict[str, dict], assign: Dict[str, str], specs: List[dict],
-             sample_winner: Callable[[str, str, str], str]) -> Dict[str, object]:
-    """Play the bracket. Returns {champion, reach: {team: set(rounds)}}."""
+             sample_winner: Callable[[str, str, str], str],
+             pinned: Optional[Dict[frozenset, str]] = None) -> Dict[str, object]:
+    """Play the bracket. Returns {champion, reach: {team: set(rounds)}, slots:[...], pinned_used}.
+
+    ``pinned`` maps a real (unordered) team-pair to the team that **actually advanced** in a
+    completed knockout tie. When both teams of a slot match a pinned pair, the real advancer is
+    used instead of sampling — completed knockout ties are fixed, never re-simulated (§21). The
+    advancer must be one of the two teams or we raise (drift). ``pinned_used`` reports which
+    pinned pairs were realized, so the caller can fail loud if a real result never hit a slot.
+    """
+    pinned = pinned or {}
     winners: Dict[int, str] = {}
     reach: Dict[str, set] = {}
+    slots: List[dict] = []
+    pinned_used: set = set()
     final_num = None
     for sp in specs:
         t1 = _resolve(sp["ref1"], sp["ref2"], group_results, assign, winners)
         t2 = _resolve(sp["ref2"], sp["ref1"], group_results, assign, winners)
         reach.setdefault(t1, set()).add(sp["round"])
         reach.setdefault(t2, set()).add(sp["round"])
-        winners[sp["num"]] = sample_winner(t1, t2, sp["round"])
+        pair = frozenset((t1, t2))
+        if pair in pinned:
+            w = pinned[pair]
+            if w not in (t1, t2):
+                raise DataError(f"pinned advancer {w!r} not in slot {sp['num']} ({t1} v {t2})")
+            pinned_used.add(pair)
+        else:
+            w = sample_winner(t1, t2, sp["round"])
+        winners[sp["num"]] = w
+        slots.append({"num": sp["num"], "round": sp["round"], "t1": t1, "t2": t2,
+                      "winner": w, "pinned": pair in pinned})
         if sp["round"] == "F":
             final_num = sp["num"]
     champion = winners[final_num]
     reach.setdefault(champion, set()).add("title")
-    return {"champion": champion, "reach": reach}
+    return {"champion": champion, "reach": reach, "slots": slots, "pinned_used": pinned_used}

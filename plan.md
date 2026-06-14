@@ -363,8 +363,8 @@ hosting** — static files + scheduled rebuild.
 | **D3** | Goal-model: ratings→λ mapping (D3-map), calibration source/method (D3-calib), ET+penalty model (D3-etp), which Phase-2 number drives λ (D3-input) | Phase 3 | §18 drafted: analytic ratings→λ, calibrated on martj42 goals (Poisson reg + DC ρ MLE), committed params; ET scaled-Poisson + logistic penalties; driven by blended rating. **Awaiting sign-off.** |
 | **D4** | N sims, seeding/parallelism, lots handling, FIFA-ranking snapshot source (§19.7) | Phase 4 | §19 drafted: 50k sims, seeded RNG, lots=seeded-random, committed FIFA-ranking snapshot. **Awaiting sign-off.** Blocker: verbatim Annex C 495-table not fetchable here (§19.1). |
 | **D5** | **Live web dashboard:** schedule cadence, page tech, JSON schema, "who moved" threshold | Phase 5 | §20 drafted: static GitHub Pages from `docs/` + scheduled Action committing `latest.json`; plain HTML+JS; cron ~3h; move flag ≥0.5pp. **Awaiting sign-off** (+ owner enables Pages). |
-| **D6** | **Knockout-stage readiness:** do KO results update Elo (D6a)? slot-binding strictness (D6b)? dashboard-bracket scope (D6c)? | Phase 6 | §21 drafted: ingest KO finals from ESPN overlay, KO-aware reconcile, pin real KO ties in the sim, additive bracket JSON; live-state contract extended to the bracket. *Leaning: ratings frozen post-group, strict reachability, JSON-now/visual-next.* **Awaiting sign-off.** KO starts 28 Jun. |
-| **D7** | **"Why this %?" explainability:** all 48 vs top-N (D7a)? goal-model detail depth (D7b)? | Phase 7 | §22 drafted: additive read-only `why` block (rating breakdown + λ + host edge) in `latest.json`, tap-to-expand explainer, optional `make explain`. No model change. *Leaning: all 48, λ-only.* **Awaiting sign-off.** |
+| **D6** | **Knockout-stage readiness:** do KO results update Elo (D6a)? slot-binding strictness (D6b)? dashboard-bracket scope (D6c)? | Phase 6 | ✅ **RESOLVED** 2026-06-14 (owner: "do what you think is best") → **D6a ratings frozen post-group** (KO results re-seed the bracket, not Elo); **D6b strict** (a pinned KO pair must appear as a real bracket slot or we **raise**); **D6c JSON bracket now, visual bracket next.** Built per §21. |
+| **D7** | **"Why this %?" explainability:** all 48 vs top-N (D7a)? goal-model detail depth (D7b)? | Phase 7 | §22 drafted: additive read-only `why` block (rating breakdown + λ + host edge) in `latest.json`, tap-to-expand explainer, optional `make explain`. No model change. ✅ **D7 RESOLVED** 2026-06-14 → **all 48 teams, λ-only.** Build after Phase 6. |
 
 > **Language/stack assumption (flag if you disagree):** Python + `pytest`, `numpy`/`pandas`
 > for the sim, `requests` for the API. Chosen for fast Monte Carlo + transparent ratings.
@@ -1125,6 +1125,31 @@ Mirror §4.1 (a)–(d) for the bracket, tested offline with canned finals:
   "Current status" + this plan updated. **Strictly additive** — group-stage behaviour and the
   existing 81 tests unchanged.
 
+### 21.7 As built (2026-06-14)
+- **Ingestion** is a clean split, not a reconcile rewrite: `pipeline.split_overlay` routes
+  overlay FINALs whose pair isn't a group fixture to the **knockout stream**; group
+  reconciliation (R1–R4) is untouched. `data/knockout.extract_knockouts` is point-in-time
+  (future KO final → `FutureResultLeak`) and trusts ESPN's per-competitor `winner` flag, with
+  a decisive-score fallback and a loud `UndecidedKnockout` when a tie is level with no flag (the
+  penalties case). `OverlayResult` gained `winner_id`; new `KnockoutResult` record.
+- **Pinning** lives in the bracket: `bracket.simulate(..., pinned)` uses the real advancer for
+  any slot whose two teams match a completed tie (and raises if the advancer isn't one of them);
+  it also returns the realized `slots` + `pinned_used`. `Sim` validates **strictly** at build
+  (D6b): pins require a complete group stage (bracket pairings fixed) and every pinned pair must
+  bind to a real slot, else `DataError`. `Sim.bracket_state()` exposes the deterministic tree.
+- **D6a** honoured for free: `compute_ratings` already keys on `m.group`, so the KO stream never
+  feeds Elo — ratings are frozen post-group with no code change.
+- **Payload**: `meta.n_ko_played`, an additive top-level `bracket` (per-slot round/teams/winner/
+  played/result), and KO finals merged into `recent_results` (same shape — so they show in the
+  ticker now; **visual bracket deferred per D6c**).
+- **Known limitation (recorded):** a knockout tie between two *same-group* teams is classified
+  by pair alone and would be skipped — impossible at R32 (Annex C no-rematch) and only a deep,
+  rare case later; switch to round-aware classification if the overlay exposes a round field.
+- **Tests:** `tests/test_knockout.py` (12) — ingestion guards, bracket pinning, the extended
+  live-state contract (a)/(c)/(d), strict-binding raises, payload surfacing. **93 green.**
+  Live ESPN KO field shape still to be confirmed on Actions when R32 starts (egress wall) —
+  the parser fails loud if a field differs.
+
 ---
 
 ## 22. Phase 7 — "Why this %?" explainability (detailed sub-plan, for sign-off)
@@ -1203,9 +1228,10 @@ redundant run. Tests gate the build (rule 6); this just enforces it earlier and 
 
 ---
 
-_Status (post-Phase-5): **Project core complete & live** (Phases 1–5 merged; 81 tests; live
-dashboard auto-refreshing). **CI-on-PRs** added (§23, no sign-off needed). **Phase 6
-(knockout-readiness, §21) and Phase 7 (explainability, §22) sub-plans drafted — awaiting
-sign-off** (D6: ratings-update / slot-strictness / bracket scope; D7: coverage / goal detail).
-**No Phase-6 or Phase-7 engine code until §21/§22 are signed off** (plan-first, rule 1).
-Knockouts start **28 Jun 2026** — Phase 6 should land before then._
+_Status (post-Phase-5): **Project core complete & live** (Phases 1–5 merged; live dashboard
+auto-refreshing). **CI-on-PRs** added (§23). **D6/D7 RESOLVED** 2026-06-14 (owner: "do what you
+think is best") → D6a ratings frozen post-group, D6b strict slot-binding, D6c JSON-bracket-now/
+visual-next; D7 all-48/λ-only. **Phase 6 (knockout-readiness, §21) BUILT** — KO finals ingested
+from the ESPN overlay, pinned as fixed advancers in the bracket, live-state contract extended
+(a)–(d), additive `bracket` block + KO finals in the ticker; 93 tests green. **Phase 7
+(explainability, §22) next.** Knockouts start **28 Jun 2026**._

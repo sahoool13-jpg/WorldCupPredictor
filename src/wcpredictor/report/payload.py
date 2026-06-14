@@ -72,21 +72,53 @@ def build_payload(sim, probs, *, n_sims: int, seed: int, as_of: datetime,
     reflected = [{"date": m.kickoff_utc.date().isoformat(), "group": m.group,
                   "home": m.home, "hg": m.home_goals, "away": m.away, "ag": m.away_goals}
                  for m in by_kickoff]
-    # last 5 completed matches, most-recent first (point-in-time: finals are FINAL & kickoff<=as_of)
-    recent_results = [{"date": m.kickoff_utc.date().isoformat(),
-                       "home": m.home, "away": m.away,
-                       "home_goals": m.home_goals, "away_goals": m.away_goals}
-                      for m in reversed(by_kickoff[-5:])]
+
+    # the live knockout tree + completed KO ties (plan.md §21). Empty until the bracket is
+    # determined (group stage complete). Completed ties carry their real, fixed result.
+    bracket = _bracket_block(sim)
+
+    # recent results ticker: group + knockout finals, newest first, last 5 (point-in-time —
+    # both streams are FINAL with kickoff <= as_of).
+    played = [(m.kickoff_utc, m.home, m.away, m.home_goals, m.away_goals) for m in finals]
+    played += [(k.kickoff_utc, k.home, k.away, k.home_goals, k.away_goals) for k in sim.ko_results]
+    played.sort(key=lambda x: x[0])
+    recent_results = [{"date": ko.date().isoformat(), "home": h, "away": a,
+                       "home_goals": hg, "away_goals": ag}
+                      for (ko, h, a, hg, ag) in reversed(played[-5:])]
 
     return {
         "meta": {
             "as_of": as_of.isoformat(),
             "generated_at": datetime.now(timezone.utc).isoformat(),
             "n_sims": n_sims, "seed": seed, "source": source,
-            "n_played": len(finals), "matches_reflected": reflected,
+            "n_played": len(finals), "n_ko_played": len(sim.ko_results),
+            "matches_reflected": reflected,
         },
         "title_odds": title_odds,
         "movers": _movers(title_odds),
         "recent_results": recent_results,
         "groups": groups,
+        "bracket": bracket,
     }
+
+
+def _bracket_block(sim) -> list:
+    """Per-slot knockout tree from the sim's realized bracket (deterministic once groups are
+    complete): round, the two teams, the advancer, and whether the tie is a real completed
+    result. ``result`` carries the displayed scoreline for pinned (real) ties, else null."""
+    slots = sim.bracket_state()
+    if not slots:
+        return []
+    ko_by_pair = {k.pair: k for k in sim.ko_results}
+    out = []
+    for s in slots:
+        kr = ko_by_pair.get(frozenset((s["t1"], s["t2"])))
+        out.append({
+            "round": s["round"], "num": s["num"],
+            "t1": s["t1"], "t2": s["t2"],
+            "winner": s["winner"], "played": bool(s["pinned"]),
+            "result": (None if kr is None else
+                       {"home": kr.home, "away": kr.away,
+                        "home_goals": kr.home_goals, "away_goals": kr.away_goals}),
+        })
+    return out
