@@ -1,113 +1,81 @@
-name: API-Football smoke test (WC-2026 coverage)
+name: WC-2026 source smoke test (live results overlay)
 
-# Verification gate for plan.md §12.1 (D1). Proves — on Actions, where there is open
-# internet and the API_FOOTBALL_KEY secret — that API-Football's free tier actually covers
-# the 2026 World Cup with the data this project needs. NOT Phase 1 engine code: it only
-# prints findings to the run log. Manual trigger only.
+# Verification gate for the data-source decision (plan.md §13/§15). Probes candidate FREE,
+# fresh, non-scraping results sources on Actions (the sandbox egress blocks them). The litmus
+# test: does the source already have the real result that openfootball is missing —
+# Australia 2-0 Turkey (Group D, 2026-06-13)? Prints findings to the run log. Manual trigger.
 #
-# NOTE: workflow_dispatch only registers from the DEFAULT branch, so this file must be on
-# the default branch (main) before the "Run workflow" button/API is available.
+# (Earlier this workflow probed API-Football; that free tier was proven season-gated for 2026,
+#  so it's dropped here. History in plan.md §11.)
 
 on:
   workflow_dispatch:
     inputs:
-      league_id:
-        description: "API-Football league id for the FIFA World Cup (default 1)"
-        default: "1"
+      date_prev:
+        description: "Earlier date to check (YYYYMMDD)"
+        default: "20260613"
         required: true
-      season:
-        description: "Season year (default 2026)"
-        default: "2026"
+      date_curr:
+        description: "Current date to check (YYYYMMDD)"
+        default: "20260614"
         required: true
 
 permissions:
   contents: read
 
 jobs:
-  smoke:
+  overlay:
     runs-on: ubuntu-latest
     env:
-      BASE: https://v3.football.api-sports.io
-      LEAGUE: ${{ github.event.inputs.league_id }}
-      SEASON: ${{ github.event.inputs.season }}
-      API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+      DPREV: ${{ github.event.inputs.date_prev }}
+      DCURR: ${{ github.event.inputs.date_curr }}
+      FOOTBALL_DATA_TOKEN: ${{ secrets.FOOTBALL_DATA_TOKEN }}
     steps:
-      - name: Fail loudly if the secret is missing
+      - name: Probe candidate live-results sources
         run: |
-          if [ -z "${API_FOOTBALL_KEY:-}" ]; then
-            echo "::error::API_FOOTBALL_KEY secret is not set for this repo. Add it in Settings > Secrets and variables > Actions."
-            exit 1
-          fi
-          echo "Key present (value masked by Actions). BASE=$BASE LEAGUE=$LEAGUE SEASON=$SEASON"
-
-      - name: Smoke test — does the free tier cover WC-2026 with the fields we need?
-        run: |
-          # errexit OFF on purpose: this is a diagnostic; we want every probe to run and
-          # print, then decide pass/fail at the end. (GitHub's default shell is `bash -e`.)
           set +e +o pipefail
-          api () { curl -s -H "x-apisports-key: $API_FOOTBALL_KEY" "$BASE$1"; }
+          iso () { echo "${1:0:4}-${1:4:2}-${1:6:2}"; }
+          hit_au_tr () { grep -iE 'austral|turk|türk' && echo "   ^ Australia/Turkey row(s) above" || echo "   (no Australia/Turkey row found)"; }
+
+          echo "##################################################"
+          echo "# Litmus: which source already shows Australia 2-0 Turkey (2026-06-13)?"
+          echo "##################################################"
 
           echo "=================================================="
-          echo "(0) Account / quota"
-          api "/status" | jq '{plan: .response.subscription.plan, active: .response.subscription.active, requests: .response.requests}'
+          echo "(A) ESPN site API (no key) — soccer/fifa.world scoreboard"
+          for d in "$DPREV" "$DCURR"; do
+            echo "--- ESPN dates=$d ---"
+            curl -sS -m 25 "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?dates=$d" -o espn.json
+            echo "http/json ok? $(jq -e '.events' espn.json >/dev/null 2>&1 && echo yes || echo NO)"
+            jq -r '.events[]? | "  [\(.status.type.shortDetail)] " + ([.competitions[0].competitors[] | "\(.team.displayName) \(.score)"] | join(" vs ")) ' espn.json 2>/dev/null
+          done
+          echo "ESPN Australia/Turkey check (both dates):"
+          { curl -sS -m 25 "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?dates=$DPREV"; \
+            curl -sS -m 25 "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?dates=$DCURR"; } \
+            | jq -r '.events[]? | "  [\(.status.type.shortDetail)] " + ([.competitions[0].competitors[] | "\(.team.displayName) \(.score)"] | join(" vs "))' 2>/dev/null | hit_au_tr
 
           echo "=================================================="
-          echo "(1) Discover: which 'World Cup' leagues + seasons can THIS key actually see?"
-          api "/leagues?search=World%20Cup" > L.json
-          echo "api .errors (expect [] or {}):"; jq -c '.errors' L.json
-          echo "results:"; jq '.results' L.json
-          echo "candidates (id | name [type] | country | seasons visible to this key):"
-          jq -r '.response[]? | "  id=\(.league.id) | \(.league.name) [\(.league.type)] | \(.country.name // "World") | seasons=\([.seasons[].year]|join(",") )"' L.json
-
-          # Pick the men's World Cup league that exposes the requested season to this key.
-          WCID=$(jq -r --argjson yr "$SEASON" '[.response[]? | select(.league.name=="World Cup") | select(any(.seasons[].year; .==$yr)) | .league.id] | first // empty' L.json)
-          echo "--> World Cup league id exposing season $SEASON to this key: ${WCID:-<NONE>}"
-
-          if [ -z "$WCID" ]; then
-            echo "::error::This API-Football key/plan does NOT expose a 'World Cup' league with a $SEASON season (see candidates above). Coverage gate NOT passed — STOP before Phase 1."
-            echo "Also showing what id=$LEAGUE returns directly, for completeness:"
-            api "/leagues?id=$LEAGUE&season=$SEASON" | jq '{results, errors}'
-            exit 1
-          fi
-          LEAGUE="$WCID"
-          echo "Using LEAGUE=$LEAGUE SEASON=$SEASON for the remaining probes."
-          api "/leagues?id=$LEAGUE&season=$SEASON" | jq -r '.response[0].seasons[]? | select(.year=='"$SEASON"') | "season coverage: fixtures.events=\(.coverage.fixtures.events) standings=\(.coverage.standings) statistics=\(.coverage.fixtures.statistics_fixtures)"'
+          echo "(B) TheSportsDB (free key '3') — eventsday, filtered to World Cup"
+          for d in "$(iso "$DPREV")" "$(iso "$DCURR")"; do
+            echo "--- TheSportsDB d=$d ---"
+            curl -sS -m 25 "https://www.thesportsdb.com/api/v1/json/3/eventsday.php?d=$d&s=Soccer" -o tsdb.json
+            jq -r '(.events // [])[] | select((.strLeague // "") | test("World Cup"; "i")) | select((.strLeague // "") | test("Qual"; "i") | not) | "  [\(.strStatus // "?")] \(.strHomeTeam) \(.intHomeScore)-\(.intAwayScore) \(.strAwayTeam)  {\(.strLeague)}"' tsdb.json 2>/dev/null
+          done
 
           echo "=================================================="
-          echo "(2) Standings — expect 12 groups x 4 teams"
-          S=$(api "/standings?league=$LEAGUE&season=$SEASON")
-          echo "api .errors:"; echo "$S" | jq -c '.errors'
-          groups=$(echo "$S" | jq '(.response[0].league.standings | length) // 0')
-          echo "groups found: $groups  (expect 12)"
-          echo "group sizes (expect '4' x12):"
-          echo "$S" | jq -r '.response[0].league.standings[]? | "  size \(length)"' | sort | uniq -c
-          echo "--- first group's live table (real banked state) ---"
-          echo "$S" | jq -r '.response[0].league.standings[0]?[]? | "  \(.rank). \(.team.name)  played=\(.all.played) pts=\(.points) GF=\(.all.goals.for) GA=\(.all.goals.against) GD=\(.goalsDiff)"'
-
-          echo "=================================================="
-          echo "(3) Fixtures — sample with kickoff + status"
-          F=$(api "/fixtures?league=$LEAGUE&season=$SEASON")
-          echo "api .errors:"; echo "$F" | jq -c '.errors'
-          total=$(echo "$F" | jq '.response | length')
-          echo "total fixtures returned: $total  (expect 104 for the full WC)"
-          echo "$F" | jq -r '.response[:6][]? | "  \(.fixture.date)  [\(.fixture.status.short)]  \(.teams.home.name) vs \(.teams.away.name)"'
-
-          echo "=================================================="
-          echo "(5) Already-played group results WITH real scorelines"
-          ft=$(echo "$F" | jq '[.response[]? | select(.fixture.status.short=="FT")] | length')
-          echo "finished (FT) matches so far: $ft"
-          echo "$F" | jq -r '[.response[]? | select(.fixture.status.short=="FT")][:20][]? | "  \(.fixture.date[:10])  \(.teams.home.name) \(.goals.home)-\(.goals.away) \(.teams.away.name)"'
-
-          echo "=================================================="
-          echo "(4) Card events for one finished match"
-          fid=$(echo "$F" | jq -r 'first(.response[]? | select(.fixture.status.short=="FT") | .fixture.id) // empty')
-          if [ -n "$fid" ]; then
-            echo "using fixture id=$fid"
-            api "/fixtures/events?fixture=$fid" | jq -r '([.response[]? | select(.type=="Card")] | length) as $c | "  card events: \($c)", (.response[]? | select(.type=="Card") | "  \(.time.elapsed)min  \(.team.name)  \(.player.name)  [\(.detail)]")'
+          echo "(C) football-data.org v4 (needs FOOTBALL_DATA_TOKEN secret)"
+          if [ -n "${FOOTBALL_DATA_TOKEN:-}" ]; then
+            curl -sS -m 25 -H "X-Auth-Token: $FOOTBALL_DATA_TOKEN" \
+              "https://api.football-data.org/v4/competitions/WC/matches?dateFrom=$(iso "$DPREV")&dateTo=$(iso "$DCURR")" -o fd.json
+            echo "errorCode/message (if any): $(jq -c '{errorCode, message}' fd.json 2>/dev/null)"
+            echo "matches:"
+            jq -r '(.matches // [])[] | "  [\(.status)] \(.homeTeam.name) \(.score.fullTime.home)-\(.score.fullTime.away) \(.awayTeam.name)  (\(.group // .stage))"' fd.json 2>/dev/null
+            echo "football-data Australia/Turkey check:"
+            jq -r '(.matches // [])[] | "\(.homeTeam.name) \(.awayTeam.name) \(.score.fullTime.home)-\(.score.fullTime.away)"' fd.json 2>/dev/null | hit_au_tr
           else
-            echo "  No finished match yet — cannot show card events (not a coverage failure if the group stage has not kicked off)."
+            echo "  SKIPPED — no FOOTBALL_DATA_TOKEN secret. (Add a free token to include this candidate.)"
           fi
 
           echo "=================================================="
-          echo "Smoke test complete. Review (0)-(5) above to confirm real WC-2026 coverage,"
-          echo "including discipline (cards) and real played scorelines, before Phase 1."
+          echo "Done. Compare freshness/coverage of (A)-(C) above; the winner becomes the"
+          echo "live-results overlay on top of openfootball's static structure (plan.md §15)."
