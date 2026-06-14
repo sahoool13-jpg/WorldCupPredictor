@@ -132,3 +132,12 @@ later want favorites weighted harder.
 - **3rd-place FIFA-ranking tiebreaker (§3.3 step 5) reuses the martj42 Elo ordering** as the
   proxy (already committed, market-blind) — a minor approximation on the rarely-decisive 5th
   tiebreaker; avoids adding another data source.
+- **Phase 4 = BUILT, VERIFIED & MERGED** (host-edge fix included). Live 50k title odds sane:
+  Argentina 17% / Spain 15% co-favorites; England/Portugal/Germany above the hosts; Mexico 2.9
+  / USA 1.5 / Canada 0.2. 72 tests green incl. the live-state contract.
+- **Phase 5 (live web dashboard) sub-plan** (`plan.md` §20) is **drafted, awaiting sign-off**
+  (D5: cadence, page tech, move threshold; owner must enable GitHub Pages). Architecture:
+  static `docs/` page on **GitHub Pages** + a **scheduled Action** that reruns the pipeline,
+  writes/commits web-friendly `latest.json` (title odds + run-over-run deltas + standings +
+  through/eliminated + "last updated"), fails loud (no stale publish). **Build LAST; no
+  Phase-5 code until §20 signed off.** This is the final phase.
