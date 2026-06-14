@@ -1,7 +1,7 @@
 {
   "meta": {
-    "as_of": "2026-06-14T18:45:09.798241+00:00",
-    "generated_at": "2026-06-14T18:45:23.092777+00:00",
+    "as_of": "2026-06-14T18:59:11.815351+00:00",
+    "generated_at": "2026-06-14T18:59:22.731107+00:00",
     "n_sims": 50000,
     "seed": 2026,
     "source": {
@@ -1558,6 +1558,176 @@
       "away": "Paraguay",
       "home_goals": 4,
       "away_goals": 1
+    }
+  ],
+  "upcoming": [
+    {
+      "date": "2026-06-14",
+      "group": "F",
+      "home": "Netherlands",
+      "away": "Japan",
+      "p_home": 0.3661,
+      "p_draw": 0.3018,
+      "p_away": 0.332,
+      "scoreline": {
+        "home_goals": 1,
+        "away_goals": 1,
+        "p": 0.1402
+      }
+    },
+    {
+      "date": "2026-06-14",
+      "group": "E",
+      "home": "Ivory Coast",
+      "away": "Ecuador",
+      "p_home": 0.2299,
+      "p_draw": 0.2844,
+      "p_away": 0.4858,
+      "scoreline": {
+        "home_goals": 0,
+        "away_goals": 1,
+        "p": 0.1359
+      }
+    },
+    {
+      "date": "2026-06-15",
+      "group": "F",
+      "home": "Sweden",
+      "away": "Tunisia",
+      "p_home": 0.3666,
+      "p_draw": 0.3018,
+      "p_away": 0.3316,
+      "scoreline": {
+        "home_goals": 1,
+        "away_goals": 1,
+        "p": 0.1402
+      }
+    },
+    {
+      "date": "2026-06-15",
+      "group": "H",
+      "home": "Spain",
+      "away": "Cape Verde",
+      "p_home": 0.807,
+      "p_draw": 0.1411,
+      "p_away": 0.0519,
+      "scoreline": {
+        "home_goals": 2,
+        "away_goals": 0,
+        "p": 0.1558
+      }
+    },
+    {
+      "date": "2026-06-15",
+      "group": "G",
+      "home": "Belgium",
+      "away": "Egypt",
+      "p_home": 0.5319,
+      "p_draw": 0.2715,
+      "p_away": 0.1966,
+      "scoreline": {
+        "home_goals": 1,
+        "away_goals": 0,
+        "p": 0.1404
+      }
+    },
+    {
+      "date": "2026-06-15",
+      "group": "H",
+      "home": "Saudi Arabia",
+      "away": "Uruguay",
+      "p_home": 0.1493,
+      "p_draw": 0.2451,
+      "p_away": 0.6056,
+      "scoreline": {
+        "home_goals": 0,
+        "away_goals": 1,
+        "p": 0.1438
+      }
+    },
+    {
+      "date": "2026-06-16",
+      "group": "G",
+      "home": "Iran",
+      "away": "New Zealand",
+      "p_home": 0.5527,
+      "p_draw": 0.2648,
+      "p_away": 0.1825,
+      "scoreline": {
+        "home_goals": 1,
+        "away_goals": 0,
+        "p": 0.1419
+      }
+    },
+    {
+      "date": "2026-06-16",
+      "group": "I",
+      "home": "France",
+      "away": "Senegal",
+      "p_home": 0.5262,
+      "p_draw": 0.2733,
+      "p_away": 0.2005,
+      "scoreline": {
+        "home_goals": 1,
+        "away_goals": 0,
+        "p": 0.14
+      }
+    },
+    {
+      "date": "2026-06-16",
+      "group": "I",
+      "home": "Iraq",
+      "away": "Norway",
+      "p_home": 0.2126,
+      "p_draw": 0.2782,
+      "p_away": 0.5092,
+      "scoreline": {
+        "home_goals": 0,
+        "away_goals": 1,
+        "p": 0.1384
+      }
+    },
+    {
+      "date": "2026-06-17",
+      "group": "J",
+      "home": "Argentina",
+      "away": "Algeria",
+      "p_home": 0.6009,
+      "p_draw": 0.247,
+      "p_away": 0.1522,
+      "scoreline": {
+        "home_goals": 1,
+        "away_goals": 0,
+        "p": 0.1438
+      }
+    },
+    {
+      "date": "2026-06-17",
+      "group": "J",
+      "home": "Austria",
+      "away": "Jordan",
+      "p_home": 0.5029,
+      "p_draw": 0.2799,
+      "p_away": 0.2171,
+      "scoreline": {
+        "home_goals": 1,
+        "away_goals": 0,
+        "p": 0.1378
+      }
+    },
+    {
+      "date": "2026-06-17",
+      "group": "K",
+      "home": "Portugal",
+      "away": "DR Congo",
+      "p_home": 0.6588,
+      "p_draw": 0.2219,
+      "p_away": 0.1193,
+      "scoreline": {
+        "home_goals": 1,
+        "away_goals": 0,
+        "p": 0.143
+      }
     }
   ],
   "groups": [
