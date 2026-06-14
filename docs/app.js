@@ -186,6 +186,46 @@ function renderResults(d) {
   });
 }
 
+function renderUpcoming(d) {
+  const ul = document.getElementById("upcoming");
+  if (!ul) return;
+  ul.innerHTML = "";
+  const ups = Array.isArray(d.upcoming) ? d.upcoming : [];
+  if (!ups.length) {
+    ul.appendChild(el("li", "empty", "No scheduled fixtures ahead — the bracket takes over next."));
+    return;
+  }
+  ups.forEach((m) => {
+    const li = el("li", "uprow");
+    const teams = el("div", "uteams");
+    const hw = el("span", "uteam");
+    const fh = flag(m.home, "miniflag"); if (fh) hw.appendChild(fh);
+    hw.appendChild(document.createTextNode(m.home));
+    const aw = el("span", "uteam away");
+    aw.appendChild(document.createTextNode(m.away));
+    const fa = flag(m.away, "miniflag"); if (fa) aw.appendChild(fa);
+    teams.appendChild(hw); teams.appendChild(el("span", "uvs", "v")); teams.appendChild(aw);
+    li.appendChild(teams);
+
+    const bar = el("div", "ubar");
+    bar.title = `Win ${pct(m.p_home)} · Draw ${pct(m.p_draw)} · Win ${pct(m.p_away)}`;
+    const seg = (v, cls) => { const s = el("span", "useg " + cls);
+      s.style.width = (v * 100).toFixed(1) + "%"; return s; };
+    bar.appendChild(seg(m.p_home, "uh"));
+    bar.appendChild(seg(m.p_draw, "ud"));
+    bar.appendChild(seg(m.p_away, "ua"));
+    li.appendChild(bar);
+
+    const meta = el("div", "umeta");
+    meta.appendChild(el("span", "uprob", pct(m.p_home) + " / " + pct(m.p_draw) + " / " + pct(m.p_away)));
+    const sc = m.scoreline;
+    meta.appendChild(el("span", "uscore", `likeliest ${sc.home_goals}–${sc.away_goals}`));
+    meta.appendChild(el("span", "g", (m.group ? "Grp " + m.group + " · " : "") + m.date));
+    li.appendChild(meta);
+    ul.appendChild(li);
+  });
+}
+
 function renderGroups(groups) {
   const root = document.getElementById("groups");
   root.innerHTML = "";
@@ -228,6 +268,7 @@ async function load() {
       `Source: ${d.meta.source.structure} structure + ${d.meta.source.results} results · seed ${d.meta.seed}.`;
     renderOdds(d.title_odds);
     renderMovers(d);
+    renderUpcoming(d);
     renderGroups(d.groups);
     renderResults(d);
   } catch (e) {

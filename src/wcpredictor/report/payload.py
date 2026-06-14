@@ -12,6 +12,7 @@ from datetime import datetime, timezone
 from typing import Optional
 
 from ..data.model import Status
+from ..model.dixon_coles import outcome_probs, scoreline_matrix, top_scorelines
 from ..model.lambdas import lambdas
 from ..sim import standings
 
@@ -128,9 +129,34 @@ def build_payload(sim, probs, *, n_sims: int, seed: int, as_of: datetime,
         "title_odds": title_odds,
         "movers": _movers(title_odds),
         "recent_results": recent_results,
+        "upcoming": _upcoming(sim),
         "groups": groups,
         "bracket": bracket,
     }
+
+
+def _upcoming(sim, n: int = 12) -> list:
+    """The next scheduled fixtures with our own win/draw/win % and most-likely scoreline,
+    straight from the Phase-3 Dixon-Coles model (plan.md §24). Group fixtures only — knockout
+    pairings aren't certain until the bracket is determined. Descriptive: never an odds input.
+    Soonest first, capped at ``n``. Same host-edge gammas the group sim uses (`group` taper)."""
+    gt = sim.host_taper.get("group", 1.0)
+    sched = [m for m in sim.matches
+             if m.status is Status.SCHEDULED and m.group is not None
+             and m.home in sim.ratings and m.away in sim.ratings]
+    sched.sort(key=lambda m: m.kickoff_utc)
+    out = []
+    for m in sched[:n]:
+        lh, la = lambdas(sim.ratings[m.home], sim.ratings[m.away], sim.gparams,
+                         sim._gamma(m.home, gt), sim._gamma(m.away, gt))
+        mat = scoreline_matrix(lh, la, sim.gparams["rho"], sim.gconf["g_max"])
+        ph, pd, pa = outcome_probs(mat)
+        i, j, ps = top_scorelines(mat, 1)[0]
+        out.append({"date": m.kickoff_utc.date().isoformat(), "group": m.group,
+                    "home": m.home, "away": m.away,
+                    "p_home": round(ph, 4), "p_draw": round(pd, 4), "p_away": round(pa, 4),
+                    "scoreline": {"home_goals": i, "away_goals": j, "p": round(ps, 4)}})
+    return out
 
 
 def _bracket_block(sim) -> list:

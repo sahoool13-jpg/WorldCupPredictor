@@ -140,6 +140,23 @@ header,main,footer{max-width:960px;margin:0 auto;padding:0 14px}
   border:1px solid var(--gold);border-radius:99px;padding:2px 9px}
 @media (max-width:520px){.wgrid{grid-template-columns:repeat(2,1fr)}}
 
+/* up next — model win/draw/win + likeliest score */
+.upcoming{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr;gap:10px}
+.uprow{border:1px solid var(--line);border-radius:var(--rad);background:var(--panel);padding:11px 13px}
+.uteams{display:flex;align-items:center;gap:8px;font-weight:700;font-size:14px}
+.uteam{display:flex;align-items:center;gap:7px;flex:1;min-width:0}
+.uteam.away{justify-content:flex-end;text-align:right}
+.uvs{flex:0 0 auto;color:var(--faint);font-weight:600;font-size:12px}
+.uteam .miniflag{width:22px;height:15px}
+.ubar{display:flex;height:9px;border-radius:99px;overflow:hidden;margin:9px 0 7px;
+  background:rgba(255,255,255,.05)}
+.useg{display:block;height:100%}
+.useg.uh{background:var(--pitch)} .useg.ud{background:var(--flat)} .useg.ua{background:#4a9be0}
+.umeta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:11.5px;color:var(--dim)}
+.uprob{font-variant-numeric:tabular-nums;font-weight:700;color:var(--ink)}
+.uscore{font-weight:700;color:var(--gold)}
+.umeta .g{margin-left:auto}
+
 /* biggest movers */
 .movers{display:grid;grid-template-columns:1fr;gap:11px}
 .mcol{border:1px solid var(--line);border-radius:var(--rad);background:var(--panel);padding:10px 13px}
