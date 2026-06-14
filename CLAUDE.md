@@ -135,9 +135,12 @@ later want favorites weighted harder.
 - **Phase 4 = BUILT, VERIFIED & MERGED** (host-edge fix included). Live 50k title odds sane:
   Argentina 17% / Spain 15% co-favorites; England/Portugal/Germany above the hosts; Mexico 2.9
   / USA 1.5 / Canada 0.2. 72 tests green incl. the live-state contract.
-- **Phase 5 (live web dashboard) sub-plan** (`plan.md` §20) is **drafted, awaiting sign-off**
-  (D5: cadence, page tech, move threshold; owner must enable GitHub Pages). Architecture:
-  static `docs/` page on **GitHub Pages** + a **scheduled Action** that reruns the pipeline,
-  writes/commits web-friendly `latest.json` (title odds + run-over-run deltas + standings +
-  through/eliminated + "last updated"), fails loud (no stale publish). **Build LAST; no
-  Phase-5 code until §20 signed off.** This is the final phase.
+- **Phase 5 live web dashboard = BUILT** (`plan.md` §20). Static `docs/` page (`index.html`/
+  `app.js`/`style.css`) on **GitHub Pages** + scheduled `.github/workflows/dashboard.yml`
+  (cron 3h + manual) that reruns the live pipeline and commits `docs/data/latest.json` (title
+  odds + run-over-run deltas + standings + through/eliminated + "last updated" + matches
+  reflected). Three guarantees: **fixed committed seed** (2026) so unchanged inputs give
+  byte-identical odds and exactly-0 deltas; **fail-loud keeps last-good** (`publish` writes
+  only on success — a fetch failure never overwrites with partial data); **cache-busted fetch**
+  (`latest.json?t=<now>`, `no-store`) to beat the Pages CDN. 77 tests green. **Project
+  complete** pending merge + the owner enabling Pages (serve from `docs/`).
