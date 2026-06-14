@@ -1,9 +1,10 @@
 # WorldCupPredictor — Build Plan
 
-**Status:** D0–D2 resolved. **Phases 1–2 BUILT, VERIFIED & MERGED** (data layer §12/§15/§16;
-ratings §17 — 62 tests green; live ratings sane vs FIFA June-2026 top-3). **Phase 3 goal-model
-sub-plan (§18) drafted — awaiting sign-off** (D3-map/calib/etp/input). Dashboard = final phase,
-built LAST (§6 Phase 5). No Phase-3 engine code until §18 is signed off.
+**Status:** D0–D3 resolved. **Phases 1–3 BUILT, VERIFIED & MERGED** (data layer §12/§15/§16;
+ratings §17; goal model §18 — 76 tests green; sample scorelines football-sane). **Phase 4
+Monte-Carlo sub-plan (§19) drafted — awaiting sign-off** (D4), with a flagged blocker: the
+verbatim Annex C 495-row third-place table isn't fetchable here (§19.1). Dashboard = final
+phase, built LAST (§6 Phase 5). No Phase-4 engine code until §19 is signed off.
 **Owner:** sahoool13
 **Last updated:** 2026-06-14
 
@@ -360,7 +361,7 @@ hosting** — static files + scheduled rebuild.
 | **D1-overlay** | Which fresh live-results source overlays openfootball (which lags) | Phase 1 | ✅ **RESOLVED** 2026-06-14 → **ESPN site API** (free, no key, proven fresh — had Australia 2–0 Türkiye; §15). Unofficial-endpoint caveat accepted; config-driven client allows swapping to football-data.org later. |
 | **D2** | Elo K / MoV, home-advantage for hosts, form window, squad-strength proxy source (market-blind) | Phase 2 | Elo+MoV, partial home edge, transparent squad-value proxy |
 | **D3** | Goal-model: ratings→λ mapping (D3-map), calibration source/method (D3-calib), ET+penalty model (D3-etp), which Phase-2 number drives λ (D3-input) | Phase 3 | §18 drafted: analytic ratings→λ, calibrated on martj42 goals (Poisson reg + DC ρ MLE), committed params; ET scaled-Poisson + logistic penalties; driven by blended rating. **Awaiting sign-off.** |
-| **D4** | N sims, seeding/parallelism, lots handling, FIFA-ranking snapshot source | Phase 4 | 50k sims, seeded, lots=seeded-random |
+| **D4** | N sims, seeding/parallelism, lots handling, FIFA-ranking snapshot source (§19.7) | Phase 4 | §19 drafted: 50k sims, seeded RNG, lots=seeded-random, committed FIFA-ranking snapshot. **Awaiting sign-off.** Blocker: verbatim Annex C 495-table not fetchable here (§19.1). |
 | **D5** | **Live web dashboard:** schedule cadence, page tech (plain HTML+JS vs static-site generator), JSON schema, "who moved" thresholds | Phase 5 | Static GitHub Pages + scheduled Action (every few hours) committing web-friendly JSON; plain HTML+JS reading it; build LAST |
 
 > **Language/stack assumption (flag if you disagree):** Python + `pytest`, `numpy`/`pandas`
@@ -852,7 +853,109 @@ goals, never odds.
 
 ---
 
-_Status: **D0 approved; D1/D-cards/D1-overlay/D2 resolved; Phases 1–2 merged & verified.**
-**Phase 3 goal-model sub-plan (§18) drafted — awaiting sign-off** (decisions D3-map / D3-calib
-/ D3-etp / D3-input). Dashboard scope acknowledged (§1, §6 Phase 5) — built LAST. **No Phase-3
-engine code until §18 is signed off.**_
+## 19. Phase 4 — Tournament Monte Carlo (detailed sub-plan, for sign-off)
+
+**Goal:** simulate the **remaining** tournament `N` times from the **true current state**
+(completed results fixed, future simulated), applying **all** §3 rules exactly, to produce
+each team's probability of advancing / reaching each round / winning the title — plus the
+**run-over-run deltas** and a **web-friendly JSON** for the dashboard (§6 Phase 5). Plan-first:
+signed off before any code. The two hardest/most-important pieces — the **third-place R32
+assignment** (§19.1) and the **live-state contract** (§19.5) — are gated and tested first.
+
+### 19.1 Third-place → R32 assignment — #1 PRIORITY (verbatim Annex C, NOT derived)
+- **Authoritative source:** FIFA *Competition Regulations* **Annex C** (p.80), the official
+  **495-combination** table (495 = C(12,8)). **Cross-check** against Wikipedia "2026 FIFA
+  World Cup knockout stage" and any machine-readable copy. **Transcribe VERBATIM** — never
+  derive the assignment algorithmically.
+- **Verified fixed skeleton** (cross-checked across multiple independent sources — *not*
+  derived): the **8 group winners that receive a third-placed team** and each slot's allowed
+  source-groups (columns of Annex C):
+
+  | R32 match | Winner slot | Third-place candidate groups |
+  |-----------|-------------|------------------------------|
+  | 74 | **W(E)** | A, B, C, D, F |
+  | 77 | **W(I)** | C, D, F, G, H |
+  | 79 | **W(A)** | C, E, F, H, I |
+  | 80 | **W(L)** | E, H, I, J, K |
+  | 81 | **W(D)** | B, E, F, I, J |
+  | 82 | **W(G)** | A, E, H, I, J |
+  | 85 | **W(B)** | E, F, G, I, J |
+  | 87 | **W(K)** | D, E, I, J, L |
+
+  Fixed (non-third) R32 pairings: `RU(A)–RU(B)`, `W(F)–RU(C)`, `W(C)–RU(F)`, `RU(E)–RU(I)`,
+  `RU(K)–RU(L)`, `W(H)–RU(J)`, `W(J)–RU(H)`, `RU(D)–RU(G)`. (Each slot's candidate set already
+  **excludes the winner's own group**, so the no-rematch rule holds by construction — and is
+  tested anyway.)
+- **First gated task (do BEFORE the simulator):** transcribe Annex C into committed
+  `data/reference/r32_thirds_annexC.json` — 495 rows keyed by the sorted 8-group combination →
+  `{winner_slot: third_group}`. Loader **raises** on a missing/duplicate combination.
+- **⚠️ Blocker to clear first:** the verbatim 495 values could **not** be fetched from this
+  environment (Wikipedia/FIFA/bracket sites all return `403` to the fetcher; no machine-
+  readable GitHub copy found; the FIFA PDF is unparsed). To unblock, **one** of: (a) allowlist
+  the source host for egress, (b) point me at a verified machine-readable Annex C copy, or
+  (c) paste/commit the table. **Owner sees verified transcribed rows before the simulator is
+  built on the table.**
+- **Tests (gate):** exactly **495** rows; every assigned third's group is in the slot's
+  candidate set **and** never the winner's own group (no-rematch); each row is a **bijection**
+  (the 8 qualifying thirds ↔ the 8 winner-slots); **spot-check several specific published
+  Annex C rows** byte-for-byte.
+
+### 19.2 Third-place RANKING — separate, separately-tested step (§3.3)
+- Rank the **12** third-placed teams and take the best **8**, strictly:
+  **points → GD → GS → conduct (cards → D-cards: seeded lots + loud warning) → FIFA ranking.**
+- Needs a **committed FIFA-ranking snapshot** (D4) for the final tiebreak.
+- Kept **architecturally separate** from §19.1 (ranking decides *which 8*; the Annex C table
+  decides *who plays whom*). Its own module + tests with constructed ties exercising each
+  level in order.
+
+### 19.3 Group simulation + tiebreakers (§3.2)
+- **Seed each group table from the true current state** — real banked points/GD/GS (and cards
+  if ever available) from the Phase-1 `FINAL` results — then simulate **only the remaining**
+  group fixtures by sampling scorelines from the Phase-3 matrix.
+- Rank each group: **GD → GS → head-to-head → fair play (D-cards) → drawing of lots (seeded)**.
+
+### 19.4 Bracket: R32 → R16 → QF → SF → Final
+- Fill R32 from group winners/runners-up (fixed skeleton) + the 8 thirds via the §19.1 table.
+- Single elimination; draws resolved by the Phase-3 **ET + penalty** sub-model (`etp`).
+
+### 19.5 Live-state contract — the core, explicitly tested (§4 / §4.1)
+1. **(a)** completed real results are **FIXED and never re-simulated** (RNG only ever fires
+   for remaining fixtures);
+2. **(b)** simulating the already-played slate **reproduces the real current standings
+   exactly** (per group, every iteration);
+3. **(c)** a team **mathematically through → 100%**, **mathematically eliminated → 0%**;
+4. **(d)** injecting a **new real result re-seeds** and shifts the odds correctly from the
+   prior state.
+- These gate the phase (same contract as §4.1; here applied end-to-end through the bracket).
+
+### 19.6 Outputs (feeds the dashboard)
+- Per team: `P(reach R32 / R16 / QF / SF / Final)`, **`P(win title)`**, expected finish.
+- **Web-friendly JSON** (odds + group standings with live results + eliminated/through flags)
+  **+ run-over-run deltas**, persisted under `reports/`. Pinned by
+  `(as_of, snapshot, ratings_cfg, model_cfg, n_sims, seed)`.
+
+### 19.7 Decisions (D4 — need sign-off)
+- **N sims** (default **50,000**), **RNG seeding** + parallelism, **drawing-of-lots** handling
+  (seeded-random), and the **FIFA-ranking snapshot source** for §19.2/§3.3 (free, market-blind
+  — e.g. a committed snapshot; the martj42-based Elo could also stand in, owner's call).
+
+### 19.8 Tests (gate Phase 4)
+- §19.1 Annex C table (495 / no-rematch / bijection / spot-checks);
+- §19.2 third-place ranking ties (each level, in order);
+- §3.2 group tiebreakers on constructed ties;
+- **§19.5 live-state contract (a)–(d)**;
+- assert **exactly 32 advance** every simulation; determinism under a fixed seed;
+- end-to-end: a fully-completed historical-style bracket reproduces the known winner.
+
+### 19.9 Deliverables
+- `src/wcpredictor/sim/` (group sim, third-place ranking, Annex C assignment, bracket, ET/pens,
+  aggregation); committed `data/reference/r32_thirds_annexC.json` + FIFA-ranking snapshot;
+  `make simulate` → JSON odds + deltas under `reports/`; the §19.8 suite green.
+
+---
+
+_Status: **D0 approved; D1/D-cards/D1-overlay/D2/D3 resolved; Phases 1–3 merged & verified
+(76 tests).** **Phase 4 Monte-Carlo sub-plan (§19) drafted — awaiting sign-off** (decisions
+**D4**), with a flagged **blocker**: the verbatim Annex C 495-row table can't be fetched here
+(§19.1) — needs the source unblocked before that first task. Dashboard = final phase, built
+LAST. **No Phase-4 engine code until §19 is signed off.**_

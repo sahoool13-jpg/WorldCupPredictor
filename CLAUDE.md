@@ -112,7 +112,13 @@ later want favorites weighted harder.
   in-tournament Elo + form + squad proxy, shrinkage-blended; 62 tests green; live top ratings
   sane vs FIFA June-2026 (top-3 exact). Ratings learn **only** from played matches (point-in-
   time, no future leak); weights/k_shrink are documented tunables in `configs/ratings.json`.
-- **Phase 3 (Dixon-Coles goal model) sub-plan** (`plan.md` §18) is **drafted, awaiting
-  sign-off** (D3-map / D3-calib / D3-etp / D3-input). Produces a scoreline probability matrix
-  per fixture (needed for GD/GS tiebreakers + ET/penalties), driven by Phase-2 ratings,
-  calibrated **market-blind** on martj42 goals. **No Phase-3 engine code until §18 signed off.**
+- **Phase 3 goal model = BUILT, VERIFIED & MERGED** (`plan.md` §18). Dixon-Coles scoreline
+  matrices driven by the blended rating; market-blind calibration on martj42 goals; 76 tests
+  green; sample scorelines football-sane (Argentina–Jordan, Norway–Senegal).
+- **Phase 4 (tournament Monte Carlo) sub-plan** (`plan.md` §19) is **drafted, awaiting sign-off**
+  (D4). Two gated/tested-first pieces: the **third-place R32 assignment** (verbatim FIFA Annex C
+  495-row table — NOT derived; transcribe + show rows + test 495/no-rematch/bijection/spot-check
+  *before* building the sim) and the **live-state contract** (§4.1 a–d). Third-place RANKING and
+  ASSIGNMENT are separate, separately-tested steps. **Blocker:** the verbatim Annex C values
+  aren't fetchable in this env (sources 403) — needs unblocking. **No Phase-4 code until §19
+  signed off and the table is verified.**
