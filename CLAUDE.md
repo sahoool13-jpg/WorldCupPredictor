@@ -115,10 +115,14 @@ later want favorites weighted harder.
 - **Phase 3 goal model = BUILT, VERIFIED & MERGED** (`plan.md` §18). Dixon-Coles scoreline
   matrices driven by the blended rating; market-blind calibration on martj42 goals; 76 tests
   green; sample scorelines football-sane (Argentina–Jordan, Norway–Senegal).
-- **Phase 4 (tournament Monte Carlo) sub-plan** (`plan.md` §19) is **drafted, awaiting sign-off**
-  (D4). Two gated/tested-first pieces: the **third-place R32 assignment** (verbatim FIFA Annex C
-  495-row table — NOT derived; transcribe + show rows + test 495/no-rematch/bijection/spot-check
-  *before* building the sim) and the **live-state contract** (§4.1 a–d). Third-place RANKING and
-  ASSIGNMENT are separate, separately-tested steps. **Blocker:** the verbatim Annex C values
-  aren't fetchable in this env (sources 403) — needs unblocking. **No Phase-4 code until §19
-  signed off and the table is verified.**
+- **Phase 4 tournament Monte Carlo = BUILT** (`plan.md` §19; D4 approved: N=50k, seeded RNG,
+  lots=seeded-random). Loads the **verified FIFA Annex C** 495-row table from `annex_c_r32.json`
+  (root; owner-supplied, machine-validated — `validate_annex_c.py` runs in the test suite),
+  **never derived/refetched**; fails loud if a simulated combo misses the table. Group sim seeds
+  from the true current state; ranking (§3.3) and Annex-C assignment (§19.1) are separate steps;
+  bracket wiring comes from openfootball's `Wnn` refs. Live-state contract (a)–(d) tested. Title
+  odds football-sane (Argentina/Spain co-favorites; host boost for Mexico/USA/Canada). Hosts get
+  the goal-model home edge in **every** match (all KO games are on host soil).
+- **3rd-place FIFA-ranking tiebreaker (§3.3 step 5) reuses the martj42 Elo ordering** as the
+  proxy (already committed, market-blind) — a minor approximation on the rarely-decisive 5th
+  tiebreaker; avoids adding another data source.
