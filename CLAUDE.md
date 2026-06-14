@@ -136,7 +136,7 @@ later want favorites weighted harder.
   Argentina 17% / Spain 15% co-favorites; England/Portugal/Germany above the hosts; Mexico 2.9
   / USA 1.5 / Canada 0.2. 72 tests green incl. the live-state contract.
 - **Phase 5 live web dashboard = BUILT** (`plan.md` §20). Static `docs/` page (`index.html`/
-  `app.js`/`style.css`) on **GitHub Pages** + scheduled `.github/workflows/dashboard.yml`
+  `app.js`/`style.css`) on **GitHub Pages** + scheduled the scheduled publish workflow (`.github/workflows/smoketest.yml`)
   (cron 3h + manual) that reruns the live pipeline and commits `docs/data/latest.json` (title
   odds + run-over-run deltas + standings + through/eliminated + "last updated" + matches
   reflected). Three guarantees: **fixed committed seed** (2026) so unchanged inputs give

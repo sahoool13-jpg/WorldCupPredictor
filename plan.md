@@ -1,7 +1,7 @@
 # WorldCupPredictor — Build Plan
 
 **Status:** D0–D5 resolved. **Phases 1–4 MERGED; Phase 5 (dashboard) BUILT** (§20 — static
-GitHub Pages page in `docs/` + scheduled `dashboard.yml`; fixed-seed clean deltas, fail-loud
+GitHub Pages page in `docs/` + scheduled the scheduled publish workflow; fixed-seed clean deltas, fail-loud
 last-good, cache-busted fetch; 77 tests green). **Project complete** pending this PR's merge +
 the owner enabling GitHub Pages (serve from `docs/`).
 **Owner:** sahoool13
@@ -964,7 +964,7 @@ updated"** stamp. **No server, no paid hosting** — static files + scheduled re
 (model done & validated). Plan-first: signed off before any code.
 
 ### 20.1 Architecture (static + scheduled rebuild)
-1. A **scheduled Action** (`.github/workflows/dashboard.yml`, cron every few hours + manual)
+1. A **scheduled Action** (the scheduled publish workflow (`.github/workflows/smoketest.yml`), cron every few hours + manual)
    runs the whole pipeline at `as_of=now`: Phase-1 fetch+reconcile → Phase-2 ratings →
    Phase-3 model → Phase-4 sim (`--live`, N=50k, fixed seed).
 2. It writes **web-friendly JSON** to a committed path (`docs/data/latest.json`) + appends a
@@ -1017,7 +1017,7 @@ updated"** stamp. **No server, no paid hosting** — static files + scheduled re
 - `src/wcpredictor/report/` — `build_payload` (JSON from Phase-4 sim + group standings +
   run-over-run deltas), `write_latest` + history append. `make report`.
 - `docs/` — `index.html`, `app.js`, `style.css` + `docs/data/`.
-- `.github/workflows/dashboard.yml` — scheduled + manual; runs pipeline, writes/commits JSON,
+- the scheduled publish workflow (`.github/workflows/smoketest.yml`) — scheduled + manual; runs pipeline, writes/commits JSON,
   fails loud (supersedes the ad-hoc `smoketest.yml` runner for the live path).
 - The §20.6 suite green.
 

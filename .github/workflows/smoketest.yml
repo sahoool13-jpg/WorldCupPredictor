@@ -1,20 +1,26 @@
-name: Dashboard publish (manual; mirrors dashboard.yml)
+name: Dashboard — live title odds (scheduled + manual)
 
-# The scheduled publisher is dashboard.yml. This manually-dispatchable workflow runs the SAME
-# live publish + commit, used to fire the first publish while GitHub finished registering the
-# new dashboard.yml. Same guarantees: fixed seed, fail-loud keeps last-good.
+# THE dashboard publisher: reruns the full pipeline live and commits docs/data/latest.json,
+# which the static GitHub Pages page reads (plan.md §20). FIXED seed -> unchanged inputs give
+# byte-identical odds and exactly-zero deltas. FAIL-LOUD: if any step raises, nothing is
+# committed and the last-good latest.json (+ its "last updated" stamp) stays.
+#
+# NOTE: kept at this filename (was the API/overlay smoke-test) on purpose — it is the workflow
+# GitHub has registered for dispatch+schedule; a freshly-named file failed to register.
 
 on:
+  schedule:
+    - cron: "0 */3 * * *"      # every 3 hours (D5)
   workflow_dispatch:
     inputs:
       as_of:
         description: "Point-in-time (ISO, or 'now')"
         default: "now"
-        required: true
+        required: false
       espn_start:
         description: "ESPN window start"
         default: "2026-06-11"
-        required: true
+        required: false
 
 permissions:
   contents: write
@@ -38,23 +44,20 @@ jobs:
           pytest -q
       - name: Build + publish odds (live, fixed seed; fail-loud keeps last-good)
         run: |
-          python -m wcpredictor.report.run --live --as-of "${{ github.event.inputs.as_of }}" \
+          python -m wcpredictor.report.run --live \
+            --as-of "${{ github.event.inputs.as_of || 'now' }}" \
             --n 50000 --seed 2026 \
-            --espn-start "${{ github.event.inputs.espn_start }}" --espn-end "$(date -u +%F)"
+            --espn-start "${{ github.event.inputs.espn_start || '2026-06-11' }}" \
+            --espn-end "$(date -u +%F)"
       - name: Show published odds (for the run log)
         run: |
           python - <<'PY'
           import json
           d=json.load(open("docs/data/latest.json")); m=d["meta"]
-          print(f"generated_at={m['generated_at']}  as_of={m['as_of']}  n_played={m['n_played']} "
+          print(f"generated_at={m['generated_at']}  n_played={m['n_played']} "
                 f"n_sims={m['n_sims']} seed={m['seed']} results={m['source']['results']}")
-          print("matches reflected:")
-          for x in m["matches_reflected"]:
-              print(f"  {x['date']} [{x['group']}] {x['home']} {x['hg']}-{x['ag']} {x['away']}")
-          print("top 15 title odds (team  title%  delta_pp  adv%):")
           for i,r in enumerate(d["title_odds"][:15],1):
-              print(f"  {i:2}. {r['team']:<22} {r['title']*100:5.1f}  {r['title_delta']*100:+5.2f}  "
-                    f"{r['reach']['R32']*100:5.1f}  [{r['status']}]")
+              print(f"  {i:2}. {r['team']:<22} {r['title']*100:5.1f}  d{r['title_delta']*100:+5.2f}  [{r['status']}]")
           PY
       - name: Commit if changed
         run: |
@@ -64,6 +67,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "no change to publish."
           else
-            git commit -m "dashboard: first live publish [skip ci]"
+            git commit -m "dashboard: refresh title odds [skip ci]"
             git push
           fi
