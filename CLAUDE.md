@@ -75,5 +75,18 @@ prior state.
   key, config-driven so a supported source can swap in later). Reconcile overlay↔openfootball
   by (matchday + team-pair), **not** date; fail loudly on score conflicts / unmatched
   fixtures / future-dated finals.
-- **Phase 1 sub-plan** (`plan.md` §12 + §15) is **complete; awaiting owner sign-off** to
-  start engine code. No Phase-1 engine code until then.
+- **Phase 1 data layer = BUILT, VERIFIED & MERGED** (`plan.md` §12/§15/§16). Two-source
+  pipeline (openfootball structure + ESPN overlay), 20 offline tests green (R1–R4 + point-in-
+  time), live Actions fetch loaded 12×4/104 + 8 played-with-real-scores incl. Australia 2–0
+  Turkey. Stdlib-only.
+- **Final deliverable = a live web dashboard** (not a Markdown report): static **GitHub Pages**
+  page rebuilt by a **scheduled Action** that reruns the pipeline and commits web-friendly
+  JSON (title odds, run-over-run deltas, standings, eliminated/through, "last updated"). No
+  server. `plan.md` §6 Phase 5 — **built LAST**, after the model is correct & validated; don't
+  let dashboard work distract from simulation correctness. Phase 4 must emit that JSON + deltas.
+- **Phase 2 (ratings) sub-plan** (`plan.md` §17) is **drafted, awaiting sign-off** (decisions
+  D2-prior / D2-squad / D2-hist-data / D2-params). **No Phase-2 engine code until signed off.**
+  Key Phase-2 rules: ratings learn **only** from played matches (point-in-time, no future
+  leak — tested); blend Elo + form + squad proxy with **documented tunable** weights; blend a
+  pre-tournament **prior** with live results via a shrinkage that shifts to live as games are
+  played (don't overreact early).
