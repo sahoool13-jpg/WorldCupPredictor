@@ -1,6 +1,7 @@
 # WorldCupPredictor — Build Plan
 
-**Status:** Phase 0 (scaffolding + plan). _No engine code yet — this document is for sign-off._
+**Status:** D0 + D1 approved. Phase 1 sub-plan drafted (§12), awaiting sign-off. _No engine
+code yet._
 **Owner:** sahoool13
 **Last updated:** 2026-06-14
 
@@ -128,7 +129,15 @@ example (from FIFA/Wikipedia) reproduces byte-for-byte.
 
 ---
 
-## 4. Point-in-time correctness (how we enforce it)
+## 4. Point-in-time correctness & the live "real-results-fixed" property
+
+This is a **live, mid-tournament** model. **Matches that have already been played are
+FIXED, REAL inputs.** Their actual scores (and cards) lock the current group standings and
+are **never re-simulated**. Each Monte Carlo simulation seeds the group tables from the
+**true current state** — real points, real goal difference, real goals scored, real cards
+already banked — and simulates **only the remaining unplayed fixtures**. This
+real-results-fixed / only-future-simulated property is the **core of the whole model** and
+**Phase 4 is gated on it** (§6, §4.1).
 
 - Every match record carries: `kickoff_utc`, `status` (`scheduled|live|final`), and, when
   final, `home_goals`/`away_goals` plus discipline (cards). A result is "real" only when
@@ -136,17 +145,40 @@ example (from FIFA/Wikipedia) reproduces byte-for-byte.
 - A run takes `as_of` (default: now). Partition fixtures into:
   - **Completed**: `status == final` AND `kickoff_utc <= as_of`. Used as fixed facts.
   - **Pending**: everything else. Simulated.
+- **Current state is computed once** from the Completed set: per-team banked points, GD,
+  GS, cards, and head-to-head — the real standings. Every simulation iteration **starts
+  from this exact state** and only adds the outcomes of Pending fixtures.
 - **Ratings** are built from the **Completed** set only — both pre-tournament priors and
   any in-tournament updates. The simulator may produce a Brazil 3–0 in iteration #7; that
-  number lives only inside that iteration and is discarded. It never updates a rating and
-  never becomes a "result".
+  number lives only inside that iteration and is discarded. It never updates a rating,
+  never changes the banked standings, and never becomes a "result".
 - Guards (all raise): a `final` match with `kickoff_utc > as_of` (future result leak); a
   match that is `final` but missing scores; re-simulating a Completed match; a Pending
-  match being read as if Completed.
-- Tests: a dedicated `test_point_in_time.py` constructs a partial-tournament state, runs
-  with several `as_of` values, and asserts completed results are byte-identical across
-  runs and never resampled, and that ratings computed at `as_of=T` ignore all matches
-  after `T`.
+  match being read as if Completed; a simulated standings table whose banked (pre-future)
+  component diverges from the real current standings.
+
+### 4.1 The live-state test contract (gates Phase 4)
+
+`tests/test_live_state.py` + `tests/test_point_in_time.py` assert, against constructed
+partial-tournament states and several `as_of` values:
+
+- **(a) Completed results are never re-rolled.** Across many sim iterations, every
+  Completed match's score is byte-identical to the real input; no Completed fixture is ever
+  resampled. (Instrument the RNG/draw path: it is only ever invoked for Pending fixtures.)
+- **(b) Simulated standings before any future match == real current standings.** Take the
+  per-iteration group table contribution from already-played matches and assert it exactly
+  equals the standings computed directly from the real Completed results — points, GD, GS,
+  cards, ordering — for every group, every iteration.
+- **(c) Already-decided teams show 0% / 100%.** A team mathematically eliminated given the
+  real current state shows **P(advance)=0** (and P(title)=0); a team mathematically already
+  through shows **P(advance)=100%**. Constructed scenarios for both, plus an
+  already-qualified-as-group-winner case.
+- **(d) New real result shifts from the prior state correctly.** Re-running after an
+  additional real result moves probabilities in the correct direction and re-seeds from the
+  updated true state (the newly-played fixture leaves Pending and joins the banked
+  standings; downstream odds reflect it).
+- Plus: ratings computed at `as_of=T` ignore all matches after `T`; identical inputs →
+  identical odds (seeded).
 
 ---
 
@@ -244,13 +276,16 @@ No engine code. **Deliverable:** owner sign-off on the phase list and the §3 fo
 - **Decisions (D4):** N sims (variance vs runtime), seeding/parallelism, drawing-of-lots
   handling (random, seeded), and FIFA-ranking source for §3.3 tiebreak (committed
   snapshot).
-- **Tests (adversarial, the heart of correctness):**
+- **Tests (adversarial, the heart of correctness — Phase 4 ships only when all pass):**
+  - **The live-state contract §4.1 (a)–(d)** — completed results never re-rolled; simulated
+    pre-future standings exactly equal the real current standings; already-decided teams
+    show 0%/100%; a new real result shifts correctly from the prior state. **This gates the
+    phase.**
   - assert **exactly 32** teams enter the knockout every simulation;
   - assert each group yields exactly top-2 + correct 3rd, with constructed tie scenarios
     that exercise GD→GS→H2H→fair-play→lots in order;
   - assert the **third-place assignment matches FIFA's official table** for sampled and
     worked-example combinations, table-completeness (495), and one-slot-per-team;
-  - assert no Completed result is ever resampled;
   - end-to-end: a fully-completed historical-style bracket reproduces the known winner.
 
 ### Phase 5 — Live update + report
@@ -293,10 +328,10 @@ No engine code. **Deliverable:** owner sign-off on the phase list and the §3 fo
 
 ## 9. Open decisions (need owner sign-off)
 
-| ID | Decision | Where | Default leaning |
+| ID | Decision | Where | Status / leaning |
 |----|----------|-------|-----------------|
-| **D0** | Approve this phase list + §3 format spec | Phase 0 | — |
-| **D1** | Which free API (verify WC-2026 free-tier coverage first; no scraping) | Phase 1 | Verify football-data.org first, then API-Football |
+| **D0** | Approve this phase list + §3 format spec | Phase 0 | ✅ **APPROVED** 2026-06-14 |
+| **D1** | Which free API (verify WC-2026 free-tier coverage first; no scraping) | Phase 1 | ✅ **APPROVED** 2026-06-14. Doc-level verification → **API-Football primary** (football-data.org free omits discipline/cards; see §11), football-data.org fallback; **live smoke-test is the first Phase-1 gate; STOP & escalate if neither returns the tournament** |
 | **D2** | Elo K / MoV, home-advantage for hosts, form window, squad-strength proxy source (market-blind) | Phase 2 | Elo+MoV, partial home edge, transparent squad-value proxy |
 | **D3** | Goal-model fit (historical fit vs analytic ratings→λ), Dixon-Coles tau | Phase 3 | Dixon-Coles, ratings→λ with historical calibration |
 | **D4** | N sims, seeding/parallelism, lots handling, FIFA-ranking snapshot source | Phase 4 | 50k sims, seeded, lots=seeded-random |
@@ -325,5 +360,118 @@ No engine code. **Deliverable:** owner sign-off on the phase list and the §3 fo
 
 ---
 
-_End of plan. Awaiting sign-off on D0 (and a steer on D1's verification scope) before any
-Phase-1 engine code._
+## 11. D1 — free-API verification record (2026-06-14)
+
+Verification at the **documentation/source level** (no live key hit yet — that is the first
+Phase-1 gate, §12.1). No scraping considered. Findings:
+
+### football-data.org (free tier) — checked first, per the rule
+- ✅ Covers the **FIFA World Cup** competition; provides **fixtures, results, standings,
+  top scorers**.
+- ❌ **No discipline/cards, lineups, or squads on the free tier** — those require paid
+  access. **Scores are delayed (not real-time).** Rate limit **10 requests/min**.
+- **Verdict: falls short.** Our group **fair-play** tiebreaker (§3.2) and third-place
+  **conduct/cards** tiebreaker (§3.3) need disciplinary data, which the free tier does not
+  provide. Per D1's rule ("verify ... discipline ... then API-Football if it falls short"),
+  we move on. Retained as a **fallback / cross-check** for fixtures/results/standings.
+
+### API-Football (api-football.com / api-sports.io, free plan) — recommended primary
+- ✅ Covers **World Cup 2026** (league/season present; confirmed by multiple sources incl. a
+  public repo built specifically to pull WC-2026 from this API).
+- ✅ Free plan exposes **all endpoints** — fixtures, **events (yellow/red cards)**,
+  standings, statistics, lineups — i.e. the **discipline data we need**.
+- ⚠️ **Hard cap of 100 requests/day** (resets 00:00 UTC). Acceptable for our cadence: we are
+  **not** doing in-play polling — we re-pull on a schedule and after matchdays, fetching the
+  fixtures list + standings + events only for **newly-finished** matches. Budget is modeled
+  in §12.
+
+### Cross-check / reference sources (not the live pipeline)
+- `openfootball/worldcup.json` (public-domain JSON incl. Canada/USA/Mexico 2026) and
+  football-data.org standings — usable to **validate** parsed results offline. Not used as
+  the live source (static/community-maintained; doesn't meet the live auto-pull requirement,
+  and using it as primary would be closer to scraping a dump than a supported live API).
+
+### Decision
+**Primary = API-Football free tier** (it covers the tournament *and* discipline);
+**fallback = football-data.org** (fixtures/results/standings if API-Football is unavailable
+or over budget). **Gate:** Phase 1's first task is a live smoke-test with a real free key —
+if it does not return WC-2026 fixtures + standings + card events, **STOP and bring options
+to the owner** before building anything else (§12.1).
+
+> Sources: TheStatsAPI (football-data.org free-tier limits 2026; World Cup 2026 API roundup),
+> api-sports.io football API docs, `github.com/rezarahiminia/worldcup2026`,
+> `github.com/openfootball/worldcup.json`. Doc pages returned HTTP 403 to automated fetch;
+> findings are corroborated across multiple independent sources and will be **empirically
+> confirmed** by the §12.1 live smoke-test.
+
+---
+
+## 12. Phase 1 — Data layer (detailed sub-plan, for sign-off)
+
+**Goal:** a clean, versioned, point-in-time local store of WC-2026 fixtures, results,
+standings, and discipline, pulled from API-Football, that downstream phases consume. No
+ratings/model/sim logic here. Plan-first: this sub-plan is signed off before code.
+
+### 12.1 Live verification gate (do this FIRST, fail loudly)
+- With a free API-Football key (via env var; see 12.5), hit the WC-2026 league/season and
+  confirm the response actually contains: the **12 groups × 4 teams**, the **fixtures**
+  (with `kickoff_utc` + `status`), **standings**, and **card events** for a finished match.
+- A tiny `make verify-source` (Phase 1) target prints what was found and **raises** if any
+  required field is absent. **If WC-2026 isn't fully covered, STOP and escalate** (try
+  football-data.org for the non-discipline parts and report the gap) — do **not** proceed to
+  build the store on an unverified source.
+
+### 12.2 Data model (normalized, internal)
+- `Team`: stable internal `team_id`, canonical name, group, FIFA-ranking snapshot ref.
+- `Match`: `match_id`, `group` (or knockout round), `home_id`, `away_id`, `kickoff_utc`,
+  `status` (`scheduled|live|final`), `home_goals`, `away_goals`, `home_cards`/`away_cards`
+  (yellow/red → disciplinary points), `source`, `pulled_at`.
+- `StandingRow` is **derived**, never stored as source-of-truth (computed from `Match`).
+- Team-name variants normalized to `team_id` via a committed alias map; an unknown team
+  **raises** (no silent new team).
+
+### 12.3 Storage & point-in-time snapshots
+- Each pull writes an immutable, timestamped raw snapshot to `data/raw/` (the exact API
+  payload) — so any historical `as_of` state is reproducible and auditable.
+- A normalized, current view is written to `data/processed/` (gitignored except pinned
+  runs). Loading reconstructs state for a given `as_of` from snapshots (§4).
+- Group membership (A–L) and the alias map live in `data/reference/` (committed,
+  provenance-stamped).
+
+### 12.4 Fetch cadence & request budget (respect the 100/day cap)
+- One scheduled pull = ~1 (fixtures) + ~1 (standings) + N (events for *newly-finished*
+  matches only) calls. Even on a 6-match day this is well under 100. Cache aggressively;
+  never re-fetch events for a match already final and stored.
+- Back off and **fail the run loudly** (don't publish stale data) on HTTP 429 / quota
+  exhaustion, rather than silently serving old numbers.
+
+### 12.5 Secrets
+- `API_FOOTBALL_KEY` via **GitHub Actions secret** → env var at runtime (mirrors the Kaggle
+  setup). Local dev via gitignored `.env`. Never committed. Code reads from env and
+  **raises** with a clear message if the key is missing.
+
+### 12.6 Fail-loud guards (each raises, with a test)
+- Schema/shape drift vs the expected payload; a group with ≠ 4 teams; a fixture missing a
+  known team or a kickoff time; duplicate `match_id`; a `final` match missing scores; a
+  result that *changes* after being recorded as final (non-monotonic) → raise + flag;
+  unknown team name not in the alias map.
+
+### 12.7 Tests (gate Phase 1)
+- Golden-payload parse: a frozen sample API response → internal `Match`/`Team` model.
+- Standings derivation from `Match` set matches a known fixture (incl. cards →
+  disciplinary points), exercising the §3.2 ordering on a constructed group.
+- Each guard in 12.6 has a test asserting it raises.
+- Snapshot reconstruction: state at `as_of=T` uses only matches with `kickoff_utc ≤ T` and
+  `status==final` (ties into §4 / §4.1(b)).
+- No network in tests — everything runs off committed golden files.
+
+### 12.8 Deliverables
+- `src/wcpredictor/data/` (fetch, normalize, store, snapshot-reconstruct); `make fetch` +
+  `make verify-source`; committed `data/reference/groups.yaml` + alias map + golden test
+  payloads; the test suite above green.
+
+---
+
+_Status: **D0 approved**, **D1 approved** (API-Football primary, live smoke-test gate).
+Phase 1 sub-plan above (§12) is drafted and **awaiting sign-off** — no Phase-1 engine code
+until then._

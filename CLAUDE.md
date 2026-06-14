@@ -49,7 +49,22 @@ reports each team's title probability **and the delta** vs the previous run.
   FIFA-ranking snapshot) is **committed** under `data/reference/` so the bracket logic is
   testable offline.
 
+## The live model property (core — gate Phase 4 on it)
+
+Already-played matches are **fixed, real inputs**: their actual scores/cards lock the
+current standings and are **never re-simulated**. Each Monte Carlo iteration seeds the group
+tables from the **true current state** (real points/GD/GS/cards banked) and simulates **only
+the remaining unplayed fixtures**. Tested explicitly (`plan.md` §4.1): (a) completed results
+never re-rolled, (b) simulated pre-future standings exactly equal real current standings,
+(c) already-decided teams show 0%/100%, (d) a new real result shifts odds correctly from the
+prior state.
+
 ## Current status
 
-**Phase 0 — scaffolding + plan only. No engine code yet.** Awaiting owner sign-off on the
-phase list and the format spec (decision **D0** in `plan.md` §9) before starting Phase 1.
+- **D0 approved** — phase list + 2026 format spec.
+- **D1 approved** — **API-Football** free tier is the primary source (football-data.org free
+  omits discipline/cards needed for tiebreakers); football-data.org is the fallback. Phase
+  1's first task is a **live smoke-test**; if WC-2026 fixtures+standings+card events aren't
+  returned, **STOP and escalate** before building.
+- **Phase 1 sub-plan drafted** (`plan.md` §12), **awaiting sign-off**. No Phase-1 engine code
+  until then.
