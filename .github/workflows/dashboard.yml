@@ -45,3 +45,5 @@ jobs:
             git commit -m "dashboard: refresh title odds [skip ci]"
             git push
           fi
+
+# (registration nudge — no behavior change)
