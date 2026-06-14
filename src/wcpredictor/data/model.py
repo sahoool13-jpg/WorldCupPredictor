@@ -94,11 +94,34 @@ class BaseFixture:
 @dataclass(frozen=True)
 class OverlayResult:
     """A result/status from the live overlay (ESPN). Goals are keyed by team id so the
-    home/away orientation need not match openfootball's."""
+    home/away orientation need not match openfootball's.
+
+    ``winner_id`` is the advancing team's id for a completed **knockout** match (from ESPN's
+    per-competitor ``winner`` flag) — needed because a KO tie can be level after 90'/ET and
+    decided on penalties, where the score alone doesn't say who went through. ``None`` for
+    group games and undecided fixtures.
+    """
     pair: frozenset
     teams: dict           # team_id -> name
     goals_by_team: dict   # team_id -> Optional[int]
     status: Status
+    kickoff_utc: datetime
+    source: str
+    winner_id: Optional[str] = None
+
+
+@dataclass(frozen=True)
+class KnockoutResult:
+    """A completed, real knockout tie ingested from the overlay (plan.md §21). The bracket
+    binds it to a slot by **unordered team-pair**; ``winner`` is the team that advanced
+    (fixed, never re-simulated). Goals are the displayed scoreline (post-ET aggregate as the
+    source reports it); the winner is the source of truth for advancement."""
+    pair: frozenset
+    home: str
+    away: str
+    home_goals: Optional[int]
+    away_goals: Optional[int]
+    winner: str
     kickoff_utc: datetime
     source: str
 

@@ -57,6 +57,27 @@ function pathPanel(r) {
     box.appendChild(row);
   });
   if (r.status === "eliminated") box.prepend(el("p", "pnote", "Eliminated — no path forward."));
+  if (r.why) box.appendChild(whyBlock(r.why));
+  return box;
+}
+
+// "Why this %?" — the rating + goal model behind the number (payload `why`; degrades if absent)
+function whyBlock(w) {
+  const box = el("div", "why");
+  box.appendChild(el("h4", "whyh", "Why this %?"));
+  const rt = w.rating, g = w.goals;
+  const grid = el("div", "wgrid");
+  const cell = (k, v) => { const c = el("div", "wcell");
+    c.appendChild(el("b", null, v)); c.appendChild(el("span", null, k)); grid.appendChild(c); };
+  cell("rating", rt.blended);
+  cell("attack λ", g.attack_lambda);
+  cell("defence λ", g.defence_lambda);
+  cell("form", (rt.form_delta > 0 ? "+" : "") + rt.form_delta);
+  box.appendChild(grid);
+  const note = `prior ${rt.prior} · live Elo ${rt.elo_live} · ${rt.n_played} played ` +
+    `(weight ${(rt.w_live * 100).toFixed(0)}% live)`;
+  box.appendChild(el("p", "wnote", note));
+  if (g.host_edge) box.appendChild(el("span", "whost", "★ host edge applied"));
   return box;
 }
 

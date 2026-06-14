@@ -144,3 +144,29 @@ later want favorites weighted harder.
   only on success — a fetch failure never overwrites with partial data); **cache-busted fetch**
   (`latest.json?t=<now>`, `no-store`) to beat the Pages CDN. 77 tests green. **Project
   complete** pending merge + the owner enabling Pages (serve from `docs/`).
+- **CI on PRs = BUILT** (`.github/workflows/ci.yml`, `plan.md` §23). Runs the suite on every PR
+  + push to `main`/`claude/**`, separate from the scheduled publisher; dashboard auto-commits
+  carry `[skip ci]`. (Registers as a PR check once on `main` — new workflow files don't fire
+  from a feature branch in this environment, same quirk as the old `dashboard.yml`.)
+- **Phase 6 knockout-stage readiness = BUILT** (`plan.md` §21; D6 resolved: ratings frozen
+  post-group, strict slot-binding, JSON-bracket-now/visual-next). Real R32→Final results are
+  ingested from the **ESPN overlay** (`pipeline.split_overlay` routes non-group-pair FINALs to
+  `data/knockout.extract_knockouts`; point-in-time, trusts ESPN's `winner` flag with a
+  decisive-score fallback, loud on a level tie with no flag). They're **pinned** as fixed
+  advancers in `bracket.simulate(..., pinned=…)` and validated **strictly** at `Sim` build (pins
+  require a complete group stage; every pin must bind to a real slot or `DataError`). Completed
+  KO ties are never re-simulated; the live-state contract is extended to the bracket (a)/(c)/(d).
+  **Ratings stay frozen post-group for free** — `compute_ratings` keys on `m.group`, so the KO
+  stream never feeds Elo. Payload gains `meta.n_ko_played`, an additive `bracket` block, and KO
+  finals in `recent_results` (so they show in the ticker; **visual bracket deferred per D6c**).
+  93 tests green. **Live ESPN KO field shape still to be confirmed on Actions when R32 starts**
+  (egress wall) — the parser fails loud if a field differs. Same-group KO rematch is a recorded
+  edge (skipped; impossible at R32 by Annex C no-rematch).
+- **Phase 7 "Why this %?" explainability = BUILT** (`plan.md` §22; D7: all 48, λ-only). `build_sim`
+  keeps the full `RatingDetail` (was discarded) and passes it to `Sim`; `payload._why_map` emits
+  an additive per-team `why` block — rating breakdown (prior/elo*live/form/squad/`w_live`/n) +
+  attack/defence λ vs an **average** side at neutral + a `host_edge` flag. **Read-only/descriptive:
+  it never feeds the odds — a payload with `why` has byte-identical title/delta to one without**
+  (tested), preserving the fixed-seed clean-delta property. `make explain TEAM=Brazil` prints the
+  same breakdown (reuses `_why_map`). Dashboard shows it in the existing tap-to-expand row (assets
+  `?v=3`); omitted gracefully when absent. 98 tests green.

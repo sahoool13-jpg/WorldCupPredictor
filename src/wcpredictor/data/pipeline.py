@@ -63,6 +63,25 @@ def fetch_overlay(http_get: HttpGet, reg: TeamRegistry,
     return overlay
 
 
+def split_overlay(fixtures, overlay):
+    """Partition overlay results into (group, knockout) by team-pair (plan.md §21).
+
+    A *group* result matches one of openfootball's group fixtures by pair; the group reconciler
+    (R1–R4) owns those. A FINAL result whose pair is **not** a group fixture is a **knockout**
+    result (concrete bracket teams openfootball only carries as placeholders) and is bound to a
+    bracket slot in the simulator instead. Non-final unmatched overlays stay with the group
+    stream (reconcile already ignores them with a warning), so nothing is silently dropped.
+    """
+    group_pairs = {f.pair for f in fixtures if f.group is not None and not f.is_placeholder}
+    group_ov, ko_ov = [], []
+    for ov in overlay:
+        if ov.status is Status.FINAL and ov.pair not in group_pairs:
+            ko_ov.append(ov)
+        else:
+            group_ov.append(ov)
+    return group_ov, ko_ov
+
+
 def run(as_of: Optional[datetime] = None, http_get: HttpGet = get_json,
         of_cfg: OpenfootballConfig = DEFAULT_OPENFOOTBALL,
         espn_cfg: EspnConfig = DEFAULT_ESPN,
@@ -72,7 +91,9 @@ def run(as_of: Optional[datetime] = None, http_get: HttpGet = get_json,
     groups_obj, matches_obj = of_mod.fetch_raw(http_get, of_cfg)
     _, fixtures = of_mod.load_structure(groups_obj, matches_obj, reg)
     overlay = fetch_overlay(http_get, reg, espn_cfg, dates=dates)
-    return reconcile(fixtures, overlay, as_of)
+    # group stage only here; knockout finals are routed to the simulator (plan.md §21).
+    group_overlay, _ = split_overlay(fixtures, overlay)
+    return reconcile(fixtures, group_overlay, as_of)
 
 
 def _print_summary(matches: List[Match], as_of: datetime) -> None:

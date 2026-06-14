@@ -34,15 +34,18 @@ def parse_scoreboard(day_obj: dict, reg: TeamRegistry, source: str = "espn") -> 
             raise DataError(f"ESPN event {ev.get('id')} has {len(competitors)} competitors")
         status = _status(ev.get("status") or comp.get("status"))
         teams, goals = {}, {}
+        winner_id = None
         for c in competitors:
             name = reg.name(c["team"]["displayName"])
             tid = slugify(name)
             teams[tid] = name
             raw = c.get("score")
             goals[tid] = int(raw) if (raw not in (None, "") and status is Status.FINAL) else None
+            if status is Status.FINAL and c.get("winner") is True:
+                winner_id = tid
         kickoff = parse_iso_utc(ev["date"])
         results.append(OverlayResult(
             pair=frozenset(teams.keys()), teams=teams, goals_by_team=goals,
-            status=status, kickoff_utc=kickoff, source=source,
+            status=status, kickoff_utc=kickoff, source=source, winner_id=winner_id,
         ))
     return results

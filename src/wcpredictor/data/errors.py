@@ -34,3 +34,8 @@ class FutureResultLeak(DataError):
 
 class MissingScore(DataError):
     """A fixture is final but has no score."""
+
+
+class UndecidedKnockout(DataError):
+    """A final knockout tie from the overlay gives no advancer (no winner flag and the score
+    is level) — we refuse to guess who went through (plan.md §21)."""

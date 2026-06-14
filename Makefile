@@ -71,6 +71,10 @@ simulate: ## (Phase 4) Run the tournament Monte Carlo from current real state ->
 report: ## (Phase 5) Build + publish docs/data/latest.json for the dashboard
 	@PYTHONPATH=src $(PY) -m wcpredictor.report.run $(ARGS)
 
+.PHONY: explain
+explain: ## (Phase 7) Explain one team's rating + goal expectation (TEAM=Brazil [ARGS=--live])
+	@PYTHONPATH=src $(PY) -m wcpredictor.report.explain --team "$(TEAM)" $(ARGS)
+
 .PHONY: live
 live: ## (Phase 5) Full live refresh: fetch -> rate -> model -> simulate -> report
 	@echo "[live] Phase 5 not yet implemented. See plan.md §6." >&2; exit 2
