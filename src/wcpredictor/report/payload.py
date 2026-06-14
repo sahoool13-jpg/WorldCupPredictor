@@ -12,6 +12,7 @@ from datetime import datetime, timezone
 from typing import Optional
 
 from ..data.model import Status
+from ..model.lambdas import lambdas
 from ..sim import standings
 
 REACH_KEYS = ["R32", "R16", "QF", "SF", "F"]
@@ -37,24 +38,54 @@ def _movers(title_odds: list, n: int = 3) -> dict:
 
 
 
+def _why_map(sim) -> dict:
+    """The "why this %?" explainer per team (plan.md §22, D7: all 48, λ-only): the rating
+    breakdown (already computed by the ratings engine) + this team's attack/defence goal
+    expectation vs an *average* opponent at neutral + the host-edge flag. Read-only/descriptive
+    — never an odds input, so it can't perturb the fixed-seed deltas. Empty (block omitted) when
+    the sim wasn't given rating details (graceful degrade)."""
+    details = getattr(sim, "details", None)
+    if not details:
+        return {}
+    ratings = sim.ratings
+    avg = sum(ratings.values()) / len(ratings)
+    gp = sim.gparams
+    out = {}
+    for t, d in details.items():
+        atk, dfn = lambdas(ratings[t], avg, gp, 0.0, 0.0)  # neutral vs an average side
+        out[t] = {
+            "rating": {"blended": round(d.rating, 1), "prior": round(d.prior, 1),
+                       "elo_live": round(d.elo_live, 1), "form_delta": round(d.form, 3),
+                       "squad_delta": round(d.squad, 1), "w_live": round(d.w_live, 3),
+                       "n_played": d.n},
+            "goals": {"attack_lambda": round(atk, 2), "defence_lambda": round(dfn, 2),
+                      "host_edge": t in sim.hosts},
+        }
+    return out
+
+
 def build_payload(sim, probs, *, n_sims: int, seed: int, as_of: datetime,
                   source: dict, prev: Optional[dict] = None) -> dict:
     group_of = {t: g for g, teams in sim.groups.items() for t in teams}
     prev_title = {r["team"]: r["title"] for r in (prev or {}).get("title_odds", [])}
     finals = [m for m in sim.matches if m.status is Status.FINAL and m.group is not None]
     zero = {"title": 0.0, **{k: 0.0 for k in REACH_KEYS}}
+    why = _why_map(sim)
 
     title_odds = []
     for team in group_of:  # all 48 teams (a team absent from the sim never advanced -> 0%)
         p = probs.get(team, zero)
         title = round(p["title"], 5)
-        title_odds.append({
+        row = {
             "team": team, "group": group_of.get(team),
             "title": title,
             "title_delta": round(title - prev_title.get(team, title), 5),
             "reach": {k: round(p[k], 5) for k in REACH_KEYS},
             "status": _status(p["R32"]),
-        })
+        }
+        if team in why:
+            row["why"] = why[team]
+        title_odds.append(row)
     title_odds.sort(key=lambda r: (-r["title"], r["team"]))
 
     groups = []

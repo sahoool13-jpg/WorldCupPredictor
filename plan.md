@@ -1215,6 +1215,24 @@ explainer; degrade-gracefully, like `movers`/`recent_results`):
   change); `docs/app.js`+`style.css` explainer (presentation-only); optional `make explain`;
   the §22.4 suite green; docs updated. **Strictly additive.**
 
+### 22.7 As built (2026-06-14)
+- **No model change.** `build_sim` keeps the full `RatingDetail` dict (it was discarding it) and
+  hands it to `Sim(details=…)`. `payload._why_map(sim)` builds, per team: the rating breakdown
+  (`blended/prior/elo_live/form_delta/squad_delta/w_live/n_played`) + attack/defence λ vs an
+  **average** side at neutral (`lambdas(rating, mean_rating, …)`) + a `host_edge` flag. Attached
+  as an optional `why` on each `title_odds` row; **omitted entirely when details are absent**
+  (graceful — offline sims without details just don't carry it).
+- **Descriptive-only, proven:** a payload built with `why` has **byte-identical** `title` and
+  `title_delta` to one without it (`test_explain.py::test_why_is_descriptive_only_does_not_move_odds`)
+  — the explainer can never perturb the fixed-seed odds/deltas.
+- **CLI:** `make explain TEAM=Brazil [ARGS=--live …]` → `report/explain.py` reuses `_why_map`
+  (same logic as the dashboard; unknown team → `UnknownTeam`).
+- **Dashboard:** the existing tap-to-expand row now shows a compact "Why this %?" grid (rating,
+  attack λ, defence λ, form) + a provenance note + a host-edge chip, inside the same panel as
+  the path curve. Mobile-first; degrades if `why` is absent. Assets bumped to `?v=3`.
+- **Tests:** `tests/test_explain.py` (5) — present for all 48, finite/sane values, host-edge ⇔
+  hosts, `w_live = n/(n+k_shrink)`, descriptive-only. **98 tests green.**
+
 ---
 
 ## 23. Engineering — CI on pull requests (no decision needed)
@@ -1233,5 +1251,8 @@ auto-refreshing). **CI-on-PRs** added (§23). **D6/D7 RESOLVED** 2026-06-14 (own
 think is best") → D6a ratings frozen post-group, D6b strict slot-binding, D6c JSON-bracket-now/
 visual-next; D7 all-48/λ-only. **Phase 6 (knockout-readiness, §21) BUILT** — KO finals ingested
 from the ESPN overlay, pinned as fixed advancers in the bracket, live-state contract extended
-(a)–(d), additive `bracket` block + KO finals in the ticker; 93 tests green. **Phase 7
-(explainability, §22) next.** Knockouts start **28 Jun 2026**._
+(a)–(d), additive `bracket` block + KO finals in the ticker. **Phase 7 (explainability, §22)
+BUILT** — additive read-only `why` block (rating breakdown + λ vs an average side + host edge),
+tap-to-expand explainer, `make explain` CLI; descriptive-only (never moves the fixed-seed odds).
+**98 tests green.** Knockouts start **28 Jun 2026**; live ESPN KO field shape to confirm on
+Actions when R32 begins._

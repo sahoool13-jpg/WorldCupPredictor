@@ -162,3 +162,11 @@ later want favorites weighted harder.
   93 tests green. **Live ESPN KO field shape still to be confirmed on Actions when R32 starts**
   (egress wall) — the parser fails loud if a field differs. Same-group KO rematch is a recorded
   edge (skipped; impossible at R32 by Annex C no-rematch).
+- **Phase 7 "Why this %?" explainability = BUILT** (`plan.md` §22; D7: all 48, λ-only). `build_sim`
+  keeps the full `RatingDetail` (was discarded) and passes it to `Sim`; `payload._why_map` emits
+  an additive per-team `why` block — rating breakdown (prior/elo*live/form/squad/`w_live`/n) +
+  attack/defence λ vs an **average** side at neutral + a `host_edge` flag. **Read-only/descriptive:
+  it never feeds the odds — a payload with `why` has byte-identical title/delta to one without**
+  (tested), preserving the fixed-seed clean-delta property. `make explain TEAM=Brazil` prints the
+  same breakdown (reuses `_why_map`). Dashboard shows it in the existing tap-to-expand row (assets
+  `?v=3`); omitted gracefully when absent. 98 tests green.

@@ -64,12 +64,15 @@ def _build_cdf(home: str, away: str, ratings, gparams, gconf, gh: float, ga: flo
 
 class Sim:
     def __init__(self, matches, ratings, gparams, gconf, hosts, ko_specs, groups=None,
-                 ko_results=None):
+                 ko_results=None, details=None):
         self.groups = groups or _groups()
         self.matches = list(matches)
         self.played, remaining = partition(matches, self.groups)
         self.ratings, self.gparams, self.gconf, self.hosts = ratings, gparams, gconf, hosts
         self.ko_specs = ko_specs
+        # full per-team RatingDetail (prior/elo*/form/squad/…) for the "why this %?" explainer
+        # (plan.md §22). Optional — descriptive only, never an odds input.
+        self.details = details
         # completed knockout ties: real, fixed advancers bound to bracket slots by team-pair
         # (plan.md §21). Pinned, never re-simulated.
         self.ko_results = list(ko_results or [])
@@ -203,11 +206,13 @@ def build_sim(as_of: datetime, live: bool, espn_start=None, espn_end=None):
     rconf = load_rconf()
     # ratings learn ONLY from played GROUP matches (D6a: frozen post-group; KO re-seeds the
     # bracket, not Elo). compute_ratings already keys on m.group, so KO matches don't feed it.
-    ratings = {t: d.rating for t, d in compute_ratings(matches, as_of, load_prior(), rconf).items()}
+    details = compute_ratings(matches, as_of, load_prior(), rconf)
+    ratings = {t: d.rating for t, d in details.items()}
     gparams = load_params()
     gconf = json.loads((_ROOT / "configs" / "goal_model.json").read_text())
     specs = bracket_mod.parse_ko(matches_obj)
-    return Sim(matches, ratings, gparams, gconf, set(rconf["hosts"]), specs, ko_results=ko_results)
+    return Sim(matches, ratings, gparams, gconf, set(rconf["hosts"]), specs,
+               ko_results=ko_results, details=details)
 
 
 def _matches_from_openfootball(fixtures, as_of):
