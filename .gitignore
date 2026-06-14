@@ -1,0 +1,34 @@
+# --- secrets (NEVER commit) ---
+.env
+.env.*
+*.key
+*.pem
+secrets/
+**/credentials*.json
+
+# --- python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+env/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# --- data: keep committed reference truth, ignore caches/derived ---
+data/processed/
+data/raw/cache/
+*.tmp
+
+# --- os / editor ---
+.DS_Store
+.idea/
+.vscode/
+*.swp
