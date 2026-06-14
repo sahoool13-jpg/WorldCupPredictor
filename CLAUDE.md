@@ -95,9 +95,11 @@ prior state.
   JSON (title odds, run-over-run deltas, standings, eliminated/through, "last updated"). No
   server. `plan.md` §6 Phase 5 — **built LAST**, after the model is correct & validated; don't
   let dashboard work distract from simulation correctness. Phase 4 must emit that JSON + deltas.
-- **Phase 2 (ratings) sub-plan** (`plan.md` §17) is **drafted, awaiting sign-off** (decisions
-  D2-prior / D2-squad / D2-hist-data / D2-params). **No Phase-2 engine code until signed off.**
-  Key Phase-2 rules: ratings learn **only** from played matches (point-in-time, no future
-  leak — tested); blend Elo + form + squad proxy with **documented tunable** weights; blend a
-  pre-tournament **prior** with live results via a shrinkage that shifts to live as games are
-  played (don't overreact early).
+- **Phase 2 ratings = BUILT, VERIFIED & MERGED** (`plan.md` §17). Elo prior (martj42) +
+  in-tournament Elo + form + squad proxy, shrinkage-blended; 62 tests green; live top ratings
+  sane vs FIFA June-2026 (top-3 exact). Ratings learn **only** from played matches (point-in-
+  time, no future leak); weights/k_shrink are documented tunables in `configs/ratings.json`.
+- **Phase 3 (Dixon-Coles goal model) sub-plan** (`plan.md` §18) is **drafted, awaiting
+  sign-off** (D3-map / D3-calib / D3-etp / D3-input). Produces a scoreline probability matrix
+  per fixture (needed for GD/GS tiebreakers + ET/penalties), driven by Phase-2 ratings,
+  calibrated **market-blind** on martj42 goals. **No Phase-3 engine code until §18 signed off.**
