@@ -1,6 +1,6 @@
 // Live dashboard — presentation only. Reads the committed latest.json the scheduled run writes.
 // The fetch keeps the cache-buster (?t=<now>) + cache:"no-store" to beat the Pages CDN.
-// New optional fields (movers, recent_results) degrade gracefully if absent.
+// Optional fields (movers, recent_results, upcoming, bracket, why) all degrade gracefully if absent.
 "use strict";
 
 const FLAGS = {
@@ -20,6 +20,12 @@ const FLAGS = {
 const MOVE = 0.005;
 const pct = (x) => (x * 100).toFixed(1) + "%";
 const pp = (d) => (d > 0 ? "+" : "") + (d * 100).toFixed(2);
+// "2026-06-14" -> "Sun 14 Jun" (UTC); falls back to the raw string if unparseable.
+const fmtDate = (iso) => {
+  const d = new Date(iso + "T00:00:00Z");
+  if (isNaN(d)) return iso;
+  return d.toLocaleDateString("en-GB", { weekday: "short", day: "numeric", month: "short", timeZone: "UTC" });
+};
 const el = (tag, cls, txt) => { const n = document.createElement(tag);
   if (cls) n.className = cls; if (txt != null) n.textContent = txt; return n; };
 
@@ -84,6 +90,7 @@ function whyBlock(w) {
 function renderOdds(rows) {
   const ol = document.getElementById("odds");
   ol.innerHTML = "";
+  rows = Array.isArray(rows) ? rows : [];
   const max = rows.length ? rows[0].title : 1;
   rows.forEach((r, i) => {
     const li = el("li", "row" + (i === 0 && r.title > 0 ? " lead" : "") +
@@ -181,7 +188,8 @@ function renderResults(d) {
     const fh = flag(m.home, "miniflag"); if (fh) li.appendChild(fh);
     li.appendChild(el("span", "sc", `${m.home} ${m.home_goals}–${m.away_goals} ${m.away}`));
     const fa = flag(m.away, "miniflag"); if (fa) li.appendChild(fa);
-    li.appendChild(el("span", "g", m.date));
+    const dt = el("span", "g", fmtDate(m.date)); dt.title = m.date;
+    li.appendChild(dt);
     ul.appendChild(li);
   });
 }
@@ -220,7 +228,9 @@ function renderUpcoming(d) {
     meta.appendChild(el("span", "uprob", pct(m.p_home) + " / " + pct(m.p_draw) + " / " + pct(m.p_away)));
     const sc = m.scoreline;
     meta.appendChild(el("span", "uscore", `likeliest ${sc.home_goals}–${sc.away_goals}`));
-    meta.appendChild(el("span", "g", (m.group ? "Grp " + m.group + " · " : "") + m.date));
+    const dt = el("span", "g", (m.group ? "Grp " + m.group + " · " : "") + fmtDate(m.date));
+    dt.title = m.date;
+    meta.appendChild(dt);
     li.appendChild(meta);
     ul.appendChild(li);
   });
@@ -229,13 +239,14 @@ function renderUpcoming(d) {
 function renderGroups(groups) {
   const root = document.getElementById("groups");
   root.innerHTML = "";
-  groups.forEach((g) => {
+  (Array.isArray(groups) ? groups : []).forEach((g) => {
     const box = el("div", "group");
     const h = el("h3"); h.appendChild(el("span", "lt", g.group));
     h.appendChild(document.createTextNode("Group " + g.group));
     box.appendChild(h);
     const t = el("table", "gt");
-    t.innerHTML = "<thead><tr><th class='tl'>Team</th><th>P</th><th>GD</th><th>Pts</th></tr></thead>";
+    t.innerHTML = "<thead><tr><th class='tl' scope='col'>Team</th><th scope='col'>P</th>" +
+      "<th scope='col'>GD</th><th scope='col'>Pts</th></tr></thead>";
     const tb = el("tbody");
     g.table.forEach((row, i) => {
       const zone = i < 2 ? "z-through" : i === 2 ? "z-third" : "z-out";
