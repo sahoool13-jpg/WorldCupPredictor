@@ -1,8 +1,8 @@
 # WorldCupPredictor — Build Plan
 
-**Status:** D0 approved. D1 → **openfootball** (structure, §14) **+ live-results overlay**
-(openfootball lags; §15). Overlay source **D1-overlay OPEN** — ESPN recommended (proven
-fresh) pending owner confirm. D-cards resolved. _No engine code yet._
+**Status:** D0 approved. Sources resolved: **openfootball** (structure, §14) **+ ESPN site
+API** live-results overlay (§15); D-cards resolved. Phase 1 sub-plan (§12 + §15)
+**complete — awaiting sign-off to start engine code.** _No engine code yet._
 **Owner:** sahoool13
 **Last updated:** 2026-06-14
 
@@ -337,7 +337,7 @@ No engine code. **Deliverable:** owner sign-off on the phase list and the §3 fo
 | **D0** | Approve this phase list + §3 format spec | Phase 0 | ✅ **APPROVED** 2026-06-14 |
 | **D1** | WC-2026 data source (verify coverage first; no scraping) | Phase 1 | ✅ **RESOLVED** 2026-06-14 → **openfootball dataset** (`openfootball/worldcup.json`). API-Football free failed the live gate (§11); openfootball verified directly (§14): 12×4 groups, 104 matches, real played scorelines, no cards. |
 | **D-cards** | How cards-based tiebreakers behave with no card data (group fair-play; 3rd-place conduct) | Phase 1/4 | ✅ **RESOLVED** 2026-06-14 → **skip to the next defined step (drawing of lots, seeded) + emit a loud warning and record it** (never silent). Triggers only when a tie is otherwise unresolved before the conduct step. |
-| **D1-overlay** | Which fresh live-results source overlays openfootball (which lags) | Phase 1 | ⏳ **OPEN** — smoke-test (§15.1) makes **ESPN site API** the recommendation (free, no key, proven fresh — had Australia 2–0 Türkiye). Caveat: unofficial endpoint. Alt: football-data.org (needs `FOOTBALL_DATA_TOKEN`). Awaiting owner confirm. |
+| **D1-overlay** | Which fresh live-results source overlays openfootball (which lags) | Phase 1 | ✅ **RESOLVED** 2026-06-14 → **ESPN site API** (free, no key, proven fresh — had Australia 2–0 Türkiye; §15). Unofficial-endpoint caveat accepted; config-driven client allows swapping to football-data.org later. |
 | **D2** | Elo K / MoV, home-advantage for hosts, form window, squad-strength proxy source (market-blind) | Phase 2 | Elo+MoV, partial home edge, transparent squad-value proxy |
 | **D3** | Goal-model fit (historical fit vs analytic ratings→λ), Dixon-Coles tau | Phase 3 | Dixon-Coles, ratings→λ with historical calibration |
 | **D4** | N sims, seeding/parallelism, lots handling, FIFA-ranking snapshot source | Phase 4 | 50k sims, seeded, lots=seeded-random |
@@ -553,13 +553,23 @@ feed. Owner decision: keep **openfootball for the static structure** (groups, th
 | TheSportsDB (free key `3`) | free key | ⚠️ Sparse/incomplete — only a partial result or two, **no** Australia–Turkey. Rejected. |
 | football-data.org v4 (`/competitions/WC/matches`) | `FOOTBALL_DATA_TOKEN` | ◻️ **Untested** — no token in secrets. The *officially supported* alternative; needs a free token to verify 2026 coverage + freshness. |
 
-### 15.2 Recommendation + open caveat (owner confirm)
-**Recommend: ESPN site API as the overlay** — free, no key, reachable on Actions, proven
-fresh. **One caveat to accept:** it's an **unofficial/undocumented** endpoint (used by ESPN's
-own apps) — JSON, **not HTML scraping**, but no published ToS for redistribution and it could
-change without notice. If you'd rather use an **officially supported** free API, provide a
-`FOOTBALL_DATA_TOKEN` and I'll smoke-test football-data.org the same way and use it instead.
-**Pending this confirm before Phase-1 build.**
+### 15.2 Decision — ✅ ESPN site API (owner-confirmed 2026-06-14)
+**Overlay = ESPN site API** (free, no key, proven fresh). Accepted caveat: unofficial/
+undocumented endpoint (JSON, not HTML scraping; no published redistribution ToS; may change
+without notice). Mitigated by a **config-driven client** so a supported source
+(e.g. football-data.org) can swap in later without a rewrite.
+
+**Pinned ESPN client config:**
+- **Base:** `https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world`
+- **Endpoint:** `/scoreboard?dates=YYYYMMDD` (per UTC-ish day). Fetch each day across the
+  tournament window (2026-06-11 … 2026-07-19), dedupe, and reconcile by match key (§15.3).
+- **No auth.** Polite caching / conditional GET where possible.
+- **Fields used:** `events[].competitions[0].competitors[]` → team `displayName` + `score`;
+  `status.type.shortDetail`/`.state`/`.completed` → status (FT/scheduled/in-progress);
+  event date → `kickoff_utc`. (Cards not needed — D-cards.)
+- **No-rewrite swap:** base URL + path + response-mapping live in source config; a
+  football-data.org adapter (`/v4/competitions/WC/matches`, header `X-Auth-Token`) can be
+  added behind the same interface if a `FOOTBALL_DATA_TOKEN` is later provided.
 
 ### 15.3 Overlay architecture (point-in-time preserved)
 - **openfootball = canonical structure:** the 12×4 groups, the 104-fixture skeleton (teams,
