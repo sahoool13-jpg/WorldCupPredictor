@@ -1,8 +1,10 @@
 # WorldCupPredictor — Build Plan
 
 **Status:** D0 approved. Sources resolved: **openfootball** (structure, §14) **+ ESPN site
-API** live-results overlay (§15); D-cards resolved. Phase 1 sub-plan (§12 + §15)
-**complete — awaiting sign-off to start engine code.** _No engine code yet._
+API** live-results overlay (§15); D-cards approved. **Phase 1 sub-plan (§12 + §15) APPROVED
+2026-06-14 — build in progress** on a fresh branch, test-gated (reconciliation contract
+§15.5 + point-in-time §4.1 must pass). _No engine code beyond Phase 1 until its tests are
+green._
 **Owner:** sahoool13
 **Last updated:** 2026-06-14
 
@@ -592,6 +594,25 @@ without notice). Mitigated by a **config-driven client** so a supported source
 reconciliation layer and its guards/tests. Both sources are smoke-tested on Actions (egress
 blocks them from the sandbox); openfootball is also fetchable directly. **D1-overlay** (which
 overlay source) is the only open item before Phase-1 build.
+
+### 15.5 Reconciliation & point-in-time test contract (GATES Phase 1 — owner-required)
+The two-source reconciliation is the new risk surface (a wrong team-pair match silently
+attaches the wrong score — same error class as a bad odds-match in the UFC project). These
+**offline golden-file tests must be green before any live run is trusted**, and they bias to
+**fail-loud over guess** everywhere:
+- **(R1) Cross-bucket match:** the (matchday + unordered-team-pair) key matches an ESPN
+  fixture to its openfootball fixture **despite the date-bucketing mismatch** (ESPN files
+  Australia–Türkiye under 06-14, openfootball under 06-13) — asserted on golden payloads.
+- **(R2) Unmatched overlay → raise:** an ESPN result with no corresponding openfootball
+  fixture **fails loud** (never silently dropped).
+- **(R3) Score conflict → raise:** a fixture where both sources are `final` but the **scores
+  disagree** raises.
+- **(R4) Future-leak guard (core point-in-time):** `final` iff **ESPN FT _and_
+  `kickoff_utc ≤ as_of`**; a `final` with `kickoff_utc > as_of` **must raise**. This is the
+  "count only matches that already happened; never leak a future result" gate — it stays
+  green as a contract.
+- Plus ambiguity guard: if a team-pair maps to >1 base fixture (group + a later knockout),
+  disambiguate by nearest kickoff; raise if still ambiguous.
 
 ---
 
