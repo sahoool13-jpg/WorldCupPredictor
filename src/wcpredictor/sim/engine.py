@@ -19,7 +19,7 @@ from typing import Dict, List, Optional, Tuple
 from ..data.model import Match, Status, slugify
 from ..model.dixon_coles import scoreline_matrix
 from ..model.etp import knockout_home_advance_prob, penalty_home_prob
-from ..model.lambdas import home_gammas, lambdas
+from ..model.lambdas import lambdas
 from . import bracket as bracket_mod
 from . import standings
 from .annex_c import assign_thirds
@@ -49,8 +49,8 @@ def partition(matches: List[Match], groups: Dict[str, List[str]]):
 
 
 # ----------------------------------------------------------------------------- samplers
-def _build_cdf(home: str, away: str, ratings, gparams, gconf, hosts) -> List[Tuple[float, int, int]]:
-    gh, ga = home_gammas(gparams, home in hosts, away in hosts)
+def _build_cdf(home: str, away: str, ratings, gparams, gconf, gh: float, ga: float
+               ) -> List[Tuple[float, int, int]]:
     lh, la = lambdas(ratings[home], ratings[away], gparams, gh, ga)
     m = scoreline_matrix(lh, la, gparams["rho"], gconf["g_max"])
     cdf, cum = [], 0.0
@@ -67,22 +67,31 @@ class Sim:
         self.played, remaining = partition(matches, self.groups)
         self.ratings, self.gparams, self.gconf, self.hosts = ratings, gparams, gconf, hosts
         self.ko_specs = ko_specs
-        # precompute a scoreline CDF per remaining fixture (ratings are fixed across sims)
-        self.remaining = {g: [(h, a, _build_cdf(h, a, ratings, gparams, gconf, hosts))
+        # host advantage: a tapered log-lambda boost for host nations only (plan.md host fix)
+        self.host_boost = gconf.get("host_log_boost", 0.0)
+        self.host_taper = gconf.get("host_taper", {})
+        # precompute a scoreline CDF per remaining (group-round) fixture
+        gt = self.host_taper.get("group", 1.0)
+        self.remaining = {g: [(h, a, _build_cdf(h, a, ratings, gparams, gconf,
+                                                self._gamma(h, gt), self._gamma(a, gt)))
                               for (h, a) in fixtures]
                           for g, fixtures in remaining.items()}
 
+    def _gamma(self, team: str, taper: float) -> float:
+        return self.host_boost * taper if team in self.hosts else 0.0
+
     @lru_cache(maxsize=None)
-    def _p_adv(self, t1: str, t2: str) -> float:
-        gh, ga = home_gammas(self.gparams, t1 in self.hosts, t2 in self.hosts)
-        lh, la = lambdas(self.ratings[t1], self.ratings[t2], self.gparams, gh, ga)
+    def _p_adv(self, t1: str, t2: str, rnd: str) -> float:
+        tp = self.host_taper.get(rnd, 0.0)
+        lh, la = lambdas(self.ratings[t1], self.ratings[t2], self.gparams,
+                         self._gamma(t1, tp), self._gamma(t2, tp))
         pen = penalty_home_prob(self.ratings[t1], self.ratings[t2], self.gparams,
                                 self.gconf["pen_slope"])
         return knockout_home_advance_prob(lh, la, self.gparams["rho"], pen,
                                           self.gconf["et_frac"], self.gconf["g_max"])
 
-    def _winner(self, rng, t1: str, t2: str) -> str:
-        return t1 if rng.random() < self._p_adv(t1, t2) else t2
+    def _winner(self, rng, t1: str, t2: str, rnd: str) -> str:
+        return t1 if rng.random() < self._p_adv(t1, t2, rnd) else t2
 
     def _group_results(self, rng):
         gr, thirds = {}, []
@@ -103,7 +112,8 @@ class Sim:
         gr, thirds = self._group_results(rng)
         qualified = standings.rank_thirds(thirds, self.ratings, rng)[:8]
         assign = assign_thirds([d["group"] for d in qualified])
-        out = bracket_mod.simulate(gr, assign, self.ko_specs, lambda a, b: self._winner(rng, a, b))
+        out = bracket_mod.simulate(gr, assign, self.ko_specs,
+                                   lambda a, b, rnd: self._winner(rng, a, b, rnd))
         return out["reach"]
 
     def run(self, n: int, seed: int):

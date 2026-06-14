@@ -121,8 +121,14 @@ later want favorites weighted harder.
   **never derived/refetched**; fails loud if a simulated combo misses the table. Group sim seeds
   from the true current state; ranking (§3.3) and Annex-C assignment (§19.1) are separate steps;
   bracket wiring comes from openfootball's `Wnn` refs. Live-state contract (a)–(d) tested. Title
-  odds football-sane (Argentina/Spain co-favorites; host boost for Mexico/USA/Canada). Hosts get
-  the goal-model home edge in **every** match (all KO games are on host soil).
+  odds football-sane (Argentina/Spain co-favorites).
+- **Host edge (calibration fix).** Hosts (USA/Canada/Mexico) get a **dedicated, modest,
+  round-tapered** goal boost (`host_log_boost`≈×1.105, `host_taper` group→…→0 by SF/Final) in
+  `configs/goal_model.json` — NOT the generic calibrated `gamma_home` (×1.31). The earlier
+  full-strength-every-match application over-counted the host edge, compounded across ~10 games
+  and **inverted the ratings** (Mexico > higher-Elo England). After the fix: England/Portugal/
+  Germany sit above the hosts; Mexico 2.9% / USA 1.5% / Canada 0.2%. Documented tunable; set to a
+  defensible football value, **not** fit to the market (market used only as a sanity band).
 - **3rd-place FIFA-ranking tiebreaker (§3.3 step 5) reuses the martj42 Elo ordering** as the
   proxy (already committed, market-blind) — a minor approximation on the rarely-decisive 5th
   tiebreaker; avoids adding another data source.

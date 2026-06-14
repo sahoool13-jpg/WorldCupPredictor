@@ -44,7 +44,7 @@ def _resolve(ref: str, sibling: str, group_results: Dict[str, dict],
 
 
 def simulate(group_results: Dict[str, dict], assign: Dict[str, str], specs: List[dict],
-             sample_winner: Callable[[str, str], str]) -> Dict[str, object]:
+             sample_winner: Callable[[str, str, str], str]) -> Dict[str, object]:
     """Play the bracket. Returns {champion, reach: {team: set(rounds)}}."""
     winners: Dict[int, str] = {}
     reach: Dict[str, set] = {}
@@ -54,7 +54,7 @@ def simulate(group_results: Dict[str, dict], assign: Dict[str, str], specs: List
         t2 = _resolve(sp["ref2"], sp["ref1"], group_results, assign, winners)
         reach.setdefault(t1, set()).add(sp["round"])
         reach.setdefault(t2, set()).add(sp["round"])
-        winners[sp["num"]] = sample_winner(t1, t2)
+        winners[sp["num"]] = sample_winner(t1, t2, sp["round"])
         if sp["round"] == "F":
             final_num = sp["num"]
     champion = winners[final_num]
