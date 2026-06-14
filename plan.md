@@ -1,12 +1,9 @@
 # WorldCupPredictor — Build Plan
 
-**Status:** D0 approved. Sources resolved: **openfootball** (structure, §14) **+ ESPN site
-API** live-results overlay (§15); D-cards approved. **Phase 1 data layer BUILT & VERIFIED
-2026-06-14** — 20 offline tests green (incl. the §15.5 R1–R4 reconciliation contract and
-§4.1 point-in-time future-leak gate); the live two-source fetch on Actions loaded the 12×4
-/ 104-fixture structure and the 8 already-played matches with real scores **including the
-ESPN-only Australia 2–0 Turkey** that openfootball was missing (§16). PR #3, awaiting review.
-Phase 2 (ratings) is next — plan-first, not started.
+**Status:** D0–D2 resolved. **Phases 1–2 BUILT, VERIFIED & MERGED** (data layer §12/§15/§16;
+ratings §17 — 62 tests green; live ratings sane vs FIFA June-2026 top-3). **Phase 3 goal-model
+sub-plan (§18) drafted — awaiting sign-off** (D3-map/calib/etp/input). Dashboard = final phase,
+built LAST (§6 Phase 5). No Phase-3 engine code until §18 is signed off.
 **Owner:** sahoool13
 **Last updated:** 2026-06-14
 
@@ -362,7 +359,7 @@ hosting** — static files + scheduled rebuild.
 | **D-cards** | How cards-based tiebreakers behave with no card data (group fair-play; 3rd-place conduct) | Phase 1/4 | ✅ **RESOLVED** 2026-06-14 → **skip to the next defined step (drawing of lots, seeded) + emit a loud warning and record it** (never silent). Triggers only when a tie is otherwise unresolved before the conduct step. |
 | **D1-overlay** | Which fresh live-results source overlays openfootball (which lags) | Phase 1 | ✅ **RESOLVED** 2026-06-14 → **ESPN site API** (free, no key, proven fresh — had Australia 2–0 Türkiye; §15). Unofficial-endpoint caveat accepted; config-driven client allows swapping to football-data.org later. |
 | **D2** | Elo K / MoV, home-advantage for hosts, form window, squad-strength proxy source (market-blind) | Phase 2 | Elo+MoV, partial home edge, transparent squad-value proxy |
-| **D3** | Goal-model fit (historical fit vs analytic ratings→λ), Dixon-Coles tau | Phase 3 | Dixon-Coles, ratings→λ with historical calibration |
+| **D3** | Goal-model: ratings→λ mapping (D3-map), calibration source/method (D3-calib), ET+penalty model (D3-etp), which Phase-2 number drives λ (D3-input) | Phase 3 | §18 drafted: analytic ratings→λ, calibrated on martj42 goals (Poisson reg + DC ρ MLE), committed params; ET scaled-Poisson + logistic penalties; driven by blended rating. **Awaiting sign-off.** |
 | **D4** | N sims, seeding/parallelism, lots handling, FIFA-ranking snapshot source | Phase 4 | 50k sims, seeded, lots=seeded-random |
 | **D5** | **Live web dashboard:** schedule cadence, page tech (plain HTML+JS vs static-site generator), JSON schema, "who moved" thresholds | Phase 5 | Static GitHub Pages + scheduled Action (every few hours) committing web-friendly JSON; plain HTML+JS reading it; build LAST |
 
@@ -782,7 +779,80 @@ R_team = w_elo * Z(R_elo*) + w_form * Z(R_form) + w_squad * Z(R_squad)
 
 ---
 
-_Status: **D0 approved; D1, D-cards, D1-overlay resolved; Phase 1 merged & verified.**
-**Phase 2 ratings sub-plan (§17) drafted — awaiting sign-off** (decisions D2-prior / D2-squad
-/ D2-hist-data / D2-params). Dashboard scope acknowledged (§1, §6 Phase 5) — built LAST. **No
-Phase-2 engine code until §17 is signed off.**_
+## 18. Phase 3 — Match (goal) model (detailed sub-plan, for sign-off)
+
+**Goal:** a **Dixon-Coles / Poisson scoreline model** driven by the Phase-2 ratings that,
+for any two teams at an `as_of`, produces a full **scoreline probability matrix** `P(i,j)`.
+Scorelines (not just W/D/L) are required for the group **GD/GS tiebreakers** and for knockout
+**extra-time/penalty** resolution. The matrix is what the Phase-4 simulator samples per match.
+Plan-first: signed off before any code. **Market-blind** — calibrated only on historical
+goals, never odds.
+
+### 18.1 Inputs
+- Phase-2 **ratings at `as_of`** (the Elo-scaled blended rating, or `elo*`; pinned by D3-map).
+  Point-in-time is inherited from Phase 2 (ratings use only played matches).
+- A **committed snapshot of fitted global params** (D3-calib) so runs are reproducible and
+  tests are offline.
+
+### 18.2 The model
+- **Expected goals from ratings.** For home `H`, away `A`:
+  `log λ_H = μ + β·(R_H − R_A)/S + γ_home·home(H)` and
+  `log λ_A = μ + β·(R_A − R_H)/S + γ_home·home(A)`, where `μ` = baseline log-goals,
+  `β` = rating sensitivity, `S` = rating scale, `γ_home` = home-advantage in goal terms
+  (applied per §17 host rule on host ground; 0 at neutral). Transparent, few params.
+- **Independent Poisson with the Dixon-Coles low-score correction** `τ(i,j; ρ)` that adjusts
+  the dependence in the 0-0 / 1-0 / 0-1 / 1-1 cells (`ρ` fitted). Scoreline matrix over
+  `i,j ∈ 0..G_max` (truncated, then **renormalized to sum to 1**).
+- **Derived:** `P(win/draw/loss)`, `E[goals]`, and the full matrix for tiebreakers.
+
+### 18.3 Extra time + penalties (knockouts)
+- If level after 90′: **extra time** as a scaled-down Poisson (`λ·et_frac` over 30′), then a
+  **penalty shootout** modeled as ~**0.5 at parity**, skewed by rating gap
+  (a gentle logistic in `R_H − R_A`). Resolves every knockout to a winner. (D3-etp.)
+
+### 18.4 Calibration (market-blind, committed)
+- Fit `μ, β, γ_home, ρ` on **historical internationals** from `martj42/international_results`
+  (it has goals + a neutral flag), using each match's **pre-match Elo** (the Phase-2 Elo
+  engine) as the rating input — Poisson regression for `μ/β/γ_home`, then a Dixon-Coles MLE
+  for `ρ`. **Commit the fitted params** as `data/reference/goal_model_2026.json` (provenance +
+  data cutoff). `make calibrate` rebuilds it. No betting data anywhere.
+
+### 18.5 Config & reproducibility
+- `configs/goal_model.json`: `S` (rating scale), `g_max` (truncation), `et_frac`, penalty
+  params, and a pointer to the fitted-params snapshot. A scoreline distribution is pinned by
+  `(as_of ratings, fitted params, config)`.
+
+### 18.6 Open decisions (need sign-off before code)
+- **D3-map:** ratings→λ mapping — **analytic, globally-calibrated** (the §18.2 form; *lean*,
+  reuses the rating, few transparent params) vs a full per-team Dixon-Coles attack/defense fit
+  (more params, needs enough per-team goals). *Lean: analytic.*
+- **D3-calib:** confirm martj42 as the calibration source and the fit method (Poisson
+  regression + DC `ρ` MLE); commit the params snapshot.
+- **D3-etp:** extra-time scaling `et_frac` and the penalty-shootout model (logistic-in-rating,
+  0.5 at parity).
+- **D3-input:** which Phase-2 number drives λ — the blended `rating` (Elo-scaled) or `elo*`.
+  *Lean: the blended `rating`.*
+
+### 18.7 Tests (gate Phase 3)
+- **Proper distribution:** every scoreline matrix is non-negative and sums to 1 (within tol)
+  after DC correction + truncation.
+- **Monotonicity / symmetry:** stronger team has higher `λ` and higher `P(win)`; equal ratings
+  on neutral ground give `λ_H == λ_A` and `P(win)==P(loss)`; home edge raises home `λ`.
+- **Dixon-Coles effect:** non-zero `ρ` shifts the 0-0/1-0/0-1/1-1 cells in the expected
+  direction while the matrix still sums to 1.
+- **ET/penalties:** shootout ≈ 0.5 at parity and skews with the gap; a drawn 90′ always
+  resolves to a winner.
+- **Reproducibility / point-in-time:** fixed params + `as_of` ratings → identical matrices;
+  no future leak (inherited from Phase 2).
+
+### 18.8 Deliverables
+- `src/wcpredictor/model/` (dixon_coles, calibrate, etp); `make model` + `make calibrate`;
+  `configs/goal_model.json`; committed `data/reference/goal_model_2026.json`; the §18.7 suite
+  green. No simulation here (that's Phase 4).
+
+---
+
+_Status: **D0 approved; D1/D-cards/D1-overlay/D2 resolved; Phases 1–2 merged & verified.**
+**Phase 3 goal-model sub-plan (§18) drafted — awaiting sign-off** (decisions D3-map / D3-calib
+/ D3-etp / D3-input). Dashboard scope acknowledged (§1, §6 Phase 5) — built LAST. **No Phase-3
+engine code until §18 is signed off.**_
