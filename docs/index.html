@@ -26,9 +26,15 @@
     <section id="odds-section" aria-labelledby="odds-h">
       <div class="sec-head">
         <h2 id="odds-h">Title race</h2>
-        <p class="legend"><span class="lg rise">▲ rising</span><span class="lg fall">▼ falling</span><span class="lg flat">– no move</span></p>
+        <p class="legend"><span class="lg rise">▲ rising</span><span class="lg fall">▼ falling</span><span class="lg flat">– no move</span><span class="lg tap">tap a team for its path ›</span></p>
       </div>
       <ol id="odds" class="odds" aria-busy="true"></ol>
+    </section>
+
+    <section id="movers-section" aria-labelledby="movers-h">
+      <div class="sec-head"><h2 id="movers-h">Biggest movers</h2>
+        <p class="legend">title odds, since the last update</p></div>
+      <div id="movers" class="movers"></div>
     </section>
 
     <section id="groups-section" aria-labelledby="groups-h">
@@ -39,7 +45,8 @@
     </section>
 
     <section id="results-section" aria-labelledby="results-h">
-      <div class="sec-head"><h2 id="results-h">Results reflected</h2></div>
+      <div class="sec-head"><h2 id="results-h">Recent results</h2>
+        <p class="legend">latest completed matches</p></div>
       <ul id="results" class="results"></ul>
     </section>
   </main>

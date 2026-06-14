@@ -25,6 +25,18 @@ def _status(p_adv: float) -> str:
     return "alive"
 
 
+def _movers(title_odds: list, n: int = 3) -> dict:
+    """Top-n risers/fallers by title_delta (reusing the already-computed deltas). Both lists
+    are EMPTY when nothing moved (the fixed-seed between-matchday state)."""
+    moved = [r for r in title_odds if abs(r["title_delta"]) >= 1e-9]
+    pick = lambda rows: [{"team": r["team"], "group": r["group"], "title_delta": r["title_delta"]}
+                         for r in rows[:n]]
+    risers = sorted((r for r in moved if r["title_delta"] > 0), key=lambda r: -r["title_delta"])
+    fallers = sorted((r for r in moved if r["title_delta"] < 0), key=lambda r: r["title_delta"])
+    return {"risers": pick(risers), "fallers": pick(fallers)}
+
+
+
 def build_payload(sim, probs, *, n_sims: int, seed: int, as_of: datetime,
                   source: dict, prev: Optional[dict] = None) -> dict:
     group_of = {t: g for g, teams in sim.groups.items() for t in teams}
@@ -56,9 +68,15 @@ def build_payload(sim, probs, *, n_sims: int, seed: int, as_of: datetime,
              "status": _status(probs.get(t, {}).get("R32", 0.0))}
             for t in order]})
 
+    by_kickoff = sorted(finals, key=lambda x: x.kickoff_utc)
     reflected = [{"date": m.kickoff_utc.date().isoformat(), "group": m.group,
                   "home": m.home, "hg": m.home_goals, "away": m.away, "ag": m.away_goals}
-                 for m in sorted(finals, key=lambda x: x.kickoff_utc)]
+                 for m in by_kickoff]
+    # last 5 completed matches, most-recent first (point-in-time: finals are FINAL & kickoff<=as_of)
+    recent_results = [{"date": m.kickoff_utc.date().isoformat(),
+                       "home": m.home, "away": m.away,
+                       "home_goals": m.home_goals, "away_goals": m.away_goals}
+                      for m in reversed(by_kickoff[-5:])]
 
     return {
         "meta": {
@@ -68,5 +86,7 @@ def build_payload(sim, probs, *, n_sims: int, seed: int, as_of: datetime,
             "n_played": len(finals), "matches_reflected": reflected,
         },
         "title_odds": title_odds,
+        "movers": _movers(title_odds),
+        "recent_results": recent_results,
         "groups": groups,
     }
