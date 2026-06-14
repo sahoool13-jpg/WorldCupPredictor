@@ -62,9 +62,10 @@ prior state.
 ## Current status
 
 - **D0 approved** — phase list + 2026 format spec.
-- **D1 approved** — **API-Football** free tier is the primary source (football-data.org free
-  omits discipline/cards needed for tiebreakers); football-data.org is the fallback. Phase
-  1's first task is a **live smoke-test**; if WC-2026 fixtures+standings+card events aren't
-  returned, **STOP and escalate** before building.
-- **Phase 1 sub-plan drafted** (`plan.md` §12), **awaiting sign-off**. No Phase-1 engine code
-  until then.
+- **D1 RE-OPENED** — the Actions smoke-test (`plan.md` §11) proved **API-Football's *free*
+  plan does NOT serve WC-2026 match data** (season-gated to 2022–2024; standings/fixtures
+  return "Free plans do not have access to this season"). The doc-level pick was overturned
+  by the live test. Fallback options are in `plan.md` §13, **awaiting the owner's decision**.
+- **STOPPED before Phase 1.** No data-layer engine code until a source is chosen and its
+  smoke-test passes. The cards/discipline tiebreakers may be unavailable on any free tier —
+  see §13 for the proposed market-blind degradation.

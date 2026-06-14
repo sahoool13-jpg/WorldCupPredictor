@@ -1,7 +1,7 @@
 # WorldCupPredictor — Build Plan
 
-**Status:** D0 + D1 approved. Phase 1 sub-plan drafted (§12), awaiting sign-off. _No engine
-code yet._
+**Status:** D0 approved. **D1 re-opened** — API-Football free failed the live WC-2026
+coverage gate (§11); fallback options (§13) await owner decision. _No engine code yet._
 **Owner:** sahoool13
 **Last updated:** 2026-06-14
 
@@ -331,7 +331,7 @@ No engine code. **Deliverable:** owner sign-off on the phase list and the §3 fo
 | ID | Decision | Where | Status / leaning |
 |----|----------|-------|-----------------|
 | **D0** | Approve this phase list + §3 format spec | Phase 0 | ✅ **APPROVED** 2026-06-14 |
-| **D1** | Which free API (verify WC-2026 free-tier coverage first; no scraping) | Phase 1 | ✅ **APPROVED** 2026-06-14. Doc-level verification → **API-Football primary** (football-data.org free omits discipline/cards; see §11), football-data.org fallback; **live smoke-test is the first Phase-1 gate; STOP & escalate if neither returns the tournament** |
+| **D1** | Which free API (verify WC-2026 free-tier coverage first; no scraping) | Phase 1 | ⛔ **RE-OPENED** 2026-06-14. Live smoke-test proved **API-Football free does NOT serve WC-2026 data** (season-gated to 2022–2024; §11). Fallback options in **§13** await owner decision. STOPPED before Phase 1. |
 | **D2** | Elo K / MoV, home-advantage for hosts, form window, squad-strength proxy source (market-blind) | Phase 2 | Elo+MoV, partial home edge, transparent squad-value proxy |
 | **D3** | Goal-model fit (historical fit vs analytic ratings→λ), Dixon-Coles tau | Phase 3 | Dixon-Coles, ratings→λ with historical calibration |
 | **D4** | N sims, seeding/parallelism, lots handling, FIFA-ranking snapshot source | Phase 4 | 50k sims, seeded, lots=seeded-random |
@@ -391,12 +391,21 @@ Phase-1 gate, §12.1). No scraping considered. Findings:
   the live source (static/community-maintained; doesn't meet the live auto-pull requirement,
   and using it as primary would be closer to scraping a dump than a supported live API).
 
-### Decision
-**Primary = API-Football free tier** (it covers the tournament *and* discipline);
-**fallback = football-data.org** (fixtures/results/standings if API-Football is unavailable
-or over budget). **Gate:** Phase 1's first task is a live smoke-test with a real free key —
-if it does not return WC-2026 fixtures + standings + card events, **STOP and bring options
-to the owner** before building anything else (§12.1).
+### Decision (doc-level, SUPERSEDED by the empirical result below)
+~~Primary = API-Football free tier~~ — overturned by the live smoke-test.
+
+### Empirical result — 2026-06-14 Actions smoke-test — ❌ GATE FAILED for API-Football free
+Ran `.github/workflows/smoketest.yml` on GitHub Actions with the real `API_FOOTBALL_KEY`
+(plan = **Free**, 100/day, key valid). Findings:
+- League discovery **works**: `id=1 | World Cup [Cup] | World | seasons=2010,2014,2018,2022,2026`
+  — WC-2026 exists in the catalog as league 1.
+- **But the data is paywalled on free:** `/standings?league=1&season=2026` and
+  `/fixtures?league=1&season=2026` both returned
+  **`{"plan":"Free plans do not have access to this season, try from 2022 to 2024."}`** →
+  0 groups, 0 fixtures, 0 results.
+- **Conclusion: API-Football's *free* plan does NOT cover WC-2026 match data** (season-gated
+  to 2022–2024). Verdict per D1's STOP rule: **do not build on it.** D1 is **re-opened** —
+  see §13 for the fallback options put to the owner.
 
 > Sources: TheStatsAPI (football-data.org free-tier limits 2026; World Cup 2026 API roundup),
 > api-sports.io football API docs, `github.com/rezarahiminia/worldcup2026`,
@@ -500,6 +509,37 @@ ratings/model/sim logic here. Plan-first: this sub-plan is signed off before cod
 
 ---
 
-_Status: **D0 approved**, **D1 approved** (API-Football primary, live smoke-test gate).
-Phase 1 sub-plan above (§12) is drafted and **awaiting sign-off** — no Phase-1 engine code
-until then._
+---
+
+## 13. D1 re-opened — fallback options (awaiting owner decision)
+
+The smoke-test (§11) proved API-Football's **free** plan does **not** serve WC-2026 match
+data. We need a new source decision before any Phase-1 build. Options:
+
+| # | Option | Free? | Live? | Cards/discipline? | Notes |
+|---|--------|-------|-------|-------------------|-------|
+| **A** | **football-data.org** free tier | ✅ | delayed (not in-play) | ❌ paid-only | Covers the WC competition (fixtures/results/standings/top-scorers). **Must be smoke-tested** to confirm it isn't *also* season-gated for 2026. No card data on free → the fair-play (group) and conduct (3rd-place) tiebreakers can't be sourced. |
+| **B** | **API-Football paid** (lowest tier unlocking current seasons) | ❌ (paid) | ✅ | ✅ (events) | Everything we want incl. cards. Breaks the "free" constraint; needs a budget OK. Client already targets this exact API, so only the plan/key changes. |
+| **C** | **openfootball/worldcup.json** (public-domain GitHub dataset, incl. 2026) | ✅ | lags (commit-driven) | likely ❌ | No key. Not a live API — a community-maintained JSON dump; timeliness during matchdays is not guaranteed; closer to consuming a dataset than a supported live feed. |
+| **D** | Another free API (TheStatsAPI, Highlightly, …) | ? | ? | ? | Each needs its own Actions smoke-test to confirm real WC-2026 free coverage before we commit. |
+
+**Cross-cutting cards problem:** the only confirmed way to get real per-match cards is a
+**paid** tier (Option B). All free options likely lack discipline data. If we stay free, we
+need a rule for the rare cases the cards tiebreaker would decide (groups: after GD/GS/H2H;
+3rd-place: after pts/GD/GS). Proposed market-blind handling: when a tie is unresolved
+*before* the fair-play step, **skip conduct and go to the defined next step (drawing of lots,
+seeded)** — and **emit a loud warning / record it** so it is never silent (consistent with
+"fail loudly"). This keeps us free and correct ~always, with a documented, rarely-triggered,
+auditable degradation. (Revisit if Option B is chosen.)
+
+**Recommendation:** **A** (football-data.org free) as primary *if* its smoke-test passes for
+2026, with the documented cards-tiebreaker degradation — staying within the free + market-
+blind constraints. Fall back to **B** only if the owner accepts a small paid tier to get
+real discipline data. **Next concrete step:** extend `smoketest.yml` with a football-data.org
+probe (needs a `FOOTBALL_DATA_TOKEN` secret) and re-run, before choosing.
+
+---
+
+_Status: **D0 approved**. **D1 RE-OPENED** — API-Football free failed the live coverage gate
+(§11); fallback options in §13 await the owner's decision. **No Phase-1 engine code** until a
+source is chosen and its smoke-test passes._
