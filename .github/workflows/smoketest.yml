@@ -18,6 +18,11 @@ on:
     # NOTE: GitHub registers a cron only from the DEFAULT branch; this file must be pushed to
     # the default branch (main) for the schedule to activate.
     - cron: "*/15 * * * *"
+  # External scheduler (e.g. cron-job.org) POSTs to /repos/<owner>/<repo>/dispatches with
+  # {"event_type":"refresh"} -> fires this workflow within seconds (reliable timing, not subject
+  # to GitHub's best-effort cron throttling). The schedule above stays as a free fallback.
+  repository_dispatch:
+    types: [refresh]
   workflow_dispatch:
     inputs:
       as_of:
