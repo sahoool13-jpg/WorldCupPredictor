@@ -10,7 +10,11 @@ name: Dashboard — live title odds (scheduled + manual)
 
 on:
   schedule:
-    - cron: "0 */3 * * *"      # every 3 hours (D5)
+    # every 10 minutes — near-real-time after each final. The publish step commits ONLY when
+    # the odds actually change (git diff guard), so unchanged polls cost a run but no commit;
+    # dashboard commits carry [skip ci] so they never trigger the test workflow. Frequent
+    # polling is only cost-free on a PUBLIC repo (unlimited Actions minutes).
+    - cron: "*/10 * * * *"
   workflow_dispatch:
     inputs:
       as_of:
