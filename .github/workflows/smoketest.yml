@@ -14,6 +14,8 @@ on:
     # the odds actually change (git diff guard), so unchanged polls cost a run but no commit;
     # dashboard commits carry [skip ci] so they never trigger the test workflow. Frequent
     # polling is only cost-free on a PUBLIC repo (unlimited Actions minutes).
+    # NOTE: GitHub registers a cron only from the DEFAULT branch; this file must be pushed to
+    # the default branch (main) for the schedule to activate.
     - cron: "*/10 * * * *"
   workflow_dispatch:
     inputs:
