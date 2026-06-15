@@ -1,14 +1,14 @@
 {
   "meta": {
-    "as_of": "2026-06-15T13:18:46.493038+00:00",
-    "generated_at": "2026-06-15T13:19:00.475965+00:00",
+    "as_of": "2026-06-15T18:06:21.174834+00:00",
+    "generated_at": "2026-06-15T18:06:35.361557+00:00",
     "n_sims": 50000,
     "seed": 2026,
     "source": {
       "structure": "openfootball",
       "results": "espn"
     },
-    "n_played": 12,
+    "n_played": 13,
     "n_ko_played": 0,
     "matches_reflected": [
       {
@@ -106,6 +106,14 @@
         "hg": 5,
         "away": "Tunisia",
         "ag": 1
+      },
+      {
+        "date": "2026-06-15",
+        "group": "H",
+        "home": "Spain",
+        "hg": 0,
+        "away": "Cape Verde",
+        "ag": 0
       }
     ]
   },
@@ -113,14 +121,14 @@
     {
       "team": "Argentina",
       "group": "J",
-      "title": 0.17426,
-      "title_delta": 0.0,
+      "title": 0.18832,
+      "title_delta": 0.01406,
       "reach": {
-        "R32": 0.95936,
-        "R16": 0.68052,
-        "QF": 0.51766,
-        "SF": 0.37588,
-        "F": 0.26136
+        "R32": 0.96028,
+        "R16": 0.7121,
+        "QF": 0.54342,
+        "SF": 0.4005,
+        "F": 0.27882
       },
       "status": "alive",
       "why": {
@@ -141,46 +149,16 @@
       }
     },
     {
-      "team": "Spain",
-      "group": "H",
-      "title": 0.15392,
-      "title_delta": 0.0,
-      "reach": {
-        "R32": 0.98002,
-        "R16": 0.68022,
-        "QF": 0.48364,
-        "SF": 0.35728,
-        "F": 0.24144
-      },
-      "status": "alive",
-      "why": {
-        "rating": {
-          "blended": 2033.0,
-          "prior": 2086.2,
-          "elo_live": 2086.2,
-          "form_delta": 0.0,
-          "squad_delta": 2086.2,
-          "w_live": 0.0,
-          "n_played": 0
-        },
-        "goals": {
-          "attack_lambda": 1.77,
-          "defence_lambda": 0.71,
-          "host_edge": false
-        }
-      }
-    },
-    {
       "team": "France",
       "group": "I",
-      "title": 0.08644,
-      "title_delta": 0.0,
+      "title": 0.09222,
+      "title_delta": 0.00578,
       "reach": {
-        "R32": 0.92864,
-        "R16": 0.65262,
-        "QF": 0.42438,
-        "SF": 0.27266,
-        "F": 0.15662
+        "R32": 0.92502,
+        "R16": 0.64914,
+        "QF": 0.42048,
+        "SF": 0.2691,
+        "F": 0.16064
       },
       "status": "alive",
       "why": {
@@ -201,21 +179,51 @@
       }
     },
     {
-      "team": "Brazil",
-      "group": "C",
-      "title": 0.07146,
-      "title_delta": 0.0,
+      "team": "Spain",
+      "group": "H",
+      "title": 0.08684,
+      "title_delta": -0.06708,
       "reach": {
-        "R32": 0.93748,
-        "R16": 0.5977,
-        "QF": 0.394,
-        "SF": 0.24248,
-        "F": 0.1324
+        "R32": 0.90264,
+        "R16": 0.55498,
+        "QF": 0.36852,
+        "SF": 0.24626,
+        "F": 0.15112
       },
       "status": "alive",
       "why": {
         "rating": {
-          "blended": 1972.7,
+          "blended": 1990.1,
+          "prior": 2086.2,
+          "elo_live": 2077.5,
+          "form_delta": -0.436,
+          "squad_delta": 2086.2,
+          "w_live": 0.167,
+          "n_played": 1
+        },
+        "goals": {
+          "attack_lambda": 1.61,
+          "defence_lambda": 0.77,
+          "host_edge": false
+        }
+      }
+    },
+    {
+      "team": "Brazil",
+      "group": "C",
+      "title": 0.07658,
+      "title_delta": 0.00512,
+      "reach": {
+        "R32": 0.93558,
+        "R16": 0.59614,
+        "QF": 0.39124,
+        "SF": 0.238,
+        "F": 0.13472
+      },
+      "status": "alive",
+      "why": {
+        "rating": {
+          "blended": 1973.6,
           "prior": 2032.9,
           "elo_live": 2029.5,
           "form_delta": -0.17,
@@ -233,14 +241,14 @@
     {
       "team": "Colombia",
       "group": "K",
-      "title": 0.05966,
-      "title_delta": 0.0,
+      "title": 0.06414,
+      "title_delta": 0.00448,
       "reach": {
-        "R32": 0.90428,
-        "R16": 0.6087,
-        "QF": 0.37702,
-        "SF": 0.20892,
-        "F": 0.11636
+        "R32": 0.90384,
+        "R16": 0.60584,
+        "QF": 0.39076,
+        "SF": 0.2182,
+        "F": 0.12252
       },
       "status": "alive",
       "why": {
@@ -263,19 +271,19 @@
     {
       "team": "Portugal",
       "group": "K",
-      "title": 0.05314,
-      "title_delta": 0.0,
+      "title": 0.05816,
+      "title_delta": 0.00502,
       "reach": {
-        "R32": 0.895,
-        "R16": 0.5878,
-        "QF": 0.35576,
-        "SF": 0.19434,
-        "F": 0.10564
+        "R32": 0.89448,
+        "R16": 0.592,
+        "QF": 0.37262,
+        "SF": 0.20428,
+        "F": 0.11204
       },
       "status": "alive",
       "why": {
         "rating": {
-          "blended": 1951.6,
+          "blended": 1951.5,
           "prior": 1984.5,
           "elo_live": 1984.5,
           "form_delta": 0.0,
@@ -293,14 +301,14 @@
     {
       "team": "England",
       "group": "L",
-      "title": 0.05204,
-      "title_delta": 0.0,
+      "title": 0.05642,
+      "title_delta": 0.00438,
       "reach": {
-        "R32": 0.92804,
-        "R16": 0.58656,
-        "QF": 0.34226,
-        "SF": 0.1954,
-        "F": 0.10254
+        "R32": 0.9281,
+        "R16": 0.58802,
+        "QF": 0.35558,
+        "SF": 0.20474,
+        "F": 0.11048
       },
       "status": "alive",
       "why": {
@@ -323,19 +331,19 @@
     {
       "team": "Germany",
       "group": "E",
-      "title": 0.04434,
-      "title_delta": 0.0,
+      "title": 0.04782,
+      "title_delta": 0.00348,
       "reach": {
-        "R32": 0.99704,
-        "R16": 0.6325,
-        "QF": 0.34328,
-        "SF": 0.19282,
-        "F": 0.09378
+        "R32": 0.99672,
+        "R16": 0.63282,
+        "QF": 0.34318,
+        "SF": 0.19206,
+        "F": 0.09756
       },
       "status": "alive",
       "why": {
         "rating": {
-          "blended": 1934.0,
+          "blended": 1933.5,
           "prior": 1951.2,
           "elo_live": 1954.9,
           "form_delta": 0.085,
@@ -353,14 +361,14 @@
     {
       "team": "Belgium",
       "group": "G",
-      "title": 0.03208,
-      "title_delta": 0.0,
+      "title": 0.03528,
+      "title_delta": 0.0032,
       "reach": {
-        "R32": 0.88784,
-        "R16": 0.58632,
-        "QF": 0.3171,
-        "SF": 0.1443,
-        "F": 0.07216
+        "R32": 0.8892,
+        "R16": 0.5876,
+        "QF": 0.31662,
+        "SF": 0.15416,
+        "F": 0.07758
       },
       "status": "alive",
       "why": {
@@ -383,19 +391,19 @@
     {
       "team": "Netherlands",
       "group": "F",
-      "title": 0.03104,
-      "title_delta": 0.0,
+      "title": 0.03278,
+      "title_delta": 0.00174,
       "reach": {
-        "R32": 0.87916,
-        "R16": 0.45934,
-        "QF": 0.27062,
-        "SF": 0.14342,
-        "F": 0.06684
+        "R32": 0.87856,
+        "R16": 0.45556,
+        "QF": 0.26676,
+        "SF": 0.14288,
+        "F": 0.06936
       },
       "status": "alive",
       "why": {
         "rating": {
-          "blended": 1922.3,
+          "blended": 1922.4,
           "prior": 1951.2,
           "elo_live": 1950.7,
           "form_delta": -0.026,
@@ -411,51 +419,21 @@
       }
     },
     {
-      "team": "Mexico",
-      "group": "A",
-      "title": 0.02672,
-      "title_delta": 0.0,
-      "reach": {
-        "R32": 0.9842,
-        "R16": 0.64408,
-        "QF": 0.32986,
-        "SF": 0.15356,
-        "F": 0.0652
-      },
-      "status": "alive",
-      "why": {
-        "rating": {
-          "blended": 1891.5,
-          "prior": 1890.7,
-          "elo_live": 1895.0,
-          "form_delta": 0.143,
-          "squad_delta": 1890.7,
-          "w_live": 0.167,
-          "n_played": 1
-        },
-        "goals": {
-          "attack_lambda": 1.3,
-          "defence_lambda": 0.96,
-          "host_edge": true
-        }
-      }
-    },
-    {
       "team": "Morocco",
       "group": "C",
-      "title": 0.02662,
-      "title_delta": 0.0,
+      "title": 0.02782,
+      "title_delta": 0.0012,
       "reach": {
-        "R32": 0.89374,
-        "R16": 0.48248,
-        "QF": 0.27254,
-        "SF": 0.13842,
-        "F": 0.0625
+        "R32": 0.89464,
+        "R16": 0.48018,
+        "QF": 0.27242,
+        "SF": 0.13844,
+        "F": 0.06354
       },
       "status": "alive",
       "why": {
         "rating": {
-          "blended": 1909.7,
+          "blended": 1908.8,
           "prior": 1910.2,
           "elo_live": 1913.6,
           "form_delta": 0.17,
@@ -471,21 +449,51 @@
       }
     },
     {
-      "team": "Japan",
-      "group": "F",
-      "title": 0.02584,
-      "title_delta": 0.0,
+      "team": "Mexico",
+      "group": "A",
+      "title": 0.02756,
+      "title_delta": 0.00084,
       "reach": {
-        "R32": 0.87264,
-        "R16": 0.44076,
-        "QF": 0.25088,
-        "SF": 0.13054,
-        "F": 0.05826
+        "R32": 0.98304,
+        "R16": 0.6397,
+        "QF": 0.32726,
+        "SF": 0.15648,
+        "F": 0.06564
       },
       "status": "alive",
       "why": {
         "rating": {
-          "blended": 1913.4,
+          "blended": 1890.7,
+          "prior": 1890.7,
+          "elo_live": 1895.0,
+          "form_delta": 0.143,
+          "squad_delta": 1890.7,
+          "w_live": 0.167,
+          "n_played": 1
+        },
+        "goals": {
+          "attack_lambda": 1.3,
+          "defence_lambda": 0.96,
+          "host_edge": true
+        }
+      }
+    },
+    {
+      "team": "Japan",
+      "group": "F",
+      "title": 0.02662,
+      "title_delta": 0.00078,
+      "reach": {
+        "R32": 0.86852,
+        "R16": 0.44102,
+        "QF": 0.25366,
+        "SF": 0.1309,
+        "F": 0.0606
+      },
+      "status": "alive",
+      "why": {
+        "rating": {
+          "blended": 1913.2,
           "prior": 1933.5,
           "elo_live": 1934.0,
           "form_delta": 0.026,
@@ -503,19 +511,19 @@
     {
       "team": "Australia",
       "group": "D",
-      "title": 0.0198,
-      "title_delta": 0.0,
+      "title": 0.0218,
+      "title_delta": 0.002,
       "reach": {
-        "R32": 0.97716,
-        "R16": 0.5912,
-        "QF": 0.27658,
-        "SF": 0.11448,
-        "F": 0.05138
+        "R32": 0.97388,
+        "R16": 0.58638,
+        "QF": 0.2663,
+        "SF": 0.11618,
+        "F": 0.05366
       },
       "status": "alive",
       "why": {
         "rating": {
-          "blended": 1884.2,
+          "blended": 1881.4,
           "prior": 1831.0,
           "elo_live": 1846.9,
           "form_delta": 0.531,
@@ -524,38 +532,8 @@
           "n_played": 1
         },
         "goals": {
-          "attack_lambda": 1.28,
-          "defence_lambda": 0.97,
-          "host_edge": false
-        }
-      }
-    },
-    {
-      "team": "South Korea",
-      "group": "A",
-      "title": 0.01834,
-      "title_delta": 0.0,
-      "reach": {
-        "R32": 0.97282,
-        "R16": 0.6134,
-        "QF": 0.287,
-        "SF": 0.12582,
-        "F": 0.04954
-      },
-      "status": "alive",
-      "why": {
-        "rating": {
-          "blended": 1876.6,
-          "prior": 1839.1,
-          "elo_live": 1847.1,
-          "form_delta": 0.4,
-          "squad_delta": 1839.1,
-          "w_live": 0.167,
-          "n_played": 1
-        },
-        "goals": {
-          "attack_lambda": 1.26,
-          "defence_lambda": 0.99,
+          "attack_lambda": 1.27,
+          "defence_lambda": 0.98,
           "host_edge": false
         }
       }
@@ -563,14 +541,14 @@
     {
       "team": "Croatia",
       "group": "L",
-      "title": 0.01822,
-      "title_delta": 0.0,
+      "title": 0.0197,
+      "title_delta": 0.00148,
       "reach": {
-        "R32": 0.85676,
-        "R16": 0.44656,
-        "QF": 0.21126,
-        "SF": 0.10126,
-        "F": 0.04438
+        "R32": 0.85562,
+        "R16": 0.4393,
+        "QF": 0.22236,
+        "SF": 0.10778,
+        "F": 0.04714
       },
       "status": "alive",
       "why": {
@@ -591,16 +569,46 @@
       }
     },
     {
+      "team": "South Korea",
+      "group": "A",
+      "title": 0.01964,
+      "title_delta": 0.0013,
+      "reach": {
+        "R32": 0.96988,
+        "R16": 0.60332,
+        "QF": 0.28056,
+        "SF": 0.12324,
+        "F": 0.04976
+      },
+      "status": "alive",
+      "why": {
+        "rating": {
+          "blended": 1874.6,
+          "prior": 1839.1,
+          "elo_live": 1847.1,
+          "form_delta": 0.4,
+          "squad_delta": 1839.1,
+          "w_live": 0.167,
+          "n_played": 1
+        },
+        "goals": {
+          "attack_lambda": 1.26,
+          "defence_lambda": 0.99,
+          "host_edge": false
+        }
+      }
+    },
+    {
       "team": "Uruguay",
       "group": "H",
-      "title": 0.0177,
-      "title_delta": 0.0,
+      "title": 0.01872,
+      "title_delta": 0.00102,
       "reach": {
-        "R32": 0.87294,
-        "R16": 0.3849,
-        "QF": 0.20288,
-        "SF": 0.1006,
-        "F": 0.04398
+        "R32": 0.8549,
+        "R16": 0.40456,
+        "QF": 0.20402,
+        "SF": 0.10546,
+        "F": 0.04728
       },
       "status": "alive",
       "why": {
@@ -623,19 +631,19 @@
     {
       "team": "Ivory Coast",
       "group": "E",
-      "title": 0.01218,
-      "title_delta": 0.0,
+      "title": 0.01362,
+      "title_delta": 0.00144,
       "reach": {
-        "R32": 0.98094,
-        "R16": 0.5048,
-        "QF": 0.21382,
-        "SF": 0.09424,
-        "F": 0.03444
+        "R32": 0.9794,
+        "R16": 0.4963,
+        "QF": 0.21338,
+        "SF": 0.09516,
+        "F": 0.03622
       },
       "status": "alive",
       "why": {
         "rating": {
-          "blended": 1861.9,
+          "blended": 1858.3,
           "prior": 1783.7,
           "elo_live": 1797.4,
           "form_delta": 0.685,
@@ -644,8 +652,8 @@
           "n_played": 1
         },
         "goals": {
-          "attack_lambda": 1.22,
-          "defence_lambda": 1.02,
+          "attack_lambda": 1.21,
+          "defence_lambda": 1.03,
           "host_edge": false
         }
       }
@@ -653,19 +661,19 @@
     {
       "team": "USA",
       "group": "D",
-      "title": 0.01212,
-      "title_delta": 0.0,
+      "title": 0.01288,
+      "title_delta": 0.00076,
       "reach": {
-        "R32": 0.98268,
-        "R16": 0.56428,
-        "QF": 0.25046,
-        "SF": 0.0929,
-        "F": 0.036
+        "R32": 0.98192,
+        "R16": 0.56398,
+        "QF": 0.24686,
+        "SF": 0.0958,
+        "F": 0.03742
       },
       "status": "alive",
       "why": {
         "rating": {
-          "blended": 1847.0,
+          "blended": 1844.8,
           "prior": 1799.6,
           "elo_live": 1814.1,
           "form_delta": 0.413,
@@ -675,7 +683,7 @@
         },
         "goals": {
           "attack_lambda": 1.18,
-          "defence_lambda": 1.05,
+          "defence_lambda": 1.06,
           "host_edge": true
         }
       }
@@ -683,14 +691,14 @@
     {
       "team": "Iran",
       "group": "G",
-      "title": 0.00984,
-      "title_delta": 0.0,
+      "title": 0.01226,
+      "title_delta": 0.00242,
       "reach": {
-        "R32": 0.79632,
-        "R16": 0.44616,
-        "QF": 0.18782,
-        "SF": 0.06996,
-        "F": 0.02724
+        "R32": 0.79478,
+        "R16": 0.4464,
+        "QF": 0.19148,
+        "SF": 0.07604,
+        "F": 0.0315
       },
       "status": "alive",
       "why": {
@@ -711,46 +719,16 @@
       }
     },
     {
-      "team": "Senegal",
-      "group": "I",
-      "title": 0.00746,
-      "title_delta": 0.0,
-      "reach": {
-        "R32": 0.70956,
-        "R16": 0.33022,
-        "QF": 0.14482,
-        "SF": 0.05898,
-        "F": 0.02166
-      },
-      "status": "alive",
-      "why": {
-        "rating": {
-          "blended": 1848.6,
-          "prior": 1855.7,
-          "elo_live": 1855.7,
-          "form_delta": 0.0,
-          "squad_delta": 1855.7,
-          "w_live": 0.0,
-          "n_played": 0
-        },
-        "goals": {
-          "attack_lambda": 1.19,
-          "defence_lambda": 1.05,
-          "host_edge": false
-        }
-      }
-    },
-    {
       "team": "Algeria",
       "group": "J",
-      "title": 0.00704,
-      "title_delta": 0.0,
+      "title": 0.00786,
+      "title_delta": 0.00082,
       "reach": {
-        "R32": 0.6836,
-        "R16": 0.28032,
-        "QF": 0.12676,
-        "SF": 0.05078,
-        "F": 0.0196
+        "R32": 0.67828,
+        "R16": 0.3131,
+        "QF": 0.13914,
+        "SF": 0.0587,
+        "F": 0.02286
       },
       "status": "alive",
       "why": {
@@ -771,31 +749,31 @@
       }
     },
     {
-      "team": "Norway",
+      "team": "Senegal",
       "group": "I",
-      "title": 0.00646,
-      "title_delta": 0.0,
+      "title": 0.0074,
+      "title_delta": -6e-05,
       "reach": {
-        "R32": 0.69516,
-        "R16": 0.31768,
-        "QF": 0.1347,
-        "SF": 0.05286,
-        "F": 0.0185
+        "R32": 0.70442,
+        "R16": 0.33366,
+        "QF": 0.14532,
+        "SF": 0.05888,
+        "F": 0.02052
       },
       "status": "alive",
       "why": {
         "rating": {
-          "blended": 1843.2,
-          "prior": 1849.1,
-          "elo_live": 1849.1,
+          "blended": 1848.6,
+          "prior": 1855.7,
+          "elo_live": 1855.7,
           "form_delta": 0.0,
-          "squad_delta": 1849.1,
+          "squad_delta": 1855.7,
           "w_live": 0.0,
           "n_played": 0
         },
         "goals": {
-          "attack_lambda": 1.17,
-          "defence_lambda": 1.06,
+          "attack_lambda": 1.19,
+          "defence_lambda": 1.05,
           "host_edge": false
         }
       }
@@ -803,19 +781,19 @@
     {
       "team": "Switzerland",
       "group": "B",
-      "title": 0.0062,
-      "title_delta": 0.0,
+      "title": 0.00732,
+      "title_delta": 0.00112,
       "reach": {
-        "R32": 0.77576,
-        "R16": 0.37824,
-        "QF": 0.1487,
-        "SF": 0.04966,
-        "F": 0.01802
+        "R32": 0.77802,
+        "R16": 0.3834,
+        "QF": 0.15598,
+        "SF": 0.05436,
+        "F": 0.02036
       },
       "status": "alive",
       "why": {
         "rating": {
-          "blended": 1833.6,
+          "blended": 1835.4,
           "prior": 1883.2,
           "elo_live": 1876.0,
           "form_delta": -0.357,
@@ -833,14 +811,14 @@
     {
       "team": "Austria",
       "group": "J",
-      "title": 0.00578,
-      "title_delta": 0.0,
+      "title": 0.0068,
+      "title_delta": 0.00102,
       "reach": {
-        "R32": 0.66934,
-        "R16": 0.2694,
-        "QF": 0.11854,
-        "SF": 0.04668,
-        "F": 0.01764
+        "R32": 0.66174,
+        "R16": 0.30208,
+        "QF": 0.12978,
+        "SF": 0.05294,
+        "F": 0.02006
       },
       "status": "alive",
       "why": {
@@ -861,31 +839,31 @@
       }
     },
     {
-      "team": "Sweden",
-      "group": "F",
-      "title": 0.00456,
-      "title_delta": 0.0,
+      "team": "Norway",
+      "group": "I",
+      "title": 0.00668,
+      "title_delta": 0.00022,
       "reach": {
-        "R32": 0.96828,
-        "R16": 0.33882,
-        "QF": 0.1406,
-        "SF": 0.04854,
-        "F": 0.01502
+        "R32": 0.69118,
+        "R16": 0.31612,
+        "QF": 0.13418,
+        "SF": 0.05234,
+        "F": 0.01898
       },
       "status": "alive",
       "why": {
         "rating": {
-          "blended": 1812.0,
-          "prior": 1747.7,
-          "elo_live": 1765.5,
-          "form_delta": 0.474,
-          "squad_delta": 1747.7,
-          "w_live": 0.167,
-          "n_played": 1
+          "blended": 1843.2,
+          "prior": 1849.1,
+          "elo_live": 1849.1,
+          "form_delta": 0.0,
+          "squad_delta": 1849.1,
+          "w_live": 0.0,
+          "n_played": 0
         },
         "goals": {
-          "attack_lambda": 1.1,
-          "defence_lambda": 1.14,
+          "attack_lambda": 1.17,
+          "defence_lambda": 1.06,
           "host_edge": false
         }
       }
@@ -893,19 +871,19 @@
     {
       "team": "Ecuador",
       "group": "E",
-      "title": 0.0045,
-      "title_delta": 0.0,
+      "title": 0.00476,
+      "title_delta": 0.00026,
       "reach": {
-        "R32": 0.66044,
-        "R16": 0.28136,
-        "QF": 0.11456,
-        "SF": 0.04112,
-        "F": 0.01358
+        "R32": 0.65468,
+        "R16": 0.28074,
+        "QF": 0.11834,
+        "SF": 0.0425,
+        "F": 0.01442
       },
       "status": "alive",
       "why": {
         "rating": {
-          "blended": 1828.1,
+          "blended": 1831.7,
           "prior": 1918.8,
           "elo_live": 1905.1,
           "form_delta": -0.685,
@@ -915,57 +893,57 @@
         },
         "goals": {
           "attack_lambda": 1.14,
-          "defence_lambda": 1.1,
+          "defence_lambda": 1.09,
           "host_edge": false
         }
       }
     },
     {
-      "team": "Canada",
-      "group": "B",
-      "title": 0.00322,
-      "title_delta": 0.0,
+      "team": "Sweden",
+      "group": "F",
+      "title": 0.00464,
+      "title_delta": 8e-05,
       "reach": {
-        "R32": 0.78326,
-        "R16": 0.35052,
-        "QF": 0.1263,
-        "SF": 0.03642,
-        "F": 0.01164
+        "R32": 0.96322,
+        "R16": 0.33584,
+        "QF": 0.13988,
+        "SF": 0.04876,
+        "F": 0.01584
       },
       "status": "alive",
       "why": {
         "rating": {
-          "blended": 1797.3,
-          "prior": 1835.0,
-          "elo_live": 1828.3,
-          "form_delta": -0.336,
-          "squad_delta": 1835.0,
+          "blended": 1809.6,
+          "prior": 1747.7,
+          "elo_live": 1765.5,
+          "form_delta": 0.474,
+          "squad_delta": 1747.7,
           "w_live": 0.167,
           "n_played": 1
         },
         "goals": {
-          "attack_lambda": 1.06,
-          "defence_lambda": 1.17,
-          "host_edge": true
+          "attack_lambda": 1.09,
+          "defence_lambda": 1.14,
+          "host_edge": false
         }
       }
     },
     {
       "team": "Scotland",
       "group": "C",
-      "title": 0.00304,
-      "title_delta": 0.0,
+      "title": 0.00382,
+      "title_delta": 0.00078,
       "reach": {
-        "R32": 0.83758,
-        "R16": 0.30738,
-        "QF": 0.12138,
-        "SF": 0.04124,
-        "F": 0.01182
+        "R32": 0.83146,
+        "R16": 0.30156,
+        "QF": 0.1176,
+        "SF": 0.03786,
+        "F": 0.0119
       },
       "status": "alive",
       "why": {
         "rating": {
-          "blended": 1802.0,
+          "blended": 1800.1,
           "prior": 1750.7,
           "elo_live": 1757.9,
           "form_delta": 0.362,
@@ -981,16 +959,46 @@
       }
     },
     {
+      "team": "Canada",
+      "group": "B",
+      "title": 0.00378,
+      "title_delta": 0.00056,
+      "reach": {
+        "R32": 0.7846,
+        "R16": 0.35596,
+        "QF": 0.12842,
+        "SF": 0.0403,
+        "F": 0.0128
+      },
+      "status": "alive",
+      "why": {
+        "rating": {
+          "blended": 1799.0,
+          "prior": 1835.0,
+          "elo_live": 1828.3,
+          "form_delta": -0.336,
+          "squad_delta": 1835.0,
+          "w_live": 0.167,
+          "n_played": 1
+        },
+        "goals": {
+          "attack_lambda": 1.07,
+          "defence_lambda": 1.17,
+          "host_edge": true
+        }
+      }
+    },
+    {
       "team": "Egypt",
       "group": "G",
-      "title": 0.0015,
-      "title_delta": 0.0,
+      "title": 0.00142,
+      "title_delta": -8e-05,
       "reach": {
-        "R32": 0.6079,
-        "R16": 0.26378,
-        "QF": 0.07742,
-        "SF": 0.02042,
-        "F": 0.0058
+        "R32": 0.60116,
+        "R16": 0.25892,
+        "QF": 0.0759,
+        "SF": 0.02084,
+        "F": 0.00574
       },
       "status": "alive",
       "why": {
@@ -1011,16 +1019,76 @@
       }
     },
     {
+      "team": "Turkey",
+      "group": "D",
+      "title": 0.0014,
+      "title_delta": 0.00044,
+      "reach": {
+        "R32": 0.39396,
+        "R16": 0.14406,
+        "QF": 0.04558,
+        "SF": 0.01582,
+        "F": 0.00508
+      },
+      "status": "alive",
+      "why": {
+        "rating": {
+          "blended": 1793.1,
+          "prior": 1852.2,
+          "elo_live": 1836.3,
+          "form_delta": -0.531,
+          "squad_delta": 1852.2,
+          "w_live": 0.167,
+          "n_played": 1
+        },
+        "goals": {
+          "attack_lambda": 1.05,
+          "defence_lambda": 1.18,
+          "host_edge": false
+        }
+      }
+    },
+    {
+      "team": "Panama",
+      "group": "L",
+      "title": 0.00134,
+      "title_delta": 0.00046,
+      "reach": {
+        "R32": 0.59536,
+        "R16": 0.18674,
+        "QF": 0.06364,
+        "SF": 0.0187,
+        "F": 0.00504
+      },
+      "status": "alive",
+      "why": {
+        "rating": {
+          "blended": 1769.2,
+          "prior": 1756.5,
+          "elo_live": 1756.5,
+          "form_delta": 0.0,
+          "squad_delta": 1756.5,
+          "w_live": 0.0,
+          "n_played": 0
+        },
+        "goals": {
+          "attack_lambda": 1.0,
+          "defence_lambda": 1.24,
+          "host_edge": false
+        }
+      }
+    },
+    {
       "team": "Uzbekistan",
       "group": "K",
-      "title": 0.00104,
-      "title_delta": 0.0,
+      "title": 0.00116,
+      "title_delta": 0.00012,
       "reach": {
-        "R32": 0.50738,
-        "R16": 0.17778,
-        "QF": 0.055,
-        "SF": 0.01656,
-        "F": 0.00494
+        "R32": 0.50728,
+        "R16": 0.18046,
+        "QF": 0.05986,
+        "SF": 0.01832,
+        "F": 0.00476
       },
       "status": "alive",
       "why": {
@@ -1041,81 +1109,21 @@
       }
     },
     {
-      "team": "Turkey",
-      "group": "D",
-      "title": 0.00096,
-      "title_delta": 0.0,
-      "reach": {
-        "R32": 0.39524,
-        "R16": 0.14448,
-        "QF": 0.04524,
-        "SF": 0.01528,
-        "F": 0.00418
-      },
-      "status": "alive",
-      "why": {
-        "rating": {
-          "blended": 1790.4,
-          "prior": 1852.2,
-          "elo_live": 1836.3,
-          "form_delta": -0.531,
-          "squad_delta": 1852.2,
-          "w_live": 0.167,
-          "n_played": 1
-        },
-        "goals": {
-          "attack_lambda": 1.05,
-          "defence_lambda": 1.19,
-          "host_edge": false
-        }
-      }
-    },
-    {
-      "team": "Panama",
-      "group": "L",
-      "title": 0.00088,
-      "title_delta": 0.0,
-      "reach": {
-        "R32": 0.5991,
-        "R16": 0.18958,
-        "QF": 0.06058,
-        "SF": 0.01734,
-        "F": 0.00442
-      },
-      "status": "alive",
-      "why": {
-        "rating": {
-          "blended": 1769.2,
-          "prior": 1756.5,
-          "elo_live": 1756.5,
-          "form_delta": 0.0,
-          "squad_delta": 1756.5,
-          "w_live": 0.0,
-          "n_played": 0
-        },
-        "goals": {
-          "attack_lambda": 1.0,
-          "defence_lambda": 1.25,
-          "host_edge": false
-        }
-      }
-    },
-    {
       "team": "Czech Republic",
       "group": "A",
-      "title": 0.0006,
-      "title_delta": 0.0,
+      "title": 0.00066,
+      "title_delta": 6e-05,
       "reach": {
-        "R32": 0.43666,
-        "R16": 0.1599,
-        "QF": 0.04704,
-        "SF": 0.0094,
-        "F": 0.00224
+        "R32": 0.42844,
+        "R16": 0.15322,
+        "QF": 0.0469,
+        "SF": 0.01082,
+        "F": 0.00306
       },
       "status": "alive",
       "why": {
         "rating": {
-          "blended": 1737.6,
+          "blended": 1739.7,
           "prior": 1768.7,
           "elo_live": 1760.7,
           "form_delta": -0.4,
@@ -1124,7 +1132,7 @@
           "n_played": 1
         },
         "goals": {
-          "attack_lambda": 0.93,
+          "attack_lambda": 0.94,
           "defence_lambda": 1.33,
           "host_edge": false
         }
@@ -1133,19 +1141,19 @@
     {
       "team": "Paraguay",
       "group": "D",
-      "title": 0.00034,
-      "title_delta": 0.0,
+      "title": 0.00048,
+      "title_delta": 0.00014,
       "reach": {
-        "R32": 0.2864,
-        "R16": 0.09368,
-        "QF": 0.02616,
-        "SF": 0.00788,
-        "F": 0.0017
+        "R32": 0.2856,
+        "R16": 0.09274,
+        "QF": 0.02594,
+        "SF": 0.008,
+        "F": 0.00236
       },
       "status": "alive",
       "why": {
         "rating": {
-          "blended": 1763.3,
+          "blended": 1765.5,
           "prior": 1803.3,
           "elo_live": 1788.8,
           "form_delta": -0.413,
@@ -1155,127 +1163,7 @@
         },
         "goals": {
           "attack_lambda": 0.99,
-          "defence_lambda": 1.26,
-          "host_edge": false
-        }
-      }
-    },
-    {
-      "team": "Jordan",
-      "group": "J",
-      "title": 0.0002,
-      "title_delta": 0.0,
-      "reach": {
-        "R32": 0.31796,
-        "R16": 0.08198,
-        "QF": 0.02176,
-        "SF": 0.00506,
-        "F": 0.00132
-      },
-      "status": "alive",
-      "why": {
-        "rating": {
-          "blended": 1720.9,
-          "prior": 1696.2,
-          "elo_live": 1696.2,
-          "form_delta": 0.0,
-          "squad_delta": 1696.2,
-          "w_live": 0.0,
-          "n_played": 0
-        },
-        "goals": {
-          "attack_lambda": 0.9,
-          "defence_lambda": 1.38,
-          "host_edge": false
-        }
-      }
-    },
-    {
-      "team": "Bosnia & Herzegovina",
-      "group": "B",
-      "title": 0.00012,
-      "title_delta": 0.0,
-      "reach": {
-        "R32": 0.5801,
-        "R16": 0.157,
-        "QF": 0.03432,
-        "SF": 0.00578,
-        "F": 0.00104
-      },
-      "status": "alive",
-      "why": {
-        "rating": {
-          "blended": 1692.5,
-          "prior": 1617.1,
-          "elo_live": 1623.9,
-          "form_delta": 0.336,
-          "squad_delta": 1617.1,
-          "w_live": 0.167,
-          "n_played": 1
-        },
-        "goals": {
-          "attack_lambda": 0.85,
-          "defence_lambda": 1.47,
-          "host_edge": false
-        }
-      }
-    },
-    {
-      "team": "Iraq",
-      "group": "I",
-      "title": 8e-05,
-      "title_delta": 0.0,
-      "reach": {
-        "R32": 0.3375,
-        "R16": 0.08998,
-        "QF": 0.0241,
-        "SF": 0.00556,
-        "F": 0.00108
-      },
-      "status": "alive",
-      "why": {
-        "rating": {
-          "blended": 1717.3,
-          "prior": 1691.7,
-          "elo_live": 1691.7,
-          "form_delta": 0.0,
-          "squad_delta": 1691.7,
-          "w_live": 0.0,
-          "n_played": 0
-        },
-        "goals": {
-          "attack_lambda": 0.9,
-          "defence_lambda": 1.39,
-          "host_edge": false
-        }
-      }
-    },
-    {
-      "team": "New Zealand",
-      "group": "G",
-      "title": 8e-05,
-      "title_delta": 0.0,
-      "reach": {
-        "R32": 0.38426,
-        "R16": 0.12322,
-        "QF": 0.02492,
-        "SF": 0.00434,
-        "F": 0.0009
-      },
-      "status": "alive",
-      "why": {
-        "rating": {
-          "blended": 1697.4,
-          "prior": 1666.8,
-          "elo_live": 1666.8,
-          "form_delta": 0.0,
-          "squad_delta": 1666.8,
-          "w_live": 0.0,
-          "n_played": 0
-        },
-        "goals": {
-          "attack_lambda": 0.86,
-          "defence_lambda": 1.45,
+          "defence_lambda": 1.25,
           "host_edge": false
         }
       }
@@ -1283,14 +1171,14 @@
     {
       "team": "DR Congo",
       "group": "K",
-      "title": 6e-05,
-      "title_delta": 0.0,
+      "title": 0.00028,
+      "title_delta": 0.00022,
       "reach": {
-        "R32": 0.33634,
-        "R16": 0.08986,
-        "QF": 0.02114,
-        "SF": 0.00418,
-        "F": 0.00072
+        "R32": 0.32516,
+        "R16": 0.08612,
+        "QF": 0.02184,
+        "SF": 0.00506,
+        "F": 0.00106
       },
       "status": "alive",
       "why": {
@@ -1311,31 +1199,61 @@
       }
     },
     {
-      "team": "Qatar",
+      "team": "Bosnia & Herzegovina",
       "group": "B",
-      "title": 4e-05,
-      "title_delta": 0.0,
+      "title": 0.00024,
+      "title_delta": 0.00012,
       "reach": {
-        "R32": 0.49914,
-        "R16": 0.10926,
-        "QF": 0.01968,
-        "SF": 0.00272,
-        "F": 0.00046
+        "R32": 0.57694,
+        "R16": 0.1525,
+        "QF": 0.03372,
+        "SF": 0.006,
+        "F": 0.00136
       },
       "status": "alive",
       "why": {
         "rating": {
-          "blended": 1658.6,
-          "prior": 1572.0,
-          "elo_live": 1579.2,
-          "form_delta": 0.357,
-          "squad_delta": 1572.0,
+          "blended": 1690.7,
+          "prior": 1617.1,
+          "elo_live": 1623.9,
+          "form_delta": 0.336,
+          "squad_delta": 1617.1,
           "w_live": 0.167,
           "n_played": 1
         },
         "goals": {
-          "attack_lambda": 0.79,
-          "defence_lambda": 1.58,
+          "attack_lambda": 0.85,
+          "defence_lambda": 1.47,
+          "host_edge": false
+        }
+      }
+    },
+    {
+      "team": "Jordan",
+      "group": "J",
+      "title": 0.0002,
+      "title_delta": 0.0,
+      "reach": {
+        "R32": 0.31882,
+        "R16": 0.095,
+        "QF": 0.02584,
+        "SF": 0.00552,
+        "F": 0.00118
+      },
+      "status": "alive",
+      "why": {
+        "rating": {
+          "blended": 1721.0,
+          "prior": 1696.2,
+          "elo_live": 1696.2,
+          "form_delta": 0.0,
+          "squad_delta": 1696.2,
+          "w_live": 0.0,
+          "n_played": 0
+        },
+        "goals": {
+          "attack_lambda": 0.9,
+          "defence_lambda": 1.38,
           "host_edge": false
         }
       }
@@ -1343,59 +1261,59 @@
     {
       "team": "Cape Verde",
       "group": "H",
-      "title": 2e-05,
-      "title_delta": 0.0,
+      "title": 0.00014,
+      "title_delta": 0.00012,
       "reach": {
-        "R32": 0.299,
-        "R16": 0.04872,
-        "QF": 0.009,
-        "SF": 0.00164,
-        "F": 0.0002
+        "R32": 0.5298,
+        "R16": 0.11034,
+        "QF": 0.02812,
+        "SF": 0.00598,
+        "F": 0.00112
       },
       "status": "alive",
       "why": {
         "rating": {
-          "blended": 1659.3,
+          "blended": 1702.2,
           "prior": 1619.1,
-          "elo_live": 1619.1,
-          "form_delta": 0.0,
+          "elo_live": 1627.9,
+          "form_delta": 0.436,
           "squad_delta": 1619.1,
-          "w_live": 0.0,
-          "n_played": 0
+          "w_live": 0.167,
+          "n_played": 1
         },
         "goals": {
-          "attack_lambda": 0.79,
-          "defence_lambda": 1.58,
+          "attack_lambda": 0.87,
+          "defence_lambda": 1.44,
           "host_edge": false
         }
       }
     },
     {
-      "team": "Ghana",
-      "group": "L",
-      "title": 2e-05,
-      "title_delta": 0.0,
+      "team": "Iraq",
+      "group": "I",
+      "title": 0.00014,
+      "title_delta": 6e-05,
       "reach": {
-        "R32": 0.26952,
-        "R16": 0.04692,
-        "QF": 0.00862,
-        "SF": 0.00134,
-        "F": 0.00024
+        "R32": 0.3357,
+        "R16": 0.09088,
+        "QF": 0.02408,
+        "SF": 0.00524,
+        "F": 0.00104
       },
       "status": "alive",
       "why": {
         "rating": {
-          "blended": 1654.1,
-          "prior": 1612.7,
-          "elo_live": 1612.7,
+          "blended": 1717.4,
+          "prior": 1691.7,
+          "elo_live": 1691.7,
           "form_delta": 0.0,
-          "squad_delta": 1612.7,
+          "squad_delta": 1691.7,
           "w_live": 0.0,
           "n_played": 0
         },
         "goals": {
-          "attack_lambda": 0.78,
-          "defence_lambda": 1.59,
+          "attack_lambda": 0.9,
+          "defence_lambda": 1.39,
           "host_edge": false
         }
       }
@@ -1403,14 +1321,14 @@
     {
       "team": "Saudi Arabia",
       "group": "H",
-      "title": 2e-05,
-      "title_delta": 0.0,
+      "title": 0.00012,
+      "title_delta": 0.0001,
       "reach": {
-        "R32": 0.3882,
-        "R16": 0.0763,
-        "QF": 0.01882,
-        "SF": 0.00384,
-        "F": 0.00068
+        "R32": 0.36524,
+        "R16": 0.07214,
+        "QF": 0.01668,
+        "SF": 0.00334,
+        "F": 0.0006
       },
       "status": "alive",
       "why": {
@@ -1431,21 +1349,51 @@
       }
     },
     {
-      "team": "South Africa",
-      "group": "A",
-      "title": 2e-05,
+      "team": "New Zealand",
+      "group": "G",
+      "title": 8e-05,
       "title_delta": 0.0,
       "reach": {
-        "R32": 0.21984,
-        "R16": 0.05924,
-        "QF": 0.01232,
-        "SF": 0.00164,
-        "F": 0.00026
+        "R32": 0.38194,
+        "R16": 0.12176,
+        "QF": 0.02498,
+        "SF": 0.0053,
+        "F": 0.00092
       },
       "status": "alive",
       "why": {
         "rating": {
-          "blended": 1664.8,
+          "blended": 1697.4,
+          "prior": 1666.8,
+          "elo_live": 1666.8,
+          "form_delta": 0.0,
+          "squad_delta": 1666.8,
+          "w_live": 0.0,
+          "n_played": 0
+        },
+        "goals": {
+          "attack_lambda": 0.86,
+          "defence_lambda": 1.45,
+          "host_edge": false
+        }
+      }
+    },
+    {
+      "team": "South Africa",
+      "group": "A",
+      "title": 4e-05,
+      "title_delta": 2e-05,
+      "reach": {
+        "R32": 0.2163,
+        "R16": 0.05694,
+        "QF": 0.01198,
+        "SF": 0.0022,
+        "F": 0.00038
+      },
+      "status": "alive",
+      "why": {
+        "rating": {
+          "blended": 1665.6,
           "prior": 1644.7,
           "elo_live": 1640.4,
           "form_delta": -0.143,
@@ -1461,21 +1409,111 @@
       }
     },
     {
+      "team": "Ghana",
+      "group": "L",
+      "title": 2e-05,
+      "title_delta": 0.0,
+      "reach": {
+        "R32": 0.26556,
+        "R16": 0.04542,
+        "QF": 0.0102,
+        "SF": 0.00188,
+        "F": 0.00028
+      },
+      "status": "alive",
+      "why": {
+        "rating": {
+          "blended": 1654.2,
+          "prior": 1612.7,
+          "elo_live": 1612.7,
+          "form_delta": 0.0,
+          "squad_delta": 1612.7,
+          "w_live": 0.0,
+          "n_played": 0
+        },
+        "goals": {
+          "attack_lambda": 0.78,
+          "defence_lambda": 1.59,
+          "host_edge": false
+        }
+      }
+    },
+    {
+      "team": "Qatar",
+      "group": "B",
+      "title": 2e-05,
+      "title_delta": -2e-05,
+      "reach": {
+        "R32": 0.49642,
+        "R16": 0.11166,
+        "QF": 0.02,
+        "SF": 0.00338,
+        "F": 0.0005
+      },
+      "status": "alive",
+      "why": {
+        "rating": {
+          "blended": 1656.7,
+          "prior": 1572.0,
+          "elo_live": 1579.2,
+          "form_delta": 0.357,
+          "squad_delta": 1572.0,
+          "w_live": 0.167,
+          "n_played": 1
+        },
+        "goals": {
+          "attack_lambda": 0.79,
+          "defence_lambda": 1.59,
+          "host_edge": false
+        }
+      }
+    },
+    {
+      "team": "Tunisia",
+      "group": "F",
+      "title": 2e-05,
+      "title_delta": 2e-05,
+      "reach": {
+        "R32": 0.10414,
+        "R16": 0.02098,
+        "QF": 0.00516,
+        "SF": 0.00094,
+        "F": 0.00014
+      },
+      "status": "alive",
+      "why": {
+        "rating": {
+          "blended": 1700.2,
+          "prior": 1729.5,
+          "elo_live": 1711.8,
+          "form_delta": -0.474,
+          "squad_delta": 1729.5,
+          "w_live": 0.167,
+          "n_played": 1
+        },
+        "goals": {
+          "attack_lambda": 0.86,
+          "defence_lambda": 1.44,
+          "host_edge": false
+        }
+      }
+    },
+    {
       "team": "Curaçao",
       "group": "E",
       "title": 0.0,
       "title_delta": 0.0,
       "reach": {
-        "R32": 0.066,
-        "R16": 0.0082,
-        "QF": 0.00104,
-        "SF": 8e-05,
-        "F": 2e-05
+        "R32": 0.06502,
+        "R16": 0.00766,
+        "QF": 0.001,
+        "SF": 0.0001,
+        "F": 0.0
       },
       "status": "alive",
       "why": {
         "rating": {
-          "blended": 1586.4,
+          "blended": 1586.9,
           "prior": 1539.3,
           "elo_live": 1535.7,
           "form_delta": -0.085,
@@ -1485,7 +1523,7 @@
         },
         "goals": {
           "attack_lambda": 0.68,
-          "defence_lambda": 1.85,
+          "defence_lambda": 1.84,
           "host_edge": false
         }
       }
@@ -1496,16 +1534,16 @@
       "title": 0.0,
       "title_delta": 0.0,
       "reach": {
-        "R32": 0.09386,
-        "R16": 0.0148,
-        "QF": 0.00268,
-        "SF": 0.00036,
-        "F": 8e-05
+        "R32": 0.08856,
+        "R16": 0.01466,
+        "QF": 0.00246,
+        "SF": 0.00026,
+        "F": 4e-05
       },
       "status": "alive",
       "why": {
         "rating": {
-          "blended": 1648.2,
+          "blended": 1650.1,
           "prior": 1652.0,
           "elo_live": 1644.7,
           "form_delta": -0.362,
@@ -1515,47 +1553,56 @@
         },
         "goals": {
           "attack_lambda": 0.77,
-          "defence_lambda": 1.62,
-          "host_edge": false
-        }
-      }
-    },
-    {
-      "team": "Tunisia",
-      "group": "F",
-      "title": 0.0,
-      "title_delta": 0.0,
-      "reach": {
-        "R32": 0.10556,
-        "R16": 0.02048,
-        "QF": 0.00498,
-        "SF": 0.00102,
-        "F": 0.00018
-      },
-      "status": "alive",
-      "why": {
-        "rating": {
-          "blended": 1697.8,
-          "prior": 1729.5,
-          "elo_live": 1711.8,
-          "form_delta": -0.474,
-          "squad_delta": 1729.5,
-          "w_live": 0.167,
-          "n_played": 1
-        },
-        "goals": {
-          "attack_lambda": 0.86,
-          "defence_lambda": 1.45,
+          "defence_lambda": 1.61,
           "host_edge": false
         }
       }
     }
   ],
   "movers": {
-    "risers": [],
-    "fallers": []
+    "risers": [
+      {
+        "team": "Argentina",
+        "group": "J",
+        "title_delta": 0.01406
+      },
+      {
+        "team": "France",
+        "group": "I",
+        "title_delta": 0.00578
+      },
+      {
+        "team": "Brazil",
+        "group": "C",
+        "title_delta": 0.00512
+      }
+    ],
+    "fallers": [
+      {
+        "team": "Spain",
+        "group": "H",
+        "title_delta": -0.06708
+      },
+      {
+        "team": "Egypt",
+        "group": "G",
+        "title_delta": -8e-05
+      },
+      {
+        "team": "Senegal",
+        "group": "I",
+        "title_delta": -6e-05
+      }
+    ]
   },
   "recent_results": [
+    {
+      "date": "2026-06-15",
+      "home": "Spain",
+      "away": "Cape Verde",
+      "home_goals": 0,
+      "away_goals": 0
+    },
     {
       "date": "2026-06-15",
       "home": "Sweden",
@@ -1583,30 +1630,9 @@
       "away": "Curaçao",
       "home_goals": 7,
       "away_goals": 1
-    },
-    {
-      "date": "2026-06-14",
-      "home": "Australia",
-      "away": "Turkey",
-      "home_goals": 2,
-      "away_goals": 0
     }
   ],
   "upcoming": [
-    {
-      "date": "2026-06-15",
-      "group": "H",
-      "home": "Spain",
-      "away": "Cape Verde",
-      "p_home": 0.807,
-      "p_draw": 0.1411,
-      "p_away": 0.0519,
-      "scoreline": {
-        "home_goals": 2,
-        "away_goals": 0,
-        "p": 0.1558
-      }
-    },
     {
       "date": "2026-06-15",
       "group": "G",
@@ -1626,9 +1652,9 @@
       "group": "H",
       "home": "Saudi Arabia",
       "away": "Uruguay",
-      "p_home": 0.1493,
+      "p_home": 0.1494,
       "p_draw": 0.2451,
-      "p_away": 0.6056,
+      "p_away": 0.6055,
       "scoreline": {
         "home_goals": 0,
         "away_goals": 1,
@@ -1642,7 +1668,7 @@
       "away": "New Zealand",
       "p_home": 0.5527,
       "p_draw": 0.2648,
-      "p_away": 0.1825,
+      "p_away": 0.1826,
       "scoreline": {
         "home_goals": 1,
         "away_goals": 0,
@@ -1682,7 +1708,7 @@
       "group": "J",
       "home": "Argentina",
       "away": "Algeria",
-      "p_home": 0.6009,
+      "p_home": 0.6008,
       "p_draw": 0.247,
       "p_away": 0.1522,
       "scoreline": {
@@ -1697,7 +1723,7 @@
       "home": "Austria",
       "away": "Jordan",
       "p_home": 0.5029,
-      "p_draw": 0.2799,
+      "p_draw": 0.28,
       "p_away": 0.2171,
       "scoreline": {
         "home_goals": 1,
@@ -1710,9 +1736,9 @@
       "group": "K",
       "home": "Portugal",
       "away": "DR Congo",
-      "p_home": 0.6588,
+      "p_home": 0.6587,
       "p_draw": 0.2219,
-      "p_away": 0.1193,
+      "p_away": 0.1194,
       "scoreline": {
         "home_goals": 1,
         "away_goals": 0,
@@ -1752,13 +1778,27 @@
       "group": "K",
       "home": "Uzbekistan",
       "away": "Colombia",
-      "p_home": 0.1592,
-      "p_draw": 0.2515,
+      "p_home": 0.1593,
+      "p_draw": 0.2516,
       "p_away": 0.5892,
       "scoreline": {
         "home_goals": 0,
         "away_goals": 1,
         "p": 0.1435
+      }
+    },
+    {
+      "date": "2026-06-18",
+      "group": "A",
+      "home": "Czech Republic",
+      "away": "South Africa",
+      "p_home": 0.4416,
+      "p_draw": 0.2937,
+      "p_away": 0.2648,
+      "scoreline": {
+        "home_goals": 1,
+        "away_goals": 1,
+        "p": 0.1364
       }
     }
   ],
@@ -2026,6 +2066,22 @@
       "group": "H",
       "table": [
         {
+          "team": "Cape Verde",
+          "pld": 1,
+          "pts": 1,
+          "gd": 0,
+          "gf": 0,
+          "status": "alive"
+        },
+        {
+          "team": "Spain",
+          "pld": 1,
+          "pts": 1,
+          "gd": 0,
+          "gf": 0,
+          "status": "alive"
+        },
+        {
           "team": "Saudi Arabia",
           "pld": 0,
           "pts": 0,
@@ -2035,22 +2091,6 @@
         },
         {
           "team": "Uruguay",
-          "pld": 0,
-          "pts": 0,
-          "gd": 0,
-          "gf": 0,
-          "status": "alive"
-        },
-        {
-          "team": "Cape Verde",
-          "pld": 0,
-          "pts": 0,
-          "gd": 0,
-          "gf": 0,
-          "status": "alive"
-        },
-        {
-          "team": "Spain",
           "pld": 0,
           "pts": 0,
           "gd": 0,
