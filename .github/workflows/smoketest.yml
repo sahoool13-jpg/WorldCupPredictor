@@ -10,13 +10,14 @@ name: Dashboard — live title odds (scheduled + manual)
 
 on:
   schedule:
-    # every 10 minutes — near-real-time after each final. The publish step commits ONLY when
-    # the odds actually change (git diff guard), so unchanged polls cost a run but no commit;
-    # dashboard commits carry [skip ci] so they never trigger the test workflow. Frequent
-    # polling is only cost-free on a PUBLIC repo (unlimited Actions minutes).
+    # every 15 minutes — near-real-time after each final. (Eased from */10: GitHub throttles/
+    # drops frequent free-tier schedules under load, so */15 tends to fire more consistently.)
+    # The publish step commits ONLY when the odds actually change (git diff guard), so unchanged
+    # polls cost a run but no commit; dashboard commits carry [skip ci] so they never trigger the
+    # test workflow. Cost-free on a PUBLIC repo (unlimited Actions minutes).
     # NOTE: GitHub registers a cron only from the DEFAULT branch; this file must be pushed to
     # the default branch (main) for the schedule to activate.
-    - cron: "*/10 * * * *"
+    - cron: "*/15 * * * *"
   workflow_dispatch:
     inputs:
       as_of:
