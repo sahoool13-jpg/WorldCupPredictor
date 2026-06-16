@@ -1,7 +1,7 @@
 {
   "meta": {
-    "as_of": "2026-06-16T17:28:10.580098+00:00",
-    "generated_at": "2026-06-16T17:28:23.209296+00:00",
+    "as_of": "2026-06-16T20:23:35.060820+00:00",
+    "generated_at": "2026-06-16T20:23:49.170068+00:00",
     "n_sims": 50000,
     "seed": 2026,
     "source": {
@@ -1628,20 +1628,6 @@
     {
       "date": "2026-06-16",
       "group": "I",
-      "home": "France",
-      "away": "Senegal",
-      "p_home": 0.5261,
-      "p_draw": 0.2733,
-      "p_away": 0.2006,
-      "scoreline": {
-        "home_goals": 1,
-        "away_goals": 0,
-        "p": 0.14
-      }
-    },
-    {
-      "date": "2026-06-16",
-      "group": "I",
       "home": "Iraq",
       "away": "Norway",
       "p_home": 0.2126,
@@ -1791,6 +1777,20 @@
         "home_goals": 1,
         "away_goals": 1,
         "p": 0.1371
+      }
+    },
+    {
+      "date": "2026-06-19",
+      "group": "D",
+      "home": "USA",
+      "away": "Australia",
+      "p_home": 0.3376,
+      "p_draw": 0.2932,
+      "p_away": 0.3692,
+      "scoreline": {
+        "home_goals": 1,
+        "away_goals": 1,
+        "p": 0.1382
       }
     }
   ],
