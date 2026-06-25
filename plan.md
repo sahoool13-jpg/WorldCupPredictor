@@ -1319,3 +1319,42 @@ production bracket** (`load_bracket()`) end-to-end through a fully-decided group
 seed, and asserts `validate_bracket` rejects a concrete-team ref (the `1E`→`Germany` mutation),
 bad counts, and dangling `W##`. The prior suite only exercised the *test golden* bracket, never the
 data the live build read — which is exactly why the drift reached publish. 106 tests green.
+
+---
+
+## 26. Live R32->Final bracket on the dashboard (additive feature)
+
+**Goal:** a full knockout bracket on the page — real results where known, a probabilistic overlay
+where not — consistent with the existing World Cup theme. Additive/optional, fail-loud preserved,
+page degrades gracefully if the field is absent.
+
+### 26.1 Data (publisher -> `latest.json.bracket`, optional)
+Full R32->Final tree (31 matches). Each match: `{num, round, slot1, slot2, winner, result}` where
+each slot/winner is `{team, prob, state}` and `state` is **resolved** or **projected**:
+- **RESOLVED** — a real team known **point-in-time** from completed matches: group standings for
+  `1X`/`2X`, the committed **Annex C** wiring for the R32 third-place slots (loaded, never
+  re-derived), and played KO advancers for `W##`. `prob == 1.0`. Computed by
+  `Sim.real_bracket()` — strictly from real state, **never** from Monte-Carlo sampling (a heavy
+  favourite winning every iteration is not the same as being mathematically through).
+- **PROJECTED** — the single most-likely team for that slot + its probability, read from the
+  **existing** Monte Carlo. `Sim.run` now tallies per-slot occupancy in the **same** iterations
+  (no second simulation); `_bracket_view` picks the argmax for unresolved slots.
+- `result` carries the real score + winner for a played KO tie.
+Descriptive only — reuses the run, so it can't move the title odds (tested). Fail-loud intact
+(raises on a genuinely bad ref); returns `[]` only if the sim wasn't run.
+
+### 26.2 Display (`docs/`)
+- RESOLVED: solid, full-colour, flag + name (+ score if played); the advancer gets a gold bar.
+- PROJECTED: ghosted/italic, showing the favourite + `%` — clearly distinct from a result.
+- **Mobile (<900px):** round tabs (R32/R16/QF/SF/Final), one round at a time, large tap targets —
+  the one-handed pass/fail. **Desktop (>=900px):** classic left-to-right columns, matches spread so
+  later rounds sit between their feeders. Reuses the page's pitch-green/gold + flags + Anton/Inter.
+- Section is `hidden` by default and only shown when the field is present; a malformed bracket is
+  caught and the section stays hidden (page never errors).
+
+### 26.3 Tests — 113 green (+7)
+`tests/test_bracket_payload.py`: full-tree shape (16/8/4/2/1); nothing-played -> all projected
+(point-in-time, even a MC 100% favourite stays projected); decided groups -> R32 resolved via
+Annex C; partial -> only completed groups resolve; played KO -> result + winner resolved + advances
+to R16; descriptive-only (titles unchanged). Verified visually at 390px (round tabs) and 1280px
+(columns).

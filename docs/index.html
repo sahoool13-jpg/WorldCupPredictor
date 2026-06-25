@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://flagcdn.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=5">
+  <link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
   <header class="banner">
@@ -51,6 +51,13 @@
       <ul id="upcoming" class="upcoming"></ul>
     </section>
 
+    <section id="bracket-section" aria-labelledby="bracket-h" hidden>
+      <div class="sec-head"><h2 id="bracket-h">Knockout bracket</h2>
+        <p class="legend"><span class="lg b-solid">solid · decided</span><span class="lg b-ghost">ghost · projected favorite</span></p>
+      </div>
+      <div id="bracket" class="bracketwrap"></div>
+    </section>
+
     <section id="groups-section" aria-labelledby="groups-h">
       <div class="sec-head"><h2 id="groups-h">Groups</h2>
         <p class="legend"><span class="lg z-through">top 2 advance</span><span class="lg z-third">3rd · best-8 hunt</span><span class="lg z-out">out</span></p>
@@ -70,6 +77,6 @@
        <span id="prov"></span></p>
     <p class="src">Flags: flagcdn.com · this page reads the committed <code>latest.json</code> the scheduled run publishes.</p>
   </footer>
-  <script src="app.js?v=5"></script>
+  <script src="app.js?v=6"></script>
 </body>
 </html>

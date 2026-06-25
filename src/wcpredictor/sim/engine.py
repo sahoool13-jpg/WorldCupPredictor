@@ -10,7 +10,7 @@ from __future__ import annotations
 import bisect
 import json
 import random
-from collections import defaultdict
+from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from functools import lru_cache
 from pathlib import Path
@@ -27,6 +27,7 @@ from .annex_c import assign_thirds
 
 _ROOT = Path(__file__).resolve().parents[3]
 ROUNDS = ["R32", "R16", "QF", "SF", "F", "title"]
+_GROUP_MATCHES = 6   # C(4,2): a group is fully decided once all six fixtures are played
 
 
 # ----------------------------------------------------------------------------- inputs
@@ -166,11 +167,73 @@ class Sim:
     def run(self, n: int, seed: int):
         rng = random.Random(seed)
         counts = defaultdict(lambda: {r: 0 for r in ROUNDS})
+        # per-slot occupancy tally (reuses the SAME iterations — for the dashboard's projected
+        # bracket; never a separate Monte Carlo). slot1/slot2 = who fills each side, w = advancer.
+        s1: Dict[int, Counter] = defaultdict(Counter)
+        s2: Dict[int, Counter] = defaultdict(Counter)
+        sw: Dict[int, Counter] = defaultdict(Counter)
         for _ in range(n):
-            for team, rounds in self.once(rng).items():
+            out = self._resolve_bracket(rng)
+            for team, rounds in out["reach"].items():
                 for r in rounds:
                     counts[team][r] += 1
+            for s in out["slots"]:
+                s1[s["num"]][s["t1"]] += 1
+                s2[s["num"]][s["t2"]] += 1
+                sw[s["num"]][s["winner"]] += 1
+        self.slot_stats = {"n": n, "slot1": dict(s1), "slot2": dict(s2), "winner": dict(sw)}
         return {t: {r: c[r] / n for r in ROUNDS} for t, c in counts.items()}
+
+    # ------------------------------------------------------- point-in-time real bracket
+    def real_bracket(self):
+        """REAL (point-in-time) bracket resolution: per match num, the real team in each slot and
+        the real advancer **where determined by completed matches** (group standings + the
+        committed Annex C for thirds + played KO results), else ``None``. The dashboard's RESOLVED
+        state comes from here — never from Monte-Carlo sampling (a heavy favorite winning every
+        iteration is not the same as being mathematically through)."""
+        rng = random.Random(0)            # only used for the rare unbreakable-tie lot
+        gorder: Dict[str, dict] = {}
+        for g, teams in self.groups.items():
+            if len(self.played[g]) == _GROUP_MATCHES:   # group fully played -> 1/2/3 are real
+                order, _ = standings.rank_group(teams, self.played[g], rng)
+                gorder[g] = {"1": order[0], "2": order[1], "3": order[2]}
+        assign = None
+        if len(gorder) == len(self.groups):              # every group done -> thirds are settled
+            thirds = []
+            for g, teams in self.groups.items():
+                order, s = standings.rank_group(teams, self.played[g], rng)
+                t3 = order[2]
+                thirds.append({"group": g, "team": t3, "pts": s[t3]["pts"],
+                               "gd": s[t3]["gd"], "gf": s[t3]["gf"]})
+            qualified = standings.rank_thirds(thirds, self.ratings, rng)[:8]
+            assign = assign_thirds([d["group"] for d in qualified])
+        ko_by_pair = {kr.pair: kr for kr in self.ko_results}
+        winners: Dict[int, str] = {}
+        out: Dict[int, dict] = {}
+        for sp in self.ko_specs:
+            t1 = self._real_ref(sp["ref1"], sp["ref2"], gorder, assign, winners)
+            t2 = self._real_ref(sp["ref2"], sp["ref1"], gorder, assign, winners)
+            kr = ko_by_pair.get(frozenset((t1, t2))) if (t1 and t2) else None
+            if kr is not None:
+                winners[sp["num"]] = kr.winner
+            out[sp["num"]] = {"slot1": t1, "slot2": t2,
+                              "winner": kr.winner if kr else None, "result": kr}
+        return out
+
+    def _real_ref(self, ref, sibling, gorder, assign, winners):
+        kind = ref[0]
+        if kind == "1":
+            return gorder.get(ref[1], {}).get("1")
+        if kind == "2":
+            return gorder.get(ref[1], {}).get("2")
+        if kind == "3":
+            if assign is None:
+                return None
+            third_group = assign.get(sibling[1])     # sibling is the "1X" winner slot
+            return gorder.get(third_group, {}).get("3")
+        if kind == "W":
+            return winners.get(int(ref[1:]))
+        raise DataError(f"unrecognized bracket ref {ref!r}")
 
 
 # ----------------------------------------------------------------------------- driver

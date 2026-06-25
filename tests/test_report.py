@@ -25,7 +25,12 @@ def test_schema_and_status():
     p = _payload()
     assert set(p) == {"meta", "title_odds", "groups", "movers", "recent_results",
                       "upcoming", "bracket"}
-    assert p["bracket"] == []                                   # group stage not complete
+    assert len(p["bracket"]) == 31                              # full R32->Final, additive
+    assert {b["round"] for b in p["bracket"]} == {"R32", "R16", "QF", "SF", "F"}
+    # group A decided -> its R32 positions resolve; the rest are projected favorites
+    b73 = next(b for b in p["bracket"] if b["num"] == 73)
+    assert b73["slot1"]["state"] in {"resolved", "projected"}
+    assert all(0.0 <= b["winner"]["prob"] <= 1.0 for b in p["bracket"])
     assert p["meta"]["n_sims"] == 300 and p["meta"]["seed"] == 1
     assert p["meta"]["n_played"] == 6 and len(p["meta"]["matches_reflected"]) == 6
     titles = [r["title"] for r in p["title_odds"]]

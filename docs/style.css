@@ -157,6 +157,49 @@ header,main,footer{max-width:960px;margin:0 auto;padding:0 14px}
 .uscore{font-weight:700;color:var(--gold)}
 .umeta .g{margin-left:auto}
 
+/* ---------- knockout bracket ---------- */
+.lg.b-solid::before,.lg.b-ghost::before{content:"";width:10px;height:10px;border-radius:3px}
+.lg.b-solid::before{background:var(--gold)}
+.lg.b-ghost::before{background:rgba(255,207,77,.30)}
+.btabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:13px}
+.btab{appearance:none;-webkit-appearance:none;cursor:pointer;font:inherit;font-weight:700;
+  font-size:12px;letter-spacing:.03em;padding:7px 13px;border-radius:999px;
+  border:1px solid var(--line);background:var(--panel);color:var(--dim);
+  -webkit-tap-highlight-color:transparent}
+.btab.active{background:linear-gradient(160deg,var(--pitch),var(--pitch-deep));color:#04130b;
+  border-color:transparent}
+.btab:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.bcols{display:block}
+.bround{display:none}
+.bround.show{display:block}
+.brlabel{margin:0 0 9px;font-family:Anton,sans-serif;font-weight:400;font-size:14px;
+  letter-spacing:.05em;text-transform:uppercase;color:var(--dim)}
+.bmatch{border:1px solid var(--line);border-radius:11px;background:var(--panel);
+  overflow:hidden;margin:0 0 9px}
+.bslot{display:flex;align-items:center;gap:8px;padding:8px 11px}
+.bslot+.bslot{border-top:1px solid var(--line)}
+.bslot .miniflag{width:21px;height:14px;border-radius:2px;object-fit:cover;flex:0 0 auto;
+  box-shadow:0 0 0 1px rgba(255,255,255,.12)}
+.bteam{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  font-weight:600;font-size:13.5px}
+.bprob{flex:0 0 auto;font-variant-numeric:tabular-nums;font-size:12px;font-weight:700;color:var(--dim)}
+.bscore{flex:0 0 auto;min-width:1.4ch;text-align:right;font-variant-numeric:tabular-nums;
+  font-size:14px;font-weight:800;color:var(--gold)}
+.bslot.resolved .bteam{color:var(--ink)}
+.bslot.projected{opacity:.5}
+.bslot.projected .bteam{font-weight:500;font-style:italic}
+.bslot.win{box-shadow:inset 3px 0 0 var(--gold);
+  background:linear-gradient(90deg,rgba(255,207,77,.10),transparent 60%)}
+.bslot.projected.win{opacity:.8}
+@media(min-width:900px){
+  .btabs{display:none}
+  .bcols{display:flex;gap:14px;align-items:stretch;overflow-x:auto;padding-bottom:6px}
+  .bround{display:flex!important;flex-direction:column;justify-content:space-around;
+    flex:1 0 156px;min-width:156px}
+  .brlabel{text-align:center}
+  .bmatch{margin:7px 0}
+}
+
 /* biggest movers */
 .movers{display:grid;grid-template-columns:1fr;gap:11px}
 .mcol{border:1px solid var(--line);border-radius:var(--rad);background:var(--panel);padding:10px 13px}

@@ -105,9 +105,10 @@ def build_payload(sim, probs, *, n_sims: int, seed: int, as_of: datetime,
                   "home": m.home, "hg": m.home_goals, "away": m.away, "ag": m.away_goals}
                  for m in by_kickoff]
 
-    # the live knockout tree + completed KO ties (plan.md §21). Empty until the bracket is
-    # determined (group stage complete). Completed ties carry their real, fixed result.
-    bracket = _bracket_block(sim)
+    # full R32->Final bracket (plan.md §26): every slot RESOLVED (real, point-in-time) or
+    # PROJECTED (most-likely team + prob, reusing the same Monte Carlo). Optional/additive — the
+    # page hides it gracefully if absent. Empty until the sim has been run.
+    bracket = _bracket_view(sim)
 
     # recent results ticker: group + knockout finals, newest first, last 5 (point-in-time —
     # both streams are FINAL with kickoff <= as_of).
@@ -159,23 +160,39 @@ def _upcoming(sim, n: int = 12) -> list:
     return out
 
 
-def _bracket_block(sim) -> list:
-    """Per-slot knockout tree from the sim's realized bracket (deterministic once groups are
-    complete): round, the two teams, the advancer, and whether the tie is a real completed
-    result. ``result`` carries the displayed scoreline for pinned (real) ties, else null."""
-    slots = sim.bracket_state()
-    if not slots:
+def _bracket_view(sim) -> list:
+    """Full R32->Final bracket for the dashboard (plan.md §26; additive, optional).
+
+    Every slot is either **RESOLVED** — a real team known from completed matches (group standings
+    + the committed Annex C wiring for R32 thirds + played KO advancers), `prob == 1.0` — or
+    **PROJECTED** — the single most-likely team for that slot plus its probability, read straight
+    from the existing Monte Carlo occupancy (NOT recomputed). A played KO tie also carries its real
+    `result` (score + winner). Point-in-time: only real completed matches resolve. Returns `[]`
+    when the sim hasn't been run (graceful)."""
+    stats = getattr(sim, "slot_stats", None)
+    if not stats:
         return []
-    ko_by_pair = {k.pair: k for k in sim.ko_results}
+    n = stats["n"]
+    real = sim.real_bracket()
+    by_num = {sp["num"]: sp for sp in sim.ko_specs}
+
+    def slot(num, side, real_team):
+        if real_team is not None:
+            return {"team": real_team, "prob": 1.0, "state": "resolved"}
+        team, c = stats[side][num].most_common(1)[0]
+        return {"team": team, "prob": round(c / n, 4), "state": "projected"}
+
     out = []
-    for s in slots:
-        kr = ko_by_pair.get(frozenset((s["t1"], s["t2"])))
+    for num in sorted(by_num):
+        r = real[num]
+        kr = r["result"]
         out.append({
-            "round": s["round"], "num": s["num"],
-            "t1": s["t1"], "t2": s["t2"],
-            "winner": s["winner"], "played": bool(s["pinned"]),
+            "num": num, "round": by_num[num]["round"],
+            "slot1": slot(num, "slot1", r["slot1"]),
+            "slot2": slot(num, "slot2", r["slot2"]),
+            "winner": slot(num, "winner", r["winner"]),
             "result": (None if kr is None else
-                       {"home": kr.home, "away": kr.away,
-                        "home_goals": kr.home_goals, "away_goals": kr.away_goals}),
+                       {"home": kr.home, "away": kr.away, "home_goals": kr.home_goals,
+                        "away_goals": kr.away_goals, "winner": kr.winner}),
         })
     return out

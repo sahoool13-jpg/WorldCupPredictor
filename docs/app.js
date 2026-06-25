@@ -236,6 +236,69 @@ function renderUpcoming(d) {
   });
 }
 
+// Knockout bracket: resolved slots solid, projected slots ghosted with the favourite's %.
+// Desktop (>=900px) shows all rounds as columns; phone shows one round at a time via tabs.
+const ROUND_LABELS = { R32: "Round of 32", R16: "Round of 16", QF: "Quarter-finals",
+                       SF: "Semi-finals", F: "Final" };
+const ROUND_SEQ = ["R32", "R16", "QF", "SF", "F"];
+
+function bracketMatch(b) {
+  const card = el("div", "bmatch");
+  [b.slot1, b.slot2].forEach((s) => {
+    const win = b.winner && b.winner.team === s.team;
+    const row = el("div", "bslot " + s.state + (win ? " win" : ""));
+    const fl = flag(s.team, "miniflag"); if (fl) row.appendChild(fl);
+    row.appendChild(el("span", "bteam", s.team));
+    if (b.result) {
+      const g = b.result.home === s.team ? b.result.home_goals
+        : b.result.away === s.team ? b.result.away_goals : null;
+      row.appendChild(el("span", "bscore", g == null ? "" : String(g)));
+    } else if (s.state === "projected") {
+      row.appendChild(el("span", "bprob", Math.round(s.prob * 100) + "%"));
+    }
+    card.appendChild(row);
+  });
+  return card;
+}
+
+function renderBracket(d) {
+  const section = document.getElementById("bracket-section");
+  const root = document.getElementById("bracket");
+  if (!section || !root) return;
+  const br = Array.isArray(d.bracket) ? d.bracket : [];
+  if (!br.length) { section.hidden = true; return; }          // graceful: no data -> hide
+  section.hidden = false;
+  root.innerHTML = "";
+
+  const byRound = {};
+  br.forEach((b) => { (byRound[b.round] = byRound[b.round] || []).push(b); });
+  const rounds = ROUND_SEQ.filter((r) => byRound[r]);
+
+  const cols = el("div", "bcols");
+  const show = (r) => cols.querySelectorAll(".bround")
+    .forEach((c) => c.classList.toggle("show", c.dataset.round === r));
+
+  const tabs = el("div", "btabs"); tabs.setAttribute("role", "tablist");
+  rounds.forEach((r, i) => {
+    const col = el("div", "bround"); col.dataset.round = r;
+    col.appendChild(el("h3", "brlabel", ROUND_LABELS[r]));
+    byRound[r].sort((a, b) => a.num - b.num).forEach((b) => col.appendChild(bracketMatch(b)));
+    cols.appendChild(col);
+
+    const tab = el("button", "btab" + (i === 0 ? " active" : ""), r === "F" ? "Final" : r);
+    tab.type = "button"; tab.setAttribute("role", "tab");
+    tab.addEventListener("click", () => {
+      show(r);
+      tabs.querySelectorAll(".btab").forEach((t) => t.classList.remove("active"));
+      tab.classList.add("active");
+    });
+    tabs.appendChild(tab);
+  });
+  root.appendChild(tabs);
+  root.appendChild(cols);
+  show(rounds[0]);                                            // phone: start on the earliest round
+}
+
 function renderGroups(groups) {
   const root = document.getElementById("groups");
   root.innerHTML = "";
@@ -280,6 +343,9 @@ async function load() {
     renderOdds(d.title_odds);
     renderMovers(d);
     renderUpcoming(d);
+    // optional/additive — a malformed or missing bracket must never break the page
+    try { renderBracket(d); }
+    catch (e) { const s = document.getElementById("bracket-section"); if (s) s.hidden = true; }
     renderGroups(d.groups);
     renderResults(d);
   } catch (e) {
