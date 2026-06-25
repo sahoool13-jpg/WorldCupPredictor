@@ -170,6 +170,19 @@ later want favorites weighted harder.
   (tested), preserving the fixed-seed clean-delta property. `make explain TEAM=Brazil` prints the
   same breakdown (reuses `_why_map`). Dashboard shows it in the existing tap-to-expand row (assets
   `?v=3`); omitted gracefully when absent. 98 tests green.
+- **Live-bracket crash FIXED** (`plan.md` §25). The scheduled publish died with `DataError:
+  unrecognized bracket ref 'Germany'` once the group stage started clinching: **openfootball
+  mutates KO placeholder refs into concrete team names** as teams qualify (`1E`→`Germany`,
+  `1A`→`Mexico`, `1D`→`USA`), and `_resolve` only understands `1X`/`2X`/`3…`/`W##`. A literal-team
+  patch to `_resolve` is **insufficient** — the concrete teams sit opposite a third-place `3…` ref
+  (matches 74/79/81), whose resolution reads the *sibling* `1X` to find the winner's group. Fix:
+  the bracket **wiring** is now a committed static reference (`data/reference/ko_bracket_2026.json`,
+  31 placeholder specs, machine-validated by `bracket.validate_bracket`) loaded via
+  `bracket.load_bracket()` — **never re-read from the live feed** (same discipline as Annex C).
+  Group RESULTS stay live; only the tree is frozen. Verified the golden/live trees are identical
+  modulo the team substitutions. Gate: `tests/test_bracket_live.py` runs the **exact production
+  bracket** end-to-end through the sim (the old tests only touched the test golden, which is why
+  the drift reached publish). 106 tests green.
 - **Upcoming-match predictions = BUILT** (`plan.md` §24; owner-selected additive feature). Additive
   top-level `upcoming` block — the next ≤12 **scheduled group fixtures** with our own win/draw/win %
   + most-likely scoreline from the Phase-3 Dixon-Coles model (`report/payload._upcoming`: `lambdas`

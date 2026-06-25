@@ -210,7 +210,10 @@ def build_sim(as_of: datetime, live: bool, espn_start=None, espn_end=None):
     ratings = {t: d.rating for t, d in details.items()}
     gparams = load_params()
     gconf = json.loads((_ROOT / "configs" / "goal_model.json").read_text())
-    specs = bracket_mod.parse_ko(matches_obj)
+    # bracket WIRING from the committed static reference, NOT the live feed — openfootball
+    # mutates KO refs into concrete team names as groups clinch (e.g. 1E->Germany), which breaks
+    # resolution. Group results stay live; only the tree is frozen (plan.md §19.4).
+    specs = bracket_mod.load_bracket()
     return Sim(matches, ratings, gparams, gconf, set(rconf["hosts"]), specs,
                ko_results=ko_results, details=details)
 

@@ -1285,3 +1285,37 @@ BUILT** — additive read-only `why` block (rating breakdown + λ vs an average 
 tap-to-expand explainer, `make explain` CLI; descriptive-only (never moves the fixed-seed odds).
 **98 tests green.** Knockouts start **28 Jun 2026**; live ESPN KO field shape to confirm on
 Actions when R32 begins._
+
+---
+
+## 25. Incident — live-bracket crash (openfootball ref mutation), 2026-06-17
+
+**Symptom:** the scheduled publish failed at the live build (tests green) with
+`wcpredictor.data.errors.DataError: unrecognized bracket ref 'Germany'`, raised in
+`bracket._resolve` via `sim.run → _resolve_bracket → simulate`.
+
+**Root cause (real values, not guessed):** the live openfootball `worldcup.json`
+(`raw.githubusercontent.com/openfootball/worldcup.json/master/2026`) **rewrites knockout
+placeholder refs into concrete team names** as group positions clinch. Fetched live, three R32
+slots had become real teams: `1E`→`Germany`, `1A`→`Mexico`, `1D`→`USA`. `_resolve` only handles
+`1X`/`2X`/`3…`/`W##`, so a literal team name hits the `else` and raises. It is a **format the
+resolver doesn't support** (not a typo).
+
+**Why a `_resolve` patch alone is wrong:** all three concrete teams sit **opposite a third-place
+`3…` ref** (matches 74/79/81). The `3` branch derives the winner's group from the **sibling**
+(`sibling[1]` of the `1X` slot); once `1E`→`Germany`, that letter is gone. Returning concrete
+teams literally would break third-place assignment.
+
+**Fix (data layer):** freeze the bracket **wiring** as a committed static reference,
+`data/reference/ko_bracket_2026.json` (31 placeholder specs), loaded by `bracket.load_bracket()`
+and machine-validated by `bracket.validate_bracket` (count, round tally, ref grammar
+`^([12][A-L]|3[A-L](/[A-L])+|W\d+)$`, `W##` points at an earlier match). `build_sim` no longer
+calls `parse_ko(live matches_obj)`. Group RESULTS remain live; only the tree is frozen — the same
+discipline already used for Annex C ("committed, never refetched"). Verified the committed tree is
+identical to the live tree modulo the team substitutions.
+
+**Gate (so it fails in Tests, not publish):** `tests/test_bracket_live.py` runs the **exact
+production bracket** (`load_bracket()`) end-to-end through a fully-decided group sim with the fixed
+seed, and asserts `validate_bracket` rejects a concrete-team ref (the `1E`→`Germany` mutation),
+bad counts, and dangling `W##`. The prior suite only exercised the *test golden* bracket, never the
+data the live build read — which is exactly why the drift reached publish. 106 tests green.
