@@ -187,9 +187,17 @@ def test_payload_bracket_and_ticker_reflect_ko():
                       source={"structure": "openfootball", "results": "espn"}, prev=None)
     assert p["meta"]["n_ko_played"] == 1
     assert len(p["bracket"]) == 31
-    played = [b for b in p["bracket"] if b["played"]]
-    assert len(played) == 1 and played[0]["winner"] == t1
-    assert played[0]["result"] == {"home": t1, "away": t2, "home_goals": 2, "away_goals": 1}
+    # groups fully decided -> every R32 slot is RESOLVED (real teams, prob 1.0)
+    r32 = [b for b in p["bracket"] if b["round"] == "R32"]
+    assert len(r32) == 16
+    assert all(b["slot1"]["state"] == "resolved" and b["slot2"]["state"] == "resolved"
+               for b in r32)
+    # the one played tie carries its real result + a RESOLVED winner
+    played = [b for b in p["bracket"] if b["result"] is not None]
+    assert len(played) == 1
+    assert played[0]["result"] == {"home": t1, "away": t2, "home_goals": 2,
+                                   "away_goals": 1, "winner": t1}
+    assert played[0]["winner"] == {"team": t1, "prob": 1.0, "state": "resolved"}
     # the KO final shows up in the recent-results ticker (newest entries)
     assert any(r["home"] == t1 and r["away"] == t2 and r["home_goals"] == 2
                for r in p["recent_results"])

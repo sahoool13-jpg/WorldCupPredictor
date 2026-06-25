@@ -170,6 +170,17 @@ later want favorites weighted harder.
   (tested), preserving the fixed-seed clean-delta property. `make explain TEAM=Brazil` prints the
   same breakdown (reuses `_why_map`). Dashboard shows it in the existing tap-to-expand row (assets
   `?v=3`); omitted gracefully when absent. 98 tests green.
+- **Live R32→Final bracket on the dashboard = BUILT** (`plan.md` §26; additive). Optional
+  `latest.json.bracket` (31 matches R32→Final); each slot/winner is `{team,prob,state}` with
+  `state` **resolved** (real, point-in-time — group standings + committed Annex C wiring for thirds
+  + played KO advancers; `prob 1.0`, via `Sim.real_bracket()`, **never** from MC sampling) or
+  **projected** (most-likely team + prob from the **same** Monte Carlo — `Sim.run` now tallies
+  per-slot occupancy in the existing iterations, no second sim). `result` carries played KO
+  score+winner. Descriptive-only (titles unchanged; tested), fail-loud intact. Dashboard: resolved
+  solid (+score, gold advancer bar), projected ghosted with `%`; **mobile** round-tabs
+  (R32/R16/QF/SF/Final) one round at a time, **desktop** classic left-to-right columns; section
+  `hidden` if the field is absent/malformed (page never errors). Assets `?v=6`. 113 tests green
+  (`tests/test_bracket_payload.py`, +7); verified visually at 390px + 1280px.
 - **Live-bracket crash FIXED** (`plan.md` §25). The scheduled publish died with `DataError:
   unrecognized bracket ref 'Germany'` once the group stage started clinching: **openfootball
   mutates KO placeholder refs into concrete team names** as teams qualify (`1E`→`Germany`,
