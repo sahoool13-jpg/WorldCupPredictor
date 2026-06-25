@@ -1,7 +1,7 @@
 {
   "meta": {
-    "as_of": "2026-06-25T06:40:05.756174+00:00",
-    "generated_at": "2026-06-25T06:40:18.463914+00:00",
+    "as_of": "2026-06-25T08:12:28.662316+00:00",
+    "generated_at": "2026-06-25T08:12:43.472078+00:00",
     "n_sims": 50000,
     "seed": 2026,
     "source": {
@@ -450,7 +450,7 @@
       "team": "Argentina",
       "group": "J",
       "title": 0.24456,
-      "title_delta": 0.01458,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 0.87402,
@@ -480,7 +480,7 @@
       "team": "France",
       "group": "I",
       "title": 0.11392,
-      "title_delta": -0.0043,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 0.78402,
@@ -510,7 +510,7 @@
       "team": "Spain",
       "group": "H",
       "title": 0.10976,
-      "title_delta": -0.009,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 0.70352,
@@ -540,7 +540,7 @@
       "team": "Brazil",
       "group": "C",
       "title": 0.077,
-      "title_delta": 0.00812,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 0.62746,
@@ -570,7 +570,7 @@
       "team": "Colombia",
       "group": "K",
       "title": 0.0743,
-      "title_delta": -0.00224,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 0.75136,
@@ -600,7 +600,7 @@
       "team": "Germany",
       "group": "E",
       "title": 0.0485,
-      "title_delta": 0.0014,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 0.71206,
@@ -630,7 +630,7 @@
       "team": "Portugal",
       "group": "K",
       "title": 0.04686,
-      "title_delta": 0.02394,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 0.67444,
@@ -660,7 +660,7 @@
       "team": "England",
       "group": "L",
       "title": 0.04636,
-      "title_delta": -0.03638,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 0.675,
@@ -690,7 +690,7 @@
       "team": "Netherlands",
       "group": "F",
       "title": 0.037,
-      "title_delta": 0.00288,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 0.48112,
@@ -720,7 +720,7 @@
       "team": "Morocco",
       "group": "C",
       "title": 0.02978,
-      "title_delta": 0.00336,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 0.49022,
@@ -750,7 +750,7 @@
       "team": "Mexico",
       "group": "A",
       "title": 0.02682,
-      "title_delta": 0.00428,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 0.68782,
@@ -780,7 +780,7 @@
       "team": "Japan",
       "group": "F",
       "title": 0.02622,
-      "title_delta": 0.00018,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 0.44104,
@@ -810,7 +810,7 @@
       "team": "USA",
       "group": "D",
       "title": 0.01804,
-      "title_delta": 0.00258,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 0.77536,
@@ -840,7 +840,7 @@
       "team": "Norway",
       "group": "I",
       "title": 0.01704,
-      "title_delta": 0.00368,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 0.6367,
@@ -870,7 +870,7 @@
       "team": "Belgium",
       "group": "G",
       "title": 0.01424,
-      "title_delta": -0.00258,
+      "title_delta": 0.0,
       "reach": {
         "R32": 0.85636,
         "R16": 0.5058,
@@ -900,7 +900,7 @@
       "team": "Switzerland",
       "group": "B",
       "title": 0.01286,
-      "title_delta": 0.00154,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 0.56876,
@@ -930,7 +930,7 @@
       "team": "Croatia",
       "group": "L",
       "title": 0.01092,
-      "title_delta": 0.0046,
+      "title_delta": 0.0,
       "reach": {
         "R32": 0.94596,
         "R16": 0.40426,
@@ -960,7 +960,7 @@
       "team": "Austria",
       "group": "J",
       "title": 0.00608,
-      "title_delta": -0.0073,
+      "title_delta": 0.0,
       "reach": {
         "R32": 0.94922,
         "R16": 0.32264,
@@ -990,7 +990,7 @@
       "team": "Algeria",
       "group": "J",
       "title": 0.006,
-      "title_delta": 0.00312,
+      "title_delta": 0.0,
       "reach": {
         "R32": 0.81182,
         "R16": 0.31286,
@@ -1020,7 +1020,7 @@
       "team": "Iran",
       "group": "G",
       "title": 0.0056,
-      "title_delta": -0.0007,
+      "title_delta": 0.0,
       "reach": {
         "R32": 0.69828,
         "R16": 0.34662,
@@ -1050,7 +1050,7 @@
       "team": "Canada",
       "group": "B",
       "title": 0.00488,
-      "title_delta": -0.00066,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 0.66482,
@@ -1080,7 +1080,7 @@
       "team": "Australia",
       "group": "D",
       "title": 0.00396,
-      "title_delta": -0.00076,
+      "title_delta": 0.0,
       "reach": {
         "R32": 0.93334,
         "R16": 0.39848,
@@ -1110,7 +1110,7 @@
       "team": "South Korea",
       "group": "A",
       "title": 0.0038,
-      "title_delta": -0.00268,
+      "title_delta": 0.0,
       "reach": {
         "R32": 0.91752,
         "R16": 0.41316,
@@ -1140,7 +1140,7 @@
       "team": "Egypt",
       "group": "G",
       "title": 0.00334,
-      "title_delta": -0.00034,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 0.44952,
@@ -1170,7 +1170,7 @@
       "team": "Uruguay",
       "group": "H",
       "title": 0.00324,
-      "title_delta": -0.00236,
+      "title_delta": 0.0,
       "reach": {
         "R32": 0.45318,
         "R16": 0.17824,
@@ -1200,7 +1200,7 @@
       "team": "Paraguay",
       "group": "D",
       "title": 0.00222,
-      "title_delta": -0.00046,
+      "title_delta": 0.0,
       "reach": {
         "R32": 0.75518,
         "R16": 0.26662,
@@ -1230,7 +1230,7 @@
       "team": "Ivory Coast",
       "group": "E",
       "title": 0.00214,
-      "title_delta": -0.00062,
+      "title_delta": 0.0,
       "reach": {
         "R32": 0.94938,
         "R16": 0.32768,
@@ -1260,7 +1260,7 @@
       "team": "Sweden",
       "group": "F",
       "title": 0.00116,
-      "title_delta": -0.00014,
+      "title_delta": 0.0,
       "reach": {
         "R32": 0.93336,
         "R16": 0.20478,
@@ -1290,7 +1290,7 @@
       "team": "Ecuador",
       "group": "E",
       "title": 0.00114,
-      "title_delta": -0.00024,
+      "title_delta": 0.0,
       "reach": {
         "R32": 0.23086,
         "R16": 0.08436,
@@ -1320,7 +1320,7 @@
       "team": "Senegal",
       "group": "I",
       "title": 0.00086,
-      "title_delta": -0.00192,
+      "title_delta": 0.0,
       "reach": {
         "R32": 0.43152,
         "R16": 0.14526,
@@ -1350,7 +1350,7 @@
       "team": "South Africa",
       "group": "A",
       "title": 0.00046,
-      "title_delta": 0.0004,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 0.33518,
@@ -1380,7 +1380,7 @@
       "team": "Scotland",
       "group": "C",
       "title": 0.00024,
-      "title_delta": -0.00074,
+      "title_delta": 0.0,
       "reach": {
         "R32": 0.33184,
         "R16": 0.08354,
@@ -1410,7 +1410,7 @@
       "team": "Bosnia & Herzegovina",
       "group": "B",
       "title": 0.00022,
-      "title_delta": 0.00022,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 0.22398,
@@ -1440,7 +1440,7 @@
       "team": "Ghana",
       "group": "L",
       "title": 0.00022,
-      "title_delta": -0.00026,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 0.1807,
@@ -1470,7 +1470,7 @@
       "team": "Turkey",
       "group": "D",
       "title": 0.0001,
-      "title_delta": -4e-05,
+      "title_delta": 0.0,
       "reach": {
         "R32": 0.09326,
         "R16": 0.02326,
@@ -1500,7 +1500,7 @@
       "team": "Cape Verde",
       "group": "H",
       "title": 8e-05,
-      "title_delta": -6e-05,
+      "title_delta": 0.0,
       "reach": {
         "R32": 0.65076,
         "R16": 0.06834,
@@ -1530,7 +1530,7 @@
       "team": "DR Congo",
       "group": "K",
       "title": 8e-05,
-      "title_delta": -0.00032,
+      "title_delta": 0.0,
       "reach": {
         "R32": 0.31974,
         "R16": 0.07094,
@@ -1590,7 +1590,7 @@
       "team": "Czech Republic",
       "group": "A",
       "title": 0.0,
-      "title_delta": -0.00026,
+      "title_delta": 0.0,
       "reach": {
         "R32": 0.0,
         "R16": 0.0,
@@ -1650,7 +1650,7 @@
       "team": "Iraq",
       "group": "I",
       "title": 0.0,
-      "title_delta": -4e-05,
+      "title_delta": 0.0,
       "reach": {
         "R32": 0.03092,
         "R16": 0.0056,
@@ -1680,7 +1680,7 @@
       "team": "Jordan",
       "group": "J",
       "title": 0.0,
-      "title_delta": -8e-05,
+      "title_delta": 0.0,
       "reach": {
         "R32": 0.01906,
         "R16": 0.00368,
@@ -1710,7 +1710,7 @@
       "team": "New Zealand",
       "group": "G",
       "title": 0.0,
-      "title_delta": -2e-05,
+      "title_delta": 0.0,
       "reach": {
         "R32": 0.1433,
         "R16": 0.0364,
@@ -1740,7 +1740,7 @@
       "team": "Panama",
       "group": "L",
       "title": 0.0,
-      "title_delta": -4e-05,
+      "title_delta": 0.0,
       "reach": {
         "R32": 0.0202,
         "R16": 0.0032,
@@ -1800,7 +1800,7 @@
       "team": "Saudi Arabia",
       "group": "H",
       "title": 0.0,
-      "title_delta": -2e-05,
+      "title_delta": 0.0,
       "reach": {
         "R32": 0.34928,
         "R16": 0.03374,
@@ -1860,7 +1860,7 @@
       "team": "Uzbekistan",
       "group": "K",
       "title": 0.0,
-      "title_delta": -0.00032,
+      "title_delta": 0.0,
       "reach": {
         "R32": 0.02794,
         "R16": 0.00714,
@@ -1888,40 +1888,8 @@
     }
   ],
   "movers": {
-    "risers": [
-      {
-        "team": "Portugal",
-        "group": "K",
-        "title_delta": 0.02394
-      },
-      {
-        "team": "Argentina",
-        "group": "J",
-        "title_delta": 0.01458
-      },
-      {
-        "team": "Brazil",
-        "group": "C",
-        "title_delta": 0.00812
-      }
-    ],
-    "fallers": [
-      {
-        "team": "England",
-        "group": "L",
-        "title_delta": -0.03638
-      },
-      {
-        "team": "Spain",
-        "group": "H",
-        "title_delta": -0.009
-      },
-      {
-        "team": "Austria",
-        "group": "J",
-        "title_delta": -0.0073
-      }
-    ]
+    "risers": [],
+    "fallers": []
   },
   "recent_results": [
     {
@@ -2576,5 +2544,626 @@
       ]
     }
   ],
-  "bracket": []
+  "bracket": [
+    {
+      "num": 73,
+      "round": "R32",
+      "slot1": {
+        "team": "South Africa",
+        "prob": 1.0,
+        "state": "resolved"
+      },
+      "slot2": {
+        "team": "Canada",
+        "prob": 1.0,
+        "state": "resolved"
+      },
+      "winner": {
+        "team": "Canada",
+        "prob": 0.6648,
+        "state": "projected"
+      },
+      "result": null
+    },
+    {
+      "num": 74,
+      "round": "R32",
+      "slot1": {
+        "team": "Germany",
+        "prob": 0.9989,
+        "state": "projected"
+      },
+      "slot2": {
+        "team": "Paraguay",
+        "prob": 0.4146,
+        "state": "projected"
+      },
+      "winner": {
+        "team": "Germany",
+        "prob": 0.7114,
+        "state": "projected"
+      },
+      "result": null
+    },
+    {
+      "num": 75,
+      "round": "R32",
+      "slot1": {
+        "team": "Netherlands",
+        "prob": 0.5791,
+        "state": "projected"
+      },
+      "slot2": {
+        "team": "Morocco",
+        "prob": 1.0,
+        "state": "resolved"
+      },
+      "winner": {
+        "team": "Morocco",
+        "prob": 0.4902,
+        "state": "projected"
+      },
+      "result": null
+    },
+    {
+      "num": 76,
+      "round": "R32",
+      "slot1": {
+        "team": "Brazil",
+        "prob": 1.0,
+        "state": "resolved"
+      },
+      "slot2": {
+        "team": "Japan",
+        "prob": 0.4611,
+        "state": "projected"
+      },
+      "winner": {
+        "team": "Brazil",
+        "prob": 0.6275,
+        "state": "projected"
+      },
+      "result": null
+    },
+    {
+      "num": 77,
+      "round": "R32",
+      "slot1": {
+        "team": "France",
+        "prob": 0.7867,
+        "state": "projected"
+      },
+      "slot2": {
+        "team": "Sweden",
+        "prob": 0.535,
+        "state": "projected"
+      },
+      "winner": {
+        "team": "France",
+        "prob": 0.6127,
+        "state": "projected"
+      },
+      "result": null
+    },
+    {
+      "num": 78,
+      "round": "R32",
+      "slot1": {
+        "team": "Ivory Coast",
+        "prob": 0.8305,
+        "state": "projected"
+      },
+      "slot2": {
+        "team": "Norway",
+        "prob": 0.7867,
+        "state": "projected"
+      },
+      "winner": {
+        "team": "Norway",
+        "prob": 0.5073,
+        "state": "projected"
+      },
+      "result": null
+    },
+    {
+      "num": 79,
+      "round": "R32",
+      "slot1": {
+        "team": "Mexico",
+        "prob": 1.0,
+        "state": "resolved"
+      },
+      "slot2": {
+        "team": "Scotland",
+        "prob": 0.2765,
+        "state": "projected"
+      },
+      "winner": {
+        "team": "Mexico",
+        "prob": 0.6878,
+        "state": "projected"
+      },
+      "result": null
+    },
+    {
+      "num": 80,
+      "round": "R32",
+      "slot1": {
+        "team": "England",
+        "prob": 0.7095,
+        "state": "projected"
+      },
+      "slot2": {
+        "team": "DR Congo",
+        "prob": 0.3178,
+        "state": "projected"
+      },
+      "winner": {
+        "team": "England",
+        "prob": 0.5327,
+        "state": "projected"
+      },
+      "result": null
+    },
+    {
+      "num": 81,
+      "round": "R32",
+      "slot1": {
+        "team": "USA",
+        "prob": 0.9961,
+        "state": "projected"
+      },
+      "slot2": {
+        "team": "Bosnia & Herzegovina",
+        "prob": 0.9993,
+        "state": "projected"
+      },
+      "winner": {
+        "team": "USA",
+        "prob": 0.7732,
+        "state": "projected"
+      },
+      "result": null
+    },
+    {
+      "num": 82,
+      "round": "R32",
+      "slot1": {
+        "team": "Egypt",
+        "prob": 0.5507,
+        "state": "projected"
+      },
+      "slot2": {
+        "team": "South Korea",
+        "prob": 0.8881,
+        "state": "projected"
+      },
+      "winner": {
+        "team": "South Korea",
+        "prob": 0.4052,
+        "state": "projected"
+      },
+      "result": null
+    },
+    {
+      "num": 83,
+      "round": "R32",
+      "slot1": {
+        "team": "Portugal",
+        "prob": 0.6888,
+        "state": "projected"
+      },
+      "slot2": {
+        "team": "Croatia",
+        "prob": 0.3704,
+        "state": "projected"
+      },
+      "winner": {
+        "team": "Portugal",
+        "prob": 0.4446,
+        "state": "projected"
+      },
+      "result": null
+    },
+    {
+      "num": 84,
+      "round": "R32",
+      "slot1": {
+        "team": "Spain",
+        "prob": 0.8132,
+        "state": "projected"
+      },
+      "slot2": {
+        "team": "Austria",
+        "prob": 0.6438,
+        "state": "projected"
+      },
+      "winner": {
+        "team": "Spain",
+        "prob": 0.6105,
+        "state": "projected"
+      },
+      "result": null
+    },
+    {
+      "num": 85,
+      "round": "R32",
+      "slot1": {
+        "team": "Switzerland",
+        "prob": 1.0,
+        "state": "resolved"
+      },
+      "slot2": {
+        "team": "Algeria",
+        "prob": 0.3121,
+        "state": "projected"
+      },
+      "winner": {
+        "team": "Switzerland",
+        "prob": 0.5688,
+        "state": "projected"
+      },
+      "result": null
+    },
+    {
+      "num": 86,
+      "round": "R32",
+      "slot1": {
+        "team": "Argentina",
+        "prob": 0.9993,
+        "state": "projected"
+      },
+      "slot2": {
+        "team": "Cape Verde",
+        "prob": 0.5003,
+        "state": "projected"
+      },
+      "winner": {
+        "team": "Argentina",
+        "prob": 0.8736,
+        "state": "projected"
+      },
+      "result": null
+    },
+    {
+      "num": 87,
+      "round": "R32",
+      "slot1": {
+        "team": "Colombia",
+        "prob": 0.6908,
+        "state": "projected"
+      },
+      "slot2": {
+        "team": "Ghana",
+        "prob": 0.5627,
+        "state": "projected"
+      },
+      "winner": {
+        "team": "Colombia",
+        "prob": 0.536,
+        "state": "projected"
+      },
+      "result": null
+    },
+    {
+      "num": 88,
+      "round": "R32",
+      "slot1": {
+        "team": "Australia",
+        "prob": 0.6676,
+        "state": "projected"
+      },
+      "slot2": {
+        "team": "Belgium",
+        "prob": 0.5334,
+        "state": "projected"
+      },
+      "winner": {
+        "team": "Belgium",
+        "prob": 0.3275,
+        "state": "projected"
+      },
+      "result": null
+    },
+    {
+      "num": 89,
+      "round": "R16",
+      "slot1": {
+        "team": "Germany",
+        "prob": 0.7114,
+        "state": "projected"
+      },
+      "slot2": {
+        "team": "France",
+        "prob": 0.6127,
+        "state": "projected"
+      },
+      "winner": {
+        "team": "France",
+        "prob": 0.4003,
+        "state": "projected"
+      },
+      "result": null
+    },
+    {
+      "num": 90,
+      "round": "R16",
+      "slot1": {
+        "team": "Canada",
+        "prob": 0.6648,
+        "state": "projected"
+      },
+      "slot2": {
+        "team": "Morocco",
+        "prob": 0.4902,
+        "state": "projected"
+      },
+      "winner": {
+        "team": "Morocco",
+        "prob": 0.3486,
+        "state": "projected"
+      },
+      "result": null
+    },
+    {
+      "num": 91,
+      "round": "R16",
+      "slot1": {
+        "team": "Brazil",
+        "prob": 0.6275,
+        "state": "projected"
+      },
+      "slot2": {
+        "team": "Norway",
+        "prob": 0.5073,
+        "state": "projected"
+      },
+      "winner": {
+        "team": "Brazil",
+        "prob": 0.4223,
+        "state": "projected"
+      },
+      "result": null
+    },
+    {
+      "num": 92,
+      "round": "R16",
+      "slot1": {
+        "team": "Mexico",
+        "prob": 0.6878,
+        "state": "projected"
+      },
+      "slot2": {
+        "team": "England",
+        "prob": 0.5327,
+        "state": "projected"
+      },
+      "winner": {
+        "team": "Mexico",
+        "prob": 0.3803,
+        "state": "projected"
+      },
+      "result": null
+    },
+    {
+      "num": 93,
+      "round": "R16",
+      "slot1": {
+        "team": "Portugal",
+        "prob": 0.4446,
+        "state": "projected"
+      },
+      "slot2": {
+        "team": "Spain",
+        "prob": 0.6105,
+        "state": "projected"
+      },
+      "winner": {
+        "team": "Spain",
+        "prob": 0.3805,
+        "state": "projected"
+      },
+      "result": null
+    },
+    {
+      "num": 94,
+      "round": "R16",
+      "slot1": {
+        "team": "USA",
+        "prob": 0.7732,
+        "state": "projected"
+      },
+      "slot2": {
+        "team": "South Korea",
+        "prob": 0.4052,
+        "state": "projected"
+      },
+      "winner": {
+        "team": "USA",
+        "prob": 0.4432,
+        "state": "projected"
+      },
+      "result": null
+    },
+    {
+      "num": 95,
+      "round": "R16",
+      "slot1": {
+        "team": "Argentina",
+        "prob": 0.8736,
+        "state": "projected"
+      },
+      "slot2": {
+        "team": "Belgium",
+        "prob": 0.3275,
+        "state": "projected"
+      },
+      "winner": {
+        "team": "Argentina",
+        "prob": 0.7064,
+        "state": "projected"
+      },
+      "result": null
+    },
+    {
+      "num": 96,
+      "round": "R16",
+      "slot1": {
+        "team": "Switzerland",
+        "prob": 0.5688,
+        "state": "projected"
+      },
+      "slot2": {
+        "team": "Colombia",
+        "prob": 0.536,
+        "state": "projected"
+      },
+      "winner": {
+        "team": "Colombia",
+        "prob": 0.3603,
+        "state": "projected"
+      },
+      "result": null
+    },
+    {
+      "num": 97,
+      "round": "QF",
+      "slot1": {
+        "team": "France",
+        "prob": 0.4003,
+        "state": "projected"
+      },
+      "slot2": {
+        "team": "Morocco",
+        "prob": 0.3486,
+        "state": "projected"
+      },
+      "winner": {
+        "team": "France",
+        "prob": 0.2749,
+        "state": "projected"
+      },
+      "result": null
+    },
+    {
+      "num": 98,
+      "round": "QF",
+      "slot1": {
+        "team": "Spain",
+        "prob": 0.3805,
+        "state": "projected"
+      },
+      "slot2": {
+        "team": "USA",
+        "prob": 0.4432,
+        "state": "projected"
+      },
+      "winner": {
+        "team": "Spain",
+        "prob": 0.2915,
+        "state": "projected"
+      },
+      "result": null
+    },
+    {
+      "num": 99,
+      "round": "QF",
+      "slot1": {
+        "team": "Brazil",
+        "prob": 0.4223,
+        "state": "projected"
+      },
+      "slot2": {
+        "team": "Mexico",
+        "prob": 0.3803,
+        "state": "projected"
+      },
+      "winner": {
+        "team": "Brazil",
+        "prob": 0.2695,
+        "state": "projected"
+      },
+      "result": null
+    },
+    {
+      "num": 100,
+      "round": "QF",
+      "slot1": {
+        "team": "Argentina",
+        "prob": 0.7064,
+        "state": "projected"
+      },
+      "slot2": {
+        "team": "Colombia",
+        "prob": 0.3603,
+        "state": "projected"
+      },
+      "winner": {
+        "team": "Argentina",
+        "prob": 0.5134,
+        "state": "projected"
+      },
+      "result": null
+    },
+    {
+      "num": 101,
+      "round": "SF",
+      "slot1": {
+        "team": "France",
+        "prob": 0.2749,
+        "state": "projected"
+      },
+      "slot2": {
+        "team": "Spain",
+        "prob": 0.2915,
+        "state": "projected"
+      },
+      "winner": {
+        "team": "Spain",
+        "prob": 0.1803,
+        "state": "projected"
+      },
+      "result": null
+    },
+    {
+      "num": 102,
+      "round": "SF",
+      "slot1": {
+        "team": "Brazil",
+        "prob": 0.2695,
+        "state": "projected"
+      },
+      "slot2": {
+        "team": "Argentina",
+        "prob": 0.5134,
+        "state": "projected"
+      },
+      "winner": {
+        "team": "Argentina",
+        "prob": 0.3564,
+        "state": "projected"
+      },
+      "result": null
+    },
+    {
+      "num": 104,
+      "round": "F",
+      "slot1": {
+        "team": "Spain",
+        "prob": 0.1803,
+        "state": "projected"
+      },
+      "slot2": {
+        "team": "Argentina",
+        "prob": 0.3564,
+        "state": "projected"
+      },
+      "winner": {
+        "team": "Argentina",
+        "prob": 0.2446,
+        "state": "projected"
+      },
+      "result": null
+    }
+  ]
 }
