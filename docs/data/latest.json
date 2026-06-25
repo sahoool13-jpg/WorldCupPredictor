@@ -1,7 +1,7 @@
 {
   "meta": {
-    "as_of": "2026-06-25T19:21:44.481894+00:00",
-    "generated_at": "2026-06-25T19:21:58.406439+00:00",
+    "as_of": "2026-06-25T21:09:45.690684+00:00",
+    "generated_at": "2026-06-25T21:10:01.057980+00:00",
     "n_sims": 50000,
     "seed": 2026,
     "source": {
@@ -1931,34 +1931,6 @@
   "upcoming": [
     {
       "date": "2026-06-25",
-      "group": "E",
-      "home": "Curaçao",
-      "away": "Ivory Coast",
-      "p_home": 0.1481,
-      "p_draw": 0.2443,
-      "p_away": 0.6076,
-      "scoreline": {
-        "home_goals": 0,
-        "away_goals": 1,
-        "p": 0.1439
-      }
-    },
-    {
-      "date": "2026-06-25",
-      "group": "E",
-      "home": "Ecuador",
-      "away": "Germany",
-      "p_home": 0.2278,
-      "p_draw": 0.2837,
-      "p_away": 0.4885,
-      "scoreline": {
-        "home_goals": 0,
-        "away_goals": 1,
-        "p": 0.1362
-      }
-    },
-    {
-      "date": "2026-06-25",
       "group": "F",
       "home": "Japan",
       "away": "Sweden",
@@ -2095,6 +2067,34 @@
         "home_goals": 0,
         "away_goals": 1,
         "p": 0.1439
+      }
+    },
+    {
+      "date": "2026-06-27",
+      "group": "L",
+      "home": "Panama",
+      "away": "England",
+      "p_home": 0.12,
+      "p_draw": 0.2225,
+      "p_away": 0.6574,
+      "scoreline": {
+        "home_goals": 0,
+        "away_goals": 1,
+        "p": 0.1431
+      }
+    },
+    {
+      "date": "2026-06-27",
+      "group": "L",
+      "home": "Croatia",
+      "away": "Ghana",
+      "p_home": 0.5608,
+      "p_draw": 0.262,
+      "p_away": 0.1772,
+      "scoreline": {
+        "home_goals": 1,
+        "away_goals": 0,
+        "p": 0.1424
       }
     }
   ],
