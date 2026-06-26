@@ -1,7 +1,7 @@
 {
   "meta": {
-    "as_of": "2026-06-26T17:13:05.442253+00:00",
-    "generated_at": "2026-06-26T17:13:19.260324+00:00",
+    "as_of": "2026-06-26T19:03:25.084086+00:00",
+    "generated_at": "2026-06-26T19:03:38.749979+00:00",
     "n_sims": 50000,
     "seed": 2026,
     "source": {
@@ -1977,34 +1977,6 @@
     }
   ],
   "upcoming": [
-    {
-      "date": "2026-06-26",
-      "group": "I",
-      "home": "Norway",
-      "away": "France",
-      "p_home": 0.2197,
-      "p_draw": 0.2809,
-      "p_away": 0.4994,
-      "scoreline": {
-        "home_goals": 0,
-        "away_goals": 1,
-        "p": 0.1374
-      }
-    },
-    {
-      "date": "2026-06-26",
-      "group": "I",
-      "home": "Senegal",
-      "away": "Iraq",
-      "p_home": 0.4864,
-      "p_draw": 0.2842,
-      "p_away": 0.2294,
-      "scoreline": {
-        "home_goals": 1,
-        "away_goals": 0,
-        "p": 0.136
-      }
-    },
     {
       "date": "2026-06-27",
       "group": "H",
