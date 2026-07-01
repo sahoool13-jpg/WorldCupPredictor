@@ -10,6 +10,7 @@ from __future__ import annotations
 import bisect
 import json
 import random
+import warnings
 from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from functools import lru_cache
@@ -137,9 +138,12 @@ class Sim:
         return all(not fixtures for fixtures in self.remaining.values())
 
     def _validate_pins(self):
-        """Strict (D6b): a real knockout result must bind to an actual bracket slot. Pins are
-        only meaningful once the group stage is decided (the bracket pairings are fixed); a
-        pinned pair that never appears as a slot is drift/unreachable -> raise."""
+        """Bind real knockout results to bracket slots (D6b). Pins are only meaningful once the
+        group stage is decided (the pairings are fixed) — before that we still raise, as it means
+        a future/leaked result. A pin that doesn't bind to any slot for the current qualified
+        field is **skipped with a loud, recorded warning** rather than crashing the whole publish:
+        one odd KO result must not black out the live site (that tie just shows projected). The
+        warning surfaces the drift in the run log."""
         if not self.pinned:
             return
         if not self._groups_complete():
@@ -151,10 +155,12 @@ class Sim:
         missing = set(self.pinned) - out["pinned_used"]
         if missing:
             pairs = [tuple(sorted(p)) for p in missing]
-            raise DataError(
-                f"knockout result(s) {pairs} did not match any bracket slot for the current "
-                f"qualified field — unreachable pairing or stale data."
+            warnings.warn(
+                f"knockout result(s) {pairs} did not bind to a bracket slot for the current "
+                f"qualified field; skipping those pins so the run still publishes (recorded)."
             )
+            for p in missing:
+                del self.pinned[p]
 
     def bracket_state(self):
         """The realized knockout tree from the current real state (deterministic once the group

@@ -1358,3 +1358,33 @@ Descriptive only — reuses the run, so it can't move the title odds (tested). F
 Annex C; partial -> only completed groups resolve; played KO -> result + winner resolved + advances
 to R16; descriptive-only (titles unchanged). Verified visually at 390px (round tabs) and 1280px
 (columns).
+
+---
+
+## 27. Incident — publish crash once R32 started (KO pin name/slug mismatch), 2026-07-01
+
+**Symptom:** every scheduled publish failed at `build_sim` with
+`DataError: knockout result(s) [('france','sweden'), …] did not match any bracket slot for the
+current qualified field`, raised in `Sim._validate_pins`. Started ~30 Jun when the first R32
+results landed. Group-stage publishes were fine.
+
+**Root cause (real values, reproduced):** `data.knockout.extract_knockouts` built
+`KnockoutResult.pair` from `OverlayResult.pair`, which is keyed by **team ids/slugs**
+(`{'france','sweden'}`). The bracket resolves slots to canonical **names** (`{France, Sweden}`),
+so `_validate_pins` compared slug-pairs against name-slots — never matched — and (strictly)
+raised. Verified our derived R32 pairings match the real openfootball R32 **exactly**, so the
+bracket logic was fine; only the pin **key** was wrong. It never showed in tests because they
+built `KnockoutResult` with name-pairs by hand and **no test ran the production
+`extract_knockouts → Sim` path** (it only fires once real ESPN KO finals exist).
+
+**Fix:**
+1. `extract_knockouts` now keys `KnockoutResult.pair` by **names** (`frozenset(ov.teams.values())`)
+   — the id-keyed `ov.pair` is still used for group matching in `split_overlay`.
+2. **Resilience:** `_validate_pins` now **skips an unbindable pin with a loud recorded warning**
+   instead of crashing the whole publish (a single odd KO result must not black out the live
+   site; that tie just shows projected). The pre-groups-complete case still raises (genuine
+   future-leak).
+
+**Gate:** `tests/test_knockout.py::test_production_ko_path_binds_by_name` runs the real path
+(ESPN-style overlay → `extract_knockouts` → `Sim`) and asserts the pin binds by name — it fails
+without the fix. `test_ko_result_unbindable_skips_with_warning` covers the warn+skip. 114 green.

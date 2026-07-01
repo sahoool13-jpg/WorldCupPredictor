@@ -152,8 +152,10 @@ def test_ko_pin_is_fixed_and_shifts_odds():
     assert p.get(favorite, {}).get("title", 0.0) == 0.0       # eliminated -> no title
 
 
-def test_ko_result_unbindable_raises():
-    # a 4th-placed team never enters the bracket; pinning it to a winner can't bind -> raise
+def test_ko_result_unbindable_skips_with_warning():
+    # a 4th-placed team never enters the bracket; an unbindable pin is SKIPPED with a loud,
+    # recorded warning rather than crashing the whole publish (one odd KO result must not black
+    # out the live site).
     groups, gf, specs, ratings, gp, gc = _inputs()
     matches = _all_groups_decided(gf, groups)
     fourth = groups["A"][3]                                    # loses all of Group A
@@ -161,8 +163,33 @@ def test_ko_result_unbindable_raises():
     kr = KnockoutResult(pair=frozenset((fourth, winner)), home=fourth, away=winner,
                         home_goals=0, away_goals=1, winner=winner, kickoff_utc=KO_DAY,
                         source="espn")
-    with pytest.raises(DataError):
-        Sim(matches, ratings, gp, gc, HOSTS, specs, groups=groups, ko_results=[kr])
+    with pytest.warns(UserWarning, match="did not bind"):
+        sim = Sim(matches, ratings, gp, gc, HOSTS, specs, groups=groups, ko_results=[kr])
+    assert sim.pinned == {}                                    # the bad pin was dropped
+    assert len(sim.run(n=40, seed=1)) == 32                    # ...and the run still publishes
+
+
+def test_production_ko_path_binds_by_name():
+    # END-TO-END like production (ESPN overlay -> extract_knockouts -> Sim). Guards the name/slug
+    # mismatch that crashed publish once R32 started: KnockoutResult.pair must be team NAMES to
+    # bind to the (name-keyed) bracket. The old tests built KnockoutResult with name-pairs by hand
+    # and never ran this path, so the bug reached publish.
+    base, _ = _decided_sim()
+    slot = _first_r32(base)
+    t1, t2 = slot["t1"], slot["t2"]                           # real names in an R32 slot
+    reg = TeamRegistry.load()
+    h, a = reg.team_id(t1), reg.team_id(t2)
+    ov = OverlayResult(pair=frozenset((h, a)), teams={h: t1, a: t2},   # id-keyed, like espn.py
+                       goals_by_team={h: 2, a: 0}, status=Status.FINAL,
+                       kickoff_utc=KO_DAY, source="espn", winner_id=h)
+    ko = extract_knockouts(set(), [ov], AS_OF)
+    assert set(ko[0].pair) == {t1, t2}                        # NAMES, not slugs
+    groups, gf, specs, ratings, gp, gc = _inputs()
+    matches = _all_groups_decided(gf, groups)
+    sim = Sim(matches, ratings, gp, gc, HOSTS, specs, groups=groups, ko_results=ko)  # binds, no crash
+    assert sim.pinned == {frozenset((t1, t2)): t1}
+    p = sim.run(n=40, seed=1)
+    assert p[t1]["R16"] == 1.0 and p.get(t2, {}).get("R16", 0.0) == 0.0
 
 
 def test_ko_before_groups_complete_raises():
