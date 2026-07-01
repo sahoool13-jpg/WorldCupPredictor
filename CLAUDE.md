@@ -181,6 +181,16 @@ later want favorites weighted harder.
   (R32/R16/QF/SF/Final) one round at a time, **desktop** classic left-to-right columns; section
   `hidden` if the field is absent/malformed (page never errors). Assets `?v=6`. 113 tests green
   (`tests/test_bracket_payload.py`, +7); verified visually at 390px + 1280px.
+- **Publish crash once R32 started FIXED** (`plan.md` §27). Scheduled publishes died with
+  `DataError: knockout result(s) [('france','sweden'), …] did not match any bracket slot` in
+  `_validate_pins`. Cause: `extract_knockouts` keyed `KnockoutResult.pair` by team **ids/slugs**
+  (from `OverlayResult.pair`) but the bracket resolves slots to canonical **names**, so real ESPN
+  KO ties never bound. (Our derived R32 pairings match the real openfootball R32 exactly — only
+  the pin key was wrong.) Missed because no test ran the production `extract_knockouts → Sim` path.
+  Fix: pin pair keyed by **names**; **resilience** — `_validate_pins` now skips an unbindable pin
+  with a loud recorded warning instead of crashing the whole publish. Gate:
+  `test_production_ko_path_binds_by_name` (the real path) + `test_ko_result_unbindable_skips_with_warning`.
+  114 tests green.
 - **Live-bracket crash FIXED** (`plan.md` §25). The scheduled publish died with `DataError:
   unrecognized bracket ref 'Germany'` once the group stage started clinching: **openfootball
   mutates KO placeholder refs into concrete team names** as teams qualify (`1E`→`Germany`,

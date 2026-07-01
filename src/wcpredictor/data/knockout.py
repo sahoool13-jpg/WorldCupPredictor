@@ -47,7 +47,9 @@ def extract_knockouts(
         home_id, away_id = ids[0], ids[1]
         winner_id = _advancer(ov, home_id, away_id)
         out.append(KnockoutResult(
-            pair=ov.pair,
+            # pair keyed by canonical team NAMES (not ids) — the bracket resolves slots to names,
+            # so the sim binds a pin by name-pair. (ov.pair above is id-keyed for group matching.)
+            pair=frozenset(ov.teams.values()),
             home=ov.teams[home_id], away=ov.teams[away_id],
             home_goals=ov.goals_by_team.get(home_id),
             away_goals=ov.goals_by_team.get(away_id),
