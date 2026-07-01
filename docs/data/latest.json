@@ -1,7 +1,7 @@
 {
   "meta": {
-    "as_of": "2026-07-01T13:33:58.084015+00:00",
-    "generated_at": "2026-07-01T13:34:10.133159+00:00",
+    "as_of": "2026-07-01T16:01:13.844759+00:00",
+    "generated_at": "2026-07-01T16:01:26.149123+00:00",
     "n_sims": 50000,
     "seed": 2026,
     "source": {
@@ -594,7 +594,7 @@
       "team": "Argentina",
       "group": "J",
       "title": 0.24628,
-      "title_delta": -0.01342,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 0.93056,
@@ -624,7 +624,7 @@
       "team": "France",
       "group": "I",
       "title": 0.18852,
-      "title_delta": 0.04992,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 1.0,
@@ -654,7 +654,7 @@
       "team": "Spain",
       "group": "H",
       "title": 0.12272,
-      "title_delta": -0.00422,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 0.7721,
@@ -684,7 +684,7 @@
       "team": "Brazil",
       "group": "C",
       "title": 0.12194,
-      "title_delta": 0.04854,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 1.0,
@@ -714,7 +714,7 @@
       "team": "Colombia",
       "group": "K",
       "title": 0.06444,
-      "title_delta": -0.00754,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 0.86356,
@@ -744,7 +744,7 @@
       "team": "Morocco",
       "group": "C",
       "title": 0.04606,
-      "title_delta": 0.01692,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 1.0,
@@ -774,7 +774,7 @@
       "team": "England",
       "group": "L",
       "title": 0.04238,
-      "title_delta": -0.01466,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 0.79842,
@@ -804,7 +804,7 @@
       "team": "Mexico",
       "group": "A",
       "title": 0.0375,
-      "title_delta": 0.01486,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 1.0,
@@ -834,7 +834,7 @@
       "team": "Portugal",
       "group": "K",
       "title": 0.0338,
-      "title_delta": -0.00142,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 0.58894,
@@ -864,7 +864,7 @@
       "team": "Belgium",
       "group": "G",
       "title": 0.02468,
-      "title_delta": -0.00138,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 0.63308,
@@ -894,7 +894,7 @@
       "team": "Norway",
       "group": "I",
       "title": 0.01444,
-      "title_delta": 0.0055,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 1.0,
@@ -924,7 +924,7 @@
       "team": "Croatia",
       "group": "L",
       "title": 0.01108,
-      "title_delta": -0.001,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 0.41106,
@@ -954,7 +954,7 @@
       "team": "Switzerland",
       "group": "B",
       "title": 0.01088,
-      "title_delta": -0.0014,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 0.55792,
@@ -984,7 +984,7 @@
       "team": "Paraguay",
       "group": "D",
       "title": 0.00616,
-      "title_delta": 0.0037,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 1.0,
@@ -1014,7 +1014,7 @@
       "team": "Canada",
       "group": "B",
       "title": 0.00614,
-      "title_delta": 0.00324,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 1.0,
@@ -1044,7 +1044,7 @@
       "team": "USA",
       "group": "D",
       "title": 0.00578,
-      "title_delta": -0.00032,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 0.72082,
@@ -1074,7 +1074,7 @@
       "team": "Algeria",
       "group": "J",
       "title": 0.00486,
-      "title_delta": -0.0002,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 0.44208,
@@ -1104,7 +1104,7 @@
       "team": "Senegal",
       "group": "I",
       "title": 0.00374,
-      "title_delta": -0.00078,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 0.36692,
@@ -1134,7 +1134,7 @@
       "team": "Australia",
       "group": "D",
       "title": 0.00334,
-      "title_delta": -0.0003,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 0.52758,
@@ -1164,7 +1164,7 @@
       "team": "Austria",
       "group": "J",
       "title": 0.00292,
-      "title_delta": -0.00126,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 0.2279,
@@ -1194,7 +1194,7 @@
       "team": "Egypt",
       "group": "G",
       "title": 0.00182,
-      "title_delta": -0.0003,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 0.47242,
@@ -1224,7 +1224,7 @@
       "team": "DR Congo",
       "group": "K",
       "title": 0.00024,
-      "title_delta": -0.00018,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 0.20158,
@@ -1254,7 +1254,7 @@
       "team": "Ghana",
       "group": "L",
       "title": 0.00014,
-      "title_delta": 2e-05,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 0.13644,
@@ -1284,7 +1284,7 @@
       "team": "Bosnia & Herzegovina",
       "group": "B",
       "title": 0.0001,
-      "title_delta": -0.0001,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 0.27918,
@@ -1314,7 +1314,7 @@
       "team": "Cape Verde",
       "group": "H",
       "title": 4e-05,
-      "title_delta": -6e-05,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 0.06944,
@@ -1404,7 +1404,7 @@
       "team": "Ecuador",
       "group": "E",
       "title": 0.0,
-      "title_delta": -0.00826,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 0.0,
@@ -1434,7 +1434,7 @@
       "team": "Germany",
       "group": "E",
       "title": 0.0,
-      "title_delta": -0.02288,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 0.0,
@@ -1554,7 +1554,7 @@
       "team": "Ivory Coast",
       "group": "E",
       "title": 0.0,
-      "title_delta": -0.00282,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 0.0,
@@ -1584,7 +1584,7 @@
       "team": "Japan",
       "group": "F",
       "title": 0.0,
-      "title_delta": -0.01462,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 0.0,
@@ -1644,7 +1644,7 @@
       "team": "Netherlands",
       "group": "F",
       "title": 0.0,
-      "title_delta": -0.04378,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 0.0,
@@ -1824,7 +1824,7 @@
       "team": "South Africa",
       "group": "A",
       "title": 0.0,
-      "title_delta": -0.0004,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 0.0,
@@ -1884,7 +1884,7 @@
       "team": "Sweden",
       "group": "F",
       "title": 0.0,
-      "title_delta": -0.0014,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 0.0,
@@ -2032,40 +2032,8 @@
     }
   ],
   "movers": {
-    "risers": [
-      {
-        "team": "France",
-        "group": "I",
-        "title_delta": 0.04992
-      },
-      {
-        "team": "Brazil",
-        "group": "C",
-        "title_delta": 0.04854
-      },
-      {
-        "team": "Morocco",
-        "group": "C",
-        "title_delta": 0.01692
-      }
-    ],
-    "fallers": [
-      {
-        "team": "Netherlands",
-        "group": "F",
-        "title_delta": -0.04378
-      },
-      {
-        "team": "Germany",
-        "group": "E",
-        "title_delta": -0.02288
-      },
-      {
-        "team": "England",
-        "group": "L",
-        "title_delta": -0.01466
-      }
-    ]
+    "risers": [],
+    "fallers": []
   },
   "recent_results": [
     {
