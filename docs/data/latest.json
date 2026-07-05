@@ -1,7 +1,7 @@
 {
   "meta": {
-    "as_of": "2026-07-04T23:41:20.873737+00:00",
-    "generated_at": "2026-07-04T23:41:34.521653+00:00",
+    "as_of": "2026-07-05T01:23:00.356970+00:00",
+    "generated_at": "2026-07-05T01:23:13.716181+00:00",
     "n_sims": 50000,
     "seed": 2026,
     "source": {
@@ -594,7 +594,7 @@
       "team": "France",
       "group": "I",
       "title": 0.2064,
-      "title_delta": 0.04292,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 1.0,
@@ -624,7 +624,7 @@
       "team": "Argentina",
       "group": "J",
       "title": 0.1967,
-      "title_delta": -0.00524,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 1.0,
@@ -654,7 +654,7 @@
       "team": "Spain",
       "group": "H",
       "title": 0.15228,
-      "title_delta": -0.00396,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 1.0,
@@ -684,7 +684,7 @@
       "team": "Brazil",
       "group": "C",
       "title": 0.11284,
-      "title_delta": -0.00282,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 1.0,
@@ -714,7 +714,7 @@
       "team": "Colombia",
       "group": "K",
       "title": 0.06726,
-      "title_delta": -0.00012,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 1.0,
@@ -744,7 +744,7 @@
       "team": "Morocco",
       "group": "C",
       "title": 0.0627,
-      "title_delta": -0.01434,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 1.0,
@@ -774,7 +774,7 @@
       "team": "England",
       "group": "L",
       "title": 0.0556,
-      "title_delta": 0.00018,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 1.0,
@@ -804,7 +804,7 @@
       "team": "Portugal",
       "group": "K",
       "title": 0.0501,
-      "title_delta": -0.00328,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 1.0,
@@ -834,7 +834,7 @@
       "team": "Mexico",
       "group": "A",
       "title": 0.03022,
-      "title_delta": -0.00278,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 1.0,
@@ -864,7 +864,7 @@
       "team": "Belgium",
       "group": "G",
       "title": 0.0246,
-      "title_delta": -0.00308,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 1.0,
@@ -894,7 +894,7 @@
       "team": "Switzerland",
       "group": "B",
       "title": 0.01988,
-      "title_delta": -0.00108,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 1.0,
@@ -924,7 +924,7 @@
       "team": "Norway",
       "group": "I",
       "title": 0.01228,
-      "title_delta": -0.00124,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 1.0,
@@ -954,7 +954,7 @@
       "team": "USA",
       "group": "D",
       "title": 0.00612,
-      "title_delta": -0.00074,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 1.0,
@@ -984,7 +984,7 @@
       "team": "Egypt",
       "group": "G",
       "title": 0.00302,
-      "title_delta": -0.0001,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 1.0,
@@ -1674,7 +1674,7 @@
       "team": "Paraguay",
       "group": "D",
       "title": 0.0,
-      "title_delta": -0.00432,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 1.0,
@@ -2032,35 +2032,8 @@
     }
   ],
   "movers": {
-    "risers": [
-      {
-        "team": "France",
-        "group": "I",
-        "title_delta": 0.04292
-      },
-      {
-        "team": "England",
-        "group": "L",
-        "title_delta": 0.00018
-      }
-    ],
-    "fallers": [
-      {
-        "team": "Morocco",
-        "group": "C",
-        "title_delta": -0.01434
-      },
-      {
-        "team": "Argentina",
-        "group": "J",
-        "title_delta": -0.00524
-      },
-      {
-        "team": "Paraguay",
-        "group": "D",
-        "title_delta": -0.00432
-      }
-    ]
+    "risers": [],
+    "fallers": []
   },
   "recent_results": [
     {
