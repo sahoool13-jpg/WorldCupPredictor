@@ -1,7 +1,7 @@
 {
   "meta": {
-    "as_of": "2026-07-09T22:54:38.915272+00:00",
-    "generated_at": "2026-07-09T22:54:51.876008+00:00",
+    "as_of": "2026-07-09T23:57:24.230104+00:00",
+    "generated_at": "2026-07-09T23:57:36.666137+00:00",
     "n_sims": 50000,
     "seed": 2026,
     "source": {
@@ -594,7 +594,7 @@
       "team": "France",
       "group": "I",
       "title": 0.2992,
-      "title_delta": 0.11202,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 1.0,
@@ -624,7 +624,7 @@
       "team": "Argentina",
       "group": "J",
       "title": 0.25126,
-      "title_delta": -0.01104,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 1.0,
@@ -654,7 +654,7 @@
       "team": "Spain",
       "group": "H",
       "title": 0.21644,
-      "title_delta": -0.02484,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 1.0,
@@ -684,7 +684,7 @@
       "team": "England",
       "group": "L",
       "title": 0.12272,
-      "title_delta": -0.00536,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 1.0,
@@ -714,7 +714,7 @@
       "team": "Norway",
       "group": "I",
       "title": 0.03934,
-      "title_delta": -0.00326,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 1.0,
@@ -744,7 +744,7 @@
       "team": "Belgium",
       "group": "G",
       "title": 0.03564,
-      "title_delta": -0.00928,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 1.0,
@@ -774,7 +774,7 @@
       "team": "Switzerland",
       "group": "B",
       "title": 0.0354,
-      "title_delta": -0.00322,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 1.0,
@@ -1494,7 +1494,7 @@
       "team": "Morocco",
       "group": "C",
       "title": 0.0,
-      "title_delta": -0.05502,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 1.0,
@@ -2032,30 +2032,8 @@
     }
   ],
   "movers": {
-    "risers": [
-      {
-        "team": "France",
-        "group": "I",
-        "title_delta": 0.11202
-      }
-    ],
-    "fallers": [
-      {
-        "team": "Morocco",
-        "group": "C",
-        "title_delta": -0.05502
-      },
-      {
-        "team": "Spain",
-        "group": "H",
-        "title_delta": -0.02484
-      },
-      {
-        "team": "Argentina",
-        "group": "J",
-        "title_delta": -0.01104
-      }
-    ]
+    "risers": [],
+    "fallers": []
   },
   "recent_results": [
     {
