@@ -1,7 +1,7 @@
 {
   "meta": {
-    "as_of": "2026-07-10T21:18:57.197731+00:00",
-    "generated_at": "2026-07-10T21:19:10.520561+00:00",
+    "as_of": "2026-07-10T22:30:18.115718+00:00",
+    "generated_at": "2026-07-10T22:30:32.010791+00:00",
     "n_sims": 50000,
     "seed": 2026,
     "source": {
@@ -594,7 +594,7 @@
       "team": "Spain",
       "group": "H",
       "title": 0.35758,
-      "title_delta": 0.14114,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 1.0,
@@ -624,7 +624,7 @@
       "team": "France",
       "group": "I",
       "title": 0.2449,
-      "title_delta": -0.0543,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 1.0,
@@ -654,7 +654,7 @@
       "team": "Argentina",
       "group": "J",
       "title": 0.22764,
-      "title_delta": -0.02362,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 1.0,
@@ -684,7 +684,7 @@
       "team": "England",
       "group": "L",
       "title": 0.10598,
-      "title_delta": -0.01674,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 1.0,
@@ -714,7 +714,7 @@
       "team": "Norway",
       "group": "I",
       "title": 0.03226,
-      "title_delta": -0.00708,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 1.0,
@@ -744,7 +744,7 @@
       "team": "Switzerland",
       "group": "B",
       "title": 0.03164,
-      "title_delta": -0.00376,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 1.0,
@@ -864,7 +864,7 @@
       "team": "Belgium",
       "group": "G",
       "title": 0.0,
-      "title_delta": -0.03564,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 1.0,
@@ -2032,30 +2032,8 @@
     }
   ],
   "movers": {
-    "risers": [
-      {
-        "team": "Spain",
-        "group": "H",
-        "title_delta": 0.14114
-      }
-    ],
-    "fallers": [
-      {
-        "team": "France",
-        "group": "I",
-        "title_delta": -0.0543
-      },
-      {
-        "team": "Belgium",
-        "group": "G",
-        "title_delta": -0.03564
-      },
-      {
-        "team": "Argentina",
-        "group": "J",
-        "title_delta": -0.02362
-      }
-    ]
+    "risers": [],
+    "fallers": []
   },
   "recent_results": [
     {
