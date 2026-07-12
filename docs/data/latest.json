@@ -1,7 +1,7 @@
 {
   "meta": {
-    "as_of": "2026-07-12T03:52:46.900333+00:00",
-    "generated_at": "2026-07-12T03:53:01.370207+00:00",
+    "as_of": "2026-07-12T06:25:37.364421+00:00",
+    "generated_at": "2026-07-12T06:25:50.994623+00:00",
     "n_sims": 50000,
     "seed": 2026,
     "source": {
@@ -594,7 +594,7 @@
       "team": "Spain",
       "group": "H",
       "title": 0.34516,
-      "title_delta": -0.00518,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 1.0,
@@ -624,7 +624,7 @@
       "team": "Argentina",
       "group": "J",
       "title": 0.27978,
-      "title_delta": 0.05456,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 1.0,
@@ -654,7 +654,7 @@
       "team": "France",
       "group": "I",
       "title": 0.2361,
-      "title_delta": -0.00744,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 1.0,
@@ -684,7 +684,7 @@
       "team": "England",
       "group": "L",
       "title": 0.13896,
-      "title_delta": -0.01308,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 1.0,
@@ -1854,7 +1854,7 @@
       "team": "Switzerland",
       "group": "B",
       "title": 0.0,
-      "title_delta": -0.02886,
+      "title_delta": 0.0,
       "reach": {
         "R32": 1.0,
         "R16": 1.0,
@@ -2032,30 +2032,8 @@
     }
   ],
   "movers": {
-    "risers": [
-      {
-        "team": "Argentina",
-        "group": "J",
-        "title_delta": 0.05456
-      }
-    ],
-    "fallers": [
-      {
-        "team": "Switzerland",
-        "group": "B",
-        "title_delta": -0.02886
-      },
-      {
-        "team": "England",
-        "group": "L",
-        "title_delta": -0.01308
-      },
-      {
-        "team": "France",
-        "group": "I",
-        "title_delta": -0.00744
-      }
-    ]
+    "risers": [],
+    "fallers": []
   },
   "recent_results": [
     {
