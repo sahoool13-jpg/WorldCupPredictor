@@ -1,7 +1,7 @@
 {
   "meta": {
-    "as_of": "2026-07-15T20:01:19.812251+00:00",
-    "generated_at": "2026-07-15T20:01:33.790638+00:00",
+    "as_of": "2026-07-15T21:13:02.763218+00:00",
+    "generated_at": "2026-07-15T21:13:15.393327+00:00",
     "n_sims": 50000,
     "seed": 2026,
     "source": {
@@ -9,7 +9,7 @@
       "results": "espn"
     },
     "n_played": 72,
-    "n_ko_played": 29,
+    "n_ko_played": 30,
     "matches_reflected": [
       {
         "date": "2026-06-11",
@@ -593,8 +593,8 @@
     {
       "team": "Spain",
       "group": "H",
-      "title": 0.63448,
-      "title_delta": 0.0,
+      "title": 0.58326,
+      "title_delta": -0.05122,
       "reach": {
         "R32": 1.0,
         "R16": 1.0,
@@ -605,7 +605,7 @@
       "status": "through",
       "why": {
         "rating": {
-          "blended": 2100.1,
+          "blended": 2100.0,
           "prior": 2086.2,
           "elo_live": 2119.8,
           "form_delta": 0.315,
@@ -623,59 +623,29 @@
     {
       "team": "Argentina",
       "group": "J",
-      "title": 0.24816,
-      "title_delta": 0.0,
+      "title": 0.41674,
+      "title_delta": 0.16858,
       "reach": {
         "R32": 1.0,
         "R16": 1.0,
         "QF": 1.0,
         "SF": 1.0,
-        "F": 0.61046
+        "F": 1.0
       },
       "status": "through",
       "why": {
         "rating": {
-          "blended": 2041.8,
+          "blended": 2049.7,
           "prior": 2101.6,
-          "elo_live": 2105.1,
-          "form_delta": -0.06,
+          "elo_live": 2112.2,
+          "form_delta": -0.027,
           "squad_delta": 2101.6,
-          "w_live": 0.545,
-          "n_played": 6
+          "w_live": 0.583,
+          "n_played": 7
         },
         "goals": {
-          "attack_lambda": 1.8,
-          "defence_lambda": 0.69,
-          "host_edge": false
-        }
-      }
-    },
-    {
-      "team": "England",
-      "group": "L",
-      "title": 0.11736,
-      "title_delta": 0.0,
-      "reach": {
-        "R32": 1.0,
-        "R16": 1.0,
-        "QF": 1.0,
-        "SF": 1.0,
-        "F": 0.38954
-      },
-      "status": "through",
-      "why": {
-        "rating": {
-          "blended": 1971.4,
-          "prior": 1985.1,
-          "elo_live": 2003.9,
-          "form_delta": 0.053,
-          "squad_delta": 1985.1,
-          "w_live": 0.545,
-          "n_played": 6
-        },
-        "goals": {
-          "attack_lambda": 1.54,
-          "defence_lambda": 0.81,
+          "attack_lambda": 1.83,
+          "defence_lambda": 0.68,
           "host_edge": false
         }
       }
@@ -695,7 +665,7 @@
       "status": "through",
       "why": {
         "rating": {
-          "blended": 1834.9,
+          "blended": 1834.8,
           "prior": 1856.6,
           "elo_live": 1841.8,
           "form_delta": -0.092,
@@ -725,7 +695,7 @@
       "status": "through",
       "why": {
         "rating": {
-          "blended": 1831.1,
+          "blended": 1831.0,
           "prior": 1831.0,
           "elo_live": 1830.9,
           "form_delta": -0.011,
@@ -755,7 +725,7 @@
       "status": "through",
       "why": {
         "rating": {
-          "blended": 1841.5,
+          "blended": 1841.4,
           "prior": 1847.6,
           "elo_live": 1843.7,
           "form_delta": -0.023,
@@ -785,7 +755,7 @@
       "status": "through",
       "why": {
         "rating": {
-          "blended": 1925.5,
+          "blended": 1925.4,
           "prior": 1941.3,
           "elo_live": 1947.2,
           "form_delta": 0.012,
@@ -815,7 +785,7 @@
       "status": "through",
       "why": {
         "rating": {
-          "blended": 1678.8,
+          "blended": 1678.7,
           "prior": 1617.1,
           "elo_live": 1624.6,
           "form_delta": 0.098,
@@ -825,7 +795,7 @@
         },
         "goals": {
           "attack_lambda": 0.82,
-          "defence_lambda": 1.51,
+          "defence_lambda": 1.52,
           "host_edge": false
         }
       }
@@ -845,7 +815,7 @@
       "status": "through",
       "why": {
         "rating": {
-          "blended": 1985.5,
+          "blended": 1985.4,
           "prior": 2032.9,
           "elo_live": 2031.2,
           "form_delta": -0.057,
@@ -875,7 +845,7 @@
       "status": "through",
       "why": {
         "rating": {
-          "blended": 1798.6,
+          "blended": 1798.4,
           "prior": 1835.0,
           "elo_live": 1812.2,
           "form_delta": -0.192,
@@ -905,7 +875,7 @@
       "status": "through",
       "why": {
         "rating": {
-          "blended": 1719.4,
+          "blended": 1719.3,
           "prior": 1619.1,
           "elo_live": 1644.1,
           "form_delta": 0.312,
@@ -935,7 +905,7 @@
       "status": "through",
       "why": {
         "rating": {
-          "blended": 1975.4,
+          "blended": 1975.3,
           "prior": 1993.6,
           "elo_live": 2001.5,
           "form_delta": 0.059,
@@ -965,7 +935,7 @@
       "status": "through",
       "why": {
         "rating": {
-          "blended": 1878.1,
+          "blended": 1877.9,
           "prior": 1905.0,
           "elo_live": 1895.3,
           "form_delta": -0.074,
@@ -995,7 +965,7 @@
       "status": "eliminated",
       "why": {
         "rating": {
-          "blended": 1604.4,
+          "blended": 1604.2,
           "prior": 1539.3,
           "elo_live": 1537.7,
           "form_delta": 0.038,
@@ -1025,7 +995,7 @@
       "status": "eliminated",
       "why": {
         "rating": {
-          "blended": 1736.1,
+          "blended": 1735.9,
           "prior": 1768.7,
           "elo_live": 1749.3,
           "form_delta": -0.266,
@@ -1055,7 +1025,7 @@
       "status": "through",
       "why": {
         "rating": {
-          "blended": 1743.8,
+          "blended": 1743.7,
           "prior": 1682.5,
           "elo_live": 1700.9,
           "form_delta": 0.158,
@@ -1085,7 +1055,7 @@
       "status": "through",
       "why": {
         "rating": {
-          "blended": 1861.9,
+          "blended": 1861.7,
           "prior": 1918.8,
           "elo_live": 1896.9,
           "form_delta": -0.224,
@@ -1115,7 +1085,7 @@
       "status": "through",
       "why": {
         "rating": {
-          "blended": 1804.1,
+          "blended": 1804.0,
           "prior": 1762.3,
           "elo_live": 1779.3,
           "form_delta": 0.133,
@@ -1126,6 +1096,36 @@
         "goals": {
           "attack_lambda": 1.08,
           "defence_lambda": 1.16,
+          "host_edge": false
+        }
+      }
+    },
+    {
+      "team": "England",
+      "group": "L",
+      "title": 0.0,
+      "title_delta": -0.11736,
+      "reach": {
+        "R32": 1.0,
+        "R16": 1.0,
+        "QF": 1.0,
+        "SF": 1.0,
+        "F": 0.0
+      },
+      "status": "through",
+      "why": {
+        "rating": {
+          "blended": 1970.4,
+          "prior": 1985.1,
+          "elo_live": 1996.7,
+          "form_delta": 0.06,
+          "squad_delta": 1985.1,
+          "w_live": 0.583,
+          "n_played": 7
+        },
+        "goals": {
+          "attack_lambda": 1.54,
+          "defence_lambda": 0.81,
           "host_edge": false
         }
       }
@@ -1145,7 +1145,7 @@
       "status": "through",
       "why": {
         "rating": {
-          "blended": 2018.1,
+          "blended": 2018.0,
           "prior": 2029.3,
           "elo_live": 2056.8,
           "form_delta": 0.101,
@@ -1175,7 +1175,7 @@
       "status": "through",
       "why": {
         "rating": {
-          "blended": 1911.1,
+          "blended": 1911.0,
           "prior": 1951.2,
           "elo_live": 1944.8,
           "form_delta": -0.104,
@@ -1205,7 +1205,7 @@
       "status": "through",
       "why": {
         "rating": {
-          "blended": 1694.1,
+          "blended": 1694.0,
           "prior": 1612.7,
           "elo_live": 1628.8,
           "form_delta": 0.201,
@@ -1235,7 +1235,7 @@
       "status": "eliminated",
       "why": {
         "rating": {
-          "blended": 1652.1,
+          "blended": 1651.9,
           "prior": 1652.0,
           "elo_live": 1636.3,
           "form_delta": -0.209,
@@ -1245,7 +1245,7 @@
         },
         "goals": {
           "attack_lambda": 0.78,
-          "defence_lambda": 1.6,
+          "defence_lambda": 1.61,
           "host_edge": false
         }
       }
@@ -1265,7 +1265,7 @@
       "status": "eliminated",
       "why": {
         "rating": {
-          "blended": 1845.1,
+          "blended": 1845.0,
           "prior": 1865.6,
           "elo_live": 1860.2,
           "form_delta": -0.09,
@@ -1295,7 +1295,7 @@
       "status": "eliminated",
       "why": {
         "rating": {
-          "blended": 1678.7,
+          "blended": 1678.5,
           "prior": 1691.7,
           "elo_live": 1666.2,
           "form_delta": -0.229,
@@ -1325,7 +1325,7 @@
       "status": "through",
       "why": {
         "rating": {
-          "blended": 1803.6,
+          "blended": 1803.5,
           "prior": 1783.7,
           "elo_live": 1789.2,
           "form_delta": 0.045,
@@ -1355,7 +1355,7 @@
       "status": "through",
       "why": {
         "rating": {
-          "blended": 1900.0,
+          "blended": 1899.8,
           "prior": 1933.5,
           "elo_live": 1930.1,
           "form_delta": -0.09,
@@ -1385,7 +1385,7 @@
       "status": "eliminated",
       "why": {
         "rating": {
-          "blended": 1686.0,
+          "blended": 1685.9,
           "prior": 1696.2,
           "elo_live": 1679.4,
           "form_delta": -0.218,
@@ -1394,7 +1394,7 @@
           "n_played": 3
         },
         "goals": {
-          "attack_lambda": 0.84,
+          "attack_lambda": 0.83,
           "defence_lambda": 1.49,
           "host_edge": false
         }
@@ -1415,7 +1415,7 @@
       "status": "through",
       "why": {
         "rating": {
-          "blended": 1907.8,
+          "blended": 1907.7,
           "prior": 1890.7,
           "elo_live": 1912.4,
           "form_delta": 0.128,
@@ -1445,7 +1445,7 @@
       "status": "through",
       "why": {
         "rating": {
-          "blended": 1923.8,
+          "blended": 1923.7,
           "prior": 1910.2,
           "elo_live": 1931.4,
           "form_delta": 0.127,
@@ -1475,7 +1475,7 @@
       "status": "through",
       "why": {
         "rating": {
-          "blended": 1947.4,
+          "blended": 1947.3,
           "prior": 1951.2,
           "elo_live": 1964.7,
           "form_delta": 0.089,
@@ -1505,7 +1505,7 @@
       "status": "eliminated",
       "why": {
         "rating": {
-          "blended": 1683.4,
+          "blended": 1683.2,
           "prior": 1666.8,
           "elo_live": 1654.5,
           "form_delta": -0.093,
@@ -1535,7 +1535,7 @@
       "status": "through",
       "why": {
         "rating": {
-          "blended": 1908.6,
+          "blended": 1908.5,
           "prior": 1849.1,
           "elo_live": 1885.8,
           "form_delta": 0.307,
@@ -1565,7 +1565,7 @@
       "status": "eliminated",
       "why": {
         "rating": {
-          "blended": 1704.3,
+          "blended": 1704.2,
           "prior": 1756.5,
           "elo_live": 1731.0,
           "form_delta": -0.394,
@@ -1595,7 +1595,7 @@
       "status": "through",
       "why": {
         "rating": {
-          "blended": 1816.9,
+          "blended": 1816.8,
           "prior": 1803.3,
           "elo_live": 1801.4,
           "form_delta": 0.043,
@@ -1625,7 +1625,7 @@
       "status": "through",
       "why": {
         "rating": {
-          "blended": 1954.1,
+          "blended": 1954.0,
           "prior": 1984.5,
           "elo_live": 1987.0,
           "form_delta": -0.018,
@@ -1655,7 +1655,7 @@
       "status": "eliminated",
       "why": {
         "rating": {
-          "blended": 1610.5,
+          "blended": 1610.3,
           "prior": 1572.0,
           "elo_live": 1560.1,
           "form_delta": -0.074,
@@ -1685,7 +1685,7 @@
       "status": "eliminated",
       "why": {
         "rating": {
-          "blended": 1705.7,
+          "blended": 1705.6,
           "prior": 1660.0,
           "elo_live": 1662.1,
           "form_delta": 0.06,
@@ -1715,7 +1715,7 @@
       "status": "eliminated",
       "why": {
         "rating": {
-          "blended": 1762.5,
+          "blended": 1762.3,
           "prior": 1750.7,
           "elo_live": 1746.3,
           "form_delta": -0.031,
@@ -1745,7 +1745,7 @@
       "status": "through",
       "why": {
         "rating": {
-          "blended": 1838.2,
+          "blended": 1838.1,
           "prior": 1855.7,
           "elo_live": 1851.9,
           "form_delta": -0.085,
@@ -1755,7 +1755,7 @@
         },
         "goals": {
           "attack_lambda": 1.16,
-          "defence_lambda": 1.07,
+          "defence_lambda": 1.08,
           "host_edge": false
         }
       }
@@ -1775,7 +1775,7 @@
       "status": "through",
       "why": {
         "rating": {
-          "blended": 1708.8,
+          "blended": 1708.6,
           "prior": 1644.7,
           "elo_live": 1654.7,
           "form_delta": 0.142,
@@ -1805,7 +1805,7 @@
       "status": "eliminated",
       "why": {
         "rating": {
-          "blended": 1799.0,
+          "blended": 1798.9,
           "prior": 1839.1,
           "elo_live": 1825.1,
           "form_delta": -0.233,
@@ -1814,7 +1814,7 @@
           "n_played": 3
         },
         "goals": {
-          "attack_lambda": 1.07,
+          "attack_lambda": 1.06,
           "defence_lambda": 1.17,
           "host_edge": false
         }
@@ -1835,7 +1835,7 @@
       "status": "through",
       "why": {
         "rating": {
-          "blended": 1780.2,
+          "blended": 1780.1,
           "prior": 1747.7,
           "elo_live": 1755.2,
           "form_delta": 0.076,
@@ -1865,7 +1865,7 @@
       "status": "through",
       "why": {
         "rating": {
-          "blended": 1935.0,
+          "blended": 1934.9,
           "prior": 1883.2,
           "elo_live": 1914.5,
           "form_delta": 0.311,
@@ -1895,7 +1895,7 @@
       "status": "eliminated",
       "why": {
         "rating": {
-          "blended": 1697.6,
+          "blended": 1697.4,
           "prior": 1729.5,
           "elo_live": 1698.0,
           "form_delta": -0.292,
@@ -1925,7 +1925,7 @@
       "status": "eliminated",
       "why": {
         "rating": {
-          "blended": 1819.8,
+          "blended": 1819.6,
           "prior": 1852.2,
           "elo_live": 1836.9,
           "form_delta": -0.167,
@@ -1955,7 +1955,7 @@
       "status": "through",
       "why": {
         "rating": {
-          "blended": 1811.0,
+          "blended": 1810.9,
           "prior": 1799.6,
           "elo_live": 1806.6,
           "form_delta": 0.007,
@@ -1985,7 +1985,7 @@
       "status": "eliminated",
       "why": {
         "rating": {
-          "blended": 1844.3,
+          "blended": 1844.1,
           "prior": 1909.5,
           "elo_live": 1891.6,
           "form_delta": -0.299,
@@ -2015,7 +2015,7 @@
       "status": "eliminated",
       "why": {
         "rating": {
-          "blended": 1714.8,
+          "blended": 1714.7,
           "prior": 1759.8,
           "elo_live": 1727.5,
           "form_delta": -0.335,
@@ -2032,10 +2032,34 @@
     }
   ],
   "movers": {
-    "risers": [],
-    "fallers": []
+    "risers": [
+      {
+        "team": "Argentina",
+        "group": "J",
+        "title_delta": 0.16858
+      }
+    ],
+    "fallers": [
+      {
+        "team": "England",
+        "group": "L",
+        "title_delta": -0.11736
+      },
+      {
+        "team": "Spain",
+        "group": "H",
+        "title_delta": -0.05122
+      }
+    ]
   },
   "recent_results": [
+    {
+      "date": "2026-07-15",
+      "home": "England",
+      "away": "Argentina",
+      "home_goals": 1,
+      "away_goals": 2
+    },
     {
       "date": "2026-07-14",
       "home": "France",
@@ -2063,13 +2087,6 @@
       "away": "Belgium",
       "home_goals": 2,
       "away_goals": 1
-    },
-    {
-      "date": "2026-07-09",
-      "home": "France",
-      "away": "Morocco",
-      "home_goals": 2,
-      "away_goals": 0
     }
   ],
   "upcoming": [],
@@ -3289,10 +3306,16 @@
       },
       "winner": {
         "team": "Argentina",
-        "prob": 0.6105,
-        "state": "projected"
+        "prob": 1.0,
+        "state": "resolved"
       },
-      "result": null
+      "result": {
+        "home": "England",
+        "away": "Argentina",
+        "home_goals": 1,
+        "away_goals": 2,
+        "winner": "Argentina"
+      }
     },
     {
       "num": 104,
@@ -3304,12 +3327,12 @@
       },
       "slot2": {
         "team": "Argentina",
-        "prob": 0.6105,
-        "state": "projected"
+        "prob": 1.0,
+        "state": "resolved"
       },
       "winner": {
         "team": "Spain",
-        "prob": 0.6345,
+        "prob": 0.5833,
         "state": "projected"
       },
       "result": null
