@@ -1,7 +1,7 @@
 {
   "meta": {
-    "as_of": "2026-07-18T22:04:40.652322+00:00",
-    "generated_at": "2026-07-18T22:04:54.344759+00:00",
+    "as_of": "2026-07-18T23:06:51.522911+00:00",
+    "generated_at": "2026-07-18T23:07:07.184574+00:00",
     "n_sims": 50000,
     "seed": 2026,
     "source": {
@@ -9,7 +9,7 @@
       "results": "espn"
     },
     "n_played": 72,
-    "n_ko_played": 30,
+    "n_ko_played": 31,
     "matches_reflected": [
       {
         "date": "2026-06-11",
@@ -2037,6 +2037,13 @@
   },
   "recent_results": [
     {
+      "date": "2026-07-18",
+      "home": "France",
+      "away": "England",
+      "home_goals": 4,
+      "away_goals": 6
+    },
+    {
       "date": "2026-07-15",
       "home": "England",
       "away": "Argentina",
@@ -2063,13 +2070,6 @@
       "away": "England",
       "home_goals": 1,
       "away_goals": 2
-    },
-    {
-      "date": "2026-07-10",
-      "home": "Spain",
-      "away": "Belgium",
-      "home_goals": 2,
-      "away_goals": 1
     }
   ],
   "upcoming": [],
