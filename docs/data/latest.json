@@ -1,7 +1,7 @@
 {
   "meta": {
-    "as_of": "2026-07-19T21:32:22.176108+00:00",
-    "generated_at": "2026-07-19T21:32:36.692732+00:00",
+    "as_of": "2026-07-19T22:31:56.448375+00:00",
+    "generated_at": "2026-07-19T22:32:10.782464+00:00",
     "n_sims": 50000,
     "seed": 2026,
     "source": {
@@ -9,7 +9,7 @@
       "results": "espn"
     },
     "n_played": 72,
-    "n_ko_played": 31,
+    "n_ko_played": 32,
     "matches_reflected": [
       {
         "date": "2026-06-11",
@@ -593,8 +593,8 @@
     {
       "team": "Spain",
       "group": "H",
-      "title": 0.58318,
-      "title_delta": 0.0,
+      "title": 1.0,
+      "title_delta": 0.41682,
       "reach": {
         "R32": 1.0,
         "R16": 1.0,
@@ -616,36 +616,6 @@
         "goals": {
           "attack_lambda": 2.04,
           "defence_lambda": 0.61,
-          "host_edge": false
-        }
-      }
-    },
-    {
-      "team": "Argentina",
-      "group": "J",
-      "title": 0.41682,
-      "title_delta": 0.0,
-      "reach": {
-        "R32": 1.0,
-        "R16": 1.0,
-        "QF": 1.0,
-        "SF": 1.0,
-        "F": 1.0
-      },
-      "status": "through",
-      "why": {
-        "rating": {
-          "blended": 2050.0,
-          "prior": 2101.6,
-          "elo_live": 2112.2,
-          "form_delta": -0.027,
-          "squad_delta": 2101.6,
-          "w_live": 0.583,
-          "n_played": 7
-        },
-        "goals": {
-          "attack_lambda": 1.83,
-          "defence_lambda": 0.68,
           "host_edge": false
         }
       }
@@ -676,6 +646,36 @@
         "goals": {
           "attack_lambda": 1.15,
           "defence_lambda": 1.08,
+          "host_edge": false
+        }
+      }
+    },
+    {
+      "team": "Argentina",
+      "group": "J",
+      "title": 0.0,
+      "title_delta": -0.41682,
+      "reach": {
+        "R32": 1.0,
+        "R16": 1.0,
+        "QF": 1.0,
+        "SF": 1.0,
+        "F": 1.0
+      },
+      "status": "through",
+      "why": {
+        "rating": {
+          "blended": 2050.0,
+          "prior": 2101.6,
+          "elo_live": 2112.2,
+          "form_delta": -0.027,
+          "squad_delta": 2101.6,
+          "w_live": 0.583,
+          "n_played": 7
+        },
+        "goals": {
+          "attack_lambda": 1.83,
+          "defence_lambda": 0.68,
           "host_edge": false
         }
       }
@@ -2032,10 +2032,29 @@
     }
   ],
   "movers": {
-    "risers": [],
-    "fallers": []
+    "risers": [
+      {
+        "team": "Spain",
+        "group": "H",
+        "title_delta": 0.41682
+      }
+    ],
+    "fallers": [
+      {
+        "team": "Argentina",
+        "group": "J",
+        "title_delta": -0.41682
+      }
+    ]
   },
   "recent_results": [
+    {
+      "date": "2026-07-19",
+      "home": "Spain",
+      "away": "Argentina",
+      "home_goals": 1,
+      "away_goals": 0
+    },
     {
       "date": "2026-07-18",
       "home": "France",
@@ -2063,13 +2082,6 @@
       "away": "Switzerland",
       "home_goals": 3,
       "away_goals": 1
-    },
-    {
-      "date": "2026-07-11",
-      "home": "Norway",
-      "away": "England",
-      "home_goals": 1,
-      "away_goals": 2
     }
   ],
   "upcoming": [],
@@ -3315,10 +3327,16 @@
       },
       "winner": {
         "team": "Spain",
-        "prob": 0.5832,
-        "state": "projected"
+        "prob": 1.0,
+        "state": "resolved"
       },
-      "result": null
+      "result": {
+        "home": "Spain",
+        "away": "Argentina",
+        "home_goals": 1,
+        "away_goals": 0,
+        "winner": "Spain"
+      }
     }
   ]
 }
